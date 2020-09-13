@@ -17,7 +17,7 @@ class Main_menu:
         """
         clear()
         welcome = Figlet(font='big')
-        print(welcome.renderText('Bienvenue'))
+        print(welcome.renderText('The  Card  Game'))
         print("\n")
         input("Appuyez sur Entrer pour lancer l'application : ")
 
@@ -28,7 +28,7 @@ class Main_menu:
         print("\n")
         print(" ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ ʕᵔᴥᵔʔ \n")
         bye = Figlet(font='big')
-        print(bye.renderText('Au  revoir'))
+        print(bye.renderText('See you next time'))
 
     def new_menu(self, previous_menu):
         """Affichage du menu actuel
