@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Program Files (x86)\\Python38-32\\python.exe",
+    "python.autoComplete.extraPaths": [
+    
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.banditEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8CategorySeverity.W": "Hint"
+}
