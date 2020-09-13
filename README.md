@@ -1,4 +1,4 @@
-# ProjetInfo2A
+# Projet Info 2A
 Projet Informatique de 2e année: Création d'un jeu de carte
 
 ## Introduction 
