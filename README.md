@@ -17,4 +17,5 @@ classes, modèle de données ...) et planifier la mise en place des fonctionnali
 
 ## Note préalable 
 Une pause café Souli ?
+
 ![](graphics/coffee.gif)
