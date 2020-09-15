@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-09-15T07:44:03.778Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="GiuAqdbci9gJ3HDPeXlA" version="13.7.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-09-15T07:49:38.893Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="EjEuOXRglvrR5yU_mqv_" version="13.7.1" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="2522" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -17,7 +17,7 @@
           <mxGeometry x="120" y="80" width="100" height="660" as="geometry" />
         </mxCell>
         <mxCell id="3nuBFxr9cyL0pnOWT2aG-5" value=":Système" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="320" y="80" width="100" height="670" as="geometry" />
+          <mxGeometry x="320" y="80" width="100" height="760" as="geometry" />
         </mxCell>
         <mxCell id="3nuBFxr9cyL0pnOWT2aG-6" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" parent="3nuBFxr9cyL0pnOWT2aG-5" vertex="1">
           <mxGeometry x="45" y="120" width="10" height="200" as="geometry" />
@@ -39,7 +39,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-1" value=":Jeu" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="550" y="80" width="100" height="660" as="geometry" />
+          <mxGeometry x="550" y="80" width="100" height="760" as="geometry" />
         </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-2" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="ORQ5gyo4uyK21jIdF5UX-1">
           <mxGeometry x="45" y="230" width="10" height="40" as="geometry" />
@@ -58,6 +58,9 @@
             <mxPoint x="-170" y="559" as="targetPoint" />
             <mxPoint y="550" as="sourcePoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="ORQ5gyo4uyK21jIdF5UX-29" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="ORQ5gyo4uyK21jIdF5UX-1">
+          <mxGeometry x="45" y="650" width="10" height="80" as="geometry" />
         </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-3" value="Plis_add(carte)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=0.1;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="ORQ5gyo4uyK21jIdF5UX-2">
           <mxGeometry relative="1" as="geometry">
@@ -120,6 +123,22 @@
         </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-25" value="[Not Tour_finished]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-10" y="160" width="180" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ORQ5gyo4uyK21jIdF5UX-30" value="Fin_Tour()" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;" edge="1" target="ORQ5gyo4uyK21jIdF5UX-29" parent="1" source="3nuBFxr9cyL0pnOWT2aG-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="525" y="730" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ORQ5gyo4uyK21jIdF5UX-31" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;" edge="1" source="ORQ5gyo4uyK21jIdF5UX-29" parent="1" target="3nuBFxr9cyL0pnOWT2aG-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="525" y="806" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ORQ5gyo4uyK21jIdF5UX-32" value="Loop" style="shape=umlFrame;whiteSpace=wrap;html=1;width=110;height=30;" vertex="1" parent="1">
+          <mxGeometry x="20" y="700" width="680" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ORQ5gyo4uyK21jIdF5UX-33" value="[Tour_finished]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="730" width="180" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
