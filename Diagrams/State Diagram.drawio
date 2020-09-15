@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-09-15T08:14:07.788Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="loKQZ5QjHT-kltGjRUBT" version="13.7.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-09-15T08:15:13.781Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="WQqHl4_FfwzI394bL3Vd" version="13.7.1" type="github">
   <diagram id="SmJTf4wW6SdyIuIH7xTj" name="Page-1">
     <mxGraphModel dx="1422" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -178,7 +178,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="325" y="470" />
-              <mxPoint x="258" y="470" />
+              <mxPoint x="285" y="470" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -206,7 +206,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-3" value="Consulter son compte" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="202.5" y="500" width="110" height="50" as="geometry" />
+          <mxGeometry x="230" y="500" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="uxW8NfflYTEl3ME1Gt97-13" target="uxW8NfflYTEl3ME1Gt97-21">
           <mxGeometry relative="1" as="geometry" />
@@ -215,10 +215,10 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-13" value="Modifier son compte" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="135" y="590" width="110" height="50" as="geometry" />
+          <mxGeometry x="165" y="590" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-14" value="Afficher ses statistiques" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="270" y="590" width="110" height="50" as="geometry" />
+          <mxGeometry x="300" y="590" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uxW8NfflYTEl3ME1Gt97-15" target="2EBHpzkCXa870_cZxz3k-1">
           <mxGeometry relative="1" as="geometry">
@@ -232,10 +232,10 @@
           <mxGeometry x="30" y="500" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-20" value="Modifier mdp" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="60" y="674.5" width="110" height="50" as="geometry" />
+          <mxGeometry x="90" y="674.5" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-21" value="Modifier nom" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="210" y="674.5" width="110" height="50" as="geometry" />
+          <mxGeometry x="240" y="674.5" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
