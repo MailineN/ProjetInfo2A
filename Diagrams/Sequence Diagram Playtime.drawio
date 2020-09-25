@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-09-25T08:43:13.051Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="DFPDVW0d-L3KWYk8RmNW" version="13.7.5" type="github">
+<mxfile host="app.diagrams.net" modified="2020-09-25T08:44:24.915Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="DFaQdrTm5FQsqikkkSEu" version="13.7.5" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="2522" dy="783" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
@@ -77,9 +77,6 @@
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-6" value="ref" style="shape=umlFrame;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-690" y="190" width="340" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ORQ5gyo4uyK21jIdF5UX-7" value="Vérifier&amp;nbsp; carte valide" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-580" y="215" width="180" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-10" value="[Carte_valide]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-740" y="300" width="180" height="20" as="geometry" />
         </mxCell>
@@ -139,6 +136,21 @@
         </mxCell>
         <mxCell id="ORQ5gyo4uyK21jIdF5UX-33" value="[Tour_finished]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-990" y="710" width="180" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="h1YhjfsKzgG1S_CLmp3s-1" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="-375" y="205" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="h1YhjfsKzgG1S_CLmp3s-2" value="Vérif_carte(carte)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=0.1;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-596" y="207" as="sourcePoint" />
+            <mxPoint x="-380" y="207" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1YhjfsKzgG1S_CLmp3s-3" value="return" style="verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0.1;exitY=0.975;shadow=0;strokeWidth=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-596" y="246" as="targetPoint" />
+            <mxPoint x="-380" y="246" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
