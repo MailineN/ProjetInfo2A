@@ -16,7 +16,7 @@ classes, modèle de données ...) et planifier la mise en place des fonctionnali
 — Développement continu du système en python3 accompagné d’une description graphique du ou des modèles choisis (le modèle d’implémentation);
 
 ## Note préalable 
-Une pause café Souli ?
+Un café Souli ?
 
 ![](graphics/coffee.gif)
 
