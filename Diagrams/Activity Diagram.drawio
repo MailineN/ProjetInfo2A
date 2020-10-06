@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-10-06T16:41:40.210Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="22Etz64ssIVgK7bKJeIe" version="13.7.7" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-06T16:42:44.251Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="xe_oguL725Khxu81R3jD" version="13.7.7" type="gitlab">
   <diagram id="SmJTf4wW6SdyIuIH7xTj" name="Page-1">
-    <mxGraphModel dx="2031" dy="1190" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="331" dy="194" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -134,7 +134,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-56" value="Enregistrer les scores (si connecté)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1114.5" y="1001" width="110" height="50" as="geometry" />
+          <mxGeometry x="1106" y="1001" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="2EBHpzkCXa870_cZxz3k-59" target="2EBHpzkCXa870_cZxz3k-12" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -145,7 +145,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-59" value="Rejouer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="847" y="1001" width="110" height="50" as="geometry" />
+          <mxGeometry x="853" y="1001" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="2EBHpzkCXa870_cZxz3k-62" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -153,7 +153,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-62" value="Quitter l&#39;application" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1247" y="1001" width="110" height="50" as="geometry" />
+          <mxGeometry x="1232" y="1001" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="2EBHpzkCXa870_cZxz3k-71" value="Fin" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1418" y="886" width="40" height="20" as="geometry" />
@@ -315,7 +315,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="5IRoeG9aCwZQ1dgxf3Zp-22" value="Menu précédent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1052" y="1082" width="110" height="50" as="geometry" />
+          <mxGeometry x="1043" y="1082" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="6ZlTgSRuoDReX3Md3dXN-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="j4ca2zUHrR1mSlV7-BGj-4" target="2EBHpzkCXa870_cZxz3k-33">
           <mxGeometry relative="1" as="geometry" />
