@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-06T16:40:33.108Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="KocHi3iC1nvI2VCsMZJ1" version="13.7.7" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-06T16:41:40.210Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="22Etz64ssIVgK7bKJeIe" version="13.7.7" type="gitlab">
   <diagram id="SmJTf4wW6SdyIuIH7xTj" name="Page-1">
     <mxGraphModel dx="2031" dy="1190" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -240,7 +240,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-14" value="Afficher ses statistiques" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="667.5" y="594" width="110" height="50" as="geometry" />
+          <mxGeometry x="649.5" y="594" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uxW8NfflYTEl3ME1Gt97-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="uxW8NfflYTEl3ME1Gt97-15" target="2EBHpzkCXa870_cZxz3k-1" edge="1">
           <mxGeometry relative="1" as="geometry">
