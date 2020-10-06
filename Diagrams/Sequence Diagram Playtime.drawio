@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-06T10:23:59.725Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="a_eWA2AZOdbqA2gGaj-8" version="13.7.7" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-06T10:31:57.043Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="f3ldQ-e-xtAAhIYTDUMQ" version="13.7.7" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="2522" dy="833" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -140,7 +140,7 @@
         <mxCell id="h1YhjfsKzgG1S_CLmp3s-1" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="-370.5" y="205" width="10" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="h1YhjfsKzgG1S_CLmp3s-2" value="Vérif_carte(carte)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=0.05;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="h1YhjfsKzgG1S_CLmp3s-1" edge="1">
+        <mxCell id="h1YhjfsKzgG1S_CLmp3s-2" value="CheckPlayedCard(card,pli)" style="verticalAlign=bottom;endArrow=block;shadow=0;strokeWidth=1;entryX=0.05;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="h1YhjfsKzgG1S_CLmp3s-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-585" y="207" as="sourcePoint" />
             <mxPoint x="-380" y="207" as="targetPoint" />
