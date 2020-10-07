@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-10-07T08:38:35.679Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="oGk0SIxDpH1fakZItqXf" version="13.7.7" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-07T08:41:59.480Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="SsYAPgGkMtwJ3u0atIGt" version="13.7.7" type="gitlab">
   <diagram id="L78k47U69HLxivYjufpT" name="Page-1">
-    <mxGraphModel dx="1422" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="981" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -150,6 +150,9 @@
         <mxCell id="3epC_5tGNAp-iQS2bgfX-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3epC_5tGNAp-iQS2bgfX-11" target="3epC_5tGNAp-iQS2bgfX-55">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="3epC_5tGNAp-iQS2bgfX-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3epC_5tGNAp-iQS2bgfX-11" target="3epC_5tGNAp-iQS2bgfX-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-11" value="DAO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="600" y="270" width="120" height="40" as="geometry" />
         </mxCell>
@@ -175,16 +178,16 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-21" value="Jeu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="600" y="490" width="120" height="40" as="geometry" />
+          <mxGeometry x="610" y="540" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3epC_5tGNAp-iQS2bgfX-22" target="3epC_5tGNAp-iQS2bgfX-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-22" value="InteractionsAPI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="790" y="490" width="120" height="40" as="geometry" />
+          <mxGeometry x="790" y="540" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-25" value="CardsAPI.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="490" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="540" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3epC_5tGNAp-iQS2bgfX-27" target="3epC_5tGNAp-iQS2bgfX-30">
           <mxGeometry relative="1" as="geometry" />
@@ -199,19 +202,19 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-27" value="CardsObjects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="790" y="550" width="120" height="40" as="geometry" />
+          <mxGeometry x="790" y="600" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-30" value="Cards.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="550" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="600" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-31" value="Deck.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="610" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="660" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-34" value="Hand.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="670" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="720" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-35" value="Pile.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="730" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="780" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3epC_5tGNAp-iQS2bgfX-38" target="3epC_5tGNAp-iQS2bgfX-40">
           <mxGeometry relative="1" as="geometry" />
@@ -226,19 +229,19 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-38" value="GameMechanics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="790" y="790" width="120" height="40" as="geometry" />
+          <mxGeometry x="790" y="840" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-40" value="GameService.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="790" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="840" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-41" value="AbstractGame.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="850" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="900" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-42" value="Belote.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="907" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="957" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-43" value="Poker.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="970" y="967" width="120" height="40" as="geometry" />
+          <mxGeometry x="970" y="1017" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-49" value="UsersTest.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="600" y="600" width="120" height="40" as="geometry" />
@@ -254,6 +257,9 @@
         </mxCell>
         <mxCell id="3epC_5tGNAp-iQS2bgfX-58" value="menu_backend.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="600" y="770" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3epC_5tGNAp-iQS2bgfX-60" value="DatabaseConnexion.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="790" y="470" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
