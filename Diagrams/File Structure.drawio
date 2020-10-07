@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-07T08:45:39.279Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="QAOAAZWmPp16UAodTHTh" version="13.7.7" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-07T08:45:58.326Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="0A3ZbPDFzAs3LRbZJ8Zu" version="13.7.7" type="gitlab">
   <diagram id="L78k47U69HLxivYjufpT" name="Page-1">
     <mxGraphModel dx="981" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="#ffffff" math="0" shadow="0">
       <root>
@@ -58,9 +58,6 @@
         <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-4" value="Livrables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="255" y="1130" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="8Qk3gI1zRfMAFnqxJvFZ-5" target="8Qk3gI1zRfMAFnqxJvFZ-42" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-5" value="Diagrammes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="445" y="1130" width="120" height="40" as="geometry" />
         </mxCell>
@@ -114,9 +111,6 @@
         </mxCell>
         <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-33" value="menu_data.py" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="615" y="1017" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-42" value="Classes.drawio" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="615" y="1130" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8Qk3gI1zRfMAFnqxJvFZ-44" value="Users.html" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=19;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="615" y="1210" width="120" height="40" as="geometry" />
