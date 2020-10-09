@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T08:58:33.403Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="xLuaELqkYTWPLTjPSBmJ" version="13.7.9" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-09T08:58:51.689Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="h3KbQBvgIBMPUwD1itgl" version="13.7.9" type="gitlab">
   <diagram id="OjfDf2mp4X_5ovbanYRl" name="Page-1">
     <mxGraphModel dx="849" dy="641" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -69,7 +69,7 @@
         <mxCell id="hRKfSwiD_nlizp8E8gX8-3" value="+ id_group : num&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hRKfSwiD_nlizp8E8gX8-2" vertex="1">
           <mxGeometry y="26" width="160" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="hRKfSwiD_nlizp8E8gX8-63" value="+ nombre_joueurs : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="hRKfSwiD_nlizp8E8gX8-2" vertex="1">
+        <mxCell id="hRKfSwiD_nlizp8E8gX8-63" value="+ nb_players: num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="hRKfSwiD_nlizp8E8gX8-2" vertex="1">
           <mxGeometry y="50" width="160" height="24" as="geometry" />
         </mxCell>
         <mxCell id="hRKfSwiD_nlizp8E8gX8-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="hRKfSwiD_nlizp8E8gX8-2" vertex="1">
