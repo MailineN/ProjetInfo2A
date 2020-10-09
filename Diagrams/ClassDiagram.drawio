@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T06:37:53.429Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="6yJdJPbA28oS2gJo2-3A" version="13.7.9" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-09T14:50:07.129Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="K1v0rj7GA12AeVV15gsR" version="13.7.9" type="gitlab">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="970" dy="2170" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="1021" dy="2221" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -236,7 +236,7 @@
         <mxCell id="6pODGFfM2kmJy-mxRK_K-18" value="&amp;lt;&amp;lt;Create&amp;gt;&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1251" y="-529" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="gtPNyip63HOGCp3EMdQr-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=diamond;endFill=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="YCm6hbGx7Tqcxz9hwrIw-10" edge="1">
+        <mxCell id="gtPNyip63HOGCp3EMdQr-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=diamondThin;endFill=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endSize=8;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="YCm6hbGx7Tqcxz9hwrIw-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="646" y="-818" as="targetPoint" />
             <mxPoint x="571" y="-773.9999999999998" as="sourcePoint" />
@@ -500,13 +500,13 @@
         <mxCell id="YCm6hbGx7Tqcxz9hwrIw-7" value="+deletePlayerAccount()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="MVKSW0jM2tbk2f1vbTIU-67" vertex="1">
           <mxGeometry y="74" width="150" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="lG0zYWxYh0E0DnRsHKPC-3" value="+seePlayerAccount()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="MVKSW0jM2tbk2f1vbTIU-67">
+        <mxCell id="lG0zYWxYh0E0DnRsHKPC-3" value="+seePlayerAccount()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="MVKSW0jM2tbk2f1vbTIU-67" vertex="1">
           <mxGeometry y="94" width="150" height="20" as="geometry" />
         </mxCell>
         <mxCell id="MVKSW0jM2tbk2f1vbTIU-12" value="Statistics" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="411" y="-812" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="EFQg02jSNUdTk51ZG_iw-7" value="+ numberVictory(game): num" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="MVKSW0jM2tbk2f1vbTIU-12" vertex="1">
+        <mxCell id="EFQg02jSNUdTk51ZG_iw-7" value="+ numberVictory: num" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="MVKSW0jM2tbk2f1vbTIU-12" vertex="1">
           <mxGeometry y="26" width="160" height="20" as="geometry" />
         </mxCell>
         <mxCell id="6pODGFfM2kmJy-mxRK_K-25" value="+ playerId: str" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="MVKSW0jM2tbk2f1vbTIU-12" vertex="1">
@@ -704,7 +704,7 @@
         <mxCell id="6pODGFfM2kmJy-mxRK_K-2" value="+ addCard(Card)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" parent="MVKSW0jM2tbk2f1vbTIU-34" vertex="1">
           <mxGeometry y="100" width="160" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="lG0zYWxYh0E0DnRsHKPC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=block;endFill=0;fontColor=none;endSize=9;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="lG0zYWxYh0E0DnRsHKPC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=block;endFill=0;fontColor=none;endSize=9;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="611" y="-1110" as="targetPoint" />
             <Array as="points">
