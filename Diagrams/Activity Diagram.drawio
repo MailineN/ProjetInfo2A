@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-08T09:26:25.199Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" etag="3puaKzTPZ5RgWmTVqK9A" version="13.7.8" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-09T13:08:41.257Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" etag="21eESIZVkxzjnoe_UB6W" version="13.7.9" type="gitlab">
   <diagram id="SmJTf4wW6SdyIuIH7xTj" name="Page-1">
     <mxGraphModel dx="868" dy="482" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -118,7 +118,7 @@
         <mxCell id="DSqrJrKo2LTEbvPPCf58-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;" parent="1" source="DSqrJrKo2LTEbvPPCf58-111" target="DSqrJrKo2LTEbvPPCf58-117" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gJtNhgTwyLmyrsYZL26h-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="DSqrJrKo2LTEbvPPCf58-111" target="DSqrJrKo2LTEbvPPCf58-119">
+        <mxCell id="gJtNhgTwyLmyrsYZL26h-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="DSqrJrKo2LTEbvPPCf58-111" target="DSqrJrKo2LTEbvPPCf58-119" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DSqrJrKo2LTEbvPPCf58-111" value="Menu de fin de partie" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
@@ -346,7 +346,7 @@
         <mxCell id="DSqrJrKo2LTEbvPPCf58-157" value="Sauvegarder et quitter la partie (si connecté)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="1213" y="815.5" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="DSqrJrKo2LTEbvPPCf58-158" value="Créer/supprimer un compte (si admin)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+        <mxCell id="DSqrJrKo2LTEbvPPCf58-158" value="Gérer les bases de données (si admin)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="687" y="466" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
