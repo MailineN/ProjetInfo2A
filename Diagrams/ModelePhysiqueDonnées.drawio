@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T08:13:52.354Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="wFNB-IBsNbNFwK_93mbF" version="13.7.9" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-09T08:43:58.091Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="5WvcSLY5QvGQ0CYM7VW8" version="13.7.9" type="gitlab">
   <diagram id="OjfDf2mp4X_5ovbanYRl" name="Page-1">
     <mxGraphModel dx="1108" dy="482" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -12,9 +12,6 @@
         </mxCell>
         <mxCell id="hRKfSwiD_nlizp8E8gX8-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=diamond;endFill=1;strokeWidth=1;endSize=8;" parent="1" source="hRKfSwiD_nlizp8E8gX8-33" target="hRKfSwiD_nlizp8E8gX8-29" edge="1">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="hRKfSwiD_nlizp8E8gX8-80" value="Modèle Physique de Données" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=21;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="274" y="893" width="370" height="20" as="geometry" />
         </mxCell>
         <mxCell id="hRKfSwiD_nlizp8E8gX8-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=diamond;endFill=1;endSize=9;strokeWidth=1;fontSize=21;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="hRKfSwiD_nlizp8E8gX8-12" target="hRKfSwiD_nlizp8E8gX8-2" edge="1">
           <mxGeometry relative="1" as="geometry">
