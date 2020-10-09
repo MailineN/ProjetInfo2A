@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T08:43:58.091Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="5WvcSLY5QvGQ0CYM7VW8" version="13.7.9" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-10-09T08:52:29.836Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="2UDis8WhxktDtI1hHyHK" version="13.7.9" type="gitlab">
   <diagram id="OjfDf2mp4X_5ovbanYRl" name="Page-1">
-    <mxGraphModel dx="1108" dy="482" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="849" dy="641" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -78,7 +78,7 @@
         <mxCell id="hRKfSwiD_nlizp8E8gX8-29" value="Pile" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="640" y="260" width="160" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="hRKfSwiD_nlizp8E8gX8-30" value="+id_tas : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hRKfSwiD_nlizp8E8gX8-29" vertex="1">
+        <mxCell id="hRKfSwiD_nlizp8E8gX8-30" value="+id_pli : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hRKfSwiD_nlizp8E8gX8-29" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="hRKfSwiD_nlizp8E8gX8-40" value="+nombre_cartes : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="hRKfSwiD_nlizp8E8gX8-29" vertex="1">
@@ -159,7 +159,7 @@
         <mxCell id="hRKfSwiD_nlizp8E8gX8-50" value="+id_temporaire : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="hRKfSwiD_nlizp8E8gX8-12" vertex="1">
           <mxGeometry y="26" width="158" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="hRKfSwiD_nlizp8E8gX8-95" value="+id_tas# : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;fontSize=12;" parent="hRKfSwiD_nlizp8E8gX8-12" vertex="1">
+        <mxCell id="hRKfSwiD_nlizp8E8gX8-95" value="+id_pli# : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;fontSize=12;" parent="hRKfSwiD_nlizp8E8gX8-12" vertex="1">
           <mxGeometry y="52" width="158" height="26" as="geometry" />
         </mxCell>
         <mxCell id="hRKfSwiD_nlizp8E8gX8-104" value="+id_groupe# : num" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;fontSize=12;" parent="hRKfSwiD_nlizp8E8gX8-12" vertex="1">
