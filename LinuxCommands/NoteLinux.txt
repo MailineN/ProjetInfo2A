@@ -1,0 +1,19 @@
+Run pgAdmin4 
+
+cd pgAdmin4
+virtualenv pgAdmin4
+cd pgAdmin4
+source bin/activate
+python lib/python3.8/site-packages/pgadmin4/pgAdmin4.py
+
+Go to http://localhost:5050
+sudo -u postgres psql postgres
+
+Quit 
+\q
+
+
+Sync Github 
+cd ProjetInfo2A.git
+git fetch -p origin
+git push --no-verify --mirror
