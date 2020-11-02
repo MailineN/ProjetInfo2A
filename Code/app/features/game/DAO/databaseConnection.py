@@ -42,8 +42,7 @@ class DatabaseConnection:
                                                                            host='kandula.db.elephantsql.com',
                                                                            port="5432",
                                                                            user='rkvzuxom',
-                                                                           password='gxzP6WQlIbmTH6skR39OpzMXTSULsEqy',
-                                                                           cursor_factory=RealDictCursor)
+                                                                           password='gxzP6WQlIbmTH6skR39OpzMXTSULsEqy')
 
     
     
