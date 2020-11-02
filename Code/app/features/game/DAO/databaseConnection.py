@@ -33,7 +33,7 @@ class DatabaseConnection:
         DatabaseConnection.getInstance().putconn(connection)
 
     def __init__(self):
-        if DatabaseConnection.__instance != None:
+        if (DatabaseConnection.__instance is not None):
             raise Exception("Cette classe est un singleton. Utiliser la "
                             "méthode getInstance()")
         else:
