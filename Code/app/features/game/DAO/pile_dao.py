@@ -3,7 +3,7 @@ from DAO.databaseConnection import DatabaseConnection
  
  
 class PileDAO():
- 
+
  
  
  
@@ -12,10 +12,10 @@ class PileDAO():
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "INSERT INTO pile "
+                "INSERT INTO pile VALUES card_list RETURNING idPile;"
             )
             
-            pile.id = curseur.fetchone()["id_pile"]
+            pile.id = curseur.fetchone()["idPile"]
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -26,5 +26,21 @@ class PileDAO():
 
 
 
-    def getPreviousPiles():
-        pass
+    def getPreviousPiles(id):
+        pass connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "SELECT list_card FROM pile WHERE idGame=id;"
+            )
+        
+            resultats = curseur.fetchall()
+            PreviousPiles = []
+            for resultat in resultats :
+                PreviousPiles.append(resultat["list_card"])
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)

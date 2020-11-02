@@ -1,9 +1,9 @@
 from abstractgame import AbstractGame
-from cardObjects.cards import Color, Rank, Card 
+from cardObjects.deck import PileCard
 
 
 
-class Belote(AbstractGame, Color, Rank, Card):
+class Belote(AbstractGame):
     
    def __init__(self, players=[], deck=None,victoryCondition = None, tourCondition = None, finished = false,listCards = []):
         super.__init__(
@@ -16,13 +16,12 @@ class Belote(AbstractGame, Color, Rank, Card):
         )
     
     def gameLoop(self):
-        pass
+        place_player = [team1[0],team2[0],team1[1],team2[1]]
+        generateNewCustomDeck
     
     def toorLoop(self):
         pass
  
-
-    Atout = []
     
     def CreateTeams():
         team1=[]
@@ -46,6 +45,9 @@ class Belote(AbstractGame, Color, Rank, Card):
  
     point_noatout = ["ace":11,"ten":10,"king":4,"queen":3,"jack":2,"nein":0,"eight":0,"seven":0]    
  
+
+
+
+
     def CountPoint():
-        score1=0
-        score2=0
+      pass
