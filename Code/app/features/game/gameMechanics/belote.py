@@ -1,5 +1,9 @@
 from abstractgame import AbstractGame
-class Belote(AbstractGame):
+from cardObjects.cards import Color, Rank, Card 
+
+
+
+class Belote(AbstractGame, Color, Rank, Card):
     
    def __init__(self, players=[], deck=None,victoryCondition = None, tourCondition = None, finished = false,listCards = []):
         super.__init__(
@@ -17,9 +21,7 @@ class Belote(AbstractGame):
     def toorLoop(self):
         pass
  
-    def checkPlayerNumber():
-        pass
-    
+
     Atout = []
     
     def CreateTeams():
@@ -44,6 +46,6 @@ class Belote(AbstractGame):
  
     point_noatout = ["ace":11,"ten":10,"king":4,"queen":3,"jack":2,"nein":0,"eight":0,"seven":0]    
  
-    def CountScore():
+    def CountPoint():
         score1=0
         score2=0
