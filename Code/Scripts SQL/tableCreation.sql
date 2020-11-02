@@ -10,3 +10,14 @@ CREATE TABLE users (
 
 INSERT INTO users (id_users, username,mdp,admini) VALUES
 (1, 'admin','admin',TRUE);
+
+""""pas complet"""
+DROP TABLE IF EXISTS Pile CASCADE;
+DROP SEQUENCE IF EXISTS idPile;
+CREATE SEQUENCE idPile_seq;
+CREATE TABLE Piles(
+    idPile integer NOT NULL DEFAULT nextval
+    ('idPile_seq' ::regclass) PRIMARY KEY,
+    idGame integer,
+    card_list 
+) 
