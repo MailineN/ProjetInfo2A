@@ -1,6 +1,6 @@
 from abstractgame import AbstractGame
 from cardObjects.deck import PileCard
-from app.menus.menu_interface import MenuInterface
+
 
 
 
@@ -52,14 +52,3 @@ class Belote(AbstractGame):
 
     def CountPoint():
       pass
-
-    def menuTour(previous_menu,hand): 
-        menu_act = {}
-        menu_act["individu"] = previous_menu["individu"]
-        menu_act["question"] = "Quelle carte voulez vous poser ? "
-        menu_act["options"] = [str(hand[i])for i in len(hand)]
-        menu_act["actions"] = [
-            # TODO : Mettre la fonction qui pose la carte et update le game
-            ]
-        menu_act["path"] = []
-        return()# TODO : Retourner la vue du tour en cours 
