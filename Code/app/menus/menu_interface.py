@@ -2,7 +2,7 @@ from pyfiglet import Figlet
 from app.features.utils import clear
 
 
-class Menu_Interface:
+class MenuInterface:
     """Ensemble des méthodes permettant l'ouverture et l'affichage d'un menu 
     """
 

@@ -1,5 +1,5 @@
 from app.menus.menu_interface import Ferme
-from app.menus.menu_interface import Menu_Interface
+from app.menus.menu_interface import MenuInterface
 
 class Individu:     
     def __init__(self):
@@ -19,4 +19,4 @@ class Individu:
         if check in ["Y","y"] : 
             return Ferme()
         else : 
-            return Menu_Interface(previous_menu)
+            return MenuInterface(previous_menu)

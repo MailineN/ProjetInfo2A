@@ -1,5 +1,5 @@
 from pyfiglet import Figlet
-from .menu_interface import Menu_Interface
+from .menu_interface import MenuInterface
 from app.features.utils import clear
 
 
@@ -37,7 +37,7 @@ class Main_menu:
         Returns:
             vue_actuelle {list} -- Menu actuel
         """
-        vue_actuelle = Menu_Interface(previous_menu)
+        vue_actuelle = MenuInterface(previous_menu)
         while vue_actuelle:
             vue_actuelle = vue_actuelle.run()
         return vue_actuelle

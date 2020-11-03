@@ -1,4 +1,4 @@
-
+from .guest import Guest
 class Player(Guest):
     
     def __init__(self, identifiant):
