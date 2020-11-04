@@ -152,6 +152,7 @@ class Belote(AbstractGame):
                 else:
                     plis.append(card)
                     pointsplis += float(point_noatout["card.valeur"])
+       
         #JOUE A UNE AUTRE COULEUR
         else:
             cartemaitre = float(point_noatout["plis[0].valeur"])
@@ -183,11 +184,6 @@ class Belote(AbstractGame):
                     elif a_de_latout(ordre[i]) == True and card.couleur != atout :
                         print("Il faut couper")
                         card = ordre[i].poser(carte)
-
-
-
-
-
 
 
     def a_lacouleur(joueur): #fonction qui vérifie si on a de la couleur demandée 
