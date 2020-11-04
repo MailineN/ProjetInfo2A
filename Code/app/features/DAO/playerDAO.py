@@ -9,7 +9,24 @@ class PlayerDAO(GuestDAO):
         GuestDAO.__init__(self)
     
     def updateAccountCredentials(self):
-        pass
+        """ Met à jour les scores dans la base de données """
+        #### Mettre le code qui récupère le score dans un objet previous_score. 
+
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            ans = curseur.execute( "SELECT score from users WHERE" #condition ??, ())
+            new_score = pervious_score + ans
+            curseur.execute("UPDATE users SET score = %s WHERE" #condition ??
+            ,(new_score))
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+
     
     def getAccountData(self):
         """ Renvoie les scores """
