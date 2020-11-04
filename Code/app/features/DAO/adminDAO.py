@@ -34,10 +34,9 @@ if __name__ == "__main__":
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT * FROM userData" #jsp comment ca s'appelle ds bdd le "userData"
-        userData = curseur.fetchall()
+                "SELECT id_users,username,mdp,admini,connecte FROM users WHERE username = %s , (username)" )
         connexion.commit()
-        print(userData)
+        print(id_users,username,mdp,admini,connecte) #on print toutes les informations
     except psycopg2.Error as error:
         connexion.rollback()
         raise error
@@ -47,4 +46,3 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     getAllUserData()
-
