@@ -10,7 +10,7 @@ class HandDAO:
         getPreviousHandfromDatabase()
     
     """
-      
+    
     def saveHandinDatabase():
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
