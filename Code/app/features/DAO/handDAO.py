@@ -1,18 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 26 11:27:47 2020
+import psycopg2
+from databaseConnection import DatabaseConnection
 
-@author: id1537
-"""
-
-"""
-Questions
-
-- nulle part on a créé la bdd de hand 'CREATE TABLE'
-
-
-
-"""
 
 
 
