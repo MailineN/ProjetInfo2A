@@ -191,22 +191,20 @@ class Belote(AbstractGame):
 
 
     def a_lacouleur(joueur): #fonction qui vérifie si on a de la couleur demandée 
-        for i in joueur.handList :
+        for i in range(len(joueur.handList)) :
             if joueur.handList[i].couleur == couleurask :
                 return True
-        else :
-            return False
+        return(False)
 
     def a_de_latout(joueur): #fonction qui vérifie si on a de l'atout
-        for i in joueur.handList :
+        for i in range(len(joueur.handList)) :
             if joueur.handList[i].couleur == atout :
                 return True
-            else :
-                return False 
+            
 
     def monteratout(joueur,vcarte): #fonction qui vérifie si on peut monter à l'atout 
         valeur=0
-        for i in joueur.handList :
+        for i in range(len(joueur.handList)) :
             if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur])>vcart:
                 return True
 
