@@ -118,5 +118,5 @@ if __name__ == "__main__":
     hand = [Card('SPADES', 'JACK'), Card('SPADES', 'JACK'), Card(
         'SPADES', 'JACK'), Card('SPADES', 'JACK'), Card('SPADES', 'JACK')]
     carteAppel = Card('SPADES', '8')
-
+    # Les attributs sont inversés
     BeloteView.displayTourAppel2(hand, carteAppel)
