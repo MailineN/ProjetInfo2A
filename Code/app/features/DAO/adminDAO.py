@@ -17,13 +17,8 @@ class AdminDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            curseur.execute(
-                "CREATE TABLE AdminBDD (id varchar(jsp combien on met), mdp varchar(idem),userType ())"  #???
-                #quid du mdp et userType
-                #attention il faut mettre un not null à la clé primaire
-                
+            curseur.run(tableCreation.sql) #attention pas tout le fichier à run non? que la partie admin, à voir
         connexion.commit()
-
         except psycopg2.Error as error:
         connexion.rollback()
         raise error
