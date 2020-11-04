@@ -1,6 +1,8 @@
 from app.menus.menu_interface import Ferme
 from app.menus.menu_interface import MenuInterface
 from .individu import Individu
+from app.security.verif_id import verif_id
+import hashlib
 
 class Guest(Individu) :
     
@@ -11,15 +13,21 @@ class Guest(Individu) :
         self.userType = "Guest" #Et on définit que pour l'instant c'est un guest, on modifie l'attribut quand il se connecte 
     
     @staticmethod 
-    def play() : 
-        pass
-    
-    def chooseGame():
-        "Coucou a la personne qui va coder ça, cette fonction est inutile, on va mettre le choix du jeu dans les menus directement"
-        "Idem pour la fonction quitter qui est dans Individu du coup je l'ai enlevé"
+    def play() :   
         pass
     
     def createAccount():
+        identifiant = verif_id(input("Entrez votre identifiant")) 
+        motdepasse = input("Choisissez votre mot de passe")
+        verifMotdepasse= input("Réécrivez votre mot de passe")#ajouter fonction pour vérif que le mdp n est le même
+        
+
+        #code pour hasher un mdp 
+        m = hashlib.md5()
+        m.update("Nobody inspects")
+        m.digest()
+
+
         pass
     
     def connexion():
