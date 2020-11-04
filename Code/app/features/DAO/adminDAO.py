@@ -2,7 +2,6 @@ import psycopg2
 from databaseConnection import DatabaseConnection
 
 
-
 class AdminDAO:
     
     """

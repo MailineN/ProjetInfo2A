@@ -32,9 +32,32 @@ class GameDAO :
 
         pass
 
-    def fetchSaveGame() :
+    def fetchSaveGame(gameIDE) :
 
-        pass
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "SELECT * FROM hand WHERE hand.id = gameIDE"
+            )
+            Hand = curseur.fetchone()[1]
+            curseur.execute(
+                "SELECT * FROM pile WHERE pile.id = gameIDE"
+            )
+            Pile = curseur.fetchone()[1]
+            curseur.execute(
+                "SELECT * FROM score WHERE score.id = gameIDE"
+            )
+            Score = curseur.fetchone()[1]      
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+        return(Hand,Pile,Score)
+
+
+
+
+        
         
 
 

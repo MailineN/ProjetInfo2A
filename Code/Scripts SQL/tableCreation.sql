@@ -9,7 +9,8 @@ CREATE TABLE users
     ::regclass) PRIMARY KEY,
 	username text,
     mdp text,
-    admini boolean);
+    admini boolean
+    connected boolean);
 
     INSERT INTO users
         (id_users, username,mdp,admini,connecte)
