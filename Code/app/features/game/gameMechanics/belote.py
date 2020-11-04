@@ -49,13 +49,16 @@ class Belote(AbstractGame):
         listPoint = []  # index du gagnant dans la tourne actuelle
         coupe = False
         premiereCouleur = plis[0].couleur
+        valeurCoupe = -1
         for card in plis:
             if card.couleur == atout:
                 listPoint.append(point_atout[card.valeur])
                 if card.couleur != premiereCouleur:
                     coupe = True
-                    gagnant = len(listPoint)-1
-                    # TODO: gérér le cas de plusieurs coupes
+                    if max(point_atout[card.valeur], valeurCoupe) > valeurCoupe:
+                        valeurCoupe = max(
+                            point_atout[card.valeur], valeurCoupe)
+                        gagnant = len(listPoint) - 1
             else:
                 listPoint.append(point_noatout[card.valeur])
         if not coupe:
@@ -70,7 +73,7 @@ class Belote(AbstractGame):
         scoreTeam2 = 0
         BeloteView.displayNewGame(team1, team2)
         while (scoreTeam1 < 80) or (scoreTeam2 < 80):
-            pick = false
+            pick = False
             atout = None
             teamPrenant = None
             while not pick:
@@ -104,7 +107,6 @@ class Belote(AbstractGame):
                                 teamPrenant = "Team 1"
                             else:
                                 teamPrenant = "Team 2"
-                            joueurPrenant = player
                             atout = appel[1]
                             place_player[i].drawCard(carteAppel)
                             pick = True
