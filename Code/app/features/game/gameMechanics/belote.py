@@ -46,8 +46,8 @@ class Belote(AbstractGame):
             print("Le nombre de joueurs n'est pas bon")
             
 
-    point_atout = {"JACK":20,"9":14,"ACE":11,"10":10,"KING":4,"QUENN":3,"8":0,"7":0}
-    point_noatout = {"ACE":11,"10":10,"KING":4,"QUENN":3,"JACK":2,"9":0,"8":0,"7":0}    
+    point_atout = {"JACK":20,"9":14,"ACE":11,"10":10,"KING":4,"QUEEN":3,"8":0,"7":0}
+    point_noatout = {"ACE":11,"10":10,"KING":4,"QUEEN":3,"JACK":2,"9":0,"8":0,"7":0}    
  
 
     def CountPoint():
