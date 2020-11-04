@@ -7,15 +7,16 @@ class GuestDAO:
     def __init__():
         pass
     
-    def addAccounttoData(id,mdp):
+    def addAccounttoData(name,mdp):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "INSERT INTO users VALUES (username, mdp  ;",
-            )
-            
+                "INSERT INTO users VALUES (username, mdp) "
+                "VALUES (%s, %s) ;",
+                (name, mdp))
+        
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
