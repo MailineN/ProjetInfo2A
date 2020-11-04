@@ -2,6 +2,7 @@ from app.menus.menu_interface import Ferme
 from app.menus.menu_interface import MenuInterface
 from .individu import Individu
 from app.security.verif_id import verif_id
+from app.security.verif_mdp import verif_mdp
 import hashlib
 
 class Guest(Individu) :
@@ -17,18 +18,17 @@ class Guest(Individu) :
         pass
     
     def createAccount():
-        identifiant = verif_id(input("Entrez votre identifiant")) 
+        identifiant = verif_id(input("Entrez votre identifiant")) #entrer l'id + vérifier qu'il n'existe pas déjà
         motdepasse = input("Choisissez votre mot de passe")
-        verifMotdepasse= input("Réécrivez votre mot de passe")#ajouter fonction pour vérif que le mdp n est le même
-        
+        verifMotdepasse= input("Réécrivez votre mot de passe")
+        motdepasse = verif_mdp(motdepasse, verifMotdepasse) #vérifie que les deux mdp sont les mêmes et renvoie le mdp
 
-        #code pour hasher un mdp 
+        #code pour hasher le mdp 
         m = hashlib.md5()
-        m.update("Nobody inspects")
-        m.digest()
+        m.update(motdepasse)
+        hash_mdp = m.digest()
 
-
-        pass
+        
     
     def connexion():
         pass
