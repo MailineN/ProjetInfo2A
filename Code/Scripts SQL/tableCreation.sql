@@ -6,10 +6,11 @@ CREATE TABLE users (
 	('id_users_seq'::regclass) PRIMARY KEY,
 	username text,
     mdp text,
-    admini boolean);
+    admini boolean
+    connected boolean);
 
-INSERT INTO users (id_users, username,mdp,admini) VALUES
-(1, 'admin','admin',TRUE);
+INSERT INTO users (id_users, username,mdp,admini, connected) VALUES
+(1, 'admin','admin',TRUE, FALSE);
 
 """"pas complet"""
 DROP TABLE IF EXISTS Pile CASCADE;
