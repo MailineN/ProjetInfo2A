@@ -1,8 +1,9 @@
 from app.menus.menu_interface import Ferme
 from app.menus.menu_interface import MenuInterface
 from .individu import Individu
-from app.security.verif_id import verif_id
-from app.security.verif_mdp import verif_mdp
+from app.security.id import verif_init_id
+from app.security.mdp import verif_init_mdp
+from app.DAO.guestDao import GuestDAO
 import hashlib
 
 class Guest(Individu) :
@@ -18,21 +19,34 @@ class Guest(Individu) :
         pass
     
     def createAccount():
-        identifiant = verif_id(input("Entrez votre identifiant")) #entrer l'id + vérifier qu'il n'existe pas déjà
+        username = verif_id(input("Entrez votre nom d'utilisateur")) #entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
         motdepasse = input("Choisissez votre mot de passe")
         verifMotdepasse= input("Réécrivez votre mot de passe")
-        motdepasse = verif_mdp(motdepasse, verifMotdepasse) #vérifie que les deux mdp sont les mêmes et renvoie le mdp
+        motdepasse = verif_init_mdp(motdepasse, verifMotdepasse) #vérifie que les deux mdp sont les mêmes et renvoie le mdp
 
         #code pour hasher le mdp 
         m = hashlib.md5()
         m.update(motdepasse)
         hash_mdp = m.digest()
 
-        
+        #ajouter le compte à la base
+        GuestDAO.addAccounttoData(username,hash_mdp)
+        return("Votre compte a bien été créé")
     
     def connexion():
-        pass
-    
+        """Permet à un utilisateur de se connecter """
+        username = input("Entrez votre username")
+        motdepasse = input("Entrez votre mot de passe")
+
+        #code pour hasher le mdp
+        m = hashlib.md5()
+        m.update(motdepasse)
+        hash_mdp = m.digest()
+
+        #on demande à GuestDAO  de créer l'instance de l'objet
+        GuestDAO.checkAccounttoData(username, hash_mdp)
+
+
     def initEmptyGame() :
         pass
     
