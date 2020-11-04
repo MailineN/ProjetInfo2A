@@ -1,4 +1,4 @@
-def verif_id(identifiant):
+def verif_init_id(identifiant):
     """ On vérifie que l'identifiant choisi n'existe pas déjà dans la base de données"""
     connexion = DatabaseConnection.getConnexion()
     curseur = connexion.curseur()
