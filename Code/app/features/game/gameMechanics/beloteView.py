@@ -16,26 +16,42 @@ class BeloteView():
         return()  # TODO : Retourner la vue du tour en cours
 
     @staticmethod
-    def menuDébutJeu1(previous_menu, hand, firstCard):
-        menu_act = {}
-        menu_act["individu"] = previous_menu["individu"]
-        menu_act["question"] = str(firstCard) + " - Voulez vous prendre ?"
-        menu_act["options"] = ["Oui", "Non"]
-        menu_act["actions"] = []
-        # TODO : Mettre la fonction qui pose la carte et update le game
-        menu_act["path"] = []
-        return()  # TODO : Retourner la vue du tour en cours
-
+    def displayTourAppel(previous_menu, hand, carteAppel):
+        rep = ""
+        while not (rep == "y" or rep == "Y" or rep == "n" or rep == "N"):
+            print("Vous avez ces cartes : \n")
+            for card in hand : 
+                print(str(card)+"\n")
+            rep = input(
+                "La couleur proposée est {}, voulez vous prendre ? (Y/N) ".format(carteAppel.couleur))
+            if (rep == "y" or rep == "Y"):
+                return True
+            return False
+        
     @staticmethod
-    def menuDébutJeu2(previous_menu, hand, firstCard):
-        menu_act = {}
-        menu_act["individu"] = previous_menu["individu"]
-        menu_act["question"] = "Voulez vous appeler ?"
-        menu_act["options"] = ["Oui", "Non"]
-        menu_act["actions"] = []
-        # TODO : Mettre la fonction qui pose la carte et update le game
-        menu_act["path"] = []
-        return()  # TODO : Retourner la vue du tour en cours
+    def displayTourAppel2(hand):
+        rep = ""
+        while not (rep == "y" or rep == "Y" or rep == "n" or rep == "N"):
+            print("Vous avez ces cartes : \n")
+            for card in hand : 
+                print(str(card)+"\n")
+            rep = input(
+                "Souhaitez vous appeler ? (Y/N) ")
+        if (rep.upper() == "Y"):
+            player.drawCard(carteAppel)
+            color = ""
+            while not (color == "S" or color == "H" or color == "C" or color == "D"):
+                color = input(
+                    "Quelle couleur souhaitez vous appeler ? (S/H/C/D) ")
+            if (rep == "S"):
+                return(True, "SPADES")
+            elif (rep == "H"):
+                return(True,"HEARTS")
+            elif (rep == "C"):
+                return(True,"CLUBS")
+            else:
+                return(True,"DIAMONDS")
+        return (False,None)
 
     @staticmethod
     def displayNewGame(team1, team2):

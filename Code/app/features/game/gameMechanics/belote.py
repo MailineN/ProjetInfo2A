@@ -1,5 +1,6 @@
 from abstractgame import AbstractGame
 from cardObjects.deck import PileCard
+from .beloteView import *
 
 
 
@@ -49,63 +50,38 @@ class Belote(AbstractGame):
       pass
 
     def gameLoop(self):
+        CreateTeams()
         place_player = [team1[0],team2[0],team1[1],team2[1]]
-        generateNewCustomDeck
         scoreTeam1 = 0
         scoreTeam2 = 0
+        BeloteView.displayNewGame(team1,team2)
         while (scoreTeam1 < 80) or (scoreTeam2 < 80):
-            while not self.pick:
+            pick = false
+            atout = None
+            while not pick:
                 deck = PileCard.generateNewCustomDeck(self.listCarteAuth)
                 deck.shuffleDeck()
                 # Distribution de carte
-                for player in self.players:
+                for player in place_player:
                     player.drawCard(deck.drawDeck(deck.id, 3))
-                for player in self.players:
+                for player in place_player:
                     player.drawCard(deck.drawDeck(deck.id, 2))
                 # Tour d'appel
                 carteAppel = deck.drawDeck(deck.id)
-                for player in self.players:
-                    rep = ""
-                    while not (rep == "y" or rep == "Y" or rep == "n" or rep == "N"):
-                        rep = input(
-                            "La couleur proposée est {}, voulez vous prendre ? (Y/N) ".format(carteAppel.couleur))
-                    if (rep == "y" or rep == "Y"):
-                        self.atout = carteAppel.couleur
+                for player in place_player:
+                    appel = BeloteView.displayTourAppel(player.hand,carteAppel)
+                    if appel : 
+                        atout = carteAppel.couleur
                         player.drawCard(carteAppel)
-                        break
-                if not self.pick:
+                        pick = True
+                    break
+                if not pick:
                     for player in self.players:
-                        rep = ""
-                        while not (rep == "y" or rep == "Y" or rep == "n" or rep == "N"):
-                            rep = input(
-                                "Souhaitez vous appeler ? (Y/N) ")
-                        if (rep.upper() == "Y"):
-                            player.drawCard(carteAppel)
-                            color = ""
-                            while not (color == "S" or color == "H" or color == "C" or color == "D"):
-                                color = input(
-                                    "Quelle couleur souhaitez vous appeler ? (S/H/C/D) ")
-                            if (rep == "S"):
-                                self.atout = "SPADES"
-                            elif (rep == "H"):
-                                self.atout = "HEARTS"
-                            elif (rep == "C"):
-                                self.atout = "CLUBS"
-                            else:
-                                self.atout = "DIAMONDS"
-                            break
+                        appel = BeloteView.displayTourAppel2(player.hand)
+                        if appel[0]: 
+                            atout = appel[1]
+                            pick = True
                         break
+                    break
 
-            # Fin de la distribution
-            for player in self.players:
-                if player == self.pick:
-                    player.drawCard(deck.drawDeck(deck.id, 2))
-                else:
-                    player.drawCard(deck.drawDeck(deck.id, 3))
-
-            indexTour = 0
-            while len(self.player[0].cards) > 0:
-                score = Belote.tour(deck)
-                self.playersTable = utils.listRotate(self.playersTable, 1)
-
-                # TODO: Implémenter le comptage correct des scores
+            # Fin de la distribution 
