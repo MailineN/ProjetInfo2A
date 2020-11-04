@@ -5,12 +5,9 @@ from .beloteView import *
 
 class Belote(AbstractGame):
 
-    def __init__(self, players=[], deck=None, victoryCondition=None, tourCondition=None, finished=false):
+    def __init__(self, players=[], finished=false):
         super.__init__(
             players=list(players),
-            deck=deck,
-            victoryCondition=victoryCondition,
-            tourCondition=tourCondition,
             finished=finished,
             listCards="7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
@@ -44,6 +41,12 @@ class Belote(AbstractGame):
                      "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
     def countPoint(plis, atout):
+        """Fonction de comptage des points après chaque plis et détermine le gagant du pli
+
+        Args:
+            plis : Liste des cartes du pli
+            atout : Couleur d'atout
+        """
         count = 0
         gagnant: int
         listPoint = []  # index du gagnant dans la tourne actuelle
@@ -67,6 +70,13 @@ class Belote(AbstractGame):
         return(count, gagnant)
 
     def gameLoop(self):
+        """
+        Déroulement d'une partie de belote 
+        Condition de victoire : Avoir plus de 80 points avec son équipe 
+        Initialisation : Chaque joueur commence avec 5 cartes, selon leur mains, ils peuvent appeler 
+        une couleur, d'abord celle de la carte retournée puis celle de leur choix 
+        Si aucune équipe appelle, le jeu est reinitialisé
+        """
         (team1, team2) = CreateTeams()
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         scoreTeam1 = 0
@@ -121,27 +131,30 @@ class Belote(AbstractGame):
 
     def tourLoop(self):
         plis = []
-        ordre=[]
-        maitre = #########
+        ordre = []
+        maitre =
         if maitre == place_player[0]:
             ordre = place_player
         elif maitre == place_player[1]:
-            ordre = [place_player[1],place_player[2],place_player[3],place_player[0]]
+            ordre = [place_player[1], place_player[2],
+                     place_player[3], place_player[0]]
         elif maitre == place_player[2]:
-            ordre = [place_player[2],place_player[3],place_player[0],place_player[1]]
+            ordre = [place_player[2], place_player[3],
+                     place_player[0], place_player[1]]
         elif maitre == place_player[3]:
-            ordre == [place_player[3],place_player[0],place_player[1],place_player[2]]
-        plis.append(ordre[0].poser(carte)) 
+            ordre == [place_player[3], place_player[0],
+                      place_player[1], place_player[2]]
+        plis.append(ordre[0].poser(carte))
         couleurask = plis[0].couleur
-        
-        #JOUE A L'ATOUT
+
+        # JOUE A L'ATOUT
         if couleurask == atout:
             cartemaitre = float(point_atout["plis[0].valeur"])
             pointsplis = cartemaitre
-            for i in range (1,4):
+            for i in range(1, 4):
                 card = ordre[i].poser(carte)
                 if a_de_latout(ordre[i]):
-                    while monteratout(ordre[i],cartemaitre) == True and float(point_atout["card.valeur"]) < cartemaitre:
+                    while monteratout(ordre[i], cartemaitre) == True and float(point_atout["card.valeur"]) < cartemaitre:
                         print("Vous devez monter")
                         card = ordre[i].poser(carte)
                     if float(point_atout["card.valeur"]) > cartemaitre:
@@ -152,14 +165,14 @@ class Belote(AbstractGame):
                 else:
                     plis.append(card)
                     pointsplis += float(point_noatout["card.valeur"])
-       
-        #JOUE A UNE AUTRE COULEUR
+
+        # JOUE A UNE AUTRE COULEUR
         else:
             cartemaitre = float(point_noatout["plis[0].valeur"])
             pointsplis = cartemaitre
-            for i in range (1,4):
+            for i in range(1, 4):
                 card = ordre[i].poser(carte)
-                if monpote(ordre[i],maitre): #Mon coéquipier est maître
+                if monpote(ordre[i], maitre):  # Mon coéquipier est maître
                     if card.couleur == atout:
                         cartemaitre = float(point_atout["card.valeur"])
                         maitre = ordre[i]
@@ -174,37 +187,33 @@ class Belote(AbstractGame):
                         if float(point_noatout["card.valeur"]) > cartemaitre:
                             cartemaitre = float(point_noatout["card.valeur"])
                             maitre = ordre[i]
-                else: #Mon coéquipier n'est pas maître
-                    while a_lacouleur(ordre[i]) == True and card.couleur != couleurask :
+                else:  # Mon coéquipier n'est pas maître
+                    while a_lacouleur(ordre[i]) == True and card.couleur != couleurask:
                         print("Il faut jouer à la couleur demandée")
                         card = ordre[i].poser(carte)
-                    
 
-
-                    elif a_de_latout(ordre[i]) == True and card.couleur != atout :
+                    elif a_de_latout(ordre[i]) == True and card.couleur != atout:
                         print("Il faut couper")
                         card = ordre[i].poser(carte)
 
-
-    def a_lacouleur(joueur): #fonction qui vérifie si on a de la couleur demandée 
-        for i in range(len(joueur.handList)) :
-            if joueur.handList[i].couleur == couleurask :
+    def a_lacouleur(joueur):  # fonction qui vérifie si on a de la couleur demandée
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == couleurask:
                 return True
         return(False)
 
-    def a_de_latout(joueur): #fonction qui vérifie si on a de l'atout
-        for i in range(len(joueur.handList)) :
-            if joueur.handList[i].couleur == atout :
-                return True
-            
-
-    def monteratout(joueur,vcarte): #fonction qui vérifie si on peut monter à l'atout 
-        valeur=0
-        for i in range(len(joueur.handList)) :
-            if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur])>vcart:
+    def a_de_latout(joueur):  # fonction qui vérifie si on a de l'atout
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == atout:
                 return True
 
-    def monpote(joueur,master): #vérifie si deux joueurs sont dans la même équipe
+    def monteratout(joueur, vcarte):  # fonction qui vérifie si on peut monter à l'atout
+        valeur = 0
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur]) > vcart:
+                return True
+
+    def monpote(joueur, master):  # vérifie si deux joueurs sont dans la même équipe
         if joueur in team1 and master in team1:
             return True
         elif joueur in team2 and master in team2:

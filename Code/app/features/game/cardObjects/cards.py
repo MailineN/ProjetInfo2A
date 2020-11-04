@@ -1,6 +1,18 @@
+""" Objets Cartes utilisés pendant les jeux de cartes de l'application
+
+"""
+
+
 class Card:
 
-    def __init__(self, valeur, couleur, code=None) -> None:
+    def __init__(self, valeur: str, couleur: str, code=None) -> None:
+        """Initialisation des cartes, attributs en anglais pour correspondre à L'API
+
+        Args:
+            valeur (str): Valeur de 2 à AS
+            couleur (str): Signes (SPADES, HEARTS, DIAMONDS,CLUBS)
+            code ([type], optional): Code correspondant à l'identifiant API
+        """
         self.valeur = valeur,
         self.couleur = couleur,
         self.code = code
@@ -17,7 +29,3 @@ class Card:
         if isinstance(autrecarte, Card):
             return(self.couleur == autrecarte.couleur)
         raise TypeError("La comparaison n'est possible qu'entre deux cartes")
-
-    @staticmethod
-    def toCard(s: str):
-        """ Converti un objet de la forme valeur de couleur en objet Card"""
