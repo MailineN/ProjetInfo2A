@@ -6,7 +6,7 @@ class Card:
         self.code = code
 
     def __str__(self) -> str:
-        return("{} de {}".format(self.couleur[0], self.valeur[0]))
+        return("{} de {}".format(self.valeur[0], self.couleur[0]))
 
     def __eq__(self, autrecarte) -> bool:
         if isinstance(autrecarte, Card):
@@ -17,3 +17,7 @@ class Card:
         if isinstance(autrecarte, Card):
             return(self.couleur == autrecarte.couleur)
         raise TypeError("La comparaison n'est possible qu'entre deux cartes")
+
+    @staticmethod
+    def toCard(s: str):
+        """ Converti un objet de la forme valeur de couleur en objet Card"""
