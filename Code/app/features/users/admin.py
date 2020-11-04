@@ -1,16 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 26 11:24:38 2020
 
-@author: id1537
-"""
-
-"""
-Questions 
-
-- 
-
-"""
 
 
 class Admin(Player):
