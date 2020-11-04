@@ -12,7 +12,16 @@ class PlayerDAO(GuestDAO):
         pass
     
     def getAccountData(self):
-        pass
+        """ Renvoie les scores """
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            ans = curseur.execute( "SELECT scores from users WHERE" ####Je ne sais pas quoi mettre comme condition .. comment récup l'id ??
+            ,())
+            return(ans)
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
     
     def updatePassword(self, hashmdp, newmdp) :
 

@@ -14,9 +14,9 @@ class GuestDAO:
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "INSERT INTO users (id_users, username,mdp,admini, connected) "
-                "VALUES (%s,%s, %s, %s, %s) ;",
-                (DEFAULT, name, mdp, False, False))
+                "INSERT INTO users (id_users, username,mdp,admini, connected, score) "
+                "VALUES (%s,%s, %s, %s, %s, %s) ;",
+                (DEFAULT, name, mdp, False, False, NULL))
         
             connexion.commit()
         except psycopg2.Error as error:

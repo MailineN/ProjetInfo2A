@@ -1,4 +1,6 @@
 from .guest import Guest
+from app.features.DAO.playerDAO import getAccountData
+
 class Player(Guest):
     
     def __init__(self, identifiant):
@@ -22,11 +24,10 @@ class Player(Guest):
 
         #laisser faire la classe playerDAO
         PlayerDAO.updatePassword(hash_mdp, new_hash_mdp)
-
-        pass
     
     def seeScores(self) :
-        pass
+        """Affiche les scores en appellant la fonction correspondante dans la DAO"""
+        return(getAccountData(self))
     
     def continuePreviousGame(self) :
         pass

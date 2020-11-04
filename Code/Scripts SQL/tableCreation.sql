@@ -10,12 +10,13 @@ CREATE TABLE users
 	username text,
     mdp text,
     admini boolean
-    connected boolean);
+    connected boolean
+    score integer);
 
     INSERT INTO users
-        (id_users, username,mdp,admini,connecte)
+        (id_users, username,mdp,admini,connected, score)
     VALUES
-        (1, 'admin', 'admin', TRUE, FALSE);
+        (1, 'admin', 'admin', TRUE, FALSE, NULL);
 
     """"pas complet"""
 DROP TABLE IF EXISTS Pile CASCADE;
