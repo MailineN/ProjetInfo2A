@@ -70,8 +70,8 @@ class BeloteView():
         print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
 
     @staticmethod
-    def displayAtoutPris(joueur, atout):
-        print(joueur+"a pris à " + atout "\n")
+    def displayAtoutPris(team : str, atout):
+        print(team+"a pris à " + atout "\n")
         print("Le reste du deck va donc être distribué\n")
 
     def displayFinTour(joueurGagnant, cartesPlis):

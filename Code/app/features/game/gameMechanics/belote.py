@@ -62,6 +62,7 @@ class Belote(AbstractGame):
         while (scoreTeam1 < 80) or (scoreTeam2 < 80):
             pick = false
             atout = None
+            teamPrenant = None 
             while not pick:
                 deck = PileCard.generateNewCustomDeck(self.listCarteAuth)
                 deck.shuffleDeck()
@@ -72,20 +73,32 @@ class Belote(AbstractGame):
                     player.drawCard(deck.drawDeck(deck.id, 2))
                 # Tour d'appel
                 carteAppel = deck.drawDeck(deck.id)
-                for player in place_player:
-                    appel = BeloteView.displayTourAppel(player.hand,carteAppel)
+                for i in range len(place_player):
+                    appel = BeloteView.displayTourAppel(place_player[i].hand,carteAppel)
                     if appel : 
+                        if i % 2 == 0 : 
+                            teamPrenant = "Team 1"
+                        else : teamPrenant = "Team 2"
                         atout = carteAppel.couleur
-                        player.drawCard(carteAppel)
+                        place_player[i].drawCard(carteAppel)
                         pick = True
                     break
                 if not pick:
                     for player in self.players:
-                        appel = BeloteView.displayTourAppel2(player.hand)
+                        appel = BeloteView.displayTourAppel2(place_player[i].hand)
                         if appel[0]: 
+                            if i % 2 == 0 : 
+                            teamPrenant = "Team 1"
+                            else : teamPrenant = "Team 2"
+                            joueurPrenant = player
                             atout = appel[1]
+                            place_player[i].drawCard(carteAppel)
                             pick = True
                         break
-                    break
+                    break 
+                if not pick : 
+                    BeloteView.displayRedistrib
+            
+        BeloteView.displayAtoutPris(teamPrenant,atout)
 
             # Fin de la distribution 
