@@ -1,9 +1,7 @@
-from enum import Enum, unique
-  
-  
+
 class Card:
 
-    def __init__(self, valeur: str , couleur : str , code=None) -> None:
+    def __init__(self, valeur: str, couleur: str, code=None) -> None:
         self.valeur = valeur,
         self.couleur = couleur,
         self.code = code
