@@ -118,3 +118,66 @@ class Belote(AbstractGame):
         BeloteView.displayAtoutPris(teamPrenant, atout)
 
         # Fin de la distribution
+
+    def tourLoop(self):
+        plis = []
+        ordre=[]
+        maitre = #########
+        if maitre == place_player[0]:
+            ordre = place_player
+        elif maitre == place_player[1]:
+            ordre = [place_player[1],place_player[2],place_player[3],place_player[0]]
+        elif maitre == place_player[2]:
+            ordre = [place_player[2],place_player[3],place_player[0],place_player[1]]
+        elif maitre == place_player[3]:
+            ordre == [place_player[3],place_player[0],place_player[1],place_player[2]]
+        plis.append(ordre[0].poser(carte)) 
+        couleurask = plis[0].couleur
+        
+        #JOUE A L'ATOUT
+        if couleurask == atout:
+            cartemaitre = float(point_atout["plis[0].valeur"])
+            for i in range (1,4):
+                card = ordre[i].poser(carte)
+                if a_de_latout(ordre[i]) == True :
+                    if monteratout(ordre[i],cartemaitre) == True and float(point_atout[card.valeur]) < cartemaitre:
+                        print("Vous devez monter")
+                        card = ordre[i].poser(carte)
+                        if float(point_atout[card.valeur]) > cartemaitre:
+                            cartemaitre = float(point_atout[card.valeur])
+
+        #JOUE A UNE AUTRE COULEUR
+        for i in range (1,4):
+            card = ordre[i].poser(carte)
+            if a_lacouleur(ordre[i]) == True and card.couleur != couleurask :
+                print("Il faut jouer à la couleur demandée")
+                card = ordre[i].poser(carte)
+            elif a_de_latout(ordre[i]) == True and card.couleur != atout :
+                print("Il faut couper")
+                card = ordre[i].poser(carte)
+
+
+
+
+
+
+
+    def a_lacouleur(joueur): #fonction qui vérifie si on a de la couleur demandée 
+        for i in joueur.handList :
+            if joueur.handList[i].couleur == couleurask :
+                return True
+        else :
+            return False
+
+    def a_de_latout(joueur): #fonction qui vérifie si on a de l'atout
+        for i in joueur.handList :
+            if joueur.handList[i].couleur == atout :
+                return True
+            else :
+                return False 
+
+    def monteratout(joueur,vcarte): #fonction qui vérifie si on peut monter à l'atout 
+        valeur=0
+        for i in joueur.handList :
+            if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur])>vcart:
+                return True
