@@ -35,15 +35,19 @@ class Belote(AbstractGame):
         team2.append(input("Equipe 2 : Joueur 1 :"))
         team2.append(input("Equipe 2 : Joueur 2 :"))
         return (team1,team2)
-        
+
     def CheckPlayerNumber(players):
-        if len(players) != 4 :
-            raise Error 
+        try:
+            len(players)=nbjoueur
+            if nbjoueur == 4:
+                print("Le nombre de joueur est bon")
         
+        except:
+            print("Le nombre de joueurs n'est pas bon")
+            
 
-
-    point_atout = {"jack":20,"nein":14,"ace":11,"ten":10,"king":4,"queen":3,"eight":0,"seven":0}
-    point_noatout = ["ace":11,"ten":10,"king":4,"queen":3,"jack":2,"nein":0,"eight":0,"seven":0]    
+    point_atout = {"JACK":20,"9":14,"ACE":11,"10":10,"KING":4,"QUENN":3,"8":0,"7":0}
+    point_noatout = {"ACE":11,"10":10,"KING":4,"QUENN":3,"JACK":2,"9":0,"8":0,"7":0}    
  
 
     def CountPoint():
