@@ -1,4 +1,4 @@
-from guestView import GuestView
+from app.features.users.guestView import GuestView
 
 def verif_init_id(username):
     """ On vérifie que l'identifiant choisi n'existe pas déjà dans la base de données"""

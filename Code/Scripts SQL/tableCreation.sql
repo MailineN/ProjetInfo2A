@@ -41,3 +41,5 @@ CREATE TABLE Piles
 ALTER TABLE Piles
 ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
+
+SELECT * FROM Users

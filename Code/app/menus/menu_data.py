@@ -39,10 +39,28 @@ def menuChoixJeu(previous_menu):
     menu_act["individu"] = previous_menu["individu"]
     menu_act["question"] = "A quel jeu voulez vous jouer ? "
     menu_act["options"] = ["Belote",
-                           "Retour au menu précédent",
+                           "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
+        menuChoixGroupeBelote
         (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
+def menuChoixGroupeBelote(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous faire ? "
+    menu_act["options"] = ["Créer un groupe de joueurs",
+                           "Rejoindre un groupe de jouers",
+                           "Revenir au menu précédent"
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        (lambda previous_menu:previous_menu["individu"].initEmptyGame()),
+        (lambda previous_menu:previous_menu["individu"].joinGame()),
+        menuChoixJeu,
         Individu().quitter]
     menu_act["path"] = []
     return(MenuInterface(menu_act))
@@ -55,7 +73,7 @@ def menuPlayer(previous_menu):
     menu_act["options"] = ["Jouer",  # 2
                            "Consulter vos statistiques",
                            "Modifier vos informations",
-                           "Retour au menu précédent",
+                           "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
         menuChoixJeu,
@@ -118,6 +136,10 @@ menu = [
         "options": [
             "Connexion",  # 0
             "Jouer",  # 1
+            "Créer un compte"
+            "Voir ses statistiques",
+            "Gérer la base de donnée"
+            "Ajouter un jeu"
             "Revenir au menu précédent",  # 7
             "Quitter l'application"],  # 8
         "actions": [
