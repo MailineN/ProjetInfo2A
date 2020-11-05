@@ -131,9 +131,10 @@ class Belote(AbstractGame):
             ordre = [place_player[2],place_player[3],place_player[0],place_player[1]]
         elif maitre == place_player[3]:
             ordre == [place_player[3],place_player[0],place_player[1],place_player[2]]
-        plis.append(ordre[0].poser(carte)) 
+        premierecartejoue = ordre[0].poser(carte)
+        plis.append(premierecartejoue) 
         couleurask = plis[0].couleur
-        
+        maitre.handList.remove(premierecartejoue) #On retire cette carte de la main du joueur
         #JOUE A L'ATOUT
         if couleurask == atout:
             cartemaitre = float(point_atout["plis[0].valeur"])
@@ -149,10 +150,12 @@ class Belote(AbstractGame):
                         maitre = ordre[i]
                         plis.append(card)
                         pointsplis += float(point_noatout["card.valeur"])
+                        ordre[i].handList.remove(card)
                 else:
                     plis.append(card)
                     pointsplis += float(point_noatout["card.valeur"])
-       
+                    ordre[i].handList.remove(card)
+
         #JOUE A UNE AUTRE COULEUR
         else:
             cartemaitre = float(point_noatout["plis[0].valeur"])
@@ -165,12 +168,15 @@ class Belote(AbstractGame):
                         maitre = ordre[i]
                         plis.append(card)
                         pointsplis += cartemaitre
+                        ordre[i].handList.remove(card)
                     elif card.couleur != couleurask and card.couleur != atout:
                         plis.append(card)
                         pointsplis += float(point_noatout["card.valeur"])
+                        ordre[i].handList.remove(card)
                     elif card.couleur == couleurask:
                         plis.append(card)
                         pointsplis += float(point_noatout["card.valeur"])
+                        ordre[i].handList.remove(card)
                         if float(point_noatout["card.valeur"]) > cartemaitre:
                             cartemaitre = float(point_noatout["card.valeur"])
                             maitre = ordre[i]
