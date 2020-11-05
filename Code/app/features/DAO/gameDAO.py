@@ -8,10 +8,12 @@ class GameDAO :
 
     def saveGame(gameService) :
 
+        pDAO = PileDAO()
+        hDAO = HandDAO()
         for pile in gameService.PileList :
-            savePileinDataBase(pile)
+            pDAO.savePileinDataBase(pile)
         for hand in gameService.HandList :
-            saveHandinDatabase(hand)
+            hDAO.saveHandinDatabase(hand)
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
