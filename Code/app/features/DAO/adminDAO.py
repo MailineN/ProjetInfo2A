@@ -21,14 +21,14 @@ if __name__ == "__main__":
     initDatabase()
 
         
-    def getAllUserData(username, mdp):
+    def getAllUserData(username):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT id_users,username,mdp,admini,connecte FROM users WHERE username = %s , (username)" )
+                "SELECT id_users,username,admini,connected, score FROM users WHERE username = %s , (username)" )
         connexion.commit()
-        print(id_users,username,mdp,admini,connecte) #?? on print toutes les informations (à faire ici ou ds la classe admin??)
+        print(id_users,username,admini,connected, score) #?? on print toutes les informations (à faire ici ou ds la classe admin??)
     except psycopg2.Error as error:
         connexion.rollback()
         raise error
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     getAllUserData()
 
 
-    def deleteUserAccount(username, mdp):
+    def deleteUserAccount(username):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
