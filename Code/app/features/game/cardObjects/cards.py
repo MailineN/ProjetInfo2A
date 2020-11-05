@@ -39,4 +39,4 @@ class Card:
         """
 
         mots = text.split()
-        return(Card(mots[0]), mots[2])
+        return(Card(mots[0], mots[2]))

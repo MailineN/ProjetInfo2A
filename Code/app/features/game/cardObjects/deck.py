@@ -41,7 +41,7 @@ class PileCard:
         """
         self.id = cardAPI.shuffleDeck(self.id)
 
-    def drawDeck(self, count=1) -> list[Card]:
+    def drawDeck(self, count):
         """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
         """
         result = cardAPI.drawDeck(self.id, count)
