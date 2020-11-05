@@ -211,27 +211,27 @@ class Belote(AbstractGame):
                         while card.couleur != couleurask:
                             print("Il faut jouer à la couleur demandée")
                             card = ordre[i].poser(carte)
-                        if float(point_noatout["card.valeur"]) > cartemaitre: #Devient maitre 
+                        if float(point_noatout["card.valeur"]) > cartemaitre and coupe == 0: #Devient maitre 
                             cartemaitre = float(point_noatout["card.valeur"])
                             maitre = ordre[i]
                             pointsplis += float(point_noatout["card.valeur"])
                             ordre[i].handList.remove(card)
                             plis.append(card)
-                        elif float(point_noatout["card.valeur"]) < cartemaitre:
+                        else:
                             pointsplis += float(point_noatout["card.valeur"])
                             ordre[i].handList.remove(card)
                             plis.append(card)
                     elif a_de_latout(ordre[i]) == True and card.couleur != couleurask and card.couleur != atout: #Doit couper
-                        if len(coupe)=0:
+                        if coupe == 0:
                             while card.couleur != atout:
                                 print("Il faut couper")
                                 card = ordre[i].poser(carte)
-                            coupe.append(float(point_atout["card.valeur"]))
+                            coupe+=1
                             maitre = ordre[i]
                             cartemaitre = float(point_atout["card.valeur"])
                             plis.append(card)
                             ordre[i].handList.remove(card)
-                        if len(coupe) > 0:
+                        if coupe != 0:
                             while card.couleur != atout or float(point_atout["card.valeur"]) < cartemaitre:
                                 print("Il faut surcouper")
                                 card = ordre[i].poser(carte)
