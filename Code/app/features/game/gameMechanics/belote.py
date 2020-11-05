@@ -132,7 +132,7 @@ class Belote(AbstractGame):
             tourLoop()
 
         if scoreteamPrenant
-    def tourLoop():
+    def tourLoop(maitre):
         plis = []
         ordre = []
         
@@ -241,7 +241,7 @@ class Belote(AbstractGame):
                         pointsplis += float(point_noatout["card.valeur"])
                         ordre[i].handList.remove(card)
                         plis.append(card)
-
+        return maitre
     def a_lacouleur(joueur,color):  # fonction qui vérifie si on a de la couleur demandée
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == color:
