@@ -1,8 +1,8 @@
 from pile_dao import PileDAO
-from cardobjects.deck import *
+from deck import PileCard
 
 
-class Pile():
+class Pile(PileCard):
     def __init__(self, idGame, idPile, card_list=[]):
         self.idGame = idGame
         self.idPile = idPile

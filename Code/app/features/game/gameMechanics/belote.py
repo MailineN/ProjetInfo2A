@@ -155,7 +155,7 @@ class Belote(AbstractGame):
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
                 if a_de_latout(ordre[i]):
-                    while monteratout(ordre[i], cartemaitre) == True and float(point_atout["card.valeur"]) < cartemaitre:
+                    while monteratout(ordre[i], cartemaitre) and float(point_atout["card.valeur"]) < cartemaitre:
                         print("Vous devez monter")
                         card = ordre[i].poser(carte)
                     if float(point_atout["card.valeur"]) > cartemaitre:
@@ -215,7 +215,7 @@ class Belote(AbstractGame):
                             pointsplis += float(point_noatout["card.valeur"])
                             ordre[i].handList.remove(card)
                             plis.append(card)
-                    elif a_de_latout(ordre[i]) and card.couleur != couleurask and card.couleur != atout: #Doit couper
+                    elif a_de_latout(ordre[i],atout) and card.couleur != couleurask and card.couleur != atout: #Doit couper
                         if coupe == 0:
                             while card.couleur != atout:
                                 print("Il faut couper")
@@ -226,7 +226,7 @@ class Belote(AbstractGame):
                             plis.append(card)
                             ordre[i].handList.remove(card)
                         elif coupe != 0:
-                            while card.couleur != atout or float(point_atout["card.valeur"]) < cartemaitre:
+                            while monteratout(ordre[i],cartemaitre) and float(point_atout["card.valeur"]) < cartemaitre:
                                 print("Il faut surcouper")
                                 card = ordre[i].poser(carte)
                             if float(point_atout["card.valeur"]) > cartemaitre:
@@ -245,7 +245,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def a_de_latout(joueur):  # fonction qui vérifie si on a de l'atout
+    def a_de_latout(joueur,atout):  # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == atout:
                 return True
