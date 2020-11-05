@@ -147,7 +147,7 @@ class Belote(AbstractGame):
         cartejoue = ordre[0].poser(carte)
         plis.append(cartejoue)
         couleurask = plis[0].couleur
-        maitre.handList.remove(cartejoue)
+        maitre.handList.remove(cartejoue) #On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
         if couleurask == atout:
             cartemaitre = float(point_atout["plis[0].valeur"])
@@ -206,18 +206,20 @@ class Belote(AbstractGame):
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == couleurask:
                 return True
-        return(False)
+        return False
 
     def a_de_latout(joueur):  # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == atout:
                 return True
+        return False
 
     def monteratout(joueur, vcarte):  # fonction qui vérifie si on peut monter à l'atout
         valeur = 0
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur]) > vcart:
                 return True
+        return False
 
     def monpote(joueur, master):  # vérifie si deux joueurs sont dans la même équipe
         if joueur in team1 and master in team1:
