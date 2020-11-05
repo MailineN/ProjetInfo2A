@@ -123,8 +123,8 @@ menu = [
         "options": ["Invité", "Joueur", "Quitter l'application"],
         "actions": [
             (lambda previous_menu:indices_actions(Guest(), [1, 2, 3])),
-            (lambda previous_menu:indices_actions(Player(), [0, 1, 2, 3])),
-            connexion, menuChoixJeu, Individu().quitter],
+            (lambda previous_menu:indices_actions(Player(), [0, 1, 3])),
+            Individu().quitter],
 
         "individu": Individu(),
         "path": []
@@ -136,8 +136,8 @@ menu = [
         "options": [
             "Connexion",  # 0
             "Jouer",  # 1
-            "Créer un compte"
-            "Voir ses statistiques",
+            "Créer un compte" #2 
+            "Voir ses statistiques", #3
             "Gérer la base de donnée"
             "Ajouter un jeu"
             "Revenir au menu précédent",  # 7
