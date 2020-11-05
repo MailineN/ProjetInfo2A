@@ -48,6 +48,34 @@ class GuestView():
             res = prompt(questions, style=custom_style_2)
             return(res['Pseudo'], res['Mdp'], res['VerifMdp'])
 
+        def displayVerifId():
+            questions = [
+            {
+                'type': 'input',
+                'name': 'Pseudo',
+                'message': 'Votre identifiant existe déjà, veuillez en choisir un nouveau : ',
+            }]
+            res = prompt(questions, style=custom_style_2)
+            return(res['Pseudo'])
+
+        def displayVerifMdp():
+            questions = [
+            {
+                'type': 'password',
+                'name': 'mdp',
+                'message': 'Entrez votre mot de passe actuel : ',
+            },
+            {
+                'type': 'password',
+                'name': 'vmdp',
+                'message': 'Entrez votre nouveau mot de passe : ',
+
+            }
+        ]
+        res = prompt(questions, style=custom_style_2)
+        return(res['mdp'], res['vmdp'])
+
+
 
 if __name__ == "__main__":
     GuestView.displayConnexion()
