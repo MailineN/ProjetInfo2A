@@ -4,9 +4,10 @@ from pile import Pile
 
 class Hand(PileCard) :
 
-    def __init__(self, idGame, card_list, idHand) :
+    def __init__(self, idGame, idPlayer, card_list, idHand) :
 
         self.idGame = idGame
+        self.idPlayer = idPlayer
         super().__init__(self,idHand,card_list)
 
     def addCard(Card):

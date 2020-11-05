@@ -16,9 +16,9 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO hand (idHand, idGame, card_list)"
-                "VALUES (%s, %s, %s) RETURNING idHand "
-                (hand.idHand, hand.idGame, hand.card_list)
+                "INSERT INTO hand (idHand, idGame, idPlayer, card_list)"
+                "VALUES (%s, %s, %s, %s) RETURNING idHand "
+                (hand.idHand, hand.idGame, hand.idPlayer hand.card_list)
             )
         hand.id = curseur.fetchone()["idHand"]
         connexion.commit()
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         curseur = connexion.cursor()
         try:
            curseur.execute(
-                "SELECT idHand, idGame, card_list FROM hand WHERE idGame=id;"
+                "SELECT idHand, idGame, idPlayer, card_list FROM hand WHERE idGame=id;"
             )
         
             resultats = curseur.fetchall()
