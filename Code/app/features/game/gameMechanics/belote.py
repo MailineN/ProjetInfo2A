@@ -129,10 +129,15 @@ class Belote(AbstractGame):
 
         # Fin de la distribution
 
-    def tourLoop(self):
+        #initialise un premier joueur
+        maitre = place_player[0]
+        for i in range 8:
+            tourLoop()
+
+    def tourLoop():
         plis = []
         ordre = []
-        maitre =
+        
         if maitre == place_player[0]:
             ordre = place_player
         elif maitre == place_player[1]:
