@@ -34,27 +34,79 @@ def indices_actions(ind, indice_taches):
     return(MenuInterface(menu_act))
 
 
-def menuChoixJeu(previous_menu): 
+def menuChoixJeu(previous_menu):
     menu_act = {}
     menu_act["individu"] = previous_menu["individu"]
     menu_act["question"] = "A quel jeu voulez vous jouer ? "
-    menu_act["options"] = ["Belote", #2
-        "Retour au menu précédent",
-        "Quitter l'application"]
+    menu_act["options"] = ["Belote",
+                           "Retour au menu précédent",
+                           "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu :MenuInterface(menu[0])),
+        (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
-    return(MenuInterface(menu_act)) 
+    return(MenuInterface(menu_act))
+
+
+def menuPlayer(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous faire ? "
+    menu_act["options"] = ["Jouer",  # 2
+                           "Consulter vos statistiques",
+                           "Modifier vos informations",
+                           "Retour au menu précédent",
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        menuChoixJeu,
+        menuStatistiques,
+        menuModif,
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
+def menuStatistiques(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Pour quel jeu voulez vous consulter vos statistiques ? "
+    menu_act["options"] = ["Belote",  # 2
+                           "Retour au menu précédent",
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        # Statistiques belote,
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
+def menuModif(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous modifier ? "
+    menu_act["options"] = ["Nom public",  # 2
+                           "Mot de passe",
+                           "Retour au menu précédent"
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        # Modif nom
+        # Modif mdp
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
 
 menu = [
     {
         "question": "Selectionnez votre statut ?",
         "options": ["Invité", "Joueur", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu :indices_actions(Guest(),[1,2,3])),
-            (lambda previous_menu :indices_actions(Player(),[0,1,2,3])),
-            connexion, menuChoixJeu ,Individu().quitter],
+            (lambda previous_menu:indices_actions(Guest(), [1, 2, 3])),
+            (lambda previous_menu:indices_actions(Player(), [0, 1, 2, 3])),
+            connexion, menuChoixJeu, Individu().quitter],
 
         "individu": Individu(),
         "path": []
@@ -64,18 +116,22 @@ menu = [
     {
         "question": "Que voulez vous faire ? ",
         "options": [
-            "Connexion", #0
-            "Jouer", #1
-            "Revenir au menu précédent", # 7
+            "Connexion",  # 0
+            "Jouer",  # 1
+            "Revenir au menu précédent",  # 7
             "Quitter l'application"],  # 8
         "actions": [
             connexion,
             menuChoixJeu,
             #(lambda previous_menu:previous_menu["individu"].reprendre(previous_menu))
-            (lambda previous_menu:previous_menu["individu"].creerCompte(previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].voirStat(previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].gestionBase(previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].ajoutJeu(previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].creerCompte(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].voirStat(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].gestionBase(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].ajoutJeu(
+                previous_menu)),
             (lambda previous_menu:MenuInterface(menu[0])),
             Individu().quitter],
         "individu": Individu(),
