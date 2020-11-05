@@ -5,13 +5,20 @@ from examples import custom_style_2
 
 
 class AdminView():
-        def displayCreateUserAccount():
-            questions = [
+        def displayUsertype():
+            questions = [                
                 {
                     'type': 'input',
                     'name': 'Usertype',
-                    'message': 'Voulez-vous créer un Player ou un Admin?', #?? jsp si ca se passe comme ca qd c'est un choix
-                },                
+                    'message': 'Entrez Player ou Admin en fonction du type d\'utilisateur que vous voulez créer',
+                },
+            ]
+            print("Le type d\'utilisateur choisi est : \n")
+            res = prompt(questions, style=custom_style_2)
+            return(res['Usertype'])
+
+        def displayCreateUserAccount():
+            questions = [                
                 {
                     'type': 'input',
                     'name': 'Pseudo',
@@ -32,7 +39,7 @@ class AdminView():
             ]
             print("Création de compte : \n")
             res = prompt(questions, style=custom_style_2)
-            return(res['Usertype'], res['Pseudo'], res['Mdp'], res['VerifMdp'])
+            return(res['Pseudo'], res['Mdp'], res['VerifMdp'])
 
         def displayDeleteUserAccount():
             questions = [
@@ -41,17 +48,11 @@ class AdminView():
                     'name': 'Username',
                     'message': 'Entrez le nom d\'utilisateur du compte que vous voulez supprimer:', #?? jsp si ca se passe comme ca qd c'est un choix
                 },                
-                {
-                    'type': 'password',
-                    'name': 'Mdp',
-                    'message': 'Entrez le mot de passe associé  à ce compte: ',
-
-                },
 
             ]
             print("Suppression de compte : \n")
             res = prompt(questions, style=custom_style_2)
-            return(res['Username'], res['Mdp'])
+            return(res['Username'])
 
         def displaySeeUserAccount():
             questions = [
@@ -60,17 +61,11 @@ class AdminView():
                     'name': 'Username',
                     'message': 'Entrez le nom d\'utilisateur du compte que vous voulez consulter:', #?? jsp si ca se passe comme ca qd c'est un choix
                 },                
-                {
-                    'type': 'password',
-                    'name': 'Mdp',
-                    'message': 'Entrez le mot de passe associé  à ce compte: ',
-
-                },
 
             ]
             print("Consultation de compte : \n")
             res = prompt(questions, style=custom_style_2)
-            return(res['Username'], res['Mdp'])
+            return(res['Username'])
 
 
 
