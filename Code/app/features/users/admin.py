@@ -56,14 +56,14 @@ class Admin(Player):
         pass
     
 
-    def deletePlayerAccount():
+    def deleteUserAccount():
 
 """moitié ds la DAO moitié ici"""
         adminDAO.getAllUserData(username) 
         
         pass
     
-    def seePlayerAccount():
+    def seeUserAccount():
         
         "utiliser la fct de admin dao"
 
