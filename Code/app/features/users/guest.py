@@ -13,7 +13,7 @@ class Guest(Individu):
     """ classe invité, pouvant jouer au jeu sans se connecter """
 
     def __init__(self):
-        # Désolée d'y avoir touché, mais l'id d'un guest est genéré quand il souhaite jouer et non au lancement
+        # l'id d'un guest est genéré quand il souhaite jouer et non au lancement
         self.identifiant = "id"
         # Et on définit que pour l'instant c'est un guest, on modifie l'attribut quand il se connecte
         self.userType = "Guest"
@@ -52,10 +52,12 @@ class Guest(Individu):
         GuestDAO.checkAccounttoData(username, hash_mdp)
 
     def initEmptyGame():
-        pass
+
+        GameService.initJeu(TRUE)
 
     def joinGame():
-        pass
+        
+        GameService.initJeu(FALSE)
 
     def displayFinishedGame():
         pass
