@@ -11,4 +11,6 @@ class GameService :
     def DisplayGameState(self) :
 
         print(self.score,self.PileList,self.HandList,self.PlayerList,self.gameIDE)
+    
+    def initJeu(self,booléen) : 
 
