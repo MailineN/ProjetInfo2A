@@ -24,11 +24,11 @@ class Guest(Individu):
 
     def createAccount():
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
-        (username=verif_init_id(input("Entrez votre nom d'utilisateur"))
-         motdepasse=input("Choisissez votre mot de passe"))
-        verifMotdepasse = input("Réécrivez votre mot de passe")
+        (username,motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
+        username=verif_init_id(username)
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
         motdepasse = verif_init_mdp(motdepasse, verifMotdepasse)
+
 
         # code pour hasher le mdp
         m = hashlib.md5()
