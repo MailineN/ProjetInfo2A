@@ -23,17 +23,17 @@ class PileDAO():
             DatabaseConnection.putBackConnexion(connexion)
 
     def getPreviousPiles(id):
-        pass connexion = DatabaseConnection.getConnexion()
+        connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT list_card FROM pile WHERE idGame=id;"
+                "SELECT (pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3]) FROM pile WHERE idGame=id;"
             )
 
             resultats = curseur.fetchall()
             PreviousPiles = []
             for resultat in resultats:
-                PreviousPiles.append(resultat["list_card"])
+                PreviousPiles.append(resultat)
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
