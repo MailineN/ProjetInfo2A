@@ -147,7 +147,7 @@ class Belote(AbstractGame):
         cartejoue = ordre[0].poser(carte)
         plis.append(cartejoue)
         couleurask = plis[0].couleur
-        maitre.handList.remove(cartejoue)
+        maitre.handList.remove(cartejoue) #On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
         if couleurask == atout:
             cartemaitre = float(point_atout["plis[0].valeur"])
