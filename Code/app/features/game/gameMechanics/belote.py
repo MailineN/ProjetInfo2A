@@ -158,18 +158,18 @@ class Belote(AbstractGame):
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
                 if a_de_latout(ordre[i]):
-                    while monteratout(ordre[i], cartemaitre) and float(point_atout[ str(card.valeur)]) < cartemaitre:
+                    while monteratout(ordre[i], cartemaitre) and float(point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
                         card = ordre[i].poser(carte)
-                    if float(point_atout[ str(card.valeur)]) > cartemaitre:
+                    if float(point_atout[str(card.valeur)]) > cartemaitre:
                         cartemaitre = float(point_atout[str(card.valeur)])
                         maitre = ordre[i]
                         plis.append(card)
-                        pointsplis += float(point_noatout[ str(card.valeur)])
+                        pointsplis += float(point_noatout[str(card.valeur)])
                          
                 else:
                     plis.append(card)
-                    pointsplis += float(point_noatout[ str(card.valeur)])
+                    pointsplis += float(point_noatout[str(card.valeur)])
                      
 
         #JOUE A UNE AUTRE COULEUR
@@ -225,20 +225,20 @@ class Belote(AbstractGame):
                                 card = ordre[i].poser(carte)
                             coupe+=1
                             maitre = ordre[i]
-                            cartemaitre = float(point_atout[ str(card.valeur)])
+                            cartemaitre = float(point_atout[str(card.valeur)])
                             plis.append(card)
                              
                         elif coupe != 0:
-                            while monteratout(ordre[i],cartemaitre) and float(point_atout[ str(card.valeur)]) < cartemaitre:
+                            while monteratout(ordre[i],cartemaitre) and float(point_atout[str(card.valeur)]) < cartemaitre:
                                 print("Il faut surcouper")
                                 card = ordre[i].poser(carte)
-                            if float(point_atout[ str(card.valeur)]) > cartemaitre:
-                                cartemaitre = float(point_atout[ str(card.valeur)])
+                            if float(point_atout[str(card.valeur)]) > cartemaitre:
+                                cartemaitre = float(point_atout[str(card.valeur)])
                                  
                                 plis.append(card)
-                                coupe.append(float(point_atout[ str(card.valeur)]))
+                                coupe.append(float(point_atout[str(card.valeur)]))
                     else: #n'a pas la couleur ni de l'atout
-                        pointsplis += float(point_noatout[ str(card.valeur)])
+                        pointsplis += float(point_noatout[str(card.valeur)])
                          
                         plis.append(card)
         return maitre
