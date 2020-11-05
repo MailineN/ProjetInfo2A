@@ -14,4 +14,26 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="7", couleur="DIAMONDS")
         ]
 
-        self.assertEqual((29, 1), Belote.countPoint(Belote(),plis, atout))
+        self.assertEqual((29, 1), Belote.countPoint(Belote(), plis, atout))
+
+    def testPointsNonAtout(self):
+        atout = "CLUBS"
+        plis = [
+            Card(valeur="ACE", couleur="DIAMONDS"),
+            Card(valeur="KING", couleur="DIAMONDS"),
+            Card(valeur="8", couleur="DIAMONDS"),
+            Card(valeur="7", couleur="DIAMONDS")
+        ]
+
+        self.assertEqual((15, 0), Belote.countPoint(Belote(), plis, atout))
+
+    def testPointsCoupe(self):
+        atout = "HEARTS"
+        plis = [
+            Card(valeur="ACE", couleur="DIAMONDS"),
+            Card(valeur="KING", couleur="DIAMONDS"),
+            Card(valeur="8", couleur="DIAMONDS"),
+            Card(valeur="7", couleur="HEARTS")
+        ]
+
+        self.assertEqual((15, 3), Belote.countPoint(Belote(), plis, atout))
