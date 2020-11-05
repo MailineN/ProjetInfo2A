@@ -15,10 +15,10 @@ class PlayerDAO(GuestDAO):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
-            ans = curseur.execute( "SELECT score from users WHERE" #condition ??, ())
+            ans = curseur.execute( "SELECT score from users WHERE id_users= %s", (player.id_users))
             new_score = pervious_score + ans
-            curseur.execute("UPDATE users SET score = %s WHERE" #condition ??
-            ,(new_score))
+            curseur.execute("UPDATE users SET score = %s WHERE id_users= %s", 
+            ,(new_score, player.id_users))
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -33,8 +33,7 @@ class PlayerDAO(GuestDAO):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
-            ans = curseur.execute( "SELECT scores from users WHERE" ####Je ne sais pas quoi mettre comme condition .. comment récup l'id ??
-            ,())
+            ans = curseur.execute( "SELECT scores from users WHERE id_users = %s",(player.id_users))
             return(ans)
         finally:
             curseur.close
