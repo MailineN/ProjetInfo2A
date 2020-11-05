@@ -2,19 +2,11 @@ from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
 from app.DAO.guestDao import guestDAO
 from app.DAO.adminDAO import adminDAO
+from app.users.adminView import adminView
 import hashlib
 
 class Admin(Player):
-    
-    """
-    trois méthodes
-    
-    createPlayerAccount()
-    deletePlayerAccount()
-    seePlayerAccount()
-    
-    """
-    
+  
     def __init__(self):
         
         super
@@ -57,14 +49,18 @@ class Admin(Player):
     
 
     def deleteUserAccount():
-
-"""moitié ds la DAO moitié ici"""
-        adminDAO.getAllUserData(username) 
+       """utiliser la fct "displayDeleteUserAccount" de admin view pr parler à l'utilisateur
+          utiliser la fct "deleteUserAccount" de admin dao pr supprimer le compte dans la base de données"""
+        adminView.displayDeleteUserAccount()        
+        adminDAO.deleteUserAccount(username)
+         
         
         pass
     
     def seeUserAccount():
-        
-        "utiliser la fct de admin dao"
+        """utiliser la fct "displaySeeUserAccount" de admin view pr parler à l'utilisateur
+        utiliser la fct "getAllUserData" de admin dao pr avoir accès aux informations de l'utlisateur"""
+        adminView.displaySeeUserAccount()
+        adminDAO.getAllUserData(username)
 
         pass
