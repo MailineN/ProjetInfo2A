@@ -16,9 +16,9 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO hand (idHand, idGame, card_list)"
-                "VALUES (%s, %s, %s) RETURNING idHand "
-                (hand.idHand, hand.idGame, hand.card_list)
+                "INSERT INTO hand (idHand, idGame, idPlayer, card_list)"
+                "VALUES (%s, %s, %s, %s) RETURNING idHand "
+                (hand.idHand, hand.idGame, hand.idPlayer hand.card_list)
             )
         hand.id = curseur.fetchone()["idHand"]
         connexion.commit()
@@ -29,26 +29,27 @@ class HandDAO:
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)
 
-if __name__ == "__main__":
-    saveHandinDatabase()        
-        
+   
         
     def getPreviousHandfromDatabase(id):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
            curseur.execute(
-                "SELECT idHand, idGame, card_list FROM hand WHERE idGame=id;"
+                "SELECT idHand, idGame, idPlayer, card_list FROM hand WHERE idGame=id;"
             )
         
             resultats = curseur.fetchall()
             PreviousHands = []
             for resultat in resultats :
-                PreviousHands.append(resultat)
+                PreviousHands.append(Hand(resultat[0],resultat[1],resultat[2],resultat[3]))
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
         return(PreviousHands)
+# Attention ici tu ne retourne pas un objet Hand mais une liste [idHand,idGame,card_list]
 
 if __name__ == "__main__":
-    getPreviousHandfromDatabase()        
+    # Il faut tout mettre à la fin pour le name == main
+    getPreviousHandfromDatabase()       
+    saveHandinDatabase()     

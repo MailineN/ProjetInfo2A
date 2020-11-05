@@ -29,3 +29,14 @@ class Card:
         if isinstance(autrecarte, Card):
             return(self.couleur == autrecarte.couleur)
         raise TypeError("La comparaison n'est possible qu'entre deux cartes")
+
+    @staticmethod
+    def toCards(text):
+        """Transforme une carte sous format text en instance de l'objet Card
+
+        Args:
+            text (str): Sous format Valeur de Couleur
+        """
+
+        mots = text.split()
+        return(Card(mots[0]), mots[2])

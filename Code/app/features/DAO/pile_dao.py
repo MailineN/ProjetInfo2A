@@ -1,10 +1,10 @@
 import psycopg2
 from databaseConnection import DatabaseConnection
- 
- 
+from app.features.game.cardObjects.cards import Card
+
+
 class PileDAO():
 
- 
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -24,8 +24,6 @@ class PileDAO():
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-
-
     def getPreviousPiles(id):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -33,11 +31,11 @@ class PileDAO():
             curseur.execute(
                 "SELECT idPile, idGame, card_list FROM pile WHERE idGame=id;"
             )
-        
+
             resultats = curseur.fetchall()
             PreviousPiles = []
-            for resultat in resultats :
-                PreviousPiles.append(resultat)
+            for resultat in resultats:
+                PreviousPiles.append(Card.toCards(resultat))
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
