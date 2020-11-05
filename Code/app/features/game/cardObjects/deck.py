@@ -5,7 +5,7 @@ from app.features.game.apiInteractions.cardAPI import cardAPI
 
 
 class PileCard:
-    def __init__(self, idend=None, cards=list[Card]) -> None:
+    def __init__(self, cards, idend=None) -> None:
         """[summary]
 
         Args:
