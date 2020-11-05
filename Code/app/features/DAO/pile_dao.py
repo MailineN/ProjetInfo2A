@@ -31,25 +31,13 @@ class PileDAO():
         curseur = connexion.curseur()
         try:
             curseur.execute(
-<<<<<<< HEAD
                 "SELECT idPile, idGame, card_list FROM pile WHERE idGame=id;"
-=======
-                "SELECT (pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3]) FROM pile WHERE idGame=id;"
->>>>>>> 67de52c677bb160dd1f19c05ea5819bf3727e8a3
             )
         
             resultats = curseur.fetchall()
             PreviousPiles = []
-<<<<<<< HEAD
             for resultat in resultats :
                 PreviousPiles.append(resultat)
-=======
-            for resultat in resultats:
-                PreviousPiles.append(resultat)
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
->>>>>>> 67de52c677bb160dd1f19c05ea5819bf3727e8a3
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
