@@ -1,5 +1,6 @@
 from .guest import Guest
 from app.features.DAO.playerDAO import getAccountData
+from app.features.users.playerView import PlayerView
 
 class Player(Guest):
     
@@ -13,8 +14,7 @@ class Player(Guest):
     
     def changePassword(self):
         """ Changer le mot de passe d'un utilisateur """
-        motdepasse = input("Entrez votre mot de passe actuel")
-        new_mdp = input("Entrez votre nouveau mot de passe")
+       (motdepasse,new_mdp)= PlayerView.displayChangePassword()
 
         m = hashlib.md5()
         m.update(motdepasse)
