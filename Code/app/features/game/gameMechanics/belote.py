@@ -13,9 +13,6 @@ class Belote(AbstractGame):
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
         )
 
-    def toorLoop(self):
-        pass
-
     def CreateTeams():
         team1 = []
         team2 = []
@@ -134,6 +131,7 @@ class Belote(AbstractGame):
         for i in range 8:
             tourLoop()
 
+        if scoreteamPrenant
     def tourLoop():
         plis = []
         ordre = []
