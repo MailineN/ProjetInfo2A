@@ -14,7 +14,7 @@ class Admin(Player):
         Player.__init__(self, identifiant, "Admin") #il hérite de l'attribut userType
 
     def createUserAccount():
-       """ fct à changer par rapport à la view ??? """ 
+       """ fct à changer par rapport à la view ou on la laisse comme ca??? je me base sur le guest qui reste comme ca pr la création mais la view?? """ 
         #demander si on veut créer un joueur ou un admin
         userType = input("voulez vous créer un Joueur ou un Admin ?") #faire un truc pr que tout passe selon si ils mettent des maj et tout 
 
