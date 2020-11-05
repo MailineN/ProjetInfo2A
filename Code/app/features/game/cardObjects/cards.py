@@ -5,7 +5,7 @@
 
 class Card:
 
-    def __init__(self, valeur: str, couleur: str, code=None) -> None:
+    def __init__(self, valeur, couleur, code=None) -> None:
         """Initialisation des cartes, attributs en anglais pour correspondre à L'API
 
         Args:

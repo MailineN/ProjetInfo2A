@@ -14,4 +14,4 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="7", couleur="DIAMONDS")
         ]
 
-        self.assertEqual((29, 1), Belote.countPoint(plis, atout))
+        self.assertEqual((29, 1), Belote.countPoint(Belote(),plis, atout))
