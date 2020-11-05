@@ -4,6 +4,7 @@ from .individu import Individu
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
 from app.DAO.guestDao import GuestDAO
+from guestView import GuestView
 import hashlib
 
 
@@ -23,8 +24,8 @@ class Guest(Individu):
 
     def createAccount():
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
-        username = verif_id(input("Entrez votre nom d'utilisateur"))
-        motdepasse = input("Choisissez votre mot de passe")
+        (username=verif_init_id(input("Entrez votre nom d'utilisateur"))
+         motdepasse=input("Choisissez votre mot de passe"))
         verifMotdepasse = input("Réécrivez votre mot de passe")
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
         motdepasse = verif_init_mdp(motdepasse, verifMotdepasse)
@@ -40,8 +41,7 @@ class Guest(Individu):
 
     def connexion():
         """Permet à un utilisateur de se connecter """
-        username = input("Entrez votre username")
-        motdepasse = input("Entrez votre mot de passe")
+        (username, motdepasse) = GuestView.displayConnexion()
 
         # code pour hasher le mdp
         m = hashlib.md5()

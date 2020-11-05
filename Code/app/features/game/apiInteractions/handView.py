@@ -1,6 +1,6 @@
 " Méthodes view de la classe Hand "
 
-from PyInquirer import prompt, Token
+from PyInquirer import prompt
 from examples import custom_style_2
 
 from app.features.utils import *
