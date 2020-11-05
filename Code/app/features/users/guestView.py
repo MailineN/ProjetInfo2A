@@ -60,20 +60,20 @@ class GuestView():
 
     def displayVerifMdp():
         questions = [
-        {
-            'type': 'password',
-            'name': 'mdp',
-            'message': 'Entrez votre mot de passe actuel : ',
-        },
-        {
-            'type': 'password',
-            'name': 'vmdp',
-            'message': 'Entrez votre nouveau mot de passe : ',
+            {
+                'type': 'password',
+                'name': 'mdp',
+                'message': 'Entrez votre mot de passe actuel : ',
+            },
+            {
+                'type': 'password',
+                'name': 'vmdp',
+                'message': 'Entrez votre nouveau mot de passe : ',
 
-        }
-    ]
-    res = prompt(questions, style=custom_style_2)
-    return(res['mdp'], res['vmdp'])
+            }
+        ]
+        res = prompt(questions, style=custom_style_2)
+        return(res['mdp'], res['vmdp'])
 
 
 
