@@ -1,4 +1,6 @@
-from PyInquirer import prompt, Token
+"""Méthodes views correspondant au jeu de la belote
+    """
+from PyInquirer import prompt
 from examples import custom_style_2
 
 

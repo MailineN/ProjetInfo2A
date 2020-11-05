@@ -1,43 +1,49 @@
-import uuid # Will be used to generate deck id in the database
+""" Objet gérant les différents paquets de cartes du jeu
+"""
 from card import Card
 from app.features.game.apiInteractions.cardAPI import cardAPI
 
 
 class PileCard:
     def __init__(self, idend=None, cards=list[Card]) -> None:
-        # cards représente une liste de cartes et id correspond à l'id de l'api
+        """[summary]
+
+        Args:
+            idend ([type], optional): Identifiant utilisé pour appeler l'API en cas d'utilisation multiples. Defaults to None.
+            cards ([type], optional): Liste de cartes du deck. Defaults to list[Card].
+        """
         self.id = idend
         self.cards = cards
 
     @staticmethod
     def generateNewDeck():
+        """ Création d'un nouveau deck grace à l'API
+        """
         return PileCard(cardAPI.newDeck())
 
     @staticmethod
     def generateNewCustomDeck(listofcard: str):
+        """ Création d'un nouveau deck grace à l'API
+            Ici avec les cartes adaptées selon le jeu
+        """
         return PileCard(cardAPI.newCustomDeck(listofcard))
 
     def len(self) -> int:
         return(len(self.cards))
 
     def topCard(self) -> Card:
+        """ Montre la première carte du paquet
+        """
         return self.cards[0]
 
     def shuffleDeck(self) -> None:
+        """ Mélange le paquet grace à l'API
+        """
         self.id = cardAPI.shuffleDeck(self.id)
 
-    def drawDeck(self, count) -> list[Card]:
+    def drawDeck(self, count=1) -> list[Card]:
+        """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
+        """
         result = cardAPI.drawDeck(self.id, count)
         self.id = result[1]
         return(result[0])
-
-
-"""     def shufflePile(self):
-        pass
-    def drawPile(self):
-        pass
-    
-    def addToPile(self, gameId,cards): 
-        cardAPI.addToPile(self.id,gameId,cards) """
-
-# Todo : Implement custom pile drawing and shuffling
