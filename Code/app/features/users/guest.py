@@ -59,5 +59,3 @@ class Guest(Individu):
         
         GameService.initJeu(FALSE)
 
-    def displayFinishedGame():
-        pass

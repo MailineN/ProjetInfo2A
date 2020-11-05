@@ -39,6 +39,24 @@ class PlayerDAO(GuestDAO):
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
     
+    def fetchGame(idGame) :
+        """ Recherche un jeu stocké dans une partie """
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            ans = curseur.execute("Select * from Games WHERE idGame= %s",(idGame)")
+            if ans =! None :
+                print("Vous n'avez pas de partie en cours")
+            else :
+                main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) #à adapter selon le nom des attributs dans la bdd
+                pile = curseur.execue("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
+                return(main,pile)
+                # ET LANCE LA PARTIE AUSSI => A FAIRE. 
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+
+    
     def updatePassword(self, hashmdp, newmdp) :
 
         """ Met à jour dans la base de données le mot de passe qui vient d'être modifié"""
