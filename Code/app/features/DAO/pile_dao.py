@@ -9,7 +9,8 @@ class PileDAO():
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "INSERT INTO pile VALUES card_list RETURNING idPile;"
+                "INSERT INTO Piles (idPile,idGame,card1,card2,card3,card4) \
+                VALUES (pile.idPile,pile.idGame,pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3]) RETURNING idPile;"
             )
 
             pile.id = curseur.fetchone()["idPile"]
