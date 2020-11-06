@@ -1,6 +1,6 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
-from .beloteView import *
+from app.features.game.gameMechanics.beloteView import BeloteView
 
 
 class Belote(AbstractGame):
