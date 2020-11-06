@@ -49,7 +49,7 @@ def menuChoixJeu(previous_menu):
     return(MenuInterface(menu_act))
 
 
-def menuChoixGroupeBelote(previous_menu):
+def menuChoixGroupeBelote(previous_menu,nameGame):
     menu_act = {}
     menu_act["individu"] = previous_menu["individu"]
     menu_act["question"] = "Que voulez vous faire ? "
@@ -58,8 +58,8 @@ def menuChoixGroupeBelote(previous_menu):
                            "Revenir au menu précédent"
                            "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu:previous_menu["individu"].initEmptyGame()),
-        (lambda previous_menu:previous_menu["individu"].joinGame()),
+        (lambda previous_menu:previous_menu["individu"].initEmptyGame(nameGame)),
+        (lambda previous_menu:previous_menu["individu"].joinGame(nameGame)),
         menuChoixJeu,
         Individu().quitter]
     menu_act["path"] = []
