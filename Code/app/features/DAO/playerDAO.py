@@ -1,5 +1,5 @@
 from app.features.users.player import Player
-
+from app.features.DAO.databaseConnection import DatabaseConnection
 class PlayerDAO(GuestDAO):
     
     """ classe Data Access Object de la classe Player """
