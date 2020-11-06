@@ -37,19 +37,19 @@ class BeloteTests(unittest.TestCase):
 
 
     def testmonpote(self):
-        team1 = ["player1","player2"]
-        team2=[]
+        team1 = ["player1", "player2"]
+        team2 = []
         testmaitre = "player2"
-        self.assertEqual(testmaitre,Belote.monpote("player1", testmaitre, team1, team2))
+        self.assertEqual(testmaitre, Belote.monpote("player1", testmaitre, team1, team2))
    
     def testa_de_latout(self):
         atout = "HEARTS"
         testplayer = "testplayer"
         testplayer.handList = [
-        Card(valeur="ACE", couleur="DIAMONDS"),
-        Card(valeur="KING", couleur="DIAMONDS"),
-        Card(valeur="8", couleur="DIAMONDS"),
-        Card(valeur="7", couleur="HEARTS")
+            Card(valeur="ACE", couleur="DIAMONDS"),
+            Card(valeur="KING", couleur="DIAMONDS"),
+            Card(valeur="8", couleur="DIAMONDS"),
+            Card(valeur="7", couleur="HEARTS")
         ]
         self.assertTrue(Belote.a_de_latout(testplayer,atout))
 
@@ -57,10 +57,10 @@ class BeloteTests(unittest.TestCase):
         couleur = "HEARTS"
         testplayer = "testplayer"
         testplayer.handList = [
-        Card(valeur="ACE", couleur="DIAMONDS"),
-        Card(valeur="KING", couleur="DIAMONDS"),
-        Card(valeur="8", couleur="DIAMONDS"),
-        Card(valeur="7", couleur="HEARTS")
+            Card(valeur="ACE", couleur="DIAMONDS"),
+            Card(valeur="KING", couleur="DIAMONDS"),
+            Card(valeur="8", couleur="DIAMONDS"),
+            Card(valeur="7", couleur="HEARTS")
         ]
         self.assertTrue(Belote.a_lacouleur(testplayer,couleur))
 
@@ -69,10 +69,10 @@ class BeloteTests(unittest.TestCase):
         vcarte = 11
         atout = "HEARTS"
         testplayer.handList = [
-        Card(valeur="ACE", couleur="DIAMONDS"),
-        Card(valeur="KING", couleur="DIAMONDS"),
-        Card(valeur="8", couleur="DIAMONDS"),
-        Card(valeur="JACK", couleur="HEARTS")
+            Card(valeur="ACE", couleur="DIAMONDS"),
+            Card(valeur="KING", couleur="DIAMONDS"),
+            Card(valeur="8", couleur="DIAMONDS"),
+            Card(valeur="JACK", couleur="HEARTS")
         ]
         self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
                         "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
