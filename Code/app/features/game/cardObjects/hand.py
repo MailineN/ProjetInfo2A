@@ -1,6 +1,6 @@
-from deck import PileCard
-from cards import Card
-from pile import Pile
+from app.features.game.cardObjects.deck import PileCard
+from app.features.game.cardObjects.cards import Card
+from app.features.game.cardObjects.pile import Pile
 
 class Hand(PileCard) :
 
