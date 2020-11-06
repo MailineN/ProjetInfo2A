@@ -178,7 +178,7 @@ class Belote(AbstractGame):
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
-                if monpote(ordre[i], maitre):  # Mon coéquipier est maître
+                if monpote(ordre[i], maitre,team1,team2):  # Mon coéquipier est maître
                     if a_lacouleur(ordre[i], couleurask):  # Peut jouer à la couleur
                         while card.couleur != couleurask:
                             print("Il faut jouer à la couleur demandée")
@@ -272,10 +272,10 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def monpote(joueur, master):  # vérifie si deux joueurs sont dans la même équipe
-        if joueur in team1 and master in team1:
+    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
+        if joueur in equipe1 and master in equipe1:
             return True
-        elif joueur in team2 and master in team2:
+        elif joueur in equipe2 and master in equipe2:
             return True
         else:
             return False
