@@ -14,7 +14,7 @@ class Hand(PileCard) :
         card_list.append(Card)
 
     def __str__(self):
-        rep = "Les cartes de la main sont : \n"
+        rep = "Les cartes de la main sont : "
         liste = ""
         for card in self.card_list:
             liste += str(card) + ", "
