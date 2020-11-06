@@ -17,8 +17,6 @@ class AdminDAO:
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)
 
-if __name__ == "__main__":
-    initDatabase()
 
         
     def getAllUserData(username):
@@ -36,8 +34,7 @@ if __name__ == "__main__":
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)
 
-if __name__ == "__main__":
-    getAllUserData()
+
 
 
     def deleteUserAccount(username):
@@ -54,3 +51,8 @@ if __name__ == "__main__":
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+
+if __name__ == "__main__":
+    initDatabase()
+    getAllUserData()
+    deleteUserAccount()

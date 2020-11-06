@@ -29,9 +29,7 @@ class HandDAO:
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)
 
-   
-        
-    def getPreviousHandfromDatabase(id):
+  def getPreviousHandfromDatabase(id):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
@@ -49,7 +47,7 @@ class HandDAO:
         return(PreviousHands)
 # Attention ici tu ne retourne pas un objet Hand mais une liste [idHand,idGame,card_list]
 
+
 if __name__ == "__main__":
-    # Il faut tout mettre à la fin pour le name == main
     getPreviousHandfromDatabase()       
     saveHandinDatabase()     
