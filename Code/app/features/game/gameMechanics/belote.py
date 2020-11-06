@@ -1,7 +1,7 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
-
+from app.features.DAO.pile_dao import PileDAO
 
 
 class Belote(AbstractGame):
@@ -157,7 +157,7 @@ class Belote(AbstractGame):
             tourLoop(maitre)
 
     def tourLoop(self, maitre):
-        plis = []
+        plis = PileDAO.newPile(idGame)
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
@@ -171,7 +171,7 @@ class Belote(AbstractGame):
         elif maitre == place_player[3]:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
-        cartejoue = ordre[0].poser(carte)
+        cartejoue = ordre[0].handList.poser(idPile)
         plis.append(cartejoue)
         couleurask = plis[0].couleur
         # On retire la carte jouée de la main du joueur
@@ -181,11 +181,11 @@ class Belote(AbstractGame):
             cartemaitre = float(self.point_atout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = ordre[i].poser(carte)
+                card = ordre[i].handList.poser(idPile)
                 if a_de_latout(ordre[i]):
                     while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
-                        card = ordre[i].poser(carte)
+                        card = ordre[i].handList.poser(idPile)
                     if float(self.point_atout[str(card.valeur)]) > cartemaitre:
                         cartemaitre = float(self.point_atout[str(card.valeur)])
                         maitre = ordre[i]
@@ -203,12 +203,12 @@ class Belote(AbstractGame):
             cartemaitre = float(self.point_noatout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = ordre[i].poser(carte)
+                card = ordre[i].handList.poser(idPile)
                 if monpote(ordre[i], maitre,team1,team2):  # Mon coéquipier est maître
                     if a_lacouleur(ordre[i], couleurask):  # Peut jouer à la couleur
                         while card.couleur != couleurask:
                             print("Il faut jouer à la couleur demandée")
-                            card = ordre[i].poser(carte)
+                            card = ordre[i].handList.poser(idPile)
 
                         plis.append(card)
                         pointsplis += float(
@@ -234,7 +234,7 @@ class Belote(AbstractGame):
                     if a_lacouleur(ordre[i], couleurask) and card.couleur != couleurask:
                         while card.couleur != couleurask:
                             print("Il faut jouer à la couleur demandée")
-                            card = ordre[i].poser(carte)
+                            card = ordre[i].handList.poser(idPile)
                         # Devient maitre
                         if float(self.point_noatout[str(card.valeur)]) > cartemaitre and coupe == 0:
                             cartemaitre = float(
@@ -254,7 +254,7 @@ class Belote(AbstractGame):
                         if coupe == 0:
                             while card.couleur != atout:
                                 print("Il faut couper")
-                                card = ordre[i].poser(carte)
+                                card = ordre[i].handList.poser(idPile)
                             coupe += 1
                             maitre = ordre[i]
                             cartemaitre = float(
@@ -264,7 +264,7 @@ class Belote(AbstractGame):
                         elif coupe != 0:
                             while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                                 print("Il faut surcouper")
-                                card = ordre[i].poser(carte)
+                                card = ordre[i].handList.poser(idPile)
                             if float(self.point_atout[str(card.valeur)]) > cartemaitre:
                                 cartemaitre = float(
                                     self.point_atout[str(card.valeur)])
