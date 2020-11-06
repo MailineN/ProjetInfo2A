@@ -156,7 +156,7 @@ class Belote(AbstractGame):
         for i in range(8):
             tourLoop(maitre)
 
-    def tourLoop(self, maitre):
+    def tourLoop(self, maitre, idGame):
         plis = PileDAO.newPile(idGame)
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
