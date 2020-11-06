@@ -78,3 +78,4 @@ class BeloteTests(unittest.TestCase):
                         "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
         self.assertTrue(Belote.monteratout(testplayer,vcarte))
         
+fzefz
