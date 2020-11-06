@@ -272,7 +272,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def monpote(joueur, master,equipe1,equipe2):  # vérifie si deux joueurs sont dans la même équipe
+    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
         if joueur in equipe1 and master in equipe1:
             return True
         elif joueur in equipe2 and master in equipe2:
