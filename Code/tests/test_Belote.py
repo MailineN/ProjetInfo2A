@@ -56,3 +56,14 @@ class BeloteTests(unittest.TestCase):
         Card(valeur="7", couleur="HEARTS")
         ]
         self.assertTrue(Belote.a_de_latout(testplayer,atout))
+
+    def testa_lacouleur(self):
+        couleur = "HEARTS"
+        testplayer = "testplayer"
+        testplayer.handList = [
+        Card(valeur="ACE", couleur="DIAMONDS"),
+        Card(valeur="KING", couleur="DIAMONDS"),
+        Card(valeur="8", couleur="DIAMONDS"),
+        Card(valeur="7", couleur="HEARTS")
+        ]
+        self.assertTrue(Belote.a_lacouleur(testplayer,couleur))
