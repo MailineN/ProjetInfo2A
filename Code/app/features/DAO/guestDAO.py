@@ -45,3 +45,22 @@ class GuestDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
     
+    def addGame() :
+        """ Ajoute une partie prête à commencer dans la base de données """
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "INSERT INTO Games (idGame, idPiles, idHands,idPlayers,finished,enCours, readyToStart,score",
+                "VALUES (%s,%s, %s, %s, %s, %s, %s, %s) ;",
+                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, NULL))
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+
+
+       

@@ -1,5 +1,5 @@
 from app.features.users.player import Player
-from app.features.DAO.databaseConnection import DatabaseConnection
+
 class PlayerDAO(GuestDAO):
     
     """ classe Data Access Object de la classe Player """
@@ -49,7 +49,7 @@ class PlayerDAO(GuestDAO):
                 print("Vous n'avez pas de partie en cours")
             else :
                 main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) #à adapter selon le nom des attributs dans la bdd
-                pile = curseur.execue("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
+                pile = curseur.execute("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
                 return(main,pile)
                 # ET LANCE LA PARTIE AUSSI => A FAIRE. 
         finally:

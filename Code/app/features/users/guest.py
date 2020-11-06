@@ -19,8 +19,6 @@ class Guest(Individu):
         self.userType = "Guest"
 
     @staticmethod
-    def play():
-        pass
 
     def createAccount():
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
@@ -52,10 +50,13 @@ class Guest(Individu):
         GuestDAO.checkAccounttoData(username, hash_mdp)
 
     def initEmptyGame():
-
-        GameService.initJeu(TRUE)
-
-    def joinGame():
+        """initialise un jeu vide """
         
-        GameService.initJeu(FALSE)
 
+
+    def joinGame(): 
+        #il faut penser à ajouter dans la base de données un attribut qui
+        #différencie les parties qui n'ont pas encore commencé, et les partie en cours. 
+        
+        
+        
