@@ -5,34 +5,23 @@ import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
 
 class GameDAO :
-
-    def saveGame(gameService) :
-
-        pDAO = PileDAO()
-        hDAO = HandDAO()
-        for pile in gameService.PileList :
-            pDAO.savePileinDataBase(pile)
-        for hand in gameService.HandList :
-            hDAO.saveHandinDatabase(hand)
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
-        try:
-            curseur.execute(
-                "INSERT INTO score VALUES %s"
-                (gameService.score)
-            )
-            score.id = curseur.fetchone()[0]
-            connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
-        finally:
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
-    
+        
     def fetchCurrentGame() :
 
-        pass
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "SELECT * FROM games WHERE debut = False"
+            )
+            game = curseur.fetchone()
+            connexion.commit()
+        finally: 
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+        return(game[0])
+
+        
 
     def fetchSaveGame(gameIDE) :
 
