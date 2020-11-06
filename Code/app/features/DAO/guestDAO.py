@@ -14,8 +14,8 @@ class GuestDAO:
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "INSERT INTO users (id_users, username,mdp,admini, connected, score) "
-                "VALUES (DEFAULT,%s, %s, %s, %s, NULL) ;",
+                "INSERT INTO users (username,mdp,admini, connected, score) "
+                "VALUES (%s, %s, %s, %s, NULL) ;",
                 (name, mdp, False, False))
 
             connexion.commit()
