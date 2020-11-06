@@ -18,7 +18,7 @@ class Player(Guest):
     
     def changePassword(self):
         """ Changer le mot de passe d'un utilisateur """
-       (motdepasse,new_mdp)= PlayerView.displayChangePassword()
+        (motdepasse,new_mdp)= PlayerView.displayChangePassword
 
         m = hashlib.md5()
         m.update(motdepasse)
