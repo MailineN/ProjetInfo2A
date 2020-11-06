@@ -1,5 +1,5 @@
 from deck import PileCard
-from card import Card
+from cards import Card
 from pile import Pile
 
 class Hand(PileCard) :
