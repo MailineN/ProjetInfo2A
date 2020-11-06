@@ -130,10 +130,10 @@ class Belote(AbstractGame):
         for i in range(8):
             tourLoop(maitre)
 
-    def tourLoop(maitre):
+    def tourLoop(self, maitre):
         plis = []
         ordre = []
-
+        place_player=[]
         if maitre == place_player[0]:
             ordre = place_player
         elif maitre == place_player[1]:
