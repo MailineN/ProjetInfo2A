@@ -46,7 +46,7 @@ class BeloteTests(unittest.TestCase):
         maitre = Belote.monpote("player1", testmaitre, team1, team2)
         self.assertEqual(testmaitre,maitre)
 
-    def testade_latout(self):
+    def testa_de_latout(self):
         atout = "HEARTS"
         testplayer = "testplayer"
         testplayer.handList = [
