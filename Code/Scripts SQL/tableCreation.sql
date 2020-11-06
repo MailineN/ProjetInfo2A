@@ -16,15 +16,6 @@ CREATE TABLE users
     VALUES
         (1, 'admin', 'admin', TRUE, FALSE, NULL);
 
-DROP TABLE IF EXISTS Games;
-DROP SEQUENCE IF EXISTS idGame_seq;
-CREATE SEQUENCE idGame_seq;
-CREATE TABLE Games
-(
-    idGame integer NOT NULL DEFAULT nextval
-    ('idGame_seq'::regclass) PRIMARY KEY
-);
-
 DROP TABLE IF EXISTS Piles CASCADE;
 DROP SEQUENCE IF EXISTS idPile_seq;
 CREATE SEQUENCE idPile_seq;
@@ -37,6 +28,22 @@ CREATE TABLE Piles
     card3 text,
     card4 text
 );
+
+DROP TABLE IF EXISTS Games;
+DROP SEQUENCE IF EXISTS idGame_seq;
+CREATE SEQUENCE idGame_seq;
+CREATE TABLE Games
+(
+    idGame integer NOT NULL DEFAULT nextval
+    ('idGame_seq'::regclass) PRIMARY KEY, 
+    idPiles text, 
+    idHands text,
+    idPlayers text,
+    finished bool,
+    debut bool,
+    score text
+);
+
 
 ALTER TABLE Piles
 ADD COLUMN idGame integer,

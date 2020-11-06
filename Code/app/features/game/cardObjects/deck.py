@@ -1,6 +1,6 @@
 """ Objet gérant les différents paquets de cartes du jeu
 """
-from .cards import Card
+from cards import Card
 from app.features.game.apiInteractions.cardAPI import cardAPI
 
 

@@ -6,16 +6,16 @@ from .beloteView import *
 class Belote(AbstractGame):
 
     def __init__(self, players=[], finished=False):
-        super.__init__(
-            players=list(players),
+        super().__init__(
+            players=players,
             finished=finished,
             listCards="7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH",
-            self.point_atout={"JACK": 20, "9": 14, "ACE": 11,
-                              "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
-            self.point_noatout={"ACE": 11, "10": 10, "KING": 4,
-                                "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
         )
+        self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
+                            "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
+        self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
+                              "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
     def CreateTeams():
         team1 = []
@@ -27,17 +27,16 @@ class Belote(AbstractGame):
         team2.append(input("Equipe 2 : Joueur 2 :"))
         return (team1, team2)
 
-    def CheckPlayerNumber(players):
+    def checkPlayerNumber(players):
         try:
             nbjoueur = len(players)
             if nbjoueur == 4:
                 print("Le nombre de joueur est bon")
 
-        except:
+        except nbjoueur != 4:
             print("Le nombre de joueurs n'est pas bon")
 
-    @staticmethod
-    def countPoint(plis, atout):
+    def countPoint(self, plis, atout):
         """Fonction de comptage des points après chaque plis et détermine le gagant du pli
 
         Args:
@@ -51,16 +50,16 @@ class Belote(AbstractGame):
         premiereCouleur = plis[0].couleur
         valeurCoupe = -1
         for card in plis:
-            if card.couleur == atout:
-                listPoint.append(point_atout[card.valeur])
-                if card.couleur != premiereCouleur:
+            if card.couleur[0] == atout:
+                listPoint.append(self.point_atout[card.valeur[0]])
+                if card.couleur[0] != premiereCouleur:
                     coupe = True
-                    if max(point_atout[card.valeur], valeurCoupe) > valeurCoupe:
+                    if max(self.point_atout[card.valeur[0]], valeurCoupe) > valeurCoupe:
                         valeurCoupe = max(
-                            point_atout[card.valeur], valeurCoupe)
+                            self.point_atout[card.valeur[0]], valeurCoupe)
                         gagnant = len(listPoint) - 1
             else:
-                listPoint.append(point_noatout[card.valeur])
+                listPoint.append(self.point_noatout[card.valeur[0]])
         if not coupe:
             gagnant = listPoint.index(max(listPoint))
         count = sum(listPoint)
@@ -153,53 +152,56 @@ class Belote(AbstractGame):
         maitre.handList.remove(cartejoue)
         # JOUE A L'ATOUT
         if couleurask == atout:
-            cartemaitre = float(point_atout[str(plis[0].valeur)])
+            cartemaitre = float(self.point_atout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
                 if a_de_latout(ordre[i]):
-                    while monteratout(ordre[i], cartemaitre) and float(point_atout[str(card.valeur)]) < cartemaitre:
+                    while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
                         card = ordre[i].poser(carte)
-                    if float(point_atout[str(card.valeur)]) > cartemaitre:
-                        cartemaitre = float(point_atout[str(card.valeur)])
+                    if float(self.point_atout[str(card.valeur)]) > cartemaitre:
+                        cartemaitre = float(self.point_atout[str(card.valeur)])
                         maitre = ordre[i]
                         plis.append(card)
-                        pointsplis += float(point_noatout[str(card.valeur)])
+                        pointsplis += float(
+                            self.point_noatout[str(card.valeur)])
 
                 else:
                     plis.append(card)
-                    pointsplis += float(point_noatout[str(card.valeur)])
+                    pointsplis += float(self.point_noatout[str(card.valeur)])
 
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
-            cartemaitre = float(point_noatout[str(plis[0].valeur)])
+            cartemaitre = float(self.point_noatout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
-                if monpote(ordre[i], maitre):  # Mon coéquipier est maître
+                if monpote(ordre[i], maitre,team1,team2):  # Mon coéquipier est maître
                     if a_lacouleur(ordre[i], couleurask):  # Peut jouer à la couleur
                         while card.couleur != couleurask:
                             print("Il faut jouer à la couleur demandée")
                             card = ordre[i].poser(carte)
 
                         plis.append(card)
-                        pointsplis += float(point_noatout[str(card.valeur)])
-                        if coupe == 0 and float(point_noatout[str(card.valeur)]) > cartemaitre:
+                        pointsplis += float(
+                            self.point_noatout[str(card.valeur)])
+                        if coupe == 0 and float(self.point_noatout[str(card.valeur)]) > cartemaitre:
                             cartemaitre = float(
-                                point_noatout[str(card.valeur)])
+                                self.point_noatout[str(card.valeur)])
                             maitre = ordre[i]
                     elif card.couleur == atout:  # Il coupe
                         coupe += 1
-                        cartemaitre = float(point_atout[str(card.valeur)])
+                        cartemaitre = float(self.point_atout[str(card.valeur)])
                         maitre = ordre[i]
                         plis.append(card)
                         pointsplis += cartemaitre
 
                     elif card.couleur != couleurask and card.couleur != atout:  # N'a pas la couleur, peut pisser
                         plis.append(card)
-                        pointsplis += float(point_noatout[str(card.valeur)])
+                        pointsplis += float(
+                            self.point_noatout[str(card.valeur)])
 
                 else:  # Mon coéquipier n'est pas maître
                     # Doit jouer à la même couleur
@@ -208,17 +210,17 @@ class Belote(AbstractGame):
                             print("Il faut jouer à la couleur demandée")
                             card = ordre[i].poser(carte)
                         # Devient maitre
-                        if float(point_noatout[str(card.valeur)]) > cartemaitre and coupe == 0:
+                        if float(self.point_noatout[str(card.valeur)]) > cartemaitre and coupe == 0:
                             cartemaitre = float(
-                                point_noatout[str(card.valeur)])
+                                self.point_noatout[str(card.valeur)])
                             maitre = ordre[i]
                             pointsplis += float(
-                                point_noatout[str(card.valeur)])
+                                self.point_noatout[str(card.valeur)])
 
                             plis.append(card)
                         else:
                             pointsplis += float(
-                                point_noatout[str(card.valeur)])
+                                self.point_noatout[str(card.valeur)])
 
                             plis.append(card)
                     # Doit couper
@@ -229,22 +231,24 @@ class Belote(AbstractGame):
                                 card = ordre[i].poser(carte)
                             coupe += 1
                             maitre = ordre[i]
-                            cartemaitre = float(point_atout[str(card.valeur)])
+                            cartemaitre = float(
+                                self.point_atout[str(card.valeur)])
                             plis.append(card)
 
                         elif coupe != 0:
-                            while monteratout(ordre[i], cartemaitre) and float(point_atout[str(card.valeur)]) < cartemaitre:
+                            while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                                 print("Il faut surcouper")
                                 card = ordre[i].poser(carte)
-                            if float(point_atout[str(card.valeur)]) > cartemaitre:
+                            if float(self.point_atout[str(card.valeur)]) > cartemaitre:
                                 cartemaitre = float(
-                                    point_atout[str(card.valeur)])
+                                    self.point_atout[str(card.valeur)])
 
                                 plis.append(card)
                                 coupe.append(
-                                    float(point_atout[str(card.valeur)]))
+                                    float(self.point_atout[str(card.valeur)]))
                     else:  # n'a pas la couleur ni de l'atout
-                        pointsplis += float(point_noatout[str(card.valeur)])
+                        pointsplis += float(
+                            self.point_noatout[str(card.valeur)])
 
                         plis.append(card)
         return maitre
@@ -261,17 +265,16 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def monteratout(joueur, vcarte):  # fonction qui vérifie si on peut monter à l'atout
-        valeur = 0
+    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
         for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout and float(point_atout[joueur.handList[i].valeur]) > vcart:
+            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
                 return True
         return False
 
-    def monpote(joueur, master):  # vérifie si deux joueurs sont dans la même équipe
-        if joueur in team1 and master in team1:
+    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
+        if joueur in equipe1 and master in equipe1:
             return True
-        elif joueur in team2 and master in team2:
+        elif joueur in equipe2 and master in equipe2:
             return True
         else:
             return False

@@ -1,5 +1,6 @@
 import requests
 
+
 class cardAPI:
     def __init__(self):
         pass
@@ -25,7 +26,7 @@ class cardAPI:
         response = requests.get(
             "https://deckofcardsapi.com/api/deck/{}/draw/?count={}".format(id, count))
         if (response.status_code == 200) or (response.status_code == 201):
-            return(response.json()['cards'],response.json()['deck_id'])
+            return(response.json()['cards'], response.json()['deck_id'])
         raise RuntimeError("Une erreur est survenue lors de l'appel de l'API")
 
     @staticmethod
@@ -35,3 +36,5 @@ class cardAPI:
         if (response.status_code == 200) or (response.status_code == 201):
             return(response.json()["deck_id"])
         raise RuntimeError("Une erreur est survenue lors de l'appel de l'API")
+
+    
