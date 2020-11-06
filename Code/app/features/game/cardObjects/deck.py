@@ -5,7 +5,7 @@ from app.features.game.apiInteractions.cardAPI import cardAPI
 
 
 class PileCard:
-    def __init__(self, cards, idend=None) -> None:
+    def __init__(self, cards=[], idend=None) -> None:
         """[summary]
 
         Args:
@@ -19,14 +19,14 @@ class PileCard:
     def generateNewDeck():
         """ Création d'un nouveau deck grace à l'API
         """
-        return PileCard(cardAPI.newDeck())
+        return PileCard(cards=[], idend=cardAPI.newDeck())
 
     @staticmethod
-    def generateNewCustomDeck(listofcard: str):
+    def generateNewCustomDeck(listofcard):
         """ Création d'un nouveau deck grace à l'API
             Ici avec les cartes adaptées selon le jeu
         """
-        return PileCard(cardAPI.newCustomDeck(listofcard))
+        return PileCard(cards=[], idend=cardAPI.newCustomDeck(listofcard))
 
     def len(self) -> int:
         return(len(self.cards))
@@ -44,6 +44,10 @@ class PileCard:
     def drawDeck(self, count):
         """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
         """
-        result = cardAPI.drawDeck(self.id, count)
-        self.id = result[1]
-        return(result[0])
+        (cards, iden) = cardAPI.drawDeck(self.id, count)
+        listCard = []
+        for i in len(cards):
+            card = Card(cards[i]["value"], cards[i]["suits"], cards[i]["code"])
+            listCard.append(card)
+        self.id = iden
+        return(listCard)

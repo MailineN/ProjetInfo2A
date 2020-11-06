@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class AbstractGame(metaclass=ABC):
+class AbstractGame(ABC):
 
     def __init__(self, players=[], listCards=None, finished=False):
         """ Liste des attributs pour chaque instance fille d'Abstract Games

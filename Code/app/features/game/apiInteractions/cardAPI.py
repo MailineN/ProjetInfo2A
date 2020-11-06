@@ -1,7 +1,4 @@
 import requests
-import json
-from app.features.game.cardObjects.cards import Card
-
 
 class cardAPI:
     def __init__(self):
@@ -16,7 +13,7 @@ class cardAPI:
         raise RuntimeError("Une erreur est survenue lors de l'appel de l'API")
 
     @staticmethod
-    def newCustomDeck(listofcard: str):
+    def newCustomDeck(listofcard):
         response = requests.get(
             "https://deckofcardsapi.com/api/deck/new/shuffle/?cards={}".format(listofcard))
         if (response.status_code == 200) or (response.status_code == 201):
@@ -28,14 +25,7 @@ class cardAPI:
         response = requests.get(
             "https://deckofcardsapi.com/api/deck/{}/draw/?count={}".format(id, count))
         if (response.status_code == 200) or (response.status_code == 201):
-            jsonfile = response.json()
-            listCard = []
-            for i in len(jsonfile["cards"]):
-                card = Card(jsonfile["cards"][i]["value"], jsonfile["cards"]
-                            [i]["suits"], jsonfile["cards"][i]["suits"])
-                listCard.append(card)
-            newid = jsonfile["deck_id"]
-            return(listCard, newid)
+            return(response.json()['cards'],response.json()['deck_id'])
         raise RuntimeError("Une erreur est survenue lors de l'appel de l'API")
 
     @staticmethod
