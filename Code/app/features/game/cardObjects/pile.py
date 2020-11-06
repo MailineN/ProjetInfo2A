@@ -1,5 +1,5 @@
 from app.features.DAO.pile_dao import PileDAO
-from app.features.game.features.cardObjects.deck import PileCard
+from app.features.game.cardObjects.deck import PileCard
 
 
 class Pile(PileCard):

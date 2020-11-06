@@ -4,14 +4,14 @@ from app.features.game.cardObjects.pile import Pile
 
 class Hand(PileCard) :
 
-    def __init__(self, idHAnd, idGame, idPlayer, card_list) :
+    def __init__(self, idHand, idGame, idPlayer, card_list) :
 
         self.idGame = idGame
         self.idPlayer = idPlayer
         super().__init__(self,idHand,card_list)
 
-    def addCard(Card):
-        card_list.append(Card)
+    def addCard(self,card):
+        self.card_list.append(card)
 
     def __str__(self):
         rep = "Les cartes de la main sont : "
@@ -20,15 +20,15 @@ class Hand(PileCard) :
             liste += str(card) + ", "
         return(rep+liste)
 
-    def poser(self,Card,Pile) :
-        ide = Card.code
+    def poser(self,card,pile) :
+        ide = card.code
         newhand = []
         for i in range(Hand.len()) :
             card = self.card_list[i]
             if not(ide == card.code) :
                 newhand.append(card)
         self.card_list = newhand
-        Pile.addCard(Card)
+        pile.addCard(Card)
 
 
 
