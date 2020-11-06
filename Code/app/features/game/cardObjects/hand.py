@@ -5,10 +5,10 @@ from app.features.game.cardObjects.pile import Pile
 class Hand(PileCard) :
 
     def __init__(self, idHand, idGame, idPlayer, card_list) :
-
+        super().__init__(cards = card_list,idend = idHand)
         self.idGame = idGame
         self.idPlayer = idPlayer
-        super().__init__(self,idHand,card_list)
+        
 
     def addCard(self,card):
         self.card_list.append(card)
@@ -16,7 +16,7 @@ class Hand(PileCard) :
     def __str__(self):
         rep = "Les cartes de la main sont : "
         liste = ""
-        for card in self.card_list:
+        for card in self.cards:
             liste += str(card) + ", "
         return(rep+liste)
 
