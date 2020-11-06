@@ -157,7 +157,7 @@ class Belote(AbstractGame):
             for i in range(1, 4):
                 card = ordre[i].poser(carte)
                 if a_de_latout(ordre[i]):
-                    while monteratout(ordre[i], cartemaitre) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
+                    while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
                         card = ordre[i].poser(carte)
                     if float(self.point_atout[str(card.valeur)]) > cartemaitre:
@@ -236,7 +236,7 @@ class Belote(AbstractGame):
                             plis.append(card)
 
                         elif coupe != 0:
-                            while monteratout(ordre[i], cartemaitre) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
+                            while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                                 print("Il faut surcouper")
                                 card = ordre[i].poser(carte)
                             if float(self.point_atout[str(card.valeur)]) > cartemaitre:
@@ -265,7 +265,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def monteratout(joueur, vcarte):  # fonction qui vérifie si on peut monter à l'atout
+    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
                 return True

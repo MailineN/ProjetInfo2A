@@ -1,5 +1,5 @@
 from deck import PileCard
-from card import Card
+from cards import Card
 from pile import Pile
 
 class Hand(PileCard) :
@@ -14,7 +14,7 @@ class Hand(PileCard) :
         card_list.append(Card)
 
     def __str__(self):
-        rep = "Les cartes de la main sont : \n"
+        rep = "Les cartes de la main sont : "
         liste = ""
         for card in self.card_list:
             liste += str(card) + ", "
