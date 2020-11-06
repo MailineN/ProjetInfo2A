@@ -1,6 +1,6 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
-from app.features.game.gameMechanics.beloteView import BeloteView
+from .beloteView import *
 
 
 class Belote(AbstractGame):
@@ -64,6 +64,31 @@ class Belote(AbstractGame):
             gagnant = listPoint.index(max(listPoint))
         count = sum(listPoint)
         return(count, gagnant)
+    def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == color:
+                return True
+        return False
+
+    def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == atout:
+                return True
+        return False
+
+    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
+        for i in range(len(joueur.handList)):
+            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
+                return True
+        return False
+
+    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
+        if joueur in equipe1 and master in equipe1:
+            return True
+        elif joueur in equipe2 and master in equipe2:
+            return True
+        else:
+            return False
 
     def gameLoop(self):
         """
@@ -133,7 +158,7 @@ class Belote(AbstractGame):
     def tourLoop(self, maitre):
         plis = []
         ordre = []
-        place_player=[]
+        place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
             ordre = place_player
         elif maitre == place_player[1]:
@@ -253,28 +278,4 @@ class Belote(AbstractGame):
                         plis.append(card)
         return maitre
 
-    def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == color:
-                return True
-        return False
 
-    def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout:
-                return True
-        return False
-
-    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
-                return True
-        return False
-
-    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
-        if joueur in equipe1 and master in equipe1:
-            return True
-        elif joueur in equipe2 and master in equipe2:
-            return True
-        else:
-            return False
