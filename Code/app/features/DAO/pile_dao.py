@@ -25,12 +25,13 @@ class PileDAO():
             DatabaseConnection.putBackConnexion(connexion)
 
     @staticmethod
-    def getPreviousPiles(id):
+    def getPreviousPiles(idGame):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT idPile, idGame, card1, card2, card3, card4t FROM pile WHERE idGame=id;"
+                "SELECT idPile, idGame, card1, card2, card3, card4t FROM pile WHERE idGame=%s;"
+                (idGame)
             )
 
             resultats = curseur.fetchall()
@@ -43,12 +44,12 @@ class PileDAO():
         return(PreviousPiles)
 
     @staticmethod
-    def getPile(id):
+    def getPile(idPile):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT card1, card2, card3, card4 FROM pile WHERE idPile=id;"
+                "SELECT card1, card2, card3, card4 FROM pile WHERE idPile=%s;"(idPile)
             )
 
             resultats = curseur.fetchall()
