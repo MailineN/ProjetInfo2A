@@ -1,4 +1,5 @@
 from app.features.DAO.gameDAO import gameDAO
+from app.features.DAO.pile_dao import PileDAO
 from app.menu.menu_interface import MenuInterface
 from app.menu.menu_data import menu
 from threading import Timer
@@ -18,7 +19,7 @@ class CustomThread(Timer):
         return self.result
 
 
-def chargement(idGame, nameGame):
+def chargementGroupe(idGame, nameGame):
     print("*******************************************************\n")
     print("La partie commencera lorsqu'il y aura assez de joueurs\n")
     print("*******************************************************\n \n ")
@@ -30,18 +31,47 @@ def chargement(idGame, nameGame):
         sortie = MenuInterface(menu[0])
     else:
         if nameGame == "Belote":
+            if result[1] == 4:
+                sortie = True
             while result[1] < 4:
-				c = CustomThread(60.0, gameDAO.fetchNumberPlayer(idGame)).start()
-				c.start()
-				result = c.join()
+                c = CustomThread(
+                    60.0, gameDAO.fetchNumberPlayer(idGame)).start()
+                c.start()
+                result = c.join()
                 print(
                     "*******************************************************\n")
                 print(
                     "Il manque des joueurs, prochaine vérification dans une minute\n")
-                print('Il y a actuellement '+result[1]+'joueurs \n')
+                print('Il y a actuellement '+str(result[1])+'joueurs \n')
                 print(
                     "*******************************************************\n \n")
-            try : c.cancel()
             sortie = True
+            try:
+                c.cancel()
     return sortie
 
+
+def chargementPartie(idPli):
+    print("*******************************************************\n")
+    print("En attente des autres joueurs\n")
+    print("*******************************************************\n \n ")
+    plis = PileDAO.getPreviousPiles()
+    if len(plis) == 4:
+        return True
+    while len(plis) < 4:
+        c = CustomThread(20.0, gameDAO.fetchNumberPlayer(idGame)).start()
+        c.start()
+        result = c.join()
+        print(
+            "*******************************************************\n")
+        print(
+            "Tous les joueurs n'ont pas encore joué\n")
+        print('Pli en cours :  \n')
+        for card in plis:
+            print("• "+str(card)+"\n")
+        print(
+            "*******************************************************\n \n")
+    sortie = True
+    try:
+        c.cancel()
+    return sortie
