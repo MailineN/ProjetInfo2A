@@ -50,6 +50,5 @@ class HandDAO:
 # Attention ici tu ne retourne pas un objet Hand mais une liste [idHand,idGame,card_list]
 
 if __name__ == "__main__":
-    # Il faut tout mettre à la fin pour le name == main
     getPreviousHandfromDatabase()       
     saveHandinDatabase()     
