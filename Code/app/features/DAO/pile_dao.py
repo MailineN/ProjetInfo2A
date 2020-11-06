@@ -14,8 +14,8 @@ class PileDAO():
                 "VALUES (%s)  RETURNING idPile "
                 (pile.idGame)
         #On récupère l'id de la pile        
-        pile.id = curseur.fetchone()["idPile"]       
             )
+            idPile = curseur.fetchone()["idPile"]       
             connexion.commit()
         except psycopg2.Error as error:
             # la transaction est annulée
@@ -25,6 +25,7 @@ class PileDAO():
             curseur.close()
             PoolConnection.putBackConnexion(connexion)
         return idPile
+
     @staticmethod
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
