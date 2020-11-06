@@ -266,7 +266,6 @@ class Belote(AbstractGame):
         return False
 
     def monteratout(joueur, vcarte):  # fonction qui vérifie si on peut monter à l'atout
-        valeur = 0
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
                 return True

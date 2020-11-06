@@ -67,3 +67,6 @@ class BeloteTests(unittest.TestCase):
         Card(valeur="7", couleur="HEARTS")
         ]
         self.assertTrue(Belote.a_lacouleur(testplayer,couleur))
+
+    def testmonteratout(self):
+        
