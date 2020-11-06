@@ -1,4 +1,4 @@
-from handDAO import HandDAO
+from .handDAO import HandDAO
 from pileDAO import PileDAO
 from GameService import GameService
 import psycopg2

@@ -23,18 +23,23 @@ def chargement(idGame, nameGame):
     print("La partie commencera lorsqu'il y aura assez de joueurs\n")
     print("*******************************************************\n \n ")
     c = CustomThread(60.0, gameDAO.fetchNumberPlayer(idGame)).start()
-		(rep, number) = c.results()
-    if not rep:
+    result = c.results(),
+    if not result[0]:
         # Pour l'instant reviens au menu principal à tester après
         print('La partie que vous souhaitez rejoindre a déjà commencé\n')
         input('Appuyez sur Entrer pour revenir au menu principal')
-        return(MenuInterface(menu[0]))
-		else:
-					if nameGame == "Belote":
-							while number < 4:
-									print(
-											"*******************************************************\n")
-									print("Il manque des joueurs, prochaine vérification dans une minute\n")
-									print("*******************************************************\n \n")
-							c.cancel()
-		return True 
+        sortie = MenuInterface(menu[0])
+    else:
+        if nameGame == "Belote":
+            while result[1] < 4:
+                print(
+                    "*******************************************************\n")
+                print(
+                    "Il manque des joueurs, prochaine vérification dans une minute\n")
+                print('Il y a actuellement '+result[1]+'joueurs \n')
+                print(
+                    "*******************************************************\n \n")
+            c.cancel()
+            sortie = True
+    return sortie
+
