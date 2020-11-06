@@ -51,7 +51,7 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="7", couleur="HEARTS")
         ]
-        self.assertTrue(Belote.a_de_latout(testplayer,atout))
+        self.assertTrue(Belote.a_de_latout(testplayer, atout))
 
     def testa_lacouleur(self):
         couleur = "HEARTS"
@@ -62,7 +62,7 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="7", couleur="HEARTS")
         ]
-        self.assertTrue(Belote.a_lacouleur(testplayer,couleur))
+        self.assertTrue(Belote.a_lacouleur(testplayer, couleur))
 
     def testmonteratout(self):
         testplayer = "testplayer"
@@ -74,7 +74,6 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="JACK", couleur="HEARTS")
         ]
-        self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
-                        "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
-        self.assertTrue(Belote.monteratout(testplayer,vcarte))
+        self.point_atout = {"JACK": 20, "9": 14, "ACE": 11, "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
+        self.assertTrue(Belote.monteratout(testplayer, vcarte, atout))
         
