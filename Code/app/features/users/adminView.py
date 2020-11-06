@@ -10,12 +10,18 @@ class AdminView():
                 {
                     'type': 'input',
                     'name': 'Usertype',
-                    'message': 'Entrez Player ou Admin en fonction du type d\'utilisateur que vous voulez créer',
+                    'message': 'Voulez-vous créer un Player ou un Admin?',
+                    'choices':  [
+                            'Player',
+                            'Admin'
+
+                    ],
                 },
             ]
             print("Le type d\'utilisateur choisi est : \n")
             res = prompt(questions, style=custom_style_2)
             return(res['Usertype'])
+
 
         def displayCreateUserAccount():
             questions = [                
