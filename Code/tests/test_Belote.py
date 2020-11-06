@@ -37,3 +37,11 @@ class BeloteTests(unittest.TestCase):
         ]
 
         self.assertEqual((15, 3), Belote.countPoint(Belote(), plis, atout))
+
+    
+    def testmonpote(self):
+        team1 = ["player1","player2"]
+        team2=[]
+        testmaitre = "player2"
+        maitre = Belote.monpote("player1", testmaitre, team1, team2)
+        self.assertEqual(testmaitre,maitre)
