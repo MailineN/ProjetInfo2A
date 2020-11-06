@@ -1,5 +1,5 @@
 import psycopg2
-from databaseConnection import DatabaseConnection
+from app.features.DAO.databaseConnection import DatabaseConnection
 
 
 class AdminDAO:

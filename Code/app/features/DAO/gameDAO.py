@@ -2,7 +2,7 @@ from .handDAO import HandDAO
 from pileDAO import PileDAO
 from GameService import GameService
 import psycopg2
-from DAO.databaseConnection import DatabaseConnection
+from app.features.DAO.databaseConnection import DatabaseConnection
 
 class GameDAO :
 
