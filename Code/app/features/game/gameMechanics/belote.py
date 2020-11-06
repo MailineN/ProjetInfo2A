@@ -33,7 +33,7 @@ class Belote(AbstractGame):
             if nbjoueur == 4:
                 print("Le nombre de joueur est bon")
 
-        except:
+        except nbjoueur != 4:
             print("Le nombre de joueurs n'est pas bon")
 
     def countPoint(self, plis, atout):
