@@ -115,7 +115,24 @@ class BeloteView():
             print("Team 2 remporte donc la partie ! \n")
         print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
 
+    @staticmethod
+    def displayPoser(hand):
 
+            question = [
+                {
+                    'type': 'list',
+                    'message': 'Quelle carte voulez vous poser ?',
+                    'name': 'pose',
+                    'choices': [str(i)+". "+str(hand[i])for i in range(len(hand))]
+                }
+            ]
+            print("Vous avez ces cartes : \n")
+            for card in hand:
+                print("• "+str(card)+"\n")
+
+            rep = prompt(question, style=custom_style_2)
+            index = int(rep['pose'][0])
+            return(hand[index])
 if __name__ == "__main__":
     hand = [Card('SPADES', 'JACK'), Card('SPADES', 'JACK'), Card(
         'SPADES', 'JACK'), Card('SPADES', 'JACK'), Card('SPADES', 'JACK')]
