@@ -4,6 +4,7 @@ from app.features.game.cardObjects.cards import Card
 
 
 class PileDAO():
+    
     @staticmethod
     def newPile(idGame):
         connexion = DatabaseConnection.getConnexion()
@@ -25,6 +26,8 @@ class PileDAO():
             curseur.close()
             PoolConnection.putBackConnexion(connexion)
         return idPile
+
+        
 
     @staticmethod
     def savePileinDataBase(pile):

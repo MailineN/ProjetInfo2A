@@ -157,7 +157,8 @@ class Belote(AbstractGame):
             tourLoop(maitre)
 
     def tourLoop(self, maitre, idGame):
-        plis = PileDAO.newPile(idGame)
+        idPile = PileDAO.newPile(idGame)
+        pile = pile(idGame,idPile, card_list = [])
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
@@ -172,7 +173,6 @@ class Belote(AbstractGame):
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
         cartejoue = ordre[0].handList.poser(idPile)
-        plis.append(cartejoue)
         couleurask = plis[0].couleur
         # On retire la carte jouée de la main du joueur
         maitre.handList.remove(cartejoue)
