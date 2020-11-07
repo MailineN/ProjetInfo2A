@@ -6,6 +6,7 @@ from examples import custom_style_2
 from app.features.utils import *
 
 from app.features.game.cardObjects.cards import Card
+from app.features.DAO.pile_dao import PileDAO
 
 
 class HandView():
