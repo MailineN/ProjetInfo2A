@@ -174,7 +174,7 @@ class Belote(AbstractGame):
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
         cartejoue = ordre[0].poser.card_list(plis).card_list[0] # hand_list.poser prend en argument pile
-        couleurask = plis[0].couleur
+        couleurask = cartejoue.couleur
         # On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
         if couleurask == atout:
@@ -185,7 +185,8 @@ class Belote(AbstractGame):
                 if a_de_latout(ordre[i]):
                     while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
-                        card = ordre[i].handList.poser(idPile)
+                        ordre[i].handList.append(card)
+                        card = ordre[i].handList.poser(plis)
                     if float(self.point_atout[str(card.valeur)]) > cartemaitre:
                         cartemaitre = float(self.point_atout[str(card.valeur)])
                         maitre = ordre[i]
