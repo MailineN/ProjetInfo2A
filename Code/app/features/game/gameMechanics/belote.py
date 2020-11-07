@@ -1,24 +1,25 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
-from app.features.game.cardObjects.handPile import Hand 
+from app.features.game.cardObjects.handPile import Hand, Pile  
 
 
 class Belote(AbstractGame):
 
-    def __init__(self, players=[], finished=False):
+    def __init__(self, players=[], finished=False, idGame):
         super().__init__(
             players=players,
             finished=finished,
             listCards="7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH",
+            idGame = idGame
         )
         self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
                             "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
-
-    def CreateTeams():
+        
+    def CreateTeams(players): #modif a faire random teams
         team1 = []
         team2 = []
         print("Nous allons former les équipes")
@@ -77,9 +78,9 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
+    def monteratout(self, joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
         for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
+            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcarte:
                 return True
         return False
 
@@ -91,7 +92,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self):
+    def gameLoop(self, idGame):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -154,11 +155,11 @@ class Belote(AbstractGame):
         # initialise un premier joueur
         maitre = place_player[0]
         for i in range(8):
-            tourLoop(maitre)
+            tourLoop(self, maitre, idGame, atout, team1, team2)
 
-    def tourLoop(self, maitre, idGame):
+    def tourLoop(self, maitre, idGame, atout, team1, team2):
         idPile = PileDAO.newPile(idGame)
-        pile = pile(idGame,idPile, card_list = [])
+        plis = pile(idGame,idPile, card_list = [])
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
@@ -172,10 +173,9 @@ class Belote(AbstractGame):
         elif maitre == place_player[3]:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
-        cartejoue = ordre[0].handList.poser(idPile)
+        cartejoue = ordre[0].poser.card_list(plis).card_list[0] # hand_list.poser prend en argument pile
         couleurask = plis[0].couleur
         # On retire la carte jouée de la main du joueur
-        maitre.handList.remove(cartejoue)
         # JOUE A L'ATOUT
         if couleurask == atout:
             cartemaitre = float(self.point_atout[str(plis[0].valeur)])

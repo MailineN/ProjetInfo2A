@@ -43,8 +43,6 @@ class Pile(PileCard):
         self.idPile = idPile
         self.card_list = card_list
 
-    def addcard(self, card):
-        self.card_list.append(card)
 
     def __str__(self):
         rep = "Les cartes du plis sont : \n"
