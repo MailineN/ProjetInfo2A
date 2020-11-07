@@ -28,3 +28,7 @@ class AbstractGame(ABC):
     def tourLoop(self):
         """ A implémenter en fonction du jeu demandé"""
         pass
+
+    @abstractmethod
+    def saveFinishedGame(self, players): 
+        pass
