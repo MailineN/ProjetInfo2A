@@ -182,7 +182,7 @@ class Belote(AbstractGame):
             cartemaitre = float(self.point_atout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = BeloteView.displayPoser(ordre[i].handList)
+                card = None
                 if a_de_latout(ordre[i]):
                     while monteratout(ordre[i], cartemaitre, atout) and float(self.point_atout[str(card.valeur)]) < cartemaitre:
                         print("Vous devez monter")
@@ -195,6 +195,7 @@ class Belote(AbstractGame):
                             self.point_noatout[str(card.valeur)])
 
                 else:
+                    card = BeloteView.displayPoser(ordre[i].handList)
                     plis.poser(card)
                     pointsplis += float(self.point_noatout[str(card.valeur)])
 
@@ -204,7 +205,7 @@ class Belote(AbstractGame):
             cartemaitre = float(self.point_noatout[str(plis[0].valeur)])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = BeloteView.displayPoser(ordre[i].handList)
+                card = None
                 if monpote(ordre[i], maitre,team1,team2):  # Mon coéquipier est maître
                     if a_lacouleur(ordre[i], couleurask):  # Peut jouer à la couleur
                         while card.couleur != couleurask:
@@ -225,7 +226,7 @@ class Belote(AbstractGame):
                         plis.poser(card)
                         pointsplis += cartemaitre
 
-                    elif card.couleur != couleurask and card.couleur != atout:  # N'a pas la couleur, peut pisser
+                    else:  # N'a pas la couleur, peut pisser
                         plis.poser(card)
                         pointsplis += float(
                             self.point_noatout[str(card.valeur)])
@@ -276,7 +277,6 @@ class Belote(AbstractGame):
                     else:  # n'a pas la couleur ni de l'atout
                         pointsplis += float(
                             self.point_noatout[str(card.valeur)])
-
                         plis.poser(card)
         return maitre
 
