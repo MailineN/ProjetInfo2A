@@ -55,7 +55,7 @@ class GuestDAO:
             curseur.execute(
                 "INSERT INTO Games (idGame, idPiles, idHands,idPlayers,finished,enCours, readyToStart,score",
                 "VALUES (%s,%s, %s, %s, %s, %s, %s, %s) ;",
-                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, NULL))
+                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, NULL))#pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -64,5 +64,32 @@ class GuestDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
+    def printReadytoStartGames(jeu) :
+        """ Faire choisir au player quelle partie il veut rejoindre"""
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "SELECT idPlayers from Games where jeu = %s and readyToStart= %s",
+                (jeu,True)) #suggestion : ajouter un attribut jeu (belote, solitaire etc.) à la table game
+            connexion.commit()
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
 
-       
+    def addPlayerToGame(idGame):
+        """ Ajouter un joueur à une partie prête à commencer """
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "UPDATE Games SET idPlayers = %s WHERE idGame= %s",
+                (idPlayers + ' ' + player.id_users, idGame)
+            connexion.commit()
+            print("Vous avez rejoint le groupe !")
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)

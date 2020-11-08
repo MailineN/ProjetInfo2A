@@ -43,7 +43,8 @@ CREATE TABLE Games
     enCours bool, 
     readyToStart bool,
     score text
-);
+); /* Ajouter un attribut jeu pour pouvoir sélectionner des parties correspondant à un jeu ??? 
+Ex dans GuestDAO printReadyToStartGames */ 
 
 
 ALTER TABLE Piles
