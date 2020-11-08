@@ -1,7 +1,7 @@
 import unittest
 from app.features.DAO.pile_dao import PileDAO
 
-class testpileDAO(unnitest.TestCase):
+class testpileDAO(unittest.TestCase):
     """Test les fonction de la classe PileDAO"""
 
     def testnewPile(self):
