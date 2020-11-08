@@ -115,6 +115,55 @@ class BeloteView():
             print("Team 2 remporte donc la partie ! \n")
         print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
 
+    @staticmethod
+    def displaySauvegarderJeu(joueurs):
+        print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
+        print("La partie est maintenant terminée \n")
+        print("Si vous êtes connectés, vous pouvez sauvegarder vos scores \n")
+        questions = [
+            {
+                'type': 'confirm',
+                'message': joueurs[0].nom + 'Voulez vous sauvegarder votre partie ?',
+                'default': False
+            },
+            {
+                'type': 'confirm',
+                'message': joueurs[1].nom + 'Voulez vous sauvegarder votre partie ?',
+                'default': False
+            },
+            {
+                'type': 'confirm',
+                'message': joueurs[2].nom + 'Voulez vous sauvegarder votre partie ?',
+                'default': False
+            },
+            {
+                'type': 'confirm',
+                'message': joueurs[3].nom + 'Voulez vous sauvegarder votre partie ?',
+                'default': False
+            },
+        ]
+        answers = prompt(questions, style=custom_style_2)
+        return(answers)
+
+    @staticmethod
+    def displayPoser(hand):
+
+        question = [
+            {
+                'type': 'list',
+                'message': 'Quelle carte voulez vous poser ?',
+                'name': 'pose',
+                'choices': [str(i)+". "+str(hand[i])for i in range(len(hand))]
+            }
+        ]
+        print("Vous avez ces cartes : \n")
+        for card in hand:
+            print("• "+str(card)+"\n")
+
+        rep = prompt(question, style=custom_style_2)
+        index = int(rep['pose'][0])
+        return(hand[index])
+
 
 if __name__ == "__main__":
     hand = [Card('SPADES', 'JACK'), Card('SPADES', 'JACK'), Card(

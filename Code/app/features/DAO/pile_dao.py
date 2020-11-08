@@ -4,7 +4,36 @@ from app.features.game.cardObjects.cards import Card
 
 
 class PileDAO():
+<<<<<<< HEAD
 
+=======
+    
+    @staticmethod
+    def newPile(idGame):
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "INSERT INTO pile (idGame)"
+                "VALUES (%s)  RETURNING idPile "
+                (pile.idGame)
+        #On récupère l'id de la pile        
+            )
+            idPile = curseur.fetchone()["idPile"]       
+            connexion.commit()
+        except psycopg2.Error as error:
+            # la transaction est annulée
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close()
+            PoolConnection.putBackConnexion(connexion)
+        return idPile
+
+        
+
+    @staticmethod
+>>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
