@@ -85,3 +85,28 @@ class PileDAO():
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
         return(PreviousPiles)
+
+    @staticmethod
+    def delete(idPile):
+        deleted = False
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "DELETE FROM pile WHERE idPile=%s;"
+                , (idPile)
+                )
+
+            if curseur.rowcount > 0:
+                deleted = True
+
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close()
+            PoolConnection.putBackConnexion(connexion)
+
+        return deleted
+
