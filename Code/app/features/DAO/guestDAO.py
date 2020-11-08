@@ -8,6 +8,7 @@ class GuestDAO:
     def __init__():
         pass
     
+    @staticmethod
     def addAccounttoData(name,mdp):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
@@ -19,6 +20,7 @@ class GuestDAO:
                 (DEFAULT, name, mdp, False, False, NULL))
         
             connexion.commit()
+            return("Votre compte a bien été créé")
         except psycopg2.Error as error:
             connexion.rollback()
             raise error

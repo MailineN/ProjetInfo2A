@@ -35,7 +35,6 @@ class Guest(Individu):
 
         # ajouter le compte à la base
         GuestDAO.addAccounttoData(username, hash_mdp)
-        return("Votre compte a bien été créé")
 
     def connexion():
         """Permet à un utilisateur de se connecter """
