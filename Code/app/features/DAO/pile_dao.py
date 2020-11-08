@@ -13,7 +13,7 @@ class PileDAO():
             curseur.execute(
                 "INSERT INTO pile (idGame)"
                 "VALUES (%s)  RETURNING idPile "
-                (pile.idGame)
+                (idGame)
         #On récupère l'id de la pile        
             )
             idPile = curseur.fetchone()["idPile"]       
@@ -24,7 +24,7 @@ class PileDAO():
             raise error
         finally:
             curseur.close()
-            PoolConnection.putBackConnexion(connexion)
+            DatabaseConnection.putBackConnexion(connexion)
         return idPile
 
         
@@ -106,7 +106,7 @@ class PileDAO():
             raise error
         finally:
             curseur.close()
-            PoolConnection.putBackConnexion(connexion)
+            DatabaseConnection.putBackConnexion(connexion)
 
         return deleted
 
