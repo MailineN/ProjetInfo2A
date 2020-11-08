@@ -10,3 +10,9 @@ class testpileDAO(unnitest.TestCase):
         self.assertIsNotNone(idPile)
         deleted = PileDAO.delete(test_pile)
         self.assertTrue(deleted)
+
+    def testdelete(self):
+        test = 00000
+        test_pile = PileDAO.newPile(test)
+        deleted = PileDAO.delete(test_pile)
+        self.assertTrue(deleted)
