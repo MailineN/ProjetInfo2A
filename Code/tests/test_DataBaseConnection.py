@@ -2,7 +2,7 @@ import unittest
 from app.features.DAO.databaseConnection import DatabaseConnection
 
 
-class CardsObjectsTests(unittest.TestCase):
+class DatabaseConnectionTest(unittest.TestCase):
 
     def test_getInstance(self):
         # GIVEN
@@ -11,11 +11,9 @@ class CardsObjectsTests(unittest.TestCase):
         # THEN
         self.assertIsNotNone(reservoir_connexion)
 
-
     def test_getConnexion(self):
         # GIVEN
         connexion = DatabaseConnection.getConnexion()
 
         # THEN
         self.assertIsNotNone(connexion)
-
