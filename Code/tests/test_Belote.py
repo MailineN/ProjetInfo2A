@@ -77,3 +77,6 @@ class BeloteTests(unittest.TestCase):
         self.point_atout = {"JACK": 20, "9": 14, "ACE": 11, "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
         self.assertTrue(Belote.monteratout(testplayer, vcarte, atout))
         
+    def testcheckPlayerNumbre(self):
+        testplayers = [1,2,3,4]
+        self.assertEqual(Belote.checkPlayerNumber(testplayers, "Le nombre de joueur est bon"))
