@@ -77,4 +77,4 @@ class AdminView():
 
 
 if __name__ == "__main__":
-    GuestView.displayConnexion() # ?? ca jsp cque ca fait 
+    AdminView.displayConnexion() # ?? ca jsp cque ca fait 

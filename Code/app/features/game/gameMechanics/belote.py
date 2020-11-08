@@ -1,16 +1,12 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
-<<<<<<< HEAD
-from .beloteView import *
-=======
 from app.features.game.gameMechanics.beloteView import BeloteView
 from app.features.game.cardObjects.handPile import Hand, Pile
 from app.features.game.gameMechanics.GameService import GameService
 
 from app.menus.menu_interface import MenuInterface
 from app.menus.menu_data import menu
->>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403
-
+import random
 
 class Belote(AbstractGame):
 
@@ -28,19 +24,15 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players):  # modif a faire random teams
-        team1 = []
-        team2 = []
-        print("Nous allons former les équipes")
-        team1.append(input("Equipe 1 : Joueur 1 :"))
-        team1.append(input("Equipe 1 : Joueur 2 :"))
-        team2.append(input("Equipe 2 : Joueur 1 :"))
-        team2.append(input("Equipe 2 : Joueur 2 :"))
+    def CreateTeams(players): #répartition aléatoire des joueurs
+        repartion = random.sample(players,4)
+        team1 = [repartion[0], repartion[1]]
+        team2 = [repartion[2], repartion[3]]
         return (team1, team2)
 
     def checkPlayerNumber(players):
+        nbjoueur = len(players)
         try:
-            nbjoueur = len(players)
             if nbjoueur == 4:
                 print("Le nombre de joueur est bon")
 
@@ -75,8 +67,6 @@ class Belote(AbstractGame):
             gagnant = listPoint.index(max(listPoint))
         count = sum(listPoint)
         return(count, gagnant)
-<<<<<<< HEAD
-=======
 
     def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
         for i in range(len(joueur.handList)):
@@ -105,7 +95,6 @@ class Belote(AbstractGame):
             return True
         else:
             return False
->>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403
 
     def gameLoop(self, idGame):
         """
@@ -115,7 +104,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        (team1, team2) = CreateTeams()
+        (team1, team2) = Belote.CreateTeams()
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         scoreTeam1 = 0
         scoreTeam2 = 0
@@ -181,10 +170,6 @@ class Belote(AbstractGame):
         maitre, plis = Belote.tourLoop(maitre, idGame, atout, team1, team2)
         score, gagnant = Belote.countPoint(plis, atout)
 
-<<<<<<< HEAD
-    def tourLoop(maitre):
-        plis = []
-=======
         if maitre in team1:
             scoreTeam1 += score
             scoreTeam1 += 10
@@ -208,9 +193,8 @@ class Belote(AbstractGame):
     def tourLoop(self, maitre, idGame, atout, team1, team2):
         idPile = Pile.newPile(idGame)
         plis = Pile.pile(idGame, idPile, card_list=[])
->>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403
         ordre = []
-
+        place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
             ordre = place_player
         elif maitre == place_player[1]:
@@ -329,37 +313,5 @@ class Belote(AbstractGame):
                     else:  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur)])
-<<<<<<< HEAD
-
-                        plis.append(card)
-        return maitre
-
-    def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == color:
-                return True
-        return False
-
-    def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout:
-                return True
-        return False
-
-    def monteratout(joueur, vcarte, atout):  # fonction qui vérifie si on peut monter à l'atout
-        for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout and float(self.point_atout[joueur.handList[i].valeur]) > vcart:
-                return True
-        return False
-
-    def monpote(joueur, master, equipe1, equipe2):  # vérifie si deux joueurs sont dans la même équipe
-        if joueur in equipe1 and master in equipe1:
-            return True
-        elif joueur in equipe2 and master in equipe2:
-            return True
-        else:
-            return False
-=======
                         plis.poser(card)
         return maitre, plis
->>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403

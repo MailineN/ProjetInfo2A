@@ -60,6 +60,5 @@ class Admin(Player):
         #la fonction de adminDAO va aller récupérer ces informations dans la base (et les retourner ? ou il faut que je fasse un return ici?)
         adminDAO.getAllUserData(username)
 
-        #test camcam
 
 
