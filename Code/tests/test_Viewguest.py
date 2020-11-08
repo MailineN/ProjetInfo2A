@@ -1,6 +1,6 @@
 import unittest
 from app.features.users.guestView import GuestView
-from app.features.DAO.guestDAO import GuestDAO
 
-class GuestTest(unittest.TestCase):
-    
+class GuestViewTest(unittest.TestCase):
+    self.assertEqual(GuestView.displayConnexion(),("chloe","3107") )
+
