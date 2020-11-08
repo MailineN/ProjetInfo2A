@@ -4,6 +4,9 @@ from app.features.game.cardObjects.cards import Card
 
 
 class PileDAO():
+<<<<<<< HEAD
+
+=======
     
     @staticmethod
     def newPile(idGame):
@@ -30,6 +33,7 @@ class PileDAO():
         
 
     @staticmethod
+>>>>>>> fc8d09cdd5e00e9942f945dd6cec8ed94d1c4403
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -50,13 +54,12 @@ class PileDAO():
             DatabaseConnection.putBackConnexion(connexion)
 
     @staticmethod
-    def getPreviousPiles(idGame):
+    def getPreviousPiles(id):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT idPile, idGame, card1, card2, card3, card4t FROM pile WHERE idGame=%s;"
-                (idGame)
+                "SELECT idPile, idGame, card1, card2, card3, card4t FROM pile WHERE idGame=id;"
             )
 
             resultats = curseur.fetchall()
@@ -69,12 +72,12 @@ class PileDAO():
         return(PreviousPiles)
 
     @staticmethod
-    def getPile(idPile):
+    def getPile(id):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT card1, card2, card3, card4 FROM pile WHERE idPile=%s;"(idPile)
+                "SELECT card1, card2, card3, card4 FROM pile WHERE idPile=id;"
             )
 
             resultats = curseur.fetchall()
