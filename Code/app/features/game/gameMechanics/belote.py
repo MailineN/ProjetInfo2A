@@ -26,13 +26,13 @@ class Belote(AbstractGame):
 
     def CreateTeams(players): #répartition aléatoire des joueurs
         repartion = random.sample(players,4)
-        team1 = [repartion[0], repartition[1]]
+        team1 = [repartion[0], repartion[1]]
         team2 = [repartion[2], repartion[3]]
         return (team1, team2)
 
     def checkPlayerNumber(players):
+        nbjoueur = len(players)
         try:
-            nbjoueur = len(players)
             if nbjoueur == 4:
                 print("Le nombre de joueur est bon")
 
