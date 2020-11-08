@@ -104,7 +104,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        (team1, team2) = CreateTeams()
+        (team1, team2) = Belote.CreateTeams()
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         scoreTeam1 = 0
         scoreTeam2 = 0
