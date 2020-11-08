@@ -7,7 +7,7 @@ class testpileDAO(unittest.TestCase):
     def testnewPile(self):
         test = 00000
         test_pile = PileDAO.newPile(test)
-        self.assertIsNotNone(idPile)
+        self.assertIsNotNone(test_pile.idPile)
         deleted = PileDAO.delete(test_pile)
         self.assertTrue(deleted)
 
