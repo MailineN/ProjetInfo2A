@@ -1,8 +1,8 @@
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
-from app.DAO.guestDao import guestDAO
-from app.DAO.adminDAO import adminDAO
-from app.users.adminView import adminView
+from app.features.DAO.guestDAO import GuestDAO
+from app.features.DAO.adminDAO import AdminDAO
+from app.features.users.adminView import AdminView
 import hashlib
 
 class Admin(Player):

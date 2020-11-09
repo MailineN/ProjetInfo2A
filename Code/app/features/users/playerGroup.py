@@ -1,5 +1,5 @@
 import uuid
-from guest import Guest
+from app.features.users.guest import Guest
 
 
 class PlayerGroup :
