@@ -16,7 +16,7 @@ class PileDAO():
                 (idjeu,)
         #On récupère l'id de la pile        
             )
-            idPile = curseur.fetchone()["idPile"]       
+            idPile = curseur.fetchone()[("idPile",)]       
             connexion.commit()
         except psycopg2.Error as error:
             # la transaction est annulée
