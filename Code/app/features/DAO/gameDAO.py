@@ -71,6 +71,25 @@ class GameDAO :
 
         
 
+    @staticmethod
+    def newGame():
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "INSERT INTO Games (idPiles, idHands, idPlayers, finished, debut, score)"
+                "VALUES(%s, %s, %s, %s, %s, %s, %s)"
+                "RETURNING idGame",
+                (None, None, None, None, False, False, None,)            
+                )   
+            idGame = curseur.fetchone()["idGame"]
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
 
 
         

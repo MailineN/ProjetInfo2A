@@ -56,7 +56,7 @@ class PileDAO():
         try:
             curseur.execute(
                 "SELECT idPile, idGame, card1, card2, card3, card4t FROM Piles WHERE idGame=%s",
-                (idjeu)
+                (idjeu,)
             )
 
             resultats = curseur.fetchall()
@@ -74,7 +74,7 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s",(idPile)
+                "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s",(idPile,)
             )
 
             resultats = curseur.fetchall()
@@ -94,7 +94,7 @@ class PileDAO():
         try:
             curseur.execute(
                 "DELETE FROM Piles WHERE idPile=%s"
-                , (idPile)
+                , (idPile,)
                 )
 
             if curseur.rowcount > 0:
