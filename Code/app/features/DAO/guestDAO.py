@@ -1,4 +1,5 @@
 from app.features.DAO.databaseConnection import DatabaseConnection
+import psycopg2
 
 class GuestDAO:
     
