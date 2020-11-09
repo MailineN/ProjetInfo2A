@@ -3,7 +3,7 @@ from app.menus.menu_interface import MenuInterface
 from app.features.users.individu import Individu
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
-from app.dao.guestDao import GuestDAO
+from app.features.DAO.guestDAO import GuestDAO
 from app.features.users.guestView import GuestView
 import hashlib
 
