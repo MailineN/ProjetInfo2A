@@ -1,4 +1,4 @@
-from app.features.DAO import GameDAO
+from app.features.DAO.gameDAO import GameDAO
 
 
 class GameService:
