@@ -2,11 +2,15 @@ import unittest
 from app.features.DAO.pile_dao import PileDAO
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
-from app.features.DAO.gameDAO import GameDAO
+
+
+
+
 
 class testpileDAO(unittest.TestCase):
     """Test les fonction de la classe PileDAO"""
-    GameDAO.newGame()
+    
+
     def testnewPile(self):
         
         test = "1"

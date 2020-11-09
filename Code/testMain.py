@@ -2,16 +2,6 @@
     """
 from app.features.game.cardObjects.cards import Card
 from app.features.game.gameMechanics.beloteView import BeloteView
+from app.features.DAO.gameDAO import GameDAO
 
-
-if __name__ == "__main__":
-    hand = [
-        Card('ACE', 'DIAMONDS'),
-        Card('9', 'DIAMONDS'),
-        Card('KING', 'DIAMONDS'),
-        Card('7', 'DIAMONDS')
-    ]
-    carteAppel = Card('SPADES', '8')
-    # Les attributs sont inversés
-    carte = BeloteView.displayPoser(hand)
-    print(str(carte))
+GameDAO.newGame()
