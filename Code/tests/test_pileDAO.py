@@ -13,9 +13,9 @@ class testpileDAO(unittest.TestCase):
         curseur = connexion.cursor()
         try:
             curseur.execute(
-            "INSERT INTO Games (idGame, idPiles, idHands, idPlayers, finished, enCours, readyToStart, score)"
+            "INSERT INTO Games (idGame, idPiles, idHands, idPlayers, finished, debut, score)"
             "VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
-            (None, None, None, None, False, False, False, None)            
+            (None, None, None, None, False, False, None)            
             )
             connexion.commit()
         except psycopg2.Error as error:
