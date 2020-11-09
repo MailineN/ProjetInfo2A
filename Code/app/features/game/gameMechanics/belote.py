@@ -8,9 +8,10 @@ from app.menus.menu_interface import MenuInterface
 from app.menus.menu_data import menu
 import random
 
+
 class Belote(AbstractGame):
 
-    def __init__(self, idGame, players=[], finished=False):
+    def __init__(self, idGame=None, players=[], finished=False):
         super().__init__(
             players=players,
             finished=finished,
@@ -24,8 +25,8 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players): #répartition aléatoire des joueurs
-        repartion = random.sample(players,4)
+    def CreateTeams(players):  # répartition aléatoire des joueurs
+        repartion = random.sample(players, 4)
         team1 = [repartion[0], repartion[1]]
         team2 = [repartion[2], repartion[3]]
         return (team1, team2)
@@ -315,3 +316,9 @@ class Belote(AbstractGame):
                             self.point_noatout[str(card.valeur)])
                         plis.poser(card)
         return maitre, plis
+
+    def saveFinishedGame():
+        pass
+
+    def saveScore():
+        pass

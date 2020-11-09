@@ -1,18 +1,16 @@
 import psycopg2
-from app.features.users.player import Player
 from app.features.DAO.databaseConnection import DatabaseConnection
 
 
 
-class PlayerDAO(GuestDAO):
+class PlayerDAO():
 
     """ classe Data Access Object de la classe Player """
 
     def __init__(self):
+        pass
 
-        GuestDAO.__init__(self)
-
-    def updateAccountCredentials(self):
+    def updateAccountCredentials(self,playerID):
         """ Met à jour les scores dans la base de données """
         # Mettre le code qui récupère le score dans un objet previous_score.
 
@@ -20,10 +18,10 @@ class PlayerDAO(GuestDAO):
         curseur = connexion.cursor()
         try:
             ans = curseur.execute(
-                "SELECT score from users WHERE id_users= %s", (player.id_users))
+                "SELECT score from users WHERE id_users= %s", (playerID))
             new_score = pervious_score + ans
             curseur.execute("UPDATE users SET score = %s WHERE id_users= %s",
-                            (new_score, player.id_users))
+                            (new_score, playerID))
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -32,13 +30,13 @@ class PlayerDAO(GuestDAO):
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    def getAccountData(self):
+    def getAccountData(self,playerID):
         """ Renvoie les scores """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             ans = curseur.execute(
-                "SELECT scores from users WHERE id_users = %s", (player.id_users))
+                "SELECT scores from users WHERE id_users = %s", (playerID))
             return(ans)
         finally:
             curseur.close
@@ -65,7 +63,7 @@ class PlayerDAO(GuestDAO):
             curseur.close()
             DatabaseConnection.putBackConnexion(connexion)
 
-    def updatePassword(self, hashmdp, newmdp):
+    def updatePassword(self, hashmdp, newmdp,playerID):
         """ Met à jour dans la base de données le mot de passe qui vient d'être modifié"""
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -80,7 +78,6 @@ class PlayerDAO(GuestDAO):
                 print("Votre mot de passe a bien été changé")
             else:
                 print("Votre mot de passe est erroné. Veuillez renouveler l'opération")
-                Player.changePassword(self)
 
         except psycopg2.Error as error:
             connexion.rollback()

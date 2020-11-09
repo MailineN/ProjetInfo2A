@@ -6,8 +6,7 @@ from app.features.DAO.gameDAO import GameDAO
 class Player(Guest):
     
     def __init__(self, identifiant):
-        
-        Guest.__init__(self, identifiant, 'Player')
+        super.__init__(self, identifiant, 'Player')
 
     
     def loadGame(self, jeu): #jeu est le nom du jeu que veut charger l'utilisateur
