@@ -12,11 +12,11 @@ class testpileDAO(unittest.TestCase):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-        curseur.execute(
+            curseur.execute(
             "INSERT INTO Games (idGame, idPiles, idHands, idPlayers, finished, enCours, readyToStart, score)"
             "VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
             (None, None, None, None, False, False, False, None)            
-        )
+            )
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
