@@ -16,7 +16,7 @@ class PileDAOTests(unittest.TestCase):
         self.assertTrue(deleted)
 
     def testdelete(self):
-        test = "00000"
+        test = "1"
         test_pile = PileDAO.newPile(test)
         deleted = PileDAO.delete(test_pile)
         self.assertTrue(deleted)
