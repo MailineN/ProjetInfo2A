@@ -6,9 +6,9 @@ from app.features.DAO.gameDAO import GameDAO
 
 class testpileDAO(unittest.TestCase):
     """Test les fonction de la classe PileDAO"""
-
+    GameDAO.newGame()
     def testnewPile(self):
-        GameDAO.newGame()
+        
         test = "1"
         test_pile = PileDAO.newPile(test)
         self.assertIsNotNone(test_pile.idPile)
