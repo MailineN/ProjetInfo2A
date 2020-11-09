@@ -55,28 +55,25 @@ class BeloteTests(unittest.TestCase):
 
     def testa_lacouleur(self):
         couleur = "HEARTS"
-        testplayer = "testplayer"
-        testplayer.handList = [
+        testplayer = Guest(handList = [
             Card(valeur="ACE", couleur="DIAMONDS"),
             Card(valeur="KING", couleur="DIAMONDS"),
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="7", couleur="HEARTS")
-        ]
+            ])
         self.assertTrue(Belote.a_lacouleur(testplayer, couleur))
 
     def test_monteratout(self):
-        testplayer = "testplayer"
         vcarte = 11
         atout = "HEARTS"
-        testplayer.handList = [
+        testplayer = Guest(handList = [
             Card(valeur="ACE", couleur="DIAMONDS"),
             Card(valeur="KING", couleur="DIAMONDS"),
             Card(valeur="8", couleur="DIAMONDS"),
-            Card(valeur="JACK", couleur="HEARTS")
-        ]
-        self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
-                            "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
-        self.assertTrue(Belote.monteratout(testplayer, vcarte, atout))
+            Card(valeur="7", couleur="HEARTS")
+            ])
+        
+        self.assertTrue(Belote.monteratout(Belote(), testplayer, vcarte, atout))
 
     def test_checkPlayerNumber(self):
         testplayers = [1, 2, 3, 4]
