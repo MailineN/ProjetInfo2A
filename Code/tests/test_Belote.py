@@ -1,7 +1,7 @@
 import unittest
 from app.features.game.gameMechanics.belote import Belote
 from app.features.game.cardObjects.cards import Card
-
+from app.features.users.guest import Guest 
 
 class BeloteTests(unittest.TestCase):
 
@@ -44,13 +44,13 @@ class BeloteTests(unittest.TestCase):
 
     def testa_de_latout(self):
         atout = "HEARTS"
-        testplayer = "testplayer"
-        testplayer.handList = [
+        testplayer = Guest(handList = [
             Card(valeur="ACE", couleur="DIAMONDS"),
             Card(valeur="KING", couleur="DIAMONDS"),
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="7", couleur="HEARTS")
-        ]
+            ])
+            
         self.assertTrue(Belote.a_de_latout(testplayer, atout))
 
     def testa_lacouleur(self):
