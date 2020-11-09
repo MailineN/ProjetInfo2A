@@ -7,7 +7,8 @@ from app.features.game.cardObjects.cards import Card
 
 class BeloteViewTest(unittest.TestCase):
 
-    def testPoser(self):
+    @patch('app.features.game.gameMechanics.beloteView.prompt')
+    def testPoser(self, mockPoser):
         hand = [
             Card(valeur="ACE", couleur="DIAMONDS"),
             Card(valeur="9", couleur="DIAMONDS"),
@@ -15,7 +16,6 @@ class BeloteViewTest(unittest.TestCase):
             Card(valeur="7", couleur="DIAMONDS")
         ]
 
-        with patch('app.features.game.gameMechanics.beloteView.BeloteView', return_value=Card(valeur="KING", couleur="DIAMONDS")):
-            b = BeloteView()
-            rep = b.displayPoser(hand)
-            assert rep == Card(valeur="KING", couleur="DIAMONDS")
+        mockPoser.return_value = Card(valeur="KING", couleur="DIAMONDS")
+        carte = BeloteView.displayPoser(hand)
+        self.assertEqual(carte == Card(valeur="KING", couleur="DIAMONDS"))

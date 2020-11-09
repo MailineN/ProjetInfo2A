@@ -161,6 +161,7 @@ class BeloteView():
             print("• "+str(card)+"\n")
 
         rep = prompt(question, style=custom_style_2)
+        print(rep)
         index = int(rep['pose'][0])
         return(hand[index])
 
@@ -170,4 +171,4 @@ if __name__ == "__main__":
         'SPADES', 'JACK'), Card('SPADES', 'JACK'), Card('SPADES', 'JACK')]
     carteAppel = Card('SPADES', '8')
     # Les attributs sont inversés
-    BeloteView.displayTourAppel2(hand, carteAppel)
+    BeloteView.displayPoser(hand)
