@@ -73,7 +73,7 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="7", couleur="HEARTS")
             ])
         
-        self.assertTrue(Belote.monteratout(Belote(), testplayer, vcarte, atout))
+        self.assertFalse(Belote.monteratout(Belote(), testplayer, vcarte, atout))
 
     def test_checkPlayerNumber(self):
         testplayers = [1, 2, 3, 4]
