@@ -12,7 +12,7 @@ class PileDAO():
         try:
             curseur.execute(
                 "INSERT INTO Piles (idjeu)"
-                "VALUES (%s)  RETURNING idPile, "
+                "VALUES (%s)  RETURNING idPile ",
                 (idjeu)
         #On récupère l'id de la pile        
             )
@@ -36,7 +36,7 @@ class PileDAO():
         try:
             curseur.execute(
                 "INSERT INTO Piles (idPile, idGame, card_list)"
-                "VALUES (%s, %s, %s, %s,%s,%s) RETURNING idPile, "
+                "VALUES (%s, %s, %s, %s,%s,%s) RETURNING idPile ",
                 (pile.idPile, pile.idGame, pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3])
             )
 
@@ -55,7 +55,7 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT idPile, idGame, card1, card2, card3, card4t FROM Piles WHERE idGame=%s,"
+                "SELECT idPile, idGame, card1, card2, card3, card4t FROM Piles WHERE idGame=%s",
                 (idjeu)
             )
 
@@ -74,7 +74,7 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s,"(idPile)
+                "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s",(idPile)
             )
 
             resultats = curseur.fetchall()
@@ -93,7 +93,7 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "DELETE FROM Piles WHERE idPile=%s,"
+                "DELETE FROM Piles WHERE idPile=%s"
                 , (idPile)
                 )
 
