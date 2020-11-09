@@ -7,7 +7,7 @@ from app.features.DAO.databaseConnection import DatabaseConnection
 class PileDAOTests(unittest.TestCase):
     """Test les fonction de la classe PileDAO"""
 
-    def testnewPile(self):
+    def test_newPile(self):
 
         test = "1"
         test_pile = PileDAO.newPile(test)
@@ -15,7 +15,7 @@ class PileDAOTests(unittest.TestCase):
         deleted = PileDAO.delete(test_pile)
         self.assertTrue(deleted)
 
-    def testdelete(self):
+    def test_delete(self):
         test = "1"
         test_pile = PileDAO.newPile(test)
         deleted = PileDAO.delete(test_pile)
