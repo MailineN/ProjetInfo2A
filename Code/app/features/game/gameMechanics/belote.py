@@ -77,7 +77,7 @@ class Belote(AbstractGame):
 
     def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
-            if joueur.handList[i].couleur == atout:
+            if joueur.handList[i].couleur[0] == atout:
                 return True
         return False
 
