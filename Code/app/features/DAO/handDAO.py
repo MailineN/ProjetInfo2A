@@ -11,7 +11,7 @@ class HandDAO:
     
     """
     
-    def saveHandinDatabase():
+    def saveHandinDatabase(hand):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
@@ -28,7 +28,3 @@ class HandDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-
-if __name__ == "__main__":
-    getPreviousHandfromDatabase()       
-    saveHandinDatabase()     
