@@ -13,7 +13,7 @@ class PileDAO():
             curseur.execute(
                 "INSERT INTO Piles (idjeu)"
                 "VALUES (%s)  RETURNING idPile ",
-                (idjeu)
+                (idjeu,)
         #On récupère l'id de la pile        
             )
             idPile = curseur.fetchone()["idPile"]       
