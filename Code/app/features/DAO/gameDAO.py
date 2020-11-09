@@ -1,6 +1,6 @@
 from app.features.DAO.handDAO import HandDAO
 from app.features.DAO.pileDAO import PileDAO
-from app.features.game.gamemechanics.gameService import GameService
+from app.features.game.gameMechanics.gameService import GameService
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
 
