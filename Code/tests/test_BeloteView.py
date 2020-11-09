@@ -10,13 +10,13 @@ class BeloteViewTest(unittest.TestCase):
     @patch('app.features.game.gameMechanics.beloteView.prompt')
     def testPoser(self, mockPoser):
         hand = [
-            Card(valeur="ACE", couleur="DIAMONDS"),
-            Card(valeur="9", couleur="DIAMONDS"),
-            Card(valeur="KING", couleur="DIAMONDS"),
-            Card(valeur="7", couleur="DIAMONDS")
+            Card('ACE', 'DIAMONDS'),
+            Card('9', 'DIAMONDS'),
+            Card('KING', 'DIAMONDS'),
+            Card('7', 'DIAMONDS')
         ]
 
-        mockPoser.return_value = Card(valeur="KING", couleur="DIAMONDS")
+        mockPoser.return_value = Card('KING', 'DIAMONDS')
         carte = BeloteView.displayPoser(hand)
-        self.assertIsNone(carte)
-        self.assertEqual(carte == Card(valeur="KING", couleur="DIAMONDS"))
+        self.assertIsNotNone(carte)
+        self.assertEqual(carte.name == 'KING' and carte.couleur == 'DIAMONDS')
