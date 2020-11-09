@@ -3,6 +3,9 @@ from app.features.DAO.gameDAO import GameDAO
 
 class GameService:
 
+    def __init__(self, playerGroup):
+        self.playerGroup = playerGroup
+
     def initGame(Game, PlayerGroup):
 
         return(Game(PlayerGroup))
@@ -13,7 +16,7 @@ class GameService:
         Args:
             game : Instance de fille d'AbstractGame, déjà initialisée
         """
-        GameDAO.saveGame(Game)
+        GameDAO.saveGame(game)
 
     def saveScore(game, player, score):
         """Fonction de sauvegarde des scores d'une partie d'un joueur
