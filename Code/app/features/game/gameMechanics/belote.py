@@ -2,7 +2,7 @@ from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
 from app.features.game.cardObjects.handPile import Hand, Pile
-from app.features.game.gameMechanics.GameService import GameService
+from app.features.game.gameMechanics.gameService import GameService
 
 from app.menus.menu_interface import MenuInterface
 from app.menus.menu_data import menu
