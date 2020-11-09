@@ -18,4 +18,5 @@ class BeloteViewTest(unittest.TestCase):
 
         mockPoser.return_value = Card(valeur="KING", couleur="DIAMONDS")
         carte = BeloteView.displayPoser(hand)
+        self.assertIsNone(carte)
         self.assertEqual(carte == Card(valeur="KING", couleur="DIAMONDS"))
