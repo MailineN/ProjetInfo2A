@@ -8,7 +8,7 @@ class PileDAO():
     @staticmethod
     def newPile(idGame):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 "INSERT INTO Piles (idGame)"
@@ -32,7 +32,7 @@ class PileDAO():
     @staticmethod
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 "INSERT INTO Piles (idPile, idGame, card_list)"
@@ -52,7 +52,7 @@ class PileDAO():
     @staticmethod
     def getPreviousPiles(idGame):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 "SELECT idPile, idGame, card1, card2, card3, card4t FROM Piles WHERE idGame=%s;"
@@ -71,7 +71,7 @@ class PileDAO():
     @staticmethod
     def getPile(idPile):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s;"(idPile)
