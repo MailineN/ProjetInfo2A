@@ -12,21 +12,20 @@ class Guest(Individu):
 
     """ classe invité, pouvant jouer au jeu sans se connecter """
 
-    def __init__(self):
+    def __init__(self, identifiant=None, userType='Guest', handList=[]):
         # l'id d'un guest est genéré quand il souhaite jouer et non au lancement
-        self.identifiant = "id"
+        self.identifiant = identifiant
         # Et on définit que pour l'instant c'est un guest, on modifie l'attribut quand il se connecte
-        self.userType = "Guest"
+        self.userType = userType
+        self.handList = handList
 
     @staticmethod
-
     def createAccount():
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
-        (username,motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
-        username=verif_init_id(username)
+        (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
+        username = verif_init_id(username)
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
         motdepasse = verif_init_mdp(motdepasse, verifMotdepasse)
-
 
         # code pour hasher le mdp
         m = hashlib.md5()
@@ -49,14 +48,12 @@ class Guest(Individu):
         GuestDAO.checkAccounttoData(username, hash_mdp)
 
     def initEmptyGame():
-        """initialise un jeu vide """ ###comment récupérer le choix du jeu avec les menus ?
+        """initialise un jeu vide """  # comment récupérer le choix du jeu avec les menus ?
         GuestDAO.addGame(jeu)
 
-
-    def joinGame(): 
+    def joinGame():
         """ Rejoindre un groupe pour jouer à une partie qui n'a aps encore commencé"""
         # A AJOUTER ICI !!!!!!!!!!!!!!!!!!!!!  comment récupérer le choix du jeu avec les menus ?
         GuestDAO.printReadytoStartGames(jeu)
         idGame = GuestView.displayChoixPartie()
         GuestDAO.addPlayerToGame(idGame)
-        
