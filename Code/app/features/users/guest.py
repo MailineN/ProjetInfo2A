@@ -1,10 +1,10 @@
 from app.menus.menu_interface import Ferme
 from app.menus.menu_interface import MenuInterface
-from .individu import Individu
+from app.features.users.individu import Individu
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
 from app.dao.guestDao import GuestDAO
-from guestView import GuestView
+from app.features.users.guestView import GuestView
 import hashlib
 
 
@@ -49,13 +49,14 @@ class Guest(Individu):
         GuestDAO.checkAccounttoData(username, hash_mdp)
 
     def initEmptyGame():
-        """initialise un jeu vide """
-        
+        """initialise un jeu vide """ ###comment récupérer le choix du jeu avec les menus ?
+        GuestDAO.addGame(jeu)
 
 
     def joinGame(): 
-        #il faut penser à ajouter dans la base de données un attribut qui
-        #différencie les parties qui n'ont pas encore commencé, et les partie en cours. 
-        
-        
+        """ Rejoindre un groupe pour jouer à une partie qui n'a aps encore commencé"""
+        # A AJOUTER ICI !!!!!!!!!!!!!!!!!!!!!  comment récupérer le choix du jeu avec les menus ?
+        GuestDAO.printReadytoStartGames(jeu)
+        idGame = GuestView.displayChoixPartie()
+        GuestDAO.addPlayerToGame(idGame)
         

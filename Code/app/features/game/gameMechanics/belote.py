@@ -6,7 +6,7 @@ from app.features.game.gameMechanics.GameService import GameService
 
 from app.menus.menu_interface import MenuInterface
 from app.menus.menu_data import menu
-
+import random
 
 class Belote(AbstractGame):
 
@@ -24,19 +24,15 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players):  # modif a faire random teams
-        team1 = []
-        team2 = []
-        print("Nous allons former les équipes")
-        team1.append(input("Equipe 1 : Joueur 1 :"))
-        team1.append(input("Equipe 1 : Joueur 2 :"))
-        team2.append(input("Equipe 2 : Joueur 1 :"))
-        team2.append(input("Equipe 2 : Joueur 2 :"))
+    def CreateTeams(players): #répartition aléatoire des joueurs
+        repartion = random.sample(players,4)
+        team1 = [repartion[0], repartion[1]]
+        team2 = [repartion[2], repartion[3]]
         return (team1, team2)
 
     def checkPlayerNumber(players):
+        nbjoueur = len(players)
         try:
-            nbjoueur = len(players)
             if nbjoueur == 4:
                 print("Le nombre de joueur est bon")
 
@@ -108,7 +104,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        (team1, team2) = CreateTeams()
+        (team1, team2) = Belote.CreateTeams()
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         scoreTeam1 = 0
         scoreTeam2 = 0
