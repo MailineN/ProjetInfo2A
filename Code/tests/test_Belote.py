@@ -39,7 +39,7 @@ class BeloteTests(unittest.TestCase):
         team1 = ["player1", "player2"]
         team2 = []
         testmaitre = "player2"
-        self.assertEqual(testmaitre, Belote.monpote(
+        self.assertTrue(Belote.monpote(
             "player1", testmaitre, team1, team2))
 
     def testa_de_latout(self):
