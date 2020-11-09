@@ -11,7 +11,7 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Piles (idjeu)"
+                "INSERT INTO Piles (idGame)"
                 "VALUES (%s)  RETURNING idPile ",
                 (idjeu,)
         #On récupère l'id de la pile        
