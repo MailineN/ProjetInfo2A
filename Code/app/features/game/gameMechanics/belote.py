@@ -33,12 +33,12 @@ class Belote(AbstractGame):
 
     def checkPlayerNumber(players):
         nbjoueur = len(players)
-        try:
-            if nbjoueur == 4:
-                print("Le nombre de joueur est bon")
-
-        except nbjoueur != 4:
+        if nbjoueur == 4:
+            print("Le nombre de joueur est bon")
+            return True
+        else:
             print("Le nombre de joueurs n'est pas bon")
+            return False
 
     def countPoint(self, plis, atout):
         """Fonction de comptage des points après chaque plis et détermine le gagant du pli

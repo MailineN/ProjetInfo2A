@@ -81,4 +81,4 @@ class BeloteTests(unittest.TestCase):
     def test_checkPlayerNumber(self):
         testplayers = [1, 2, 3, 4]
         self.assertEqual(Belote.checkPlayerNumber(
-            testplayers, "Le nombre de joueur est bon"))
+            testplayers), True)
