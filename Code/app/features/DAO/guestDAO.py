@@ -1,5 +1,3 @@
-from app.features.users.player import Player
-
 class GuestDAO:
     
     """ Classe Data Access Object de la classe Guest """
@@ -84,7 +82,7 @@ class GuestDAO:
         try:
             curseur.execute(
                 "UPDATE Games SET idPlayers = %s WHERE idGame= %s",
-                (idPlayers + ' ' + player.id_users, idGame)
+                (idPlayers + ' ' + player.id_users, idGame))
             connexion.commit()
             print("Vous avez rejoint le groupe !")
         except psycopg2.Error as error:

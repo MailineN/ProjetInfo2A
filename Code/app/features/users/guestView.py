@@ -74,6 +74,17 @@ class GuestView():
         ]
         res = prompt(questions, style=custom_style_2)
         return(res['mdp'], res['vmdp'])
+    
+    def displayChoixPartie():
+
+        questions = [
+        {
+            'type': 'input',
+            'name': 'idGame',
+            'message': 'Veuillez entrer l\'identifiant de la partie que vous souhaitez rejoindre: ',
+        }]
+        res = prompt(questions, style=custom_style_2)
+        return(res['idGame'])
 
 
 

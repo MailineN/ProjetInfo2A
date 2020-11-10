@@ -1,6 +1,6 @@
 import unittest
 from app.features.users.guestView import GuestView
-from app.features.users.GuestDAO import GuestDAO
+from app.features.DAO.guestDAO import GuestDAO
 
 class TestGuest(unittest.TestCase):
     """Teste les fonctions de la classe GuestDAO"""
@@ -8,3 +8,5 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(GuestDAO.addAccounttoData("chloé","3107"), "Votre compte a bien été créé")
 
 
+    def testCheckAccounttoData():
+        self.assertEqual(GuestDAO.checkAccounttoData("chloé","3107"), "Vous êtes connecté")

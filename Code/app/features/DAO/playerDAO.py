@@ -48,7 +48,7 @@ class PlayerDAO(GuestDAO):
             if ans =! None :
                 print("Vous n'avez pas de partie en cours")
             else :
-                main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) #à adapter selon le nom des attributs dans la bdd
+                main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) 
                 pile = curseur.execute("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
                 return(main,pile)
                 # ET LANCE LA PARTIE AUSSI => A FAIRE. 
