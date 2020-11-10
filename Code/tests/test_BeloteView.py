@@ -1,4 +1,4 @@
-""" import unittest
+import unittest
 from unittest.mock import patch
 
 from app.features.game.gameMechanics.beloteView import BeloteView
@@ -16,8 +16,8 @@ class BeloteViewTest(unittest.TestCase):
             Card('7', 'DIAMONDS')
         ]
 
-        mockPoser.return_value = Card('KING', 'DIAMONDS')
+        mockPoser.return_value = {'pose': "2. KING de DIAMONDS"}
         carte = BeloteView.displayPoser(hand)
         self.assertIsNotNone(carte)
-        self.assertEqual(carte.name == 'KING' and carte.couleur == 'DIAMONDS')
- """
+        self.assertEqual(carte.valeur[0],'KING')
+        self.assertEqual(carte.couleur[0],'DIAMONDS')
