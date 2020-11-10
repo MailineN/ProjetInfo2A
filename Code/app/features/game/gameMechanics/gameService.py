@@ -1,8 +1,15 @@
-from gameMechanics import *
+<<<<<<< HEAD:Code/app/features/game/gameMechanics/GameService.py
+from gameMechancis import *
 from app.features.DAO import GameDAO
 
+=======
+from app.features.DAO.gameDAO import GameDAO
+>>>>>>> 190900cd90481f544ba032f256f27476c2ac6ab1:Code/app/features/game/gameMechanics/gameService.py
 
 class GameService:
+
+    def __init__(self, playerGroup):
+        self.playerGroup = playerGroup
 
     def initGame(Game, PlayerGroup):
 
@@ -14,7 +21,7 @@ class GameService:
         Args:
             game : Instance de fille d'AbstractGame, déjà initialisée
         """
-        GameDAO.saveGame(Game)
+        GameDAO.saveGame(game)
 
     def saveScore(game, player, score):
         """Fonction de sauvegarde des scores d'une partie d'un joueur

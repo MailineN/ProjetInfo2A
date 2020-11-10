@@ -4,7 +4,7 @@ from app.features.DAO.guestDAO import GuestDAO
 
 class TestGuest(unittest.TestCase):
     """Teste les fonctions de la classe GuestDAO"""
-    def testAddAccounttoData():
+    def testAddAccounttoData(self):
         self.assertEqual(GuestDAO.addAccounttoData("chloé","3107"), "Votre compte a bien été créé")
 
 

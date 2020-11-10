@@ -6,17 +6,17 @@ from app.features.game.cardObjects.cards import Card
 class PileDAO():
     
     @staticmethod
-    def newPile(idGame):
+    def newPile(idjeu):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO pile (idGame)"
-                "VALUES (%s)  RETURNING idPile "
-                (idGame)
+                "INSERT INTO Piles (idGame)"
+                "VALUES (%s) RETURNING idPile ",
+                (idjeu,)
         #On récupère l'id de la pile        
             )
-            idPile = curseur.fetchone()["idPile"]       
+            idPile = curseur.fetchone()[0]       
             connexion.commit()
         except psycopg2.Error as error:
             # la transaction est annulée
@@ -32,15 +32,15 @@ class PileDAO():
     @staticmethod
     def savePileinDataBase(pile):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO pile (idPile, idGame, card_list)"
-                "VALUES (%s, %s, %s, %s,%s,%s) RETURNING idPile "
+                "INSERT INTO Piles (idPile, idGame, card_list)"
+                "VALUES (%s, %s, %s, %s,%s,%s) RETURNING idPile ",
                 (pile.idPile, pile.idGame, pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3])
             )
 
-            pile.id = curseur.fetchone()["idPile"]
+            pile.id = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -50,13 +50,13 @@ class PileDAO():
             DatabaseConnection.putBackConnexion(connexion)
 
     @staticmethod
-    def getPreviousPiles(idGame):
+    def getPreviousPiles(idjeu):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT idPile, idGame, card1, card2, card3, card4t FROM pile WHERE idGame=%s;"
-                (idGame)
+                "SELECT idPile, idGame, card1, card2, card3, card4t FROM Piles WHERE idGame=%s",
+                (idjeu,)
             )
 
             resultats = curseur.fetchall()
@@ -71,10 +71,10 @@ class PileDAO():
     @staticmethod
     def getPile(idPile):
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT card1, card2, card3, card4 FROM pile WHERE idPile=%s;"(idPile)
+                "SELECT card1, card2, card3, card4 FROM Piles WHERE idPile=%s",(idPile,)
             )
 
             resultats = curseur.fetchall()
@@ -93,8 +93,8 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "DELETE FROM pile WHERE idPile=%s;"
-                , (idPile)
+                "DELETE FROM Piles WHERE idPile=%s"
+                , (idPile,)
                 )
 
             if curseur.rowcount > 0:

@@ -11,7 +11,7 @@ class AbstractGame(ABC):
             listCards ([type], optional): Liste des cartes autorisées pour le jeu. Defaults to None.
             finished (bool, optional): Jeu terminé ou non. Defaults to False.
         """
-        self.idGame == idGame
+        self.idGame = idGame
         self.players = list(players)
         self.finished = finished
         self.listCards = listCards
@@ -31,9 +31,9 @@ class AbstractGame(ABC):
         pass
 
     @abstractmethod
-    def saveFinishedGame(self, players): 
+    def saveFinishedGame(self, players):
         pass
 
     @abstractmethod
-    def saveScore(self, players): 
+    def saveScore(self, players):
         pass

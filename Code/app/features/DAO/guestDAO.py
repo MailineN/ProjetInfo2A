@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+from app.features.DAO.databaseConnection import DatabaseConnection
+import psycopg2
+
+>>>>>>> 190900cd90481f544ba032f256f27476c2ac6ab1
 class GuestDAO:
     
     """ Classe Data Access Object de la classe Guest """

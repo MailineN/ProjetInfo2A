@@ -1,7 +1,7 @@
-from app.features.DAO.gameDAO import gameDAO
-from app.features.DAO.pile_dao import PileDAO
-from app.menu.menu_interface import MenuInterface
-from app.menu.menu_data import menu
+from app.features.DAO.gameDAO import GameDAO
+from app.features.DAO.pileDAO import PileDAO
+from app.menus.menu_interface import MenuInterface
+from app.menus.menu_data import menu
 from threading import Timer
 
 

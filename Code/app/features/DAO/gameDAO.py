@@ -1,12 +1,12 @@
-from .handDAO import HandDAO
-from pileDAO import PileDAO
-from GameService import GameService
+from app.features.DAO.handDAO import HandDAO
+from app.features.DAO.pileDAO import PileDAO
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
 
-class GameDAO :
-        
-    def fetchCurrentGame() :
+
+class GameDAO:
+
+    def fetchCurrentGame():
 
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
@@ -16,14 +16,12 @@ class GameDAO :
             )
             game = curseur.fetchone()
             connexion.commit()
-        finally: 
+        finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
         return(game[0])
 
-        
-
-    def fetchSaveGame(gameIDE) :
+    def fetchSaveGame(gameIDE):
 
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -39,14 +37,14 @@ class GameDAO :
             curseur.execute(
                 "SELECT * FROM score WHERE score.id = gameIDE"
             )
-            Score = curseur.fetchone()[1]      
+            Score = curseur.fetchone()[1]
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-        return(Hand,Pile,Score)
+        return(Hand, Pile, Score)
 
     @staticmethod
-    def fetchNumberPlayerGroup(idGame): 
+    def fetchNumberPlayerGroup(idGame):
         """ Va chercher le nombre de joueur dans le groupe d'une partie non commencée 
 
         Args:
@@ -60,25 +58,32 @@ class GameDAO :
             )
             game = curseur.fetchall()
             connexion.commit()
-        finally: 
+        finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-            if game[5]: 
+            if game[5]:
                 # Si la partie a déja commencé alors on renvoie false et null
                 return(False,)
-            else: 
-                return(True, len(game[3].split())) # On retourne la longueur de la table des joueurs et true 
+            else:
+                # On retourne la longueur de la table des joueurs et true
+                return(True, len(game[3].split()))
 
-        
-
-
-
-        
-        
-
-
-
-    
-
-
-
+    @staticmethod
+    def newGame():
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "INSERT INTO Games (idPiles, idHands, idPlayers, finished, debut, score)"
+                "VALUES(%s, %s, %s, %s, %s, %s, %s)"
+                "RETURNING idGame",
+                (None, None, None, None, False, False, None,)
+            )
+            idGame = curseur.fetchone()["idGame"]
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)

@@ -7,15 +7,17 @@ from app.features.game.cardObjects.cards import Card
 
 class BeloteViewTest(unittest.TestCase):
 
-    def testPoser(self):
+    @patch('app.features.game.gameMechanics.beloteView.prompt')
+    def testPoser(self, mockPoser):
         hand = [
-            Card(valeur="ACE", couleur="DIAMONDS"),
-            Card(valeur="9", couleur="DIAMONDS"),
-            Card(valeur="KING", couleur="DIAMONDS"),
-            Card(valeur="7", couleur="DIAMONDS")
+            Card('ACE', 'DIAMONDS'),
+            Card('9', 'DIAMONDS'),
+            Card('KING', 'DIAMONDS'),
+            Card('7', 'DIAMONDS')
         ]
 
-        with patch('app.features.game.gameMechanics.beloteView.BeloteView', return_value=Card(valeur="KING", couleur="DIAMONDS")):
-            b = BeloteView()
-            rep = b.displayPoser(hand)
-            assert rep == Card(valeur="KING", couleur="DIAMONDS")
+        mockPoser.return_value = {'pose': "2. KING de DIAMONDS"}
+        carte = BeloteView.displayPoser(hand)
+        self.assertIsNotNone(carte)
+        self.assertEqual(carte.valeur[0],'KING')
+        self.assertEqual(carte.couleur[0],'DIAMONDS')

@@ -6,11 +6,11 @@ from app.features.game.apiInteractions.cardAPI import cardAPI
 
 class PileCard:
     def __init__(self, cards=[], idend=None) -> None:
-        """[summary]
+        """ Base servant à la création des piles de cartes utilisées pour les piles et les decks
 
         Args:
-            idend ([type], optional): Identifiant utilisé pour appeler l'API en cas d'utilisation multiples. Defaults to None.
-            cards ([type], optional): Liste de cartes du deck. Defaults to list[Card].
+            idend (str, optional): Identifiant utilisé pour appeler l'API en cas d'utilisation multiples. Defaults to None.
+            cards (list[Card], optional): Liste de cartes du deck. Defaults to list[Card].
         """
         self.id = idend
         self.cards = cards
