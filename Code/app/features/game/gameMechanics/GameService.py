@@ -1,4 +1,4 @@
-from gameMechancis import *
+from gameMechanics import *
 from app.features.DAO import GameDAO
 
 
