@@ -42,3 +42,8 @@ class Pile(PileCard):
         for card in self.card_list:
             liste += str(card) + ", "
         return(rep+liste)
+
+    def poser(self, card, joueur):
+        joueur.handList.remove(card)
+        self.card_list.append(card)
+
