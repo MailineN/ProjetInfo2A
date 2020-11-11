@@ -1,12 +1,7 @@
 from app.features.users.guest import Guest
 from app.features.DAO.playerDAO import PlayerDAO
 from app.features.users.playerView import PlayerView
-<<<<<<< HEAD
 from app.features.DAO.gameDAO import GameDAO 
-=======
-from app.features.DAO.gameDAO import GameDAO
-
->>>>>>> 190900cd90481f544ba032f256f27476c2ac6ab1
 
 class Player(Guest):
 
