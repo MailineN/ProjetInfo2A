@@ -1,7 +1,11 @@
 from app.features.DAO.databaseConnection import DatabaseConnection
+<<<<<<< HEAD
 import psycopg2 
 import hashlib
 import abc 
+=======
+import psycopg2
+>>>>>>> 050c526fc9f12095a9c25184323add74284830b7
 
 class GuestDAO:
     

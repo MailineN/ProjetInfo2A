@@ -164,5 +164,3 @@ class BeloteView():
         index = int(rep['pose'][0])
         print(index)
         return(hand[index])
-
-
