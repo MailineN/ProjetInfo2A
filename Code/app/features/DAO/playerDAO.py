@@ -1,27 +1,26 @@
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
+from app.features.DAO.guestDAO import GuestDAO
 
-
-
-class PlayerDAO():
+class PlayerDAO(GuestDAO):
 
     """ classe Data Access Object de la classe Player """
 
     def __init__(self):
         pass
 
-    def updateAccountCredentials(self,playerID):
+    def updateAccountCredentials(self,playerID,score_game):
         """ Met à jour les scores dans la base de données """
         # Mettre le code qui récupère le score dans un objet previous_score.
 
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            ans = curseur.execute(
+            pervious_score = curseur.execute(
                 "SELECT score from users WHERE id_users= %s", (playerID))
-            new_score = pervious_score + ans
-            curseur.execute("UPDATE users SET score = %s WHERE id_users= %s",
-                            (new_score, playerID))
+            new_score = pervious_score + score_game 
+            curseur.execute(
+                "UPDATE users SET score = %s WHERE id_users= %s",(new_score, playerID))
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -42,7 +41,7 @@ class PlayerDAO():
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    def fetchGame(idGame):
+    def fetchGame(self,idGame):
         """ Recherche un jeu stocké dans une partie """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
@@ -51,22 +50,11 @@ class PlayerDAO():
             ans = curseur.fetchone()[0]
             if ans is None:
                 print("Vous n'avez pas de partie en cours")
-<<<<<<< HEAD
-            else :
+            else:
                 main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) 
                 pile = curseur.execute("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
                 return(main,pile)
                 # ET LANCE LA PARTIE AUSSI => A FAIRE. 
-=======
-            else:
-                # à adapter selon le nom des attributs dans la bdd
-                main = curseur.execute(
-                    "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s", (idGame))
-                pile = curseur.execute(
-                    "SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s", (idGame))
-                return(main, pile)
-                # ET LANCE LA PARTIE AUSSI => A FAIRE.
->>>>>>> 190900cd90481f544ba032f256f27476c2ac6ab1
         finally:
             curseur.close()
             DatabaseConnection.putBackConnexion(connexion)
