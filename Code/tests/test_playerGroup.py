@@ -1,7 +1,7 @@
 import unittest
-from app.features.game.users.playerGroup import PlayerGroup
-from app.features.game.users.guest import Guest
-from app.features.game.users.player import Player
+from app.features.users.playerGroup import PlayerGroup
+from app.features.users.guest import Guest
+from app.features.users.player import Player
 
 class TestGuest(unittest.TestCase):
 
