@@ -1,5 +1,5 @@
 import unittest
-from app.features.game.cardObjects.hand import Hand
+from app.features.game.cardObjects.handPile import Hand
 from app.features.game.cardObjects.cards import Card
 
 class HandsObjectsTests(unittest.TestCase):
