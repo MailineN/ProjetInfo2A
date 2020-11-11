@@ -1,19 +1,15 @@
 from app.features.users.guest import Guest
 from app.features.DAO.playerDAO import PlayerDAO
 from app.features.users.playerView import PlayerView
-<<<<<<< HEAD
 from app.features.DAO.gameDAO import GameDAO 
-=======
-from app.features.DAO.gameDAO import GameDAO
-
->>>>>>> 190900cd90481f544ba032f256f27476c2ac6ab1
+import hashlib
 
 class Player(Guest):
 
     def __init__(self, identifiant, handList):
         super.__init__(self, identifiant, 'Player', handList)
 
-    def loadGame(self, jeu):  # jeu est le nom du jeu que veut charger l'utilisateur
+    def loadGame(self, jeu, idGame):  # jeu est le nom du jeu que veut charger l'utilisateur
         # code à intégrer pour savoir quel game il veut (par ex, si il veut récup
         # les codes de la belote, quelle partie veut-il ?? On récup idGame et on l'utilise
         # comme argument)

@@ -1,3 +1,8 @@
+from app.features.DAO.databaseConnection import DatabaseConnection
+import psycopg2 
+import hashlib
+import abc 
+
 class GuestDAO:
     
     """ Classe Data Access Object de la classe Guest """
@@ -15,7 +20,7 @@ class GuestDAO:
             curseur.execute(
                 "INSERT INTO users (id_users, username,mdp,admini, connected, score) "
                 "VALUES (%s,%s, %s, %s, %s, %s) ;",
-                (DEFAULT, name, mdp, False, False, NULL))
+                (DbNull.Value, name, mdp, False, False, Null))
         
             connexion.commit()
             return("Votre compte a bien été créé")
@@ -26,7 +31,7 @@ class GuestDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-        
+    @staticmethod     
     def checkAccounttoData(username,mdp):
         """Création de l'instance de l'objet utilisateur """
         connexion = DatabaseConnection.getConnexion()
@@ -44,7 +49,8 @@ class GuestDAO:
         finally :
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-    
+
+    @staticmethod
     def addGame() :
         """ Ajoute une partie prête à commencer dans la base de données """
         connexion = DatabaseConnection.getConnexion()
@@ -53,7 +59,7 @@ class GuestDAO:
             curseur.execute(
                 "INSERT INTO Games (idGame, idPiles, idHands,idPlayers,finished,enCours, readyToStart,score",
                 "VALUES (%s,%s, %s, %s, %s, %s, %s, %s) ;",
-                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, NULL))#pk un player alors que les guests aussi peuvent ??
+                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, Null))#pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -62,6 +68,7 @@ class GuestDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
+    @staticmethod
     def printReadytoStartGames(jeu) :
         """ Faire choisir au player quelle partie il veut rejoindre"""
         connexion = DatabaseConnection.getConnexion()
@@ -75,6 +82,7 @@ class GuestDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
+    @staticmethod
     def addPlayerToGame(idGame):
         """ Ajouter un joueur à une partie prête à commencer """
         connexion = DatabaseConnection.getConnexion()
