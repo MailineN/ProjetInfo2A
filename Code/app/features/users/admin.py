@@ -34,20 +34,20 @@ class Admin(Player):
             GuestDAO.addAccounttoData(username, hash_mdp)
             return("Votre compte a bien été créé")
 
-            elif userType == "Admin":
-                # création du compte d'un admin
-                (username, mdp, verifMdp) = adminView.displayCreateUserAccount()
-                # vérification que le pseudo n'existe pas déjà
-                username = verif_init_id(username)
-                # vérification que les deux mdp sont les mêmes et renvoie le mdp
-                mdp = verif_init_mdp(mdp, verifmdp)
-                # hashage du mdp choisi
-                m = hashlib.md5()
-                m.update(mdp)
-                hash_mdp = m.digest()
-                # ajouter le nouveau compte à la base en appelant la fonction de guestDAO
-                GuestDAO.addAccounttoData(username, mdp)
-                return("Le compte a bien été créé")
+        elif userType == "Admin":
+            # création du compte d'un admin
+            (username, mdp, verifMdp) = adminView.displayCreateUserAccount()
+            # vérification que le pseudo n'existe pas déjà
+            username = verif_init_id(username)
+            # vérification que les deux mdp sont les mêmes et renvoie le mdp
+            mdp = verif_init_mdp(mdp, verifmdp)
+            # hashage du mdp choisi
+            m = hashlib.md5()
+            m.update(mdp)
+            hash_mdp = m.digest()
+            # ajouter le nouveau compte à la base en appelant la fonction de guestDAO
+            GuestDAO.addAccounttoData(username, mdp)
+            return("Le compte a bien été créé")
 
     def deleteUserAccount():
          # la view va aller demander à l'utilisateur quel compte il veut supprimer à partir de son username
