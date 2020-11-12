@@ -19,20 +19,20 @@ class Admin(Player):
         """ fct à changer par rapport à la view ou on la laisse comme ca??? je me base sur le guest qui reste comme ca pr la création mais la view?? """
         # demander si on veut créer un joueur ou un admin
         userType = adminView.displayUsertype()
-           if userType == "Player":
-                # création du compte d'un joueur
-                (username, mdp, verifMdp) = adminView.displayCreateUserAccount()
-                # vérification que le pseudo n'existe pas déjà
-                username = verif_init_id(username)
-                # vérification que les deux mdp sont les mêmes et renvoie le mdp
-                mdp = verif_init_mdp(mdp, verifmdp)
-                # hashage du mdp choisi
-                m = hashlib.md5()
-                m.update(mdp)
-                hash_mdp = m.digest()
-                # ajouter le compte à la base
-                GuestDAO.addAccounttoData(username, hash_mdp)
-                return("Votre compte a bien été créé")
+        if userType == "Player":
+            # création du compte d'un joueur
+            (username, mdp, verifMdp) = adminView.displayCreateUserAccount()
+            # vérification que le pseudo n'existe pas déjà
+            username = verif_init_id(username)
+            # vérification que les deux mdp sont les mêmes et renvoie le mdp
+            mdp = verif_init_mdp(mdp, verifmdp)
+            # hashage du mdp choisi
+            m = hashlib.md5()
+            m.update(mdp)
+            hash_mdp = m.digest()
+            # ajouter le compte à la base
+            GuestDAO.addAccounttoData(username, hash_mdp)
+            return("Votre compte a bien été créé")
 
             elif userType == "Admin":
                 # création du compte d'un admin
