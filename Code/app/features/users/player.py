@@ -2,10 +2,7 @@ from app.features.users.guest import Guest
 from app.features.DAO.playerDAO import PlayerDAO
 from app.features.users.playerView import PlayerView
 from app.features.DAO.gameDAO import GameDAO 
-<<<<<<< HEAD
 import hashlib
-=======
->>>>>>> 050c526fc9f12095a9c25184323add74284830b7
 
 class Player(Guest):
 
