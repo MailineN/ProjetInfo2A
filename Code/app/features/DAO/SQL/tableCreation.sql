@@ -36,6 +36,7 @@ CREATE TABLE Games
 (
     idGame integer NOT NULL DEFAULT nextval
     ('idGame_seq'::regclass) PRIMARY KEY, 
+    jeu text,
     idPiles text, 
     idHands text,
     idPlayers text,

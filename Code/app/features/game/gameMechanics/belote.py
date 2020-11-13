@@ -31,6 +31,7 @@ class Belote(AbstractGame):
         team2 = [repartion[2], repartion[3]]
         return (team1, team2)
 
+    @staticmethod
     def checkPlayerNumber(players):
         nbjoueur = len(players)
         if nbjoueur == 4:

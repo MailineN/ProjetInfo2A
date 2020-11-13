@@ -39,27 +39,23 @@ class Guest(Individu):
         print("Votre compte a bien été crée \n Appuyez sur Entrer pour continuer")
         return MenuInterface(previous_menu)
 
-    def connexion(listPlayers):
-        """Permet à un utilisateur de se connecter """
-        (username, motdepasse) = GuestView.displayConnexion()
+    @staticmethod
+    def connexionJeu(listPlayers):
+        """Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter"""
+        if GuestView.displayChoixPartie():
+            (username, motdepasse) = GuestView.displayConnexion()
 
-        # code pour hasher le mdp
-        m = hashlib.md5()
-        m.update(motdepasse)
-        hash_mdp = m.digest()
+            # code pour hasher le mdp
+            m = hashlib.md5()
+            m.update(motdepasse)
+            hash_mdp = m.digest()
 
-        # on demande à GuestDAO  de créer l'instance de l'objet
-        id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
-        listPlayers.append(id_users)
+            # on demande à GuestDAO  de créer l'instance de l'objet
+            id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
+            listPlayers.append(id_users)
+        else:
+            listPlayers.append('invité'+str(len(listPlayers))
         return(listPlayers)
 
-    def initEmptyGame():
-        """initialise un jeu vide """  # comment récupérer le choix du jeu avec les menus ?
-        GuestDAO.addGame(jeu)
-
-    def joinGame():
-        """ Rejoindre un groupe pour jouer à une partie qui n'a aps encore commencé"""
-        # A AJOUTER ICI !!!!!!!!!!!!!!!!!!!!!  comment récupérer le choix du jeu avec les menus ?
-        GuestDAO.printReadytoStartGames(jeu)
-        idGame = GuestView.displayChoixPartie()
-        GuestDAO.addPlayerToGame(idGame)
+    # Les fonctions d'initialisation de jeu ont étés ajoutés à GameService :)
+    # T'inquiete pas pour les menus c'est prévu

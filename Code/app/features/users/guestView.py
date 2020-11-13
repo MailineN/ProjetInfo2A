@@ -75,16 +75,24 @@ class GuestView():
         res = prompt(questions, style=custom_style_2)
         return(res['mdp'], res['vmdp'])
 
+    @staticmethod
     def displayChoixPartie():
 
         questions = [
             {
-                'type': 'input',
-                'name': 'idGame',
-                'message': 'Veuillez entrer l\'identifiant de la partie que vous souhaitez rejoindre: ',
+                'type': 'list',
+                'name': 'choix',
+                'message': 'Voulez vous vous connecter ou jouer en tant qu\'invité ? ',
+                'choices':  [
+                        'Se connecter',
+                        'Jouer en tant qu\' invité'
+                ],
             }]
         res = prompt(questions, style=custom_style_2)
-        return(res['idGame'])
+        if res['idGame'] == 'Se connecter':
+            return True
+        else:
+            return False
 
 
 if __name__ == "__main__":
