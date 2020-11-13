@@ -50,11 +50,11 @@ class GuestView():
 
     def displayVerifId():
         questions = [
-        {
-            'type': 'input',
-            'name': 'Pseudo',
-            'message': 'Votre identifiant existe déjà, veuillez en choisir un nouveau : ',
-        }]
+            {
+                'type': 'input',
+                'name': 'Pseudo',
+                'message': 'Votre identifiant existe déjà, veuillez en choisir un nouveau : ',
+            }]
         res = prompt(questions, style=custom_style_2)
         return(res['Pseudo'])
 
@@ -74,18 +74,17 @@ class GuestView():
         ]
         res = prompt(questions, style=custom_style_2)
         return(res['mdp'], res['vmdp'])
-    
+
     def displayChoixPartie():
 
         questions = [
-        {
-            'type': 'input',
-            'name': 'idGame',
-            'message': 'Veuillez entrer l\'identifiant de la partie que vous souhaitez rejoindre: ',
-        }]
+            {
+                'type': 'input',
+                'name': 'idGame',
+                'message': 'Veuillez entrer l\'identifiant de la partie que vous souhaitez rejoindre: ',
+            }]
         res = prompt(questions, style=custom_style_2)
         return(res['idGame'])
-
 
 
 if __name__ == "__main__":

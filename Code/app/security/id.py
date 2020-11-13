@@ -1,4 +1,6 @@
 from app.features.users.guestView import GuestView
+from app.features.DAO.databaseConnection import DatabaseConnection
+
 
 def verif_init_id(username):
     """ On vérifie que l'identifiant choisi n'existe pas déjà dans la base de données"""
@@ -7,11 +9,10 @@ def verif_init_id(username):
     try:
         answer = curseur.execute(
             "SELECT * from users WHERE username = %s ; ", (username))
-        if answer == None:
+        if answer is None:
             return True
         else:
-            username = GuestView.displayVerifId()
-            return(verif_init_id(username))
+            return False
     finally:
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)

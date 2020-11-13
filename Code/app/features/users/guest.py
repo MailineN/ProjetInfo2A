@@ -12,20 +12,22 @@ class Guest(Individu):
 
     """ classe invité, pouvant jouer au jeu sans se connecter """
 
-    def __init__(self, identifiant=None, userType='Guest', handList=[]):
+    def __init__(self, identifiant=None, handList=[]):
         # l'id d'un guest est genéré quand il souhaite jouer et non au lancement
         self.identifiant = identifiant
         # Et on définit que pour l'instant c'est un guest, on modifie l'attribut quand il se connecte
-        self.userType = userType
+        self.userType = 'Guest'
         self.handList = handList
 
     @staticmethod
-    def createAccount():
+    def createAccount(previous_menu):
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
         (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
-        username = verif_init_id(username)
+        while not verif_init_id(username):
+            username = GuestView.displayVerifId()
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
-        motdepasse = verif_init_mdp(motdepasse, verifMotdepasse)
+        while not verif_init_mdp(motdepasse, verifMotdepasse):
+            (mdp, vmdp) = GuestView.displayVerifMdp()
 
         # code pour hasher le mdp
         m = hashlib.md5()
@@ -34,8 +36,10 @@ class Guest(Individu):
 
         # ajouter le compte à la base
         GuestDAO.addAccounttoData(username, hash_mdp)
+        print("Votre compte a bien été crée \n Appuyez sur Entrer pour continuer")
+        return MenuInterface(previous_menu)
 
-    def connexion():
+    def connexion(listPlayers):
         """Permet à un utilisateur de se connecter """
         (username, motdepasse) = GuestView.displayConnexion()
 
@@ -45,7 +49,9 @@ class Guest(Individu):
         hash_mdp = m.digest()
 
         # on demande à GuestDAO  de créer l'instance de l'objet
-        GuestDAO.checkAccounttoData(username, hash_mdp)
+        id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
+        listPlayers.append(id_users)
+        return(listPlayers)
 
     def initEmptyGame():
         """initialise un jeu vide """  # comment récupérer le choix du jeu avec les menus ?
