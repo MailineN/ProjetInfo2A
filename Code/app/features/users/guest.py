@@ -54,6 +54,7 @@ class Guest(Individu):
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
             listPlayers.append(id_users)
         else:
+            # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
             listPlayers.append('invité'+str(len(listPlayers))
         return(listPlayers)
 

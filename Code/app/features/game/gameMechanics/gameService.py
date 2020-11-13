@@ -1,14 +1,15 @@
 from app.features.DAO.gameDAO import GameDAO
 from app.features.users.guest import Guest
 
+
 class GameService:
 
-    def __init__(self, playerGroup):
-        self.playerGroup = playerGroup
+    def __init__(self):
+        pass
 
-    def startGame(Game, idJeu, PlayerGroup):
-
-        return(Game(idJeu, PlayerGroup, False))
+    @staticmethod
+    def startGame(jeu, idJeu, PlayerGroup):
+        return(jeu(idJeu, PlayerGroup, False))
 
     def saveGame(game):
         """Fonction de sauvegarde d'une partie terminée ou non dans la base de donnée
@@ -29,15 +30,18 @@ class GameService:
         GameDAO.saveScore(game, player, score)
         print('Sauvegarde terminée')
 
-    def initEmptyGame(nomJeu, listPlayers):
-        """initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """  # comment récupérer le choix du jeu avec les menus ?
-        listString = ' '.join(map(str, listPlayers))
-        # Convertit la liste de joueur [1,2,3] en string '1 2 3'
-        GameDAO.addGame(nomJeu, listString)
-
-
-    def initListPlayers(jeu): 
+    @staticmethod
+    def initListPlayers(jeu):
         listPlayers = []
         while not jeu.checkPlayersNumber(listPlayers):
             listPlayers = Guest.connexionJeu(listPlayers)
         return(listPlayers)
+
+    @staticmethod
+    def initEmptyGame(nomJeu):
+        """initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """  # comment récupérer le choix du jeu avec les menus ?
+        listPlayers = GameService.initListPlayers(nomJeu)
+        listString = ' '.join(map(str, listPlayers))
+        # Convertit la liste de joueur [1,2,3] en string '1 2 3'
+        id_Jeu = GameDAO.addGame(nomJeu, listString)
+        GameService.startGame(nomJeu, id_Jeu, listPlayers)
