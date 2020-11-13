@@ -1,7 +1,5 @@
 from app.features.DAO.databaseConnection import DatabaseConnection
 import psycopg2
-import hashlib
-import abc
 
 
 class GuestDAO:
@@ -20,15 +18,17 @@ class GuestDAO:
         try:
             curseur.execute(
                 "INSERT INTO users (username,mdp,admini, connected) "
-                "VALUES (%s,%s, %s, %s, %s, %s) ;",
-                (name, mdp, False, False))
-
+                "VALUES (%s,%s, %s, %s) RETURNING username;",
+                ((name,), (mdp,), False, False))
+            user = curseur.fetchone()[0]
+            connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+        return user
 
     @staticmethod
     def checkAccounttoData(username, mdp):
@@ -37,19 +37,18 @@ class GuestDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "Select mdp from users WHERE username = %s ", (username))
-            ans = curseur.fetchone()
+                "Select mdp from users WHERE username = %s ", ((username),))
+            ans = curseur.fetchone()[0]
             if ans == mdp:
                 curseur.execute(
-                    "Select id_users from users WHERE username = %s ", (username))
-                id_user = curseur.fetchone()
-                curseur.execute("UPDATE users SET connected = TRUE "
-                                " WHERE username = %s", (username))
-
+                    "Select id_users from users WHERE username = %s ", ((username),))
+                id_user = curseur.fetchone()[0]
+                curseur.execute("UPDATE users SET connected = TRUE WHERE username = %s ", ((username),))
                 connexion.commit()
                 return(id_user)
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+
 
 # Idem :)

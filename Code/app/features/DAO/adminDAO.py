@@ -41,12 +41,11 @@ class AdminDAO:
     def deleteUserAccount(username):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "DELETE FROM users WHERE username = %s", (username))
+                "DELETE FROM users WHERE username = %s", ((username),))
             connexion.commit()
-            return("Le compte a bien été supprimé")
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
