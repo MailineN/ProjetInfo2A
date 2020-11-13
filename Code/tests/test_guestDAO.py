@@ -18,3 +18,5 @@ class TestGuestDAO(unittest.TestCase):
         idUser = GuestDAO.checkAccounttoData("chloé", "3107")
         AdminDAO.deleteUserAccount("chloé")
         self.assertIsNotNone(idUser)
+    
+    
