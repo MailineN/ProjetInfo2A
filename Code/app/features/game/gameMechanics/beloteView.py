@@ -2,7 +2,7 @@
     """
 from PyInquirer import prompt
 from examples import custom_style_2
-
+from pyfiglet import Figlet
 
 from app.features.utils import *
 
