@@ -12,7 +12,10 @@ def connexion(previous_menu):
     menu_act = previous_menu
     id_users = Guest.connexion()
     if id_users is not None:
-        return(menuJoueurCo(menu_act))
+        del menu_act["options"][0]
+        del menu_act["actions"][0]
+
+    return(MenuInterface(menu_act))
 
 
 def indices_actions(ind, indice_taches):
@@ -44,7 +47,6 @@ def menuChoixJeu(previous_menu):
         Individu().quitter]
     menu_act["path"] = []
     return(MenuInterface(menu_act))
-
 
 
 def menuStatistiques(previous_menu):
@@ -84,7 +86,7 @@ menu = [
         "question": "Que voulez vous faire ?",
         "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Guest(), [0, 2, 8, 6, 7])),
+            (lambda previous_menu:indices_actions(Player(), [0, 1, 2, 8, 6, 7])),
             (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
             Individu().quitter],
 
