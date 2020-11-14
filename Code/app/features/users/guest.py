@@ -36,6 +36,7 @@ class Guest(Individu):
         m.update(motdepasse.encode('utf-8'))
         hash_mdp = m.digest()
 
+        print(hash_mdp)
         # ajouter le compte à la base
         GuestDAO.addAccounttoData(username, hash_mdp)
         input("Votre compte a bien été crée \n Appuyez sur Entrer pour continuer ")
@@ -65,7 +66,7 @@ class Guest(Individu):
             m = hashlib.md5()
             m.update(motdepasse.encode('utf-8'))
             hash_mdp = m.digest()
-
+            print(hash_mdp)
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
             input("Votre identifiant est : " + str(id_users))
