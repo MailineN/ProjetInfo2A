@@ -5,7 +5,7 @@ from app.features.DAO.adminDAO import AdminDAO
 from app.features.users.adminView import AdminView
 import hashlib
 from app.features.users.player import Player
-
+from app.menus.menu_interface import MenuInterface
 
 class Admin(Player):
 
@@ -16,7 +16,7 @@ class Admin(Player):
         )
 
 
-    def createUserAccount():
+    def createUserAccount(previous_menu):
         """ fct à changer par rapport à la view ou on la laisse comme ca??? je me base sur le guest qui reste comme ca pr la création mais la view?? """
         # demander si on veut créer un joueur ou un admin
         userType = AdminView.displayUsertype()
@@ -36,7 +36,8 @@ class Admin(Player):
             hash_mdp = m.digest()
             # ajouter le compte à la base
             GuestDAO.addAccounttoData(username, hash_mdp)
-            return("Votre compte a bien été créé")
+            print("Le compte a bien été crée \n Appuyez sur Entrer pour continuer")
+            return MenuInterface(previous_menu)
 
         elif userType == "Admin":
             # création du compte d'un admin
@@ -51,14 +52,16 @@ class Admin(Player):
             hash_mdp = m.digest()
             # ajouter le nouveau compte à la base en appelant la fonction de guestDAO
             AdminDAO.addAdminAccounttoData(username, hash_mdp)
-            return("Le compte a bien été créé")
+            print("Le compte a bien été crée \n Appuyez sur Entrer pour continuer")
+            return MenuInterface(previous_menu)
 
-    def deleteUserAccount():
+    def deleteUserAccount(previous_menu):
          # la view va aller demander à l'utilisateur quel compte il veut supprimer à partir de son username
         username = AdminView.displayDeleteUserAccount()
         # la fonction de adminDAO va aller supprimer ce compte dans la base
         AdminDAO.deleteUserAccount(username)
-        return("Le compte a bien été supprimé")
+        print("Le compte a bien été supprimé \n Appuyez sur Entrer pour continuer")
+        return MenuInterface(previous_menu)
 
     def seeUserAccount():
         # la view va aller demander à l'utilisateur quel compte il veut consulter à partir de son username
