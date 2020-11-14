@@ -15,14 +15,10 @@ class Player(Guest):
         """ Changer le mot de passe d'un utilisateur """
         (motdepasse, new_mdp) = PlayerView.displayChangePassword()
 
-        m = hashlib.md5()
-        m.update(motdepasse)
-        hash_mdp = m.digest()
-        m.update(new_mdp)
-        new_hash_mdp = m.digest
-
+        newhash_mdp = hashlib.sha256(new_mdp.encode()).hexdigest()
+        hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
         # laisser faire la classe playerDAO
-        PlayerDAO.updatePassword(hash_mdp, new_hash_mdp)
+        PlayerDAO.updatePassword(hash_mdp, newhash_mdp)
 
     def seeScores():
         """Affiche les scores en appellant la fonction correspondante dans la DAO"""
