@@ -1,10 +1,7 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
-from app.features.game.cardObjects.handPile import Hand, Pile
-
-from app.menus.menu_interface import MenuInterface
-from app.menus.menu_data import menu
+from app.features.game.cardObjects.handPile import Pile
 import random
 
 
@@ -188,8 +185,7 @@ class Belote(AbstractGame):
                 else:
                     score = scoreTeam2
                 Belote.save(player, score)
-
-        return MenuInterface(menu[0])
+        return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
         idPile = Pile.newPile(idGame)

@@ -1,8 +1,7 @@
 from .menu_interface import MenuInterface
 from app.features.users.individu import Individu
-from app.features.users.guest import Guest
+from app.features.users.guest import Guest, GameService
 from app.features.users.player import Player
-from app.features.game.gameMechanics.gameService import GameService
 
 
 def connexion(previous_menu):
@@ -43,7 +42,7 @@ def menuChoixJeu(previous_menu):
                            "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu:GameService.initEmptyGame('Belote'))
+        (lambda previous_menu:GameService.initEmptyGame('Belote', previous_menu))
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
