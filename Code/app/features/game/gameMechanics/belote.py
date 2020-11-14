@@ -112,7 +112,7 @@ class Belote(AbstractGame):
             atout = None
             teamPrenant = None
             while not pick:
-                deck = PileCard.generateNewCustomDeck(Belote.listCards)
+                deck = PileCard.generateNewCustomDeck(self.listCards)
                 deck.shuffleDeck()
                 # Distribution de carte
                 for player in place_player:
