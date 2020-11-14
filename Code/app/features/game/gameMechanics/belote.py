@@ -116,9 +116,9 @@ class Belote(AbstractGame):
                 deck.shuffleDeck()
                 # Distribution de carte
                 for player in place_player:
-                    player.drawCard(deck.drawDeck(deck.id, 3))
+                    player.handList.append(deck.drawDeck(3))
                 for player in place_player:
-                    player.drawCard(deck.drawDeck(deck.id, 2))
+                    player.handList.append(deck.drawDeck(2))
                 # Tour d'appel
                 carteAppel = deck.drawDeck(deck.id)
                 for i in range(len(place_player)):

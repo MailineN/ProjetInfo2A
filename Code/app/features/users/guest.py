@@ -8,7 +8,7 @@ import hashlib
 from app.features.DAO.gameDAO import GameDAO
 from app.features.game.gameMechanics.belote import Belote
 from app.menus.menu_interface import MenuInterface
-
+from app.features.users.player import Player
 
 class Guest(Individu):
 
@@ -97,5 +97,8 @@ class GameService:
         listString = ' '.join(map(str, listPlayers))
         # Convertit la liste de joueur [1,2,3] en string '1 2 3'
         id_Jeu = GameDAO.addGame(nomJeu, listString)
-        GameService.startGame(nomJeu, id_Jeu, listPlayers)
+        players=[]
+        for i in listPlayers:
+            players.append(Player(listPlayers[i]))
+        GameService.startGame(nomJeu, id_Jeu, players)
         return MenuInterface(previous_menu)

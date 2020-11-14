@@ -40,7 +40,8 @@ class PileCard:
         """ Mélange le paquet grace à l'API
         """
         self.id = cardAPI.shuffleDeck(self.id)
-
+    
+    @staticmethod
     def drawDeck(self, count):
         """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
         """
