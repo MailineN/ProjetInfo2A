@@ -65,9 +65,9 @@ class Guest(Individu):
             print(hash_mdp)
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
-            if len(id_users)>0 : 
+            if len(id_users) > 0:
                 input("Vous êtes connectés ! ")
-            else : 
+            else:
                 input("Echec de la connexion ")
         return id_users
 
@@ -80,7 +80,7 @@ class GameService:
     @staticmethod
     def startGame(nomJeu, idJeu, PlayerGroup):
         if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False))
+            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu))
 
     @staticmethod
     def initListPlayers(jeu):
