@@ -30,7 +30,7 @@ class PlayerDAO(GuestDAO):
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    def getAccountData(self,playerID):
+    def getAccountData(playerID):
         """ Renvoie les scores """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
