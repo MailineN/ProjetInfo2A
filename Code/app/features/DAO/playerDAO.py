@@ -17,9 +17,10 @@ class PlayerDAO(GuestDAO):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            pervious_score = curseur.execute(
+            curseur.execute(
                 "SELECT score from users WHERE id_users= %s", playerID)
-            new_score = pervious_score + score_game 
+            previous_score = curseur.fetchone[0]  
+            new_score = previous_score + score_game 
             curseur.execute(
                 "UPDATE users SET score = %s WHERE id_users= %s",(new_score, playerID))
             connexion.commit()
@@ -35,8 +36,9 @@ class PlayerDAO(GuestDAO):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
-            ans = curseur.execute(
+            curseur.execute(
                 "SELECT scores from users WHERE id_users = %s", (playerID))
+            ans = curseur.fetchone[0]
             return(ans)
         finally:
             curseur.close
@@ -52,8 +54,10 @@ class PlayerDAO(GuestDAO):
             if ans is None:
                 print("Vous n'avez pas de partie en cours")
             else:
-                main = curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) 
-                pile = curseur.execute("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
+                curseur.execute( "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s",(idGame)) 
+                main = curseur.fetchone[0]
+                curseur.execute("SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s",(idGame))
+                pile = curseur.fetchone
                 return(main,pile)
                 # ET LANCE LA PARTIE AUSSI => A FAIRE. 
         finally:
