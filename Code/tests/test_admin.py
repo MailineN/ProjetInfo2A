@@ -1,6 +1,6 @@
 import unittest
-from app.features.users.admin import admin
-from app.features.DAO.adminDAO import adminDAO
+from app.features.users.admin import Admin
+from app.features.DAO.adminDAO import AdminDAO
 
 
 class AdminTest(unittest.TestCase):
