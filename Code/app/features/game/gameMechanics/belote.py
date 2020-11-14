@@ -94,7 +94,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self, idGame):
+    def gameLoop(self, idGame, players):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -102,7 +102,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        (team1, team2) = Belote.CreateTeams()
+        (team1, team2) = Belote.CreateTeams(players)
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         scoreTeam1 = 0
         scoreTeam2 = 0
