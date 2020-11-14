@@ -2,6 +2,7 @@ from .menu_interface import MenuInterface
 from app.features.users.individu import Individu
 from app.features.users.guest import Guest
 from app.features.users.player import Player
+from app.features.game.gameMechanics.gameService import GameService
 
 
 def connexion(previous_menu):
@@ -42,25 +43,8 @@ def menuChoixJeu(previous_menu):
                            "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        menuChoixGroupeBelote
+        (lambda previous_menu:GameService.initEmptyGame('Belote'))
         (lambda previous_menu:MenuInterface(menu[0])),
-        Individu().quitter]
-    menu_act["path"] = []
-    return(MenuInterface(menu_act))
-
-
-def menuChoixGroupeBelote(previous_menu,nameGame):
-    menu_act = {}
-    menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Que voulez vous faire ? "
-    menu_act["options"] = ["Créer un groupe de joueurs",
-                           "Rejoindre un groupe de jouers",
-                           "Revenir au menu précédent"
-                           "Quitter l'application"]
-    menu_act["actions"] = [
-        (lambda previous_menu:previous_menu["individu"].initEmptyGame(nameGame)),
-        (lambda previous_menu:previous_menu["individu"].joinGame(nameGame)),
-        menuChoixJeu,
         Individu().quitter]
     menu_act["path"] = []
     return(MenuInterface(menu_act))
@@ -119,11 +103,11 @@ def menuModif(previous_menu):
 
 menu = [
     {
-        "question": "Selectionnez votre statut ?",
-        "options": ["Invité", "Joueur", "Quitter l'application"],
+        "question": "Que voulez vous faire ?",
+        "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Guest(), [1, 2, 3])),
-            (lambda previous_menu:indices_actions(Player(), [0, 1, 3])),
+            (lambda previous_menu:indices_actions(Guest(), [0, 2, 3, 6, 7])),
+            menuChoixJeu,
             Individu().quitter],
 
         "individu": Individu(),
@@ -136,8 +120,8 @@ menu = [
         "options": [
             "Connexion",  # 0
             "Jouer",  # 1
-            "Créer un compte" #2 
-            "Voir ses statistiques", #3
+            "Créer un compte"  # 2
+            "Voir ses statistiques",  # 3
             "Gérer la base de donnée"
             "Ajouter un jeu"
             "Revenir au menu précédent",  # 7

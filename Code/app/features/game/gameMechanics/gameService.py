@@ -1,6 +1,6 @@
 from app.features.DAO.gameDAO import GameDAO
 from app.features.users.guest import Guest
-
+from app.features.gameMechanics.belote import Belote
 
 class GameService:
 
@@ -8,8 +8,9 @@ class GameService:
         pass
 
     @staticmethod
-    def startGame(jeu, idJeu, PlayerGroup):
-        return(jeu(idJeu, PlayerGroup, False))
+    def startGame(nomJeu, idJeu, PlayerGroup):
+        if nomJeu == 'Belote' : 
+            return(Belote(idJeu, PlayerGroup, False))
 
     def saveGame(game):
         """Fonction de sauvegarde d'une partie terminée ou non dans la base de donnée
