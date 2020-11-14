@@ -95,9 +95,8 @@ class GameDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Games (jeu,idPlayers,finished,debut)",
-                "VALUES (%s,%s, %s, %s) ;",
-                (nomJeu, listString, False, True))  # pk un player alors que les guests aussi peuvent ??
+                "INSERT INTO Games (jeu,idPlayers,finished,debut) VALUES (%s,%s, %s, %s) ;",
+                (nomJeu, listString, False, True ))  # pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
