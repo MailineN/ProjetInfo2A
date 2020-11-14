@@ -1,7 +1,7 @@
 from app.features.users.guest import Guest
 from app.features.DAO.playerDAO import PlayerDAO
 from app.features.users.playerView import PlayerView
-from app.features.DAO.gameDAO import GameDAO 
+
 import hashlib
 
 class Player(Guest):
