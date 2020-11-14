@@ -17,9 +17,9 @@ class GuestDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO users (username,mdp,admini, connected) "
-                "VALUES (%s,%s, %s, %s) RETURNING username;",
-                ((name,), (mdp,), False, False))
+                "INSERT INTO users (username,mdp,admini) "
+                "VALUES (%s,%s, %s) RETURNING username;",
+                ((name,), (mdp,), False))
             user = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:
@@ -44,11 +44,10 @@ class GuestDAO:
                 """, (username, str(mdpa)))
             id_user = curseur.fetchall()
             connexion.commit()
-            print(id_user)
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-        return id_user
+        return id_user[0]
 
 
 # Idem :)

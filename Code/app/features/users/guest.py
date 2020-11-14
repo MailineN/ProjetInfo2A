@@ -32,9 +32,7 @@ class Guest(Individu):
             (motdepasse, verifMotdepasse) = GuestView.displayVerifMdp()
 
         # code pour hasher le mdp
-        m = hashlib.md5()
-        m.update(motdepasse.encode('utf-8'))
-        hash_mdp = m.digest()
+        hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
 
         print(hash_mdp)
         # ajouter le compte à la base
@@ -63,9 +61,7 @@ class Guest(Individu):
             (username, motdepasse) = GuestView.displayConnexion()
 
             # code pour hasher le mdp
-            m = hashlib.md5()
-            m.update(motdepasse.encode('utf-8'))
-            hash_mdp = m.digest()
+            hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
             print(hash_mdp)
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
