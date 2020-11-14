@@ -11,7 +11,7 @@ def connexion(previous_menu):
     """
     menu_act = previous_menu
     id_users = Guest.connexion()
-    if id_users is not None:
+    if id_users is not None and len(id_users)>0:
         del menu_act["options"][0]
         del menu_act["actions"][0]
 
@@ -86,7 +86,7 @@ menu = [
         "question": "Que voulez vous faire ?",
         "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Player(), [0, 1, 2, 8, 6, 7])),
+            (lambda previous_menu:indices_actions(Guest(), [0, 1, 2, 8, 6, 7])),
             (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
             Individu().quitter],
 
