@@ -80,7 +80,7 @@ class GameService:
     @staticmethod
     def startGame(nomJeu, idJeu, PlayerGroup):
         if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu))
+            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu, PlayerGroup))
 
     @staticmethod
     def initListPlayers(jeu):
