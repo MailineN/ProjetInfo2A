@@ -27,7 +27,7 @@ class Guest(Individu):
             username = GuestView.displayVerifId()
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
         while not verif_init_mdp(motdepasse, verifMotdepasse):
-            (mdp, vmdp) = GuestView.displayVerifMdp()
+            (motdepasse, verifMotdepasse) = GuestView.displayVerifMdp()
 
         # code pour hasher le mdp
         m = hashlib.md5()
