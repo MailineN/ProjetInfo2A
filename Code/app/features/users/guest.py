@@ -65,7 +65,7 @@ class Guest(Individu):
             print(hash_mdp)
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
-            input("Votre identifiant est : " + str(id_users))
+            input("Vous êtes connectés ! ")
         return id_users
 
 

@@ -47,7 +47,7 @@ class GuestDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-        return id_user[0]
+        return id_user
 
 
 # Idem :)
