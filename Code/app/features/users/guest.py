@@ -68,6 +68,7 @@ class Guest(Individu):
 
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
+            input("Votre identifiant est : " + str(id_users))
         return id_users
 
 
