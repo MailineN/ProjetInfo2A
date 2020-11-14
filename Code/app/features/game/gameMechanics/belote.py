@@ -11,10 +11,10 @@ class Belote(AbstractGame):
         super().__init__(
             players=players,
             finished=finished,
-            listCards="7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
-            0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH",
             idGame=idGame
         )
+        self.listCards = "7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
+            0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
 
         self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
                             "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
@@ -112,7 +112,7 @@ class Belote(AbstractGame):
             atout = None
             teamPrenant = None
             while not pick:
-                deck = PileCard.generateNewCustomDeck(self.listCarteAuth)
+                deck = PileCard.generateNewCustomDeck(Belote.listCards)
                 deck.shuffleDeck()
                 # Distribution de carte
                 for player in place_player:
