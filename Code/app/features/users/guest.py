@@ -56,7 +56,7 @@ class Guest(Individu):
     # T'inquiete pas pour les menus c'est prévu
 
     @staticmethod
-    def connexion(): 
+    def connexion():
         id_users = None
         while id_users is None:
             (username, motdepasse) = GuestView.displayConnexion()
@@ -69,7 +69,7 @@ class Guest(Individu):
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
         return id_users
-    
+
 
 class GameService:
 
@@ -78,19 +78,20 @@ class GameService:
 
     @staticmethod
     def startGame(nomJeu, idJeu, PlayerGroup):
-        if nomJeu == 'Belote' : 
+        if nomJeu == 'Belote':
             return(Belote(idJeu, PlayerGroup, False))
 
     @staticmethod
     def initListPlayers(jeu):
         listPlayers = []
-        while not jeu.checkPlayersNumber(listPlayers):
-            listPlayers = Guest.connexionJeu(listPlayers)
+        if jeu == 'Belote':
+            while not Belote.checkPlayerNumber(listPlayers):
+                listPlayers = Guest.connexionJeu(listPlayers)
         return(listPlayers)
 
     @staticmethod
-    def initEmptyGame(nomJeu,previous_menu):
-        """initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """ 
+    def initEmptyGame(nomJeu, previous_menu):
+        """initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
         listPlayers = GameService.initListPlayers(nomJeu)
         listString = ' '.join(map(str, listPlayers))
         # Convertit la liste de joueur [1,2,3] en string '1 2 3'

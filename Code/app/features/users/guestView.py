@@ -89,7 +89,7 @@ class GuestView():
                 ],
             }]
         res = prompt(questions, style=custom_style_2)
-        if res['idGame'] == 'Se connecter':
+        if res['choix'] == 'Se connecter':
             return True
         else:
             return False
