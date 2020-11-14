@@ -2,7 +2,6 @@ from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
 from app.features.game.cardObjects.handPile import Hand, Pile
-from app.features.game.gameMechanics.gameService import GameService
 
 from app.menus.menu_interface import MenuInterface
 from app.menus.menu_data import menu
@@ -188,7 +187,7 @@ class Belote(AbstractGame):
                     score = scoreTeam1
                 else:
                     score = scoreTeam2
-                GameService.save(player, score)
+                Belote.save(player, score)
 
         return MenuInterface(menu[0])
 
@@ -319,7 +318,7 @@ class Belote(AbstractGame):
         return maitre, plis
 
     def saveFinishedGame():
-        pass
+        GameDAO.saveGame(game)
 
-    def saveScore():
+    def saveScore(player,score):
         pass
