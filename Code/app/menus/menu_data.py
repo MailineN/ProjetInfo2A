@@ -146,6 +146,36 @@ menu = [
         "individu": Individu(),
         "path": []
     },
+    {
+        "question": "Que voulez vous faire ? ",
+        "options": [
+            "Connexion",  # 0
+            "Jouer",  # 1
+            "Créer un compte"  # 2
+            "Voir ses statistiques",  # 3
+            "Gérer la base de donnée"  # 4
+            "Ajouter un jeu"  # 5
+            "Revenir au menu précédent",  # 6
+            "Quitter l'application",  # 7
+            "Modifier ses informations "],  # 8
+        "actions": [
+            connexion,
+            menuChoixJeu,
+            #(lambda previous_menu:previous_menu["individu"].reprendre(previous_menu))
+            (lambda previous_menu:previous_menu["individu"].creerCompte(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].voirStat(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].gestionBase(
+                previous_menu)),
+            (lambda previous_menu:previous_menu["individu"].ajoutJeu(
+                previous_menu)),
+            (lambda previous_menu:MenuInterface(menu[0])),
+            Individu().quitter],
+        "individu": Individu(),
+        "path": []
+    }]
+
 ]
 """Menu principal et menu utilisateur proposant l'ensemble des actions possibles
 """
