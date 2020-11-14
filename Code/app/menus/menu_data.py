@@ -5,9 +5,9 @@ from app.features.users.player import Player
 
 
 def connexion(previous_menu):
-    """Menu intermédiaire de connection proposant à l'utilisateur de se connecter s'il ne l'est pas 
+    """Menu intermédiaire de connection proposant à l'utilisateur de se connecter s'il ne l'est pas
     Arguments:
-        previous_menu {liste} -- Menu précédent de l'utilisateur spécifié 
+        previous_menu {liste} -- Menu précédent de l'utilisateur spécifié
     """
     menu_act = previous_menu
     id_users = Guest.connexion()
@@ -16,7 +16,7 @@ def connexion(previous_menu):
 
 
 def indices_actions(ind, indice_taches):
-    """Définit les actions possibles pour chaques classes dans le menu 
+    """Définit les actions possibles pour chaques classes dans le menu
     Différent des indices d'appel de critère utilisés dans certaines fonctions
     Arguments:
         ind {Individu.class} -- Individu spécifié ayant des actions propres
@@ -39,30 +39,12 @@ def menuChoixJeu(previous_menu):
                            "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu:GameService.initEmptyGame('Belote', previous_menu))
+        (lambda previous_menu:GameService.initEmptyGame('Belote', previous_menu)),
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
     return(MenuInterface(menu_act))
 
-
-def menuPlayer(previous_menu):
-    menu_act = {}
-    menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Que voulez vous faire ? "
-    menu_act["options"] = ["Jouer",  # 2
-                           "Consulter vos statistiques",
-                           "Modifier vos informations",
-                           "Retour au menu principal",
-                           "Quitter l'application"]
-    menu_act["actions"] = [
-        menuChoixJeu,
-        menuStatistiques,
-        menuModif,
-        (lambda previous_menu:MenuInterface(menu[0])),
-        Individu().quitter]
-    menu_act["path"] = []
-    return(MenuInterface(menu_act))
 
 
 def menuStatistiques(previous_menu):
@@ -97,50 +79,13 @@ def menuModif(previous_menu):
     return(MenuInterface(menu_act))
 
 
-def menuJoueur(previous_menu):
-    menu_act = {}
-    menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Que voulez vous faire ? "
-    menu_act["options"] = ["Connexion",  # 2
-                           "Créer un compte",
-                           "Retour au menu précédent"
-                           "Quitter l'application"]
-    menu_act["actions"] = [
-        connexion
-        (lambda previous_menu:previous_menu["individu"].createAccount(
-            previous_menu)),
-        (lambda previous_menu:MenuInterface(menu[0])),
-        Individu().quitter]
-    menu_act["path"] = []
-    return(MenuInterface(menu_act))
-
-
-def menuJoueurCo(previous_menu): 
-    menu_act = {}
-    menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Que voulez vous faire ? "
-    menu_act["options"] = ["Jouer",  # 2
-                           "Voir vos statistiques",
-                           "Modifier vos informations",
-                           "Retour au menu précédent"
-                           "Quitter l'application"]
-    menu_act["actions"] = [
-        menuChoixJeu,
-        menuStatistiques,
-        menuModif,
-        (lambda previous_menu:MenuInterface(menu[0])),
-        Individu().quitter]
-    menu_act["path"] = []
-    return(MenuInterface(menu_act))
-
-
 menu = [
     {
         "question": "Que voulez vous faire ?",
         "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            menuJoueur,
-            menuChoixJeu,
+            (lambda previous_menu:indices_actions(Guest(), [0, 2, 8, 6, 7])),
+            (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
             Individu().quitter],
 
         "individu": Individu(),
@@ -151,18 +96,17 @@ menu = [
         "options": [
             "Connexion",  # 0
             "Jouer",  # 1
-            "Créer un compte"  # 2
+            "Créer un compte",  # 2
             "Voir ses statistiques",  # 3
-            "Gérer la base de donnée"  # 4
-            "Ajouter un jeu"  # 5
+            "Gérer la base de donnée",  # 4
+            "Ajouter un jeu",  # 5
             "Revenir au menu précédent",  # 6
             "Quitter l'application",  # 7
             "Modifier ses informations "],  # 8
         "actions": [
             connexion,
             menuChoixJeu,
-            #(lambda previous_menu:previous_menu["individu"].reprendre(previous_menu))
-            (lambda previous_menu:previous_menu["individu"].creerCompte(
+            (lambda previous_menu:previous_menu["individu"].createAccount(
                 previous_menu)),
             (lambda previous_menu:previous_menu["individu"].voirStat(
                 previous_menu)),
@@ -171,11 +115,12 @@ menu = [
             (lambda previous_menu:previous_menu["individu"].ajoutJeu(
                 previous_menu)),
             (lambda previous_menu:MenuInterface(menu[0])),
-            Individu().quitter],
+            Individu().quitter,
+            menuModif],
         "individu": Individu(),
         "path": []
     }]
 
-]
+
 """Menu principal et menu utilisateur proposant l'ensemble des actions possibles
 """
