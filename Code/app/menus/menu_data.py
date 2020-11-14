@@ -11,12 +11,12 @@ def connexion(previous_menu):
         previous_menu {liste} -- Menu précédent de l'utilisateur spécifié 
     """
     menu_act = previous_menu
-
-    if menu_act["individu"].connexion():
+    id_users = Guest.connexion()
+    if id_users is not None:
         del menu_act["options"][0]
         del menu_act["actions"][0]
 
-    return((lambda previous_menu: indices_actions(Player(), [1, 4, 9, 10])))
+    return((lambda previous_menu: indices_actions(Player(), [1, 3, 8, 4, 5, 6, 7])))
 
 
 def indices_actions(ind, indice_taches):
@@ -106,7 +106,7 @@ menu = [
         "question": "Que voulez vous faire ?",
         "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Guest(), [0, 2, 3, 6, 7])),
+            (lambda previous_menu:indices_actions(Guest(), [0, 2, 6, 7])),
             menuChoixJeu,
             Individu().quitter],
 
@@ -122,10 +122,11 @@ menu = [
             "Jouer",  # 1
             "Créer un compte"  # 2
             "Voir ses statistiques",  # 3
-            "Gérer la base de donnée"
-            "Ajouter un jeu"
-            "Revenir au menu précédent",  # 7
-            "Quitter l'application"],  # 8
+            "Gérer la base de donnée"  # 4
+            "Ajouter un jeu"  # 5
+            "Revenir au menu précédent",  # 6
+            "Quitter l'application",  # 7
+            "Modifier ses informations "],  # 8
         "actions": [
             connexion,
             menuChoixJeu,

@@ -43,6 +43,20 @@ class Guest(Individu):
     def connexionJeu(listPlayers):
         """Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter"""
         if GuestView.displayChoixPartie():
+            id_users = Guest.connexion()
+            listPlayers.append(id_users)
+        else:
+            # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
+            listPlayers.append('invité'+str(len(listPlayers)))
+        return(listPlayers)
+
+    # Les fonctions d'initialisation de jeu ont étés ajoutés à GameService :)
+    # T'inquiete pas pour les menus c'est prévu
+
+    @staticmethod
+    def connexion(): 
+        id_users = None
+        while id_users is None:
             (username, motdepasse) = GuestView.displayConnexion()
 
             # code pour hasher le mdp
@@ -52,11 +66,4 @@ class Guest(Individu):
 
             # on demande à GuestDAO  de créer l'instance de l'objet
             id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
-            listPlayers.append(id_users)
-        else:
-            # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
-            listPlayers.append('invité'+str(len(listPlayers)))
-        return(listPlayers)
-
-    # Les fonctions d'initialisation de jeu ont étés ajoutés à GameService :)
-    # T'inquiete pas pour les menus c'est prévu
+        return id_users

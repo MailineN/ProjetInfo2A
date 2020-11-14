@@ -1,6 +1,6 @@
 from app.features.DAO.gameDAO import GameDAO
 from app.features.users.guest import Guest
-from app.features.gameMechanics.belote import Belote
+from app.features.game.gameMechanics.belote import Belote
 
 class GameService:
 
