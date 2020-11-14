@@ -1,6 +1,6 @@
 from .menu_interface import MenuInterface
 from app.features.users.individu import Individu
-from app.features.users.guest import Guest
+from app.features.users.guest import Guest, GameService
 from app.features.users.player import Player
 
 
@@ -10,12 +10,9 @@ def connexion(previous_menu):
         previous_menu {liste} -- Menu précédent de l'utilisateur spécifié 
     """
     menu_act = previous_menu
-
-    if menu_act["individu"].connexion():
-        del menu_act["options"][0]
-        del menu_act["actions"][0]
-
-    return((lambda previous_menu: indices_actions(Player(), [1, 4, 9, 10])))
+    id_users = Guest.connexion()
+    if id_users is not None:
+        return(menuJoueurCo(menu_act))
 
 
 def indices_actions(ind, indice_taches):
@@ -42,25 +39,8 @@ def menuChoixJeu(previous_menu):
                            "Retour au menu principal",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        menuChoixGroupeBelote
+        (lambda previous_menu:GameService.initEmptyGame('Belote', previous_menu))
         (lambda previous_menu:MenuInterface(menu[0])),
-        Individu().quitter]
-    menu_act["path"] = []
-    return(MenuInterface(menu_act))
-
-
-def menuChoixGroupeBelote(previous_menu,nameGame):
-    menu_act = {}
-    menu_act["individu"] = previous_menu["individu"]
-    menu_act["question"] = "Que voulez vous faire ? "
-    menu_act["options"] = ["Créer un groupe de joueurs",
-                           "Rejoindre un groupe de jouers",
-                           "Revenir au menu précédent"
-                           "Quitter l'application"]
-    menu_act["actions"] = [
-        (lambda previous_menu:previous_menu["individu"].initEmptyGame(nameGame)),
-        (lambda previous_menu:previous_menu["individu"].joinGame(nameGame)),
-        menuChoixJeu,
         Individu().quitter]
     menu_act["path"] = []
     return(MenuInterface(menu_act))
@@ -117,31 +97,67 @@ def menuModif(previous_menu):
     return(MenuInterface(menu_act))
 
 
+def menuJoueur(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous faire ? "
+    menu_act["options"] = ["Connexion",  # 2
+                           "Créer un compte",
+                           "Retour au menu précédent"
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        connexion
+        (lambda previous_menu:previous_menu["individu"].createAccount(
+            previous_menu)),
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
+def menuJoueurCo(previous_menu): 
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous faire ? "
+    menu_act["options"] = ["Jouer",  # 2
+                           "Voir vos statistiques",
+                           "Modifier vos informations",
+                           "Retour au menu précédent"
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        menuChoixJeu,
+        menuStatistiques,
+        menuModif,
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
 menu = [
     {
-        "question": "Selectionnez votre statut ?",
-        "options": ["Invité", "Joueur", "Quitter l'application"],
+        "question": "Que voulez vous faire ?",
+        "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Guest(), [1, 2, 3])),
-            (lambda previous_menu:indices_actions(Player(), [0, 1, 3])),
+            menuJoueur,
+            menuChoixJeu,
             Individu().quitter],
 
         "individu": Individu(),
         "path": []
     },
-
-
     {
         "question": "Que voulez vous faire ? ",
         "options": [
             "Connexion",  # 0
             "Jouer",  # 1
-            "Créer un compte" #2 
-            "Voir ses statistiques", #3
-            "Gérer la base de donnée"
-            "Ajouter un jeu"
-            "Revenir au menu précédent",  # 7
-            "Quitter l'application"],  # 8
+            "Créer un compte"  # 2
+            "Voir ses statistiques",  # 3
+            "Gérer la base de donnée"  # 4
+            "Ajouter un jeu"  # 5
+            "Revenir au menu précédent",  # 6
+            "Quitter l'application",  # 7
+            "Modifier ses informations "],  # 8
         "actions": [
             connexion,
             menuChoixJeu,
@@ -159,5 +175,7 @@ menu = [
         "individu": Individu(),
         "path": []
     }]
+
+]
 """Menu principal et menu utilisateur proposant l'ensemble des actions possibles
 """

@@ -1,11 +1,7 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
-from app.features.game.cardObjects.handPile import Hand, Pile
-from app.features.game.gameMechanics.gameService import GameService
-
-from app.menus.menu_interface import MenuInterface
-from app.menus.menu_data import menu
+from app.features.game.cardObjects.handPile import Pile
 import random
 
 
@@ -31,6 +27,7 @@ class Belote(AbstractGame):
         team2 = [repartion[2], repartion[3]]
         return (team1, team2)
 
+    @staticmethod
     def checkPlayerNumber(players):
         nbjoueur = len(players)
         if nbjoueur == 4:
@@ -187,9 +184,8 @@ class Belote(AbstractGame):
                     score = scoreTeam1
                 else:
                     score = scoreTeam2
-                GameService.save(player, score)
-
-        return MenuInterface(menu[0])
+                Belote.save(player, score)
+        return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
         idPile = Pile.newPile(idGame)
@@ -318,7 +314,7 @@ class Belote(AbstractGame):
         return maitre, plis
 
     def saveFinishedGame():
-        pass
+        GameDAO.saveGame(game)
 
-    def saveScore():
+    def saveScore(player,score):
         pass

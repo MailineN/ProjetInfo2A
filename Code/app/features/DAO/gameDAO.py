@@ -45,7 +45,7 @@ class GameDAO:
 
     @staticmethod
     def fetchNumberPlayerGroup(idGame):
-        """ Va chercher le nombre de joueur dans le groupe d'une partie non commencée 
+        """ Va chercher le nombre de joueur dans le groupe d'une partie non commencée
 
         Args:
             idGame (int): identifiant du jeu rejoint par le joueur
@@ -87,3 +87,23 @@ class GameDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+
+    @staticmethod
+    def addGame(nomJeu, listString):
+        """ Ajoute une partie prête à commencer dans la base de données """
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.curseur()
+        try:
+            curseur.execute(
+                "INSERT INTO Games (jeu,idPlayers,finished,debut,",
+                "VALUES (%s,%s, %s, %s) ;",
+                (nomJeu, listString, False, True))  # pk un player alors que les guests aussi peuvent ??
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+
+

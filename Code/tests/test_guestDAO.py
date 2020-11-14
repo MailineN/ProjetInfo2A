@@ -1,15 +1,22 @@
 import unittest
-from app.features.users.guestView import GuestView
 from app.features.DAO.guestDAO import GuestDAO
+from app.features.DAO.adminDAO import AdminDAO
+from app.features.DAO.databaseConnection import DatabaseConnection
 
-class TestGuest(unittest.TestCase):
+
+class TestGuestDAO(unittest.TestCase):
     """Teste les fonctions de la classe GuestDAO"""
-    def testAddAccounttoData():
-        self.assertEqual(GuestDAO.addAccounttoData("chloé","3107"), "Votre compte a bien été créé")
 
+    def testAddAccounttoData(self):
+        GuestDAO.addAccounttoData("chloé", "3107")
+        users = GuestDAO.addAccounttoData("chloé", "3107")
+        AdminDAO.deleteUserAccount("chloé")
+        self.assertIsNotNone(users)
 
-    def testCheckAccounttoData():
-        self.assertEqual(GuestDAO.checkAccounttoData("chloé","3107"), "Vous êtes connecté")
-
-    def testAddGame():
-        self.assertEqual(GuestDAO.addGame(),)
+    def testCheckAccounttoData(self):
+        GuestDAO.addAccounttoData("chloé", "3107")
+        idUser = GuestDAO.checkAccounttoData("chloé", "3107")
+        AdminDAO.deleteUserAccount("chloé")
+        self.assertIsNotNone(idUser)
+    
+    

@@ -1,105 +1,54 @@
 from app.features.DAO.databaseConnection import DatabaseConnection
-<<<<<<< HEAD
-import psycopg2 
-import hashlib
-import abc 
-=======
 import psycopg2
->>>>>>> 050c526fc9f12095a9c25184323add74284830b7
+
 
 class GuestDAO:
-    
+
     """ Classe Data Access Object de la classe Guest """
 
     @staticmethod
     def __init__():
         pass
-    
+
     @staticmethod
-    def addAccounttoData(name,mdp):
+    def addAccounttoData(name, mdp):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO users (id_users, username,mdp,admini, connected, score) "
-                "VALUES (%s,%s, %s, %s, %s, %s) ;",
-                (DbNull.Value, name, mdp, False, False, Null))
-        
+                "INSERT INTO users (username,mdp,admini, connected) "
+                "VALUES (%s,%s, %s, %s) RETURNING username;",
+                ((name,), (mdp,), False, False))
+            user = curseur.fetchone()[0]
             connexion.commit()
-            return("Votre compte a bien été créé")
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+        return user
 
-    @staticmethod     
-    def checkAccounttoData(username,mdp):
+    @staticmethod
+    def checkAccounttoData(username, mdp):
         """Création de l'instance de l'objet utilisateur """
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
-        try:
-            ans = curseur.execute("Select mdp from users WHERE username = %s ", (username))  
-            if ans == mdp :
-                id_users = curseur.execute("Select id_users from users WHERE username = %s ", (username))
-                list_player = []
-                player = Player(id_users)
-                list_player.append(player)
-                curseur.execute("UPDATE users SET connected = TRUE "
-                                " WHERE username = %s", (username))
-                print("Vous êtes connecté")
-        finally :
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
-
-    @staticmethod
-    def addGame() :
-        """ Ajoute une partie prête à commencer dans la base de données """
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Games (idGame, idPiles, idHands,idPlayers,finished,enCours, readyToStart,score",
-                "VALUES (%s,%s, %s, %s, %s, %s, %s, %s) ;",
-                (DEFAULT, DEFAULT , DEFAULT, player.id_users, False, False, True, Null))#pk un player alors que les guests aussi peuvent ??
-            connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
+                "Select mdp from users WHERE username = %s ", ((username),))
+            ans = curseur.fetchone()[0]
+            if ans == mdp:
+                curseur.execute(
+                    "Select id_users from users WHERE username = %s ", ((username),))
+                id_user = curseur.fetchone()[0]
+                curseur.execute("UPDATE users SET connected = TRUE WHERE username = %s ", ((username),))
+                connexion.commit()
+                return(id_user)
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    @staticmethod
-    def printReadytoStartGames(jeu) :
-        """ Faire choisir au player quelle partie il veut rejoindre"""
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
-        try:
-            curseur.execute(
-                "SELECT idPlayers from Games where jeu = %s and readyToStart= %s",
-                (jeu,True)) #suggestion : ajouter un attribut jeu (belote, solitaire etc.) à la table game
-            connexion.commit()
-        finally:
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
 
-    @staticmethod
-    def addPlayerToGame(idGame):
-        """ Ajouter un joueur à une partie prête à commencer """
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
-        try:
-            curseur.execute(
-                "UPDATE Games SET idPlayers = %s WHERE idGame= %s",
-                (idPlayers + ' ' + player.id_users, idGame))
-            connexion.commit()
-            print("Vous avez rejoint le groupe !")
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
-        finally:
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
+# Idem :)

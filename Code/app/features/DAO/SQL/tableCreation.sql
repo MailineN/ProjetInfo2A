@@ -12,9 +12,9 @@ CREATE TABLE users
     score integer);
 
     INSERT INTO users
-        (id_users, username,mdp,admini,connected, score)
+        (username,mdp,admini,connected, score)
     VALUES
-        (1, 'admin', 'admin', TRUE, FALSE, NULL);
+        ('admin', 'admin', TRUE, FALSE, NULL);
 
 DROP TABLE IF EXISTS Piles CASCADE;
 DROP SEQUENCE IF EXISTS idPile_seq;
@@ -36,6 +36,7 @@ CREATE TABLE Games
 (
     idGame integer NOT NULL DEFAULT nextval
     ('idGame_seq'::regclass) PRIMARY KEY, 
+    jeu text,
     idPiles text, 
     idHands text,
     idPlayers text,
@@ -49,4 +50,7 @@ ALTER TABLE Piles
 ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
 
-SELECT * FROM Users
+INSERT INTO Games
+        (jeu,finished,debut)
+    VALUES
+        ('Belote',FALSE, FALSE);

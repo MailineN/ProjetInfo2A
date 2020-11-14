@@ -9,7 +9,8 @@ class PlayerDAO(GuestDAO):
     def __init__(self):
         pass
 
-    def updateAccountCredentials(self,playerID,score_game):
+    @staticmethod
+    def updateAccountCredentials(playerID,score_game):
         """ Met à jour les scores dans la base de données """
         # Mettre le code qui récupère le score dans un objet previous_score.
 
@@ -17,7 +18,7 @@ class PlayerDAO(GuestDAO):
         curseur = connexion.cursor()
         try:
             pervious_score = curseur.execute(
-                "SELECT score from users WHERE id_users= %s", (playerID))
+                "SELECT score from users WHERE id_users= %s", playerID)
             new_score = pervious_score + score_game 
             curseur.execute(
                 "UPDATE users SET score = %s WHERE id_users= %s",(new_score, playerID))
@@ -29,7 +30,7 @@ class PlayerDAO(GuestDAO):
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    def getAccountData(self,playerID):
+    def getAccountData(playerID):
         """ Renvoie les scores """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()

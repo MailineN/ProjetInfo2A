@@ -7,6 +7,8 @@ class AdminTest(unittest.TestCase):
 
     #pr tester la méthode createUserAccount de la classe Admin, on test la méthode createUserAccount de GuestDAO (?)
     def testCreateUserAccount(self):
+        """
+        """
         #fait dans test guestDAO car méthode de cette classe utilisée
 
     def testSeeUserAccount(self):
