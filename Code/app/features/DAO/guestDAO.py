@@ -31,19 +31,19 @@ class GuestDAO:
         return user
 
     @staticmethod
-    def checkAccounttoData(username, mdp):
+    def checkAccounttoData(username, mdpa):
         """Création de l'instance de l'objet utilisateur """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "Select mdp from users WHERE username = %s ", (username,))
+                "Select mdp from users WHERE username = %s", (username,))
             ans = curseur.fetchone()[0]
-            if ans == mdp:
+            if ans == mdpa:
                 curseur.execute(
-                    "Select id_users from users WHERE username = %s ", (username,))
+                    "Select id_users from users WHERE username = %s", (username,))
                 id_user = curseur.fetchone()[0]
-                curseur.execute("UPDATE users SET connected = True WHERE username = %s ", (username,))
+                curseur.execute("UPDATE users SET connected = True WHERE username = %s", (username,))
                 connexion.commit()
                 return id_user
         finally:
