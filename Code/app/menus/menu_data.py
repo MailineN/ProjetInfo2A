@@ -1,7 +1,7 @@
 from .menu_interface import MenuInterface
 from app.features.users.individu import Individu
-from app.features.users.guest import Guest, GameService
-from app.features.users.player import Player
+from app.features.users.guest import Guest
+from app.features.users.player import Player,  GameService
 
 
 def connexion(previous_menu):

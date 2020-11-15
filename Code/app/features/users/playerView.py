@@ -3,6 +3,7 @@
 from PyInquirer import prompt
 from examples import custom_style_2
 
+
 class PlayerView():
     @staticmethod
     def displayChangePassword():

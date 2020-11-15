@@ -5,10 +5,8 @@ from app.security.mdp import verif_init_mdp
 from app.features.DAO.guestDAO import GuestDAO
 from app.features.users.guestView import GuestView
 import hashlib
-from app.features.DAO.gameDAO import GameDAO
-from app.features.game.gameMechanics.belote import Belote
 from app.menus.menu_interface import MenuInterface
-from app.features.users.player import Player
+
 
 class Guest(Individu):
 
@@ -70,35 +68,3 @@ class Guest(Individu):
             else:
                 input("Echec de la connexion ")
         return id_users
-
-
-class GameService:
-
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def startGame(nomJeu, idJeu, PlayerGroup):
-        if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu, PlayerGroup))
-
-    @staticmethod
-    def initListPlayers(jeu):
-        listPlayers = []
-        if jeu == 'Belote':
-            while not Belote.checkPlayerNumber(listPlayers):
-                listPlayers = Guest.connexionJeu(listPlayers)
-        return(listPlayers)
-
-    @staticmethod
-    def initEmptyGame(nomJeu, previous_menu):
-        """initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
-        listPlayers = GameService.initListPlayers(nomJeu)
-        listString = ' '.join(map(str, listPlayers))
-        # Convertit la liste de joueur [1,2,3] en string '1 2 3'
-        id_Jeu = GameDAO.addGame(nomJeu, listString)
-        players=[]
-        for i in listPlayers:
-            players.append(Player(listPlayers[i]))
-        GameService.startGame(nomJeu, id_Jeu, players)
-        return MenuInterface(previous_menu)
