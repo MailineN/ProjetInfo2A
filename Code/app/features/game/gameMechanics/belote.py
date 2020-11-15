@@ -212,7 +212,7 @@ class Belote(AbstractGame):
             cartemaitre = (self.point_atout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = None
+                card = BeloteView.displayPoser(ordre[i].handList)
                 if Belote.a_de_latout(ordre[i], atout):
                     while Belote.monteratout(Belote(), ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
                         print("Vous devez monter")
@@ -222,10 +222,13 @@ class Belote(AbstractGame):
                         maitre = ordre[i]
                         plis.poser(card, ordre[i])
                         pointsplis += (
-                            self.point_noatout[str(card.valeur[0])])
-
+                            self.point_atout[str(card.valeur[0])])
+                    else :
+                        plis.poser(card, ordre[i])
+                        pointsplis += (
+                            self.point_atout[str(card.valeur[0])])
                 else:
-                    card = BeloteView.displayPoser(ordre[i].handList)
+                    
                     plis.poser(card, ordre[i])
                     pointsplis += (self.point_noatout[str(card.valeur[0])])
 
