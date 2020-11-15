@@ -1,6 +1,6 @@
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.cardObjects.cards import Card
-
+from app.features.DAO.pileDAO import PileDAO
 
 class Hand(PileCard):
 
@@ -47,3 +47,5 @@ class Pile(PileCard):
         joueur.handList.remove(card)
         self.card_list.append(card)
 
+    def newPile(idGame):
+        return PileDAO.newPile(idGame)
