@@ -48,9 +48,9 @@ class Belote(AbstractGame):
         gagnant: int
         listPoint = []  # index du gagnant dans la tourne actuelle
         coupe = False
-        premiereCouleur = plis[0].couleur[0]
+        premiereCouleur = plis.card_list[0].couleur[0]
         valeurCoupe = -1
-        for card in plis:
+        for card in plis.card_list:
             if card.couleur[0] == atout:
                 listPoint.append(self.point_atout[card.valeur[0]])
                 if card.couleur[0] != premiereCouleur:
