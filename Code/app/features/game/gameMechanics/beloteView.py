@@ -24,6 +24,8 @@ class BeloteView():
                 ],
             },
         ]
+        print("Carte d'appel : ")
+        print(str(carteAppel))
         print("Vous avez ces cartes: \n")
         for card in hand:
             print("• "+str(card)+"\n")
@@ -84,8 +86,8 @@ class BeloteView():
         print(display.renderText('Belote :'))
         print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
         print("Les équipes sont : \n")
-        print("• {} et {}\n".format(team1[0], team1[1]))
-        print("• {} et {}\n".format(team2[0], team2[1]))
+        print("• {} et {}\n".format(team1[0].identifiant, team1[1].identifiant))
+        print("• {} et {}\n".format(team2[0].identifiant, team2[1].identifiant))
         print("Les cartes ont étés distribuées, la partie peut commencer !")
 
     @staticmethod

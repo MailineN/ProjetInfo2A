@@ -11,7 +11,7 @@ import hashlib
 class Player(Guest):
 
     def __init__(self, identifiant=None, handList=[]):
-        super().__init__(self, identifiant, handList)
+        super().__init__(identifiant, handList)
         self.userType = 'Player'
 
     def changePassword():

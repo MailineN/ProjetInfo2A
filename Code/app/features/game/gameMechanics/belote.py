@@ -116,11 +116,11 @@ class Belote(AbstractGame):
                 deck.shuffleDeck()
                 # Distribution de carte
                 for player in place_player:
-                    player.handList.append(deck.drawDeck(3))
+                    player.handList = deck.drawDeck(3)
                 for player in place_player:
-                    player.handList.append(deck.drawDeck(2))
+                    player.handList+=deck.drawDeck(2)
                 # Tour d'appel
-                carteAppel = deck.drawDeck(deck.id)
+                carteAppel = deck.drawDeck(1)[0]
                 for i in range(len(place_player)):
                     appel = BeloteView.displayTourAppel(
                         place_player[i].handList, carteAppel)
@@ -132,7 +132,7 @@ class Belote(AbstractGame):
                         atout = carteAppel.couleur[0]
                         place_player[i].drawCard(carteAppel)
                         pick = True
-                    break
+                        break
                 if not pick:
                     for player in self.players:
                         appel = BeloteView.displayTourAppel2(

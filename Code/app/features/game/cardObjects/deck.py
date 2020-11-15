@@ -12,7 +12,7 @@ class PileCard:
             idend (str, optional): Identifiant utilisé pour appeler l'API en cas d'utilisation multiples. Defaults to None.
             cards (list[Card], optional): Liste de cartes du deck. Defaults to list[Card].
         """
-        self.id = idend
+        self.idend = idend
         self.cards = cards
 
     @staticmethod
@@ -28,27 +28,26 @@ class PileCard:
         """
         return PileCard(cards=[], idend=cardAPI.newCustomDeck(listofcard))
 
-    def len(self) -> int:
+    def len(self):
         return(len(self.cards))
 
-    def topCard(self) -> Card:
+    def topCard(self):
         """ Montre la première carte du paquet
         """
         return self.cards[0]
 
-    def shuffleDeck(self) -> None:
+    def shuffleDeck(self):
         """ Mélange le paquet grace à l'API
         """
-        self.id = cardAPI.shuffleDeck(self.id)
+        self.idend = cardAPI.shuffleDeck(self.idend)
     
-    @staticmethod
-    def drawDeck(self, count):
+    def drawDeck(self, count=1):
         """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
         """
-        (cards, iden) = cardAPI.drawDeck(self.id, count)
+        (cards, iden) = cardAPI.drawDeck(self.idend, count)
         listCard = []
-        for i in len(cards):
-            card = Card(cards[i]["value"], cards[i]["suits"], cards[i]["code"])
+        for i in range(len(cards)):
+            card = Card(cards[i]["value"], cards[i]["suit"], cards[i]["code"])
             listCard.append(card)
-        self.id = iden
+        self.idend = iden
         return(listCard)
