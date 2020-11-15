@@ -214,7 +214,7 @@ class Belote(AbstractGame):
             for i in range(1, 4):
                 card = None
                 if Belote.a_de_latout(ordre[i], atout):
-                    while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
+                    while Belote.monteratout(Belote(), ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
                         print("Vous devez monter")
                         card = BeloteView.displayPoser(ordre[i].handList)
                     if (self.point_atout[str(card.valeur[0])]) > cartemaitre:
