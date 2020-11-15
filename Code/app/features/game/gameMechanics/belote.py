@@ -189,7 +189,7 @@ class Belote(AbstractGame):
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
         idPile = Pile.newPile(idGame)
-        plis = Pile.pile(idGame, idPile, card_list=[])
+        plis = Pile(idGame, idPile, card_list=[])
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
         if maitre == place_player[0]:
