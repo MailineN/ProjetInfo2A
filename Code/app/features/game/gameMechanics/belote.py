@@ -158,7 +158,7 @@ class Belote(AbstractGame):
             maitre = place_player[0]
             for i in range(7):
                 maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
-                score, gagnant = Belote.countPoint(plis, atout)
+                score, gagnant = Belote.countPoint(Belote(), plis, atout)
                 if maitre in team1:
                     scoreTeam1 += score
                 else:
