@@ -209,7 +209,7 @@ class Belote(AbstractGame):
         # On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
         if couleurask == atout:
-            cartemaitre = (self.point_atout[str(plis[0].valeur[0])])
+            cartemaitre = (self.point_atout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = None
@@ -232,7 +232,7 @@ class Belote(AbstractGame):
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
-            cartemaitre = (self.point_noatout[str(plis[0].valeur[0])])
+            cartemaitre = (self.point_noatout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = None
