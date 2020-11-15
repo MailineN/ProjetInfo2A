@@ -54,8 +54,8 @@ class Guest(Individu):
 
     @staticmethod
     def connexion():
-        id_users = None
-        while id_users is None:
+        id_users = []
+        while len(id_users) < 1:
             (username, motdepasse) = GuestView.displayConnexion()
 
             # code pour hasher le mdp
