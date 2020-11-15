@@ -118,9 +118,10 @@ class Belote(AbstractGame):
                 for player in place_player:
                     player.handList = deck.drawDeck(3)
                 for player in place_player:
-                    player.handList+=deck.drawDeck(2)
+                    player.handList += deck.drawDeck(2)
                 # Tour d'appel
                 carteAppel = deck.drawDeck(1)[0]
+                appel = False
                 for i in range(len(place_player)):
                     appel = BeloteView.displayTourAppel(
                         place_player[i].handList, carteAppel)
@@ -130,7 +131,7 @@ class Belote(AbstractGame):
                         else:
                             teamPrenant = "Team 2"
                         atout = carteAppel.couleur[0]
-                        place_player[i].drawCard(carteAppel)
+                        place_player[i].handList.append(carteAppel)
                         pick = True
                         break
                 if not pick:
@@ -143,37 +144,36 @@ class Belote(AbstractGame):
                             else:
                                 teamPrenant = "Team 2"
                             atout = appel[1]
-                            place_player[i].drawCard(carteAppel)
+                            place_player[i].handList.append(carteAppel)
                             pick = True
-                        break
-                    break
+                            break
                 if not pick:
                     BeloteView.displayRedistrib
 
-        BeloteView.displayAtoutPris(teamPrenant, atout)
+            BeloteView.displayAtoutPris(teamPrenant, atout)
 
-        # Fin de la distribution
+            # Fin de la distribution
 
-        # initialise un premier joueur
-        maitre = place_player[0]
-        for i in range(7):
-            maitre, plis = Belote.tourLoop(maitre, idGame, atout, team1, team2)
+            # initialise un premier joueur
+            maitre = place_player[0]
+            for i in range(7):
+                maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
+                score, gagnant = Belote.countPoint(plis, atout)
+                if maitre in team1:
+                    scoreTeam1 += score
+                else:
+                    scoreTeam2 += score
+                BeloteView.displayFinTour(maitre, plis.card_list)
+
+            maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
             score, gagnant = Belote.countPoint(plis, atout)
+
             if maitre in team1:
                 scoreTeam1 += score
+                scoreTeam1 += 10
             else:
                 scoreTeam2 += score
-            BeloteView.displayFinTour(maitre, plis.card_list)
-
-        maitre, plis = Belote.tourLoop(maitre, idGame, atout, team1, team2)
-        score, gagnant = Belote.countPoint(plis, atout)
-
-        if maitre in team1:
-            scoreTeam1 += score
-            scoreTeam1 += 10
-        else:
-            scoreTeam2 += score
-            scoreTeam2 += 10
+                scoreTeam2 += 10
 
         # Fin de partie
         BeloteView.displayFinPartie([scoreTeam1, scoreTeam2])
@@ -316,5 +316,5 @@ class Belote(AbstractGame):
     def saveFinishedGame():
         GameDAO.saveGame(game)
 
-    def saveScore(player,score):
+    def saveScore(player, score):
         pass
