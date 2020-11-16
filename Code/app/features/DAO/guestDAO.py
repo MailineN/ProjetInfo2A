@@ -11,7 +11,7 @@ class GuestDAO:
         pass
 
     @staticmethod
-    def addAccounttoData(name, mdp):
+    def addAccounttoData(name, mdp, admini=False):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
@@ -19,7 +19,7 @@ class GuestDAO:
             curseur.execute(
                 "INSERT INTO users (username,mdp,admini,connected) "
                 "VALUES (%s,%s, %s,%s) RETURNING username;",
-                ((name,), (mdp,), False, False))
+                ((name,), (mdp,), (admini,), False))
             user = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:

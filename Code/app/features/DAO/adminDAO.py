@@ -53,23 +53,27 @@ class AdminDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
+
     @staticmethod
-    def addAdminAccounttoData(username, mdp):
+    def checkAccounttoData(username, mdpa):
+        """Création de l'instance de l'objet utilisateur """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO users (username, mdp, admini, connected)" 
-                "VALUES = (%s, %s, %s, %s)", 
-                (username, mdp, True, False,)
-                )
+                """
+                SELECT * 
+                FROM users u
+                WHERE u.username = %s AND u.mdp = %s 
+                RETURNING admini
+                """, (username, str(mdpa)))
+            id_user = curseur.fetchone()[0]
             connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+            print(id_user)
+        return id_user
 
 
 if __name__ == "__main__":

@@ -31,8 +31,6 @@ class Guest(Individu):
 
         # code pour hasher le mdp
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
-
-        print(hash_mdp)
         # ajouter le compte à la base
         GuestDAO.addAccounttoData(username, hash_mdp)
         input("Votre compte a bien été crée \n Appuyez sur Entrer pour continuer ")
@@ -64,7 +62,7 @@ class Guest(Individu):
         # on demande à GuestDAO  de créer l'instance de l'objet
         id_users = GuestDAO.checkAccounttoData(username, hash_mdp)
         if len(id_users) > 0:
-            input("Vous êtes connectés ! ")
+            input("Vous êtes connecté ! ")
         else:
             input("Echec de la connexion ")
         return id_users

@@ -1,6 +1,7 @@
 from .menu_interface import MenuInterface
 from app.features.users.individu import Individu
 from app.features.users.guest import Guest
+from app.features.users.admin import Admin
 from app.features.users.player import Player,  GameService
 
 
@@ -10,8 +11,8 @@ def connexion(previous_menu):
         previous_menu {liste} -- Menu précédent de l'utilisateur spécifié
     """
     menu_act = previous_menu
-    id_users = Guest.connexion()
-    if id_users is not None and len(id_users)>0:
+    id_users = menu_act["individu"].connexion()
+    if id_users:
         del menu_act["options"][0]
         del menu_act["actions"][0]
 
@@ -73,8 +74,36 @@ def menuModif(previous_menu):
                            "Retour au menu précédent",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu:previous_menu["individu"].changeUsername(previous_menu)),
-        (lambda previous_menu:previous_menu["individu"].changePassword(previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].changeUsername(
+            previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].changePassword(
+            previous_menu)),
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
+def menuAjoutJeu():
+    pass
+
+
+def menuBase(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "Que voulez vous consulter ? "
+    menu_act["options"] = ["Utilisateurs",  # 2
+                           "Précédentes parties ",
+                           "Ajouter un administrateur", 
+                           "Supprimer un utilisateur",
+                           "Effacer la base de données",
+                           "Retour au menu précédent",
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        (lambda previous_menu:previous_menu["individu"].changeUsername(
+            previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].changePassword(
+            previous_menu)),
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
@@ -84,10 +113,13 @@ def menuModif(previous_menu):
 menu = [
     {
         "question": "Que voulez vous faire ?",
-        "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
+        "options": ["Menu Joueur", "Jouer", "Menu Administrateur" "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Player(), [1, 2, 8, 6, 7])),
+            (lambda previous_menu:indices_actions(
+                Player(), [1, 2, 3, 8, 6, 7])),
             (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
+            (lambda previous_menu:indices_actions(
+                Admin(), [0, 1, 2, 3, 8, 4, 6, 7])),
             Individu().quitter],
 
         "individu": Individu(),
@@ -112,10 +144,8 @@ menu = [
                 previous_menu)),
             (lambda previous_menu:previous_menu["individu"].voirStat(
                 previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].gestionBase(
-                previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].ajoutJeu(
-                previous_menu)),
+            menuBase,
+            menuAjoutJeu,
             (lambda previous_menu:MenuInterface(menu[0])),
             Individu().quitter,
             menuModif],
