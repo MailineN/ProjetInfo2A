@@ -100,9 +100,15 @@ def menuBase(previous_menu):
                            "Retour au menu précédent",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        (lambda previous_menu:previous_menu["individu"].changeUsername(
+        (lambda previous_menu:previous_menu["individu"].seeUserData(
             previous_menu)),
-        (lambda previous_menu:previous_menu["individu"].changePassword(
+        (lambda previous_menu:previous_menu["individu"].seeGameData(
+            previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].createAdminAccount(
+            previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].deleteUserAccount(
+            previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].resetDatabase(
             previous_menu)),
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
@@ -113,7 +119,7 @@ def menuBase(previous_menu):
 menu = [
     {
         "question": "Que voulez vous faire ?",
-        "options": ["Menu Joueur", "Jouer", "Menu Administrateur" "Quitter l'application"],
+        "options": ["Menu Joueur", "Jouer", "Menu Administrateur", "Quitter l'application"],
         "actions": [
             (lambda previous_menu:indices_actions(
                 Player(), [1, 2, 3, 8, 6, 7])),

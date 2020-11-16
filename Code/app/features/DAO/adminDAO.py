@@ -87,9 +87,8 @@ class AdminDAO:
                 SELECT *
                 FROM users u
                 WHERE u.username = %s AND u.mdp = %s
-                RETURNING admini
                 """, (username, str(mdpa)))
-            id_user = curseur.fetchone()[0]
+            id_user = curseur.fetchone()[3]
             connexion.commit()
         finally:
             curseur.close

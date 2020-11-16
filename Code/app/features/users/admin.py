@@ -50,7 +50,9 @@ class Admin(Player):
             input("Vous n'êtes pas connecté ")
         else:
             users = AdminDAO.getAllUserData()
-            print(users)
+            for user in users:
+                print("• Nom : "+user[1]+", Administrateur : " +
+                      str(user[3]) + ", Scores : " + str(user[5]) + "\n")
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 
@@ -60,6 +62,7 @@ class Admin(Player):
         else:
             games = AdminDAO.getAllGameData()
             print(games)
+
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 
@@ -73,12 +76,10 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def connexion(self):
-        id_users = []
         (username, motdepasse) = GuestView.displayConnexion()
 
         # code pour hasher le mdp
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
-        print(hash_mdp)
         # on demande à GuestDAO  de créer l'instance de l'objet
         admin = AdminDAO.checkAccounttoData(username, hash_mdp)
         if admin:
@@ -86,4 +87,4 @@ class Admin(Player):
             self.connecte = True
         else:
             input("Vous ne possédez pas les droits d'administrateur ")
-        return id_users
+        return admin
