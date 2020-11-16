@@ -14,14 +14,26 @@ class Player(Guest):
         super().__init__(identifiant, handList)
         self.userType = 'Player'
 
-    def changePassword():
+    @staticmethod
+    def changePassword(previous_menu):
         """ Changer le mot de passe d'un utilisateur """
-        (motdepasse, new_mdp) = PlayerView.displayChangePassword()
+        (username, motdepasse, new_mdp) = PlayerView.displayChangePassword()
 
         newhash_mdp = hashlib.sha256(new_mdp.encode()).hexdigest()
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
-        # laisser faire la classe playerDAO
-        PlayerDAO.updatePassword(hash_mdp, newhash_mdp)
+        user = PlayerDAO.updatePassword(username, hash_mdp, newhash_mdp)
+        input("Le mot de passe de " + str(user) + " a été modifié ")
+        return MenuInterface(previous_menu)
+
+    @staticmethod
+    def changeUsername(previous_menu):
+        """ Changer le mot de passe d'un utilisateur """
+        (username, motdepasse, new_name) = PlayerView.displayChangeName()
+
+        hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
+        user = PlayerDAO.updateName(username, hash_mdp, new_name)
+        input("Le pseudo de " + str(user) + " a été modifié ")
+        return MenuInterface(previous_menu)
 
     def seeScores():
         """Affiche les scores en appellant la fonction correspondante dans la DAO"""

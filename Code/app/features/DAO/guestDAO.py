@@ -17,9 +17,9 @@ class GuestDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO users (username,mdp,admini) "
-                "VALUES (%s,%s, %s) RETURNING username;",
-                ((name,), (mdp,), False))
+                "INSERT INTO users (username,mdp,admini,connected) "
+                "VALUES (%s,%s, %s,%s) RETURNING username;",
+                ((name,), (mdp,), False, False))
             user = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:
@@ -41,6 +41,10 @@ class GuestDAO:
                 SELECT * 
                 FROM users u
                 WHERE u.username = %s AND u.mdp = %s 
+                """, (username, str(mdpa)))
+            curseur.execute("""
+                    UPDATE users SET connecte = TRUE 
+                    WHERE u.username = %s AND u.mdp = %s 
                 """, (username, str(mdpa)))
             id_user = curseur.fetchall()
             connexion.commit()

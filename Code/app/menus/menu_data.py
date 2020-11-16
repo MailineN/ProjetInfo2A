@@ -70,11 +70,11 @@ def menuModif(previous_menu):
     menu_act["question"] = "Que voulez vous modifier ? "
     menu_act["options"] = ["Nom public",  # 2
                            "Mot de passe",
-                           "Retour au menu précédent"
+                           "Retour au menu précédent",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        # Modif nom
-        # Modif mdp
+        (lambda previous_menu:previous_menu["individu"].changeUsername(previous_menu)),
+        (lambda previous_menu:previous_menu["individu"].changePassword(previous_menu)),
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
@@ -86,7 +86,7 @@ menu = [
         "question": "Que voulez vous faire ?",
         "options": ["Menu Joueur", "Jouer", "Quitter l'application"],
         "actions": [
-            (lambda previous_menu:indices_actions(Guest(), [0, 1, 2, 8, 6, 7])),
+            (lambda previous_menu:indices_actions(Player(), [1, 2, 8, 6, 7])),
             (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
             Individu().quitter],
 

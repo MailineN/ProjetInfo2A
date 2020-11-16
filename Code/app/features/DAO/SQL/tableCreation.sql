@@ -8,6 +8,7 @@ CREATE TABLE users
 	username text,
     mdp text,
     admini boolean,
+    connected boolean,
     score integer);
 
     INSERT INTO users
