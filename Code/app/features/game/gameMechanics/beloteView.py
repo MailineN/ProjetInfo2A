@@ -105,7 +105,7 @@ class BeloteView():
 
     @staticmethod
     def displayFinTour(joueurGagnant, cartesPlis):
-        print(joueurGagnant + " remporte le pli\n")
+        print(joueurGagnant.identifiant + " remporte le pli\n")
         print("Les cartes jouées sont : \n")
         print(str(carte) for carte in cartesPlis)
 
