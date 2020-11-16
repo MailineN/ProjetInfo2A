@@ -247,7 +247,7 @@ class Belote(AbstractGame):
                 if Belote.monpote(ordre[i], maitre, team1, team2):
                     # Peut jouer à la couleur
                     if Belote.a_lacouleur(ordre[i], couleurask):
-                        while card.couleur != couleurask:
+                        while card.couleur[0] != couleurask:
                             print("Il faut jouer à la couleur demandée")
                             card = BeloteView.displayPoser(ordre[i].handList)
 
@@ -258,7 +258,7 @@ class Belote(AbstractGame):
                             cartemaitre = (
                                 self.point_noatout[str(card.valeur[0])])
                             maitre = ordre[i]
-                    elif card.couleur == atout:  # Il coupe
+                    elif card.couleur[0] == atout:  # Il coupe
                         coupe += 1
                         cartemaitre = (self.point_atout[str(card.valeur[0])])
                         maitre = ordre[i]
@@ -291,7 +291,7 @@ class Belote(AbstractGame):
 
                             plis.poser(card, ordre[i])
                     # Doit couper
-                    elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout:
+                    elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout and card.couleur[0] != couleurask:
                         if coupe == 0:
                             while card.couleur[0] != atout:
                                 print("Il faut couper")
