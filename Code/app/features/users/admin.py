@@ -16,37 +16,63 @@ class Admin(Player):
         self.userType = 'Admin'
         self.connecte = False
 
-    @staticmethod
-    def createAdminAccount(previous_menu):
-        (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
-        while not verif_init_id(username):
-            username = GuestView.displayVerifId()
-        # vérifie que les deux mdp sont les mêmes et renvoie le mdp
-        while not verif_init_mdp(motdepasse, verifMotdepasse):
-            (motdepasse, verifMotdepasse) = GuestView.displayVerifMdp()
+    def createAdminAccount(self, previous_menu):
+        if not self.connecte:
+            input("Vous n'êtes pas connecté ")
+        else:
+            (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
+            while not verif_init_id(username):
+                username = GuestView.displayVerifId()
+            # vérifie que les deux mdp sont les mêmes et renvoie le mdp
+            while not verif_init_mdp(motdepasse, verifMotdepasse):
+                (motdepasse, verifMotdepasse) = GuestView.displayVerifMdp()
 
-        # code pour hasher le mdp
-        hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
-        # ajouter le compte à la base
-        GuestDAO.addAccounttoData(username, hash_mdp, True)
+            # code pour hasher le mdp
+            hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
+            # ajouter le compte à la base
+            GuestDAO.addAccounttoData(username, hash_mdp, True)
 
         return MenuInterface(previous_menu)
 
-    def deleteUserAccount(previous_menu):
-        # la view va aller demander à l'utilisateur quel compte il veut supprimer à partir de son username
-        username = AdminView.displayDeleteUserAccount()
-        # la fonction de adminDAO va aller supprimer ce compte dans la base
-        AdminDAO.deleteUserAccount(username)
-        print("Le compte a bien été supprimé \n Appuyez sur Entrer pour continuer")
+    def deleteUserAccount(self, previous_menu):
+        if not self.connecte:
+            input("Vous n'êtes pas connecté ")
+        else:
+            # la view va aller demander à l'utilisateur quel compte il veut supprimer à partir de son username
+            username = AdminView.displayDeleteUserAccount()
+            # la fonction de adminDAO va aller supprimer ce compte dans la base
+            AdminDAO.deleteUserAccount(username)
+            input("Le compte a bien été supprimé \n Appuyez sur Entrer pour continuer ")
         return MenuInterface(previous_menu)
 
-    def seeUserAccount(previous_menu):
-        # la view va aller demander à l'utilisateur quel compte il veut consulter à partir de son username
-        username = AdminView.displaySeeUserAccount()
-        # la fonction de adminDAO va aller récupérer ces informations dans la base (et les retourner ? ou il faut que je fasse un return ici?)
-        AdminDAO.getAllUserData(username)
+    def seeUserData(self, previous_menu):
+        if not self.connecte:
+            input("Vous n'êtes pas connecté ")
+        else:
+            users = AdminDAO.getAllUserData()
+            print(users)
+            input(" \n Affichage terminé ")
+        return MenuInterface(previous_menu)
 
-    def connexion(self): 
+    def seeGameData(self, previous_menu):
+        if not self.connecte:
+            input("Vous n'êtes pas connecté ")
+        else:
+            games = AdminDAO.getAllGameData()
+            print(games)
+            input(" \n Affichage terminé ")
+        return MenuInterface(previous_menu)
+
+    def resetDatabase(self, previous_menu):
+        if not self.connecte:
+            input("Vous n'êtes pas connecté ")
+        else:
+            games = AdminDAO.getAllGameData()
+            print(games)
+            input(" \n Affichage terminé ")
+        return MenuInterface(previous_menu)
+
+    def connexion(self):
         id_users = []
         (username, motdepasse) = GuestView.displayConnexion()
 
