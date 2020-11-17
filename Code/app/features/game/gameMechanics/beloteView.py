@@ -2,7 +2,7 @@
     """
 from PyInquirer import prompt
 from examples import custom_style_2
-
+from pyfiglet import Figlet
 
 from app.features.utils import *
 
@@ -24,17 +24,20 @@ class BeloteView():
                 ],
             },
         ]
+        print("Carte d'appel : ")
+        print(str(carteAppel))
         print("Vous avez ces cartes: \n")
         for card in hand:
             print("• "+str(card)+"\n")
 
         rep = prompt(question1, style=custom_style_2)
-        if (rep == 'Oui'):
+        if (rep['pose'] == 'Oui'):
             return True
-        return False
+        else:
+            return False
 
     @staticmethod
-    def displayTourAppel2(hand, carteAppel):
+    def displayTourAppel2(hand):
         rep = ""
         question1 = [
             {
@@ -66,11 +69,11 @@ class BeloteView():
         rep = prompt(question1, style=custom_style_2)
         if (rep['pose'] == 'Oui'):
             color = prompt(question2, style=custom_style_2)
-            if (color == 'PIQUES'):
+            if (color['couleur'] == 'PIQUES'):
                 return(True, "SPADES")
-            elif (color == 'COEUR'):
+            elif (color['couleur'] == 'COEUR'):
                 return(True, "HEARTS")
-            elif (color == 'TREFLES'):
+            elif (color['couleur'] == 'TREFLES'):
                 return(True, "CLUBS")
             else:
                 return(True, "DIAMONDS")
@@ -84,8 +87,10 @@ class BeloteView():
         print(display.renderText('Belote :'))
         print(" ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ ♠ \n")
         print("Les équipes sont : \n")
-        print("• {} et {}\n".format(team1[0], team1[1]))
-        print("• {} et {}\n".format(team2[0], team2[1]))
+        print("• {} et {}\n".format(
+            team1[0].identifiant, team1[1].identifiant))
+        print("• {} et {}\n".format(
+            team2[0].identifiant, team2[1].identifiant))
         print("Les cartes ont étés distribuées, la partie peut commencer !")
 
     @staticmethod
@@ -100,7 +105,7 @@ class BeloteView():
 
     @staticmethod
     def displayFinTour(joueurGagnant, cartesPlis):
-        print(joueurGagnant + " remporte le pli\n")
+        print(joueurGagnant.identifiant + " remporte le pli\n")
         print("Les cartes jouées sont : \n")
         print(str(carte) for carte in cartesPlis)
 

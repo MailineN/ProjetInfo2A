@@ -24,7 +24,7 @@ class GameDAO:
     def fetchSaveGame(gameIDE):
 
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 "SELECT * FROM hand WHERE hand.id = gameIDE"
@@ -92,12 +92,11 @@ class GameDAO:
     def addGame(nomJeu, listString):
         """ Ajoute une partie prête à commencer dans la base de données """
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Games (jeu,idPlayers,finished,debut,",
-                "VALUES (%s,%s, %s, %s) ;",
-                (nomJeu, listString, False, True))  # pk un player alors que les guests aussi peuvent ??
+                "INSERT INTO Games (jeu,idPlayers,finished,debut) VALUES (%s,%s, %s, %s) ;",
+                (nomJeu, listString, False, True ))  # pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()

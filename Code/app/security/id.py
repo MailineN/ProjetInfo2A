@@ -5,10 +5,10 @@ from app.features.DAO.databaseConnection import DatabaseConnection
 def verif_init_id(username):
     """ On vérifie que l'identifiant choisi n'existe pas déjà dans la base de données"""
     connexion = DatabaseConnection.getConnexion()
-    curseur = connexion.curseur()
+    curseur = connexion.cursor()
     try:
         answer = curseur.execute(
-            "SELECT * from users WHERE username = %s ; ", (username))
+            "SELECT * from users WHERE username = %s ; ", ((username),))
         if answer is None:
             return True
         else:

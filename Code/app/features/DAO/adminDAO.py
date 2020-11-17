@@ -9,9 +9,15 @@ class AdminDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            # path à vérifier
+            users = AdminDAO.backupAccount()
             curseur.execute(
-                open("Code/app/features/DAO/SQL/tableCreation.sql", "r").read())
+                open("app/features/DAO/SQL/tableCreation.sql", "r").read())
+            for user in users:
+                curseur.execute(
+                    """ INSERT INTO users (username,mdp,admini,connected)
+                    VALUES (%s,%s, %s,%s)
+                    """, (user['username'], user['mdp'], True, False)
+                )
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -20,24 +26,41 @@ class AdminDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    @staticmethod
-    def getAllUserData(username):
+    @ staticmethod
+    def getAllUserData():
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT id_users,username,admini,connected, score FROM users WHERE username = %s , (username)")
+                "SELECT * FROM users")
             connexion.commit()
             users = curseur.fetchall()
-            print(users)
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+        return(users)
 
-    @staticmethod
+    @ staticmethod
+    def getAllGameData():
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "SELECT * FROM games")
+            connexion.commit()
+            games = curseur.fetchall()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+        return(games)
+
+    @ staticmethod
     def deleteUserAccount(username):
         """ Ajoute le nouveau compte à la base de données """
         connexion = DatabaseConnection.getConnexion()
@@ -53,23 +76,43 @@ class AdminDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    @staticmethod
-    def addAdminAccounttoData(username, mdp):
+    @ staticmethod
+    def checkAccounttoData(username, mdpa):
+        """Création de l'instance de l'objet utilisateur """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO users (username, mdp, admini, connected)" 
-                "VALUES = (%s, %s, %s, %s)", 
-                (username, mdp, True, False,)
-                )
+                """
+                SELECT *
+                FROM users u
+                WHERE u.username = %s AND u.mdp = %s
+                """, (username, str(mdpa)))
+            id_user = curseur.fetchone()[3]
             connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+            print(id_user)
+        return id_user
+
+    @ staticmethod
+    def backupAccount():
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                """
+                SELECT *
+                FROM users u
+                WHERE u.admini = TRUE
+                """)
+            users = curseur.fetchall()
+            connexion.commit()
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+        return users
 
 
 if __name__ == "__main__":

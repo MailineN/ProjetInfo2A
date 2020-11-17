@@ -11,11 +11,6 @@ CREATE TABLE users
     connected boolean,
     score integer);
 
-    INSERT INTO users
-        (username,mdp,admini,connected, score)
-    VALUES
-        ('admin', 'admin', TRUE, FALSE, NULL);
-
 DROP TABLE IF EXISTS Piles CASCADE;
 DROP SEQUENCE IF EXISTS idPile_seq;
 CREATE SEQUENCE idPile_seq;
@@ -49,8 +44,3 @@ CREATE TABLE Games
 ALTER TABLE Piles
 ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
-
-INSERT INTO Games
-        (jeu,finished,debut)
-    VALUES
-        ('Belote',FALSE, FALSE);
