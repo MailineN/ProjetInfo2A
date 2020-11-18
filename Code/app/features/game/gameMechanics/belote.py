@@ -22,7 +22,12 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players):  # répartition aléatoire des joueurs
+    def CreateTeams(players):  
+        """ Crée aléatoirement les équipes
+
+        Args:
+            players : Liste des joueurs
+        """
         repartion = random.sample(players, 4)
         team1 = [repartion[0], repartion[1]]
         team2 = [repartion[2], repartion[3]]
@@ -30,6 +35,11 @@ class Belote(AbstractGame):
 
     @staticmethod
     def checkPlayerNumber(players):
+        """ Vérifie qu'il y a bien 4 joueurs
+
+        Args:
+            players : Liste des joueurs
+        """
         nbjoueur = len(players)
         if nbjoueur == 4:
             print("Le nombre de joueur est bon")
@@ -67,13 +77,32 @@ class Belote(AbstractGame):
         count = sum(listPoint)
         return(count, gagnant)
 
-    def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
+    def a_lacouleur(joueur, color): 
+        """ Vérifie si le joueur possède la couleur demandée
+
+        Args:
+            joueur : Joueur souhaitant poser
+            vcarte : carte qu'il souhaite poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == color:
                 return True
         return False
 
-    def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
+    def a_de_latout(joueur, atout): 
+        """ Vérifie si le joueur possède de l'atout
+
+        Args:
+            joueur : Joueur souhaitant poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """ # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == atout:
                 return True
@@ -81,6 +110,16 @@ class Belote(AbstractGame):
 
     # fonction qui vérifie si on peut monter à l'atout
     def monteratout(self, joueur, vcarte, atout):
+        """ Vérifie si le joueur peut monter à l'atout
+
+        Args:
+            joueur : Joueur souhaitant poser
+            vcarte : carte qu'il souhaite poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == atout and (self.point_atout[joueur.handList[i].valeur[0]]) > vcarte:
                 return True
@@ -88,6 +127,17 @@ class Belote(AbstractGame):
 
     # vérifie si deux joueurs sont dans la même équipe
     def monpote(joueur, master, equipe1, equipe2):
+        """ Vérifie que le maitre du plis appartient à 
+        la même équipe que le joueur s'apprétant a poser
+
+        Args:
+            joueur : Joueur souhaitant poser
+            master : Maitre de la partie
+            equipe1 : Joueurs de l'équipe 1
+            equipe2 : Joueurs de l'équipe 2
+        Returns:
+            Bool 
+        """
         if joueur in equipe1 and master in equipe1:
             return True
         elif joueur in equipe2 and master in equipe2:

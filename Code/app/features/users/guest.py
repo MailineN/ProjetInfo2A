@@ -1,4 +1,6 @@
-
+""" Classe Guest, gérant l'ensemble des actions possibles avant de commencer 
+    une partie de jeu ou une connexion
+"""
 from app.features.users.individu import Individu
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
@@ -10,9 +12,14 @@ from app.menus.menu_interface import MenuInterface
 
 class Guest(Individu):
 
-    """ classe invité, pouvant jouer au jeu sans se connecter """
-
     def __init__(self, identifiant=None, handList=[]):
+        """ Le Guest est initialisé avec un identifiant et une main servant lors 
+        
+
+        Args:
+            identifiant (str, optional): Defaults to None.
+            handList (list, optional): Liste des cartes de la main du joueur. Defaults to [].
+        """
         # l'id d'un guest est genéré quand il souhaite jouer et non au lancement
         self.identifiant = identifiant
         # Et on définit que pour l'instant c'est un guest, on modifie l'attribut quand il se connecte
@@ -21,6 +28,9 @@ class Guest(Individu):
 
     @staticmethod
     def createAccount(previous_menu):
+        """ Fonction permettant à l'invité de se créer un compte
+            et de l'enregistrer dans la base des données
+        """
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
         (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
         while not verif_init_id(username):
@@ -53,6 +63,10 @@ class Guest(Individu):
 
     @staticmethod
     def connexion():
+        """ Fonction permettant à l'invité de se connecter
+            Fonction générique reprise lors de la connexion au 
+            jeu ou pour effectuer des actions
+        """
         id_users = []
         (username, motdepasse) = GuestView.displayConnexion()
 
