@@ -35,12 +35,9 @@ class PileDAO():
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Piles (idPile, idGame, card1, card2, card3, card4)"
-                "VALUES (%s, %s, %s, %s,%s,%s) RETURNING idPile ",
-                (pile.idPile, pile.idGame, pile.card_list[0],pile.card_list[1],pile.card_list[2],pile.card_list[3])
+                "UPDATE Piles SET card1 = %s, card2 = %s, card3 = %s, card4 = %s WHERE idPile = %s",            
+                (str(pile.card_list[0]), str(pile.card_list[1]), str(pile.card_list[2]), str(pile.card_list[3]), pile.idPile)
             )
-
-            pile.id = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
