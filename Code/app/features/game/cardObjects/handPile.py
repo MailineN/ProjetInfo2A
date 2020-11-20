@@ -11,7 +11,7 @@ class Hand(PileCard):
         self.idPlayer = idPlayer
 
     def addCard(self, card):
-        self.card_list.append(card)
+        self.cards.append(card)
 
     def __str__(self):
         rep = "Les cartes de la main sont : "
