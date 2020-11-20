@@ -22,7 +22,12 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players):  # répartition aléatoire des joueurs
+    def CreateTeams(players):
+        """ Crée aléatoirement les équipes
+
+        Args:
+            players : Liste des joueurs
+        """
         repartion = random.sample(players, 4)
         team1 = [repartion[0], repartion[1]]
         team2 = [repartion[2], repartion[3]]
@@ -30,6 +35,11 @@ class Belote(AbstractGame):
 
     @staticmethod
     def checkPlayerNumber(players):
+        """ Vérifie qu'il y a bien 4 joueurs
+
+        Args:
+            players : Liste des joueurs
+        """
         nbjoueur = len(players)
         if nbjoueur == 4:
             print("Le nombre de joueur est bon")
@@ -67,13 +77,32 @@ class Belote(AbstractGame):
         count = sum(listPoint)
         return(count, gagnant)
 
-    def a_lacouleur(joueur, color):  # fonction qui vérifie si on a de la couleur demandée
+    def a_lacouleur(joueur, color):
+        """ Vérifie si le joueur possède la couleur demandée
+
+        Args:
+            joueur : Joueur souhaitant poser
+            vcarte : carte qu'il souhaite poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == color:
                 return True
         return False
 
-    def a_de_latout(joueur, atout):  # fonction qui vérifie si on a de l'atout
+    def a_de_latout(joueur, atout):
+        """ Vérifie si le joueur possède de l'atout
+
+        Args:
+            joueur : Joueur souhaitant poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """  # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == atout:
                 return True
@@ -81,6 +110,16 @@ class Belote(AbstractGame):
 
     # fonction qui vérifie si on peut monter à l'atout
     def monteratout(self, joueur, vcarte, atout):
+        """ Vérifie si le joueur peut monter à l'atout
+
+        Args:
+            joueur : Joueur souhaitant poser
+            vcarte : carte qu'il souhaite poser
+            atout (str): Atout demmandé
+
+        Returns:
+            Bool
+        """
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == atout and (self.point_atout[joueur.handList[i].valeur[0]]) > vcarte:
                 return True
@@ -88,6 +127,17 @@ class Belote(AbstractGame):
 
     # vérifie si deux joueurs sont dans la même équipe
     def monpote(joueur, master, equipe1, equipe2):
+        """ Vérifie que le maitre du plis appartient à 
+        la même équipe que le joueur s'apprétant a poser
+
+        Args:
+            joueur : Joueur souhaitant poser
+            master : Maitre de la partie
+            equipe1 : Joueurs de l'équipe 1
+            equipe2 : Joueurs de l'équipe 2
+        Returns:
+            Bool 
+        """
         if joueur in equipe1 and master in equipe1:
             return True
         elif joueur in equipe2 and master in equipe2:
@@ -133,6 +183,12 @@ class Belote(AbstractGame):
                             teamPrenant = "Team 2"
                         atout = carteAppel.couleur[0]
                         place_player[i].handList.append(carteAppel)
+                        preneur = place_player[i]
+                        for player in place_player:
+                            if player == preneur :
+                                player.handList += deck.drawDeck(2)
+                            else:
+                                player.handList += deck.drawDeck(3)
                         pick = True
                         break
                 if not pick:
@@ -146,8 +202,16 @@ class Belote(AbstractGame):
                                 teamPrenant = "Team 2"
                             atout = appel[1]
                             place_player[i].handList.append(carteAppel)
+                            preneur = place_player[i]
+                            for player in place_player:
+                                if player == preneur :
+                                    player.handList += deck.drawDeck(2)
+                                else:
+                                    player.handList += deck.drawDeck(3)
                             pick = True
                             break
+
+                
                 if not pick:
                     BeloteView.displayRedistrib
 
@@ -158,7 +222,8 @@ class Belote(AbstractGame):
             # initialise un premier joueur
             maitre = place_player[0]
             for i in range(7):
-                maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
+                maitre, plis = Belote.tourLoop(
+                    Belote(), maitre, idGame, atout, team1, team2)
                 score, gagnant = Belote.countPoint(Belote(), plis, atout)
                 if maitre in team1:
                     scoreTeam1 += score
@@ -166,7 +231,8 @@ class Belote(AbstractGame):
                     scoreTeam2 += score
                 BeloteView.displayFinTour(maitre, plis.card_list)
 
-            maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
+            maitre, plis = Belote.tourLoop(
+                Belote(), maitre, idGame, atout, team1, team2)
             score, gagnant = Belote.countPoint(plis, atout)
 
             if maitre in team1:
@@ -178,6 +244,7 @@ class Belote(AbstractGame):
 
         # Fin de partie
         BeloteView.displayFinPartie([scoreTeam1, scoreTeam2])
+        Belote.saveFinishedGame()
         sauvegarde = BeloteView.displaySauvegarderJeu(self.players)
         for i in range(4):
             if sauvegarde[i]:
@@ -185,7 +252,7 @@ class Belote(AbstractGame):
                     score = scoreTeam1
                 else:
                     score = scoreTeam2
-                Belote.save(player, score)
+                Belote.saveScore(player, score)
         return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
@@ -205,7 +272,7 @@ class Belote(AbstractGame):
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
         cartejoue = BeloteView.displayPoser(ordre[0].handList)
-        plis.poser(cartejoue,maitre)
+        plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
         # On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
@@ -227,19 +294,20 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
-                    else :
+                    else:
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
                 else:
-                    
+
                     plis.poser(card, ordre[i])
                     pointsplis += (self.point_noatout[str(card.valeur[0])])
 
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
-            cartemaitre = (self.point_noatout[str(plis.card_list[0].valeur[0])])
+            cartemaitre = (
+                self.point_noatout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = BeloteView.displayPoser(ordre[i].handList)
@@ -320,8 +388,8 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
         return maitre, plis
 
-    def saveFinishedGame():
-        GameDAO.saveGame(game)
+    def saveFinishedGame(self):
+        GameDAO.saveGame(self.idGame)
 
     def saveScore(player, score):
         pass

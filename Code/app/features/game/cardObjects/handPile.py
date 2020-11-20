@@ -2,6 +2,7 @@ from app.features.game.cardObjects.deck import PileCard
 from app.features.game.cardObjects.cards import Card
 from app.features.DAO.pileDAO import PileDAO
 
+
 class Hand(PileCard):
 
     def __init__(self, idHand, idGame, idPlayer, card_list):
@@ -31,12 +32,20 @@ class Hand(PileCard):
 
 
 class Pile(PileCard):
+    """ Pile de cartes utilisées lors des parties de cartes
+
+    Args:
+        PileCard (PileCard): Classe mère possédant les actions principales sur le deck
+    """
+
     def __init__(self, idGame, idPile, card_list=[]):
         self.idGame = idGame
         self.idPile = idPile
         self.card_list = card_list
 
     def __str__(self):
+        """ Permet de montrer les cartes du pli
+        """
         rep = "Les cartes du plis sont : \n"
         liste = ""
         for card in self.card_list:
@@ -44,8 +53,21 @@ class Pile(PileCard):
         return(rep+liste)
 
     def poser(self, card, joueur):
+        """ Pose une carte de la main du joueur dans le pli
+        et le retire de sa main
+
+        Args:
+            card (Card): Carte à poser 
+            joueur (str): Identifiant du joueur
+        """
         joueur.handList.remove(card)
         self.card_list.append(card)
 
     def newPile(idGame):
+        """ Initialise une pile vide
+
+        Args:
+            idGame (str): Identifiant du jeu pour laquelle la pile est crée
+
+        """
         return PileDAO.newPile(idGame)

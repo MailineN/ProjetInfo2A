@@ -1,3 +1,9 @@
+""" Classe Administrateur
+
+Regroupement des methodes permetant à l'administrateur de gérer la base de donnée 
+utilisateur et des jeux. 
+
+"""
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
 from app.features.DAO.guestDAO import GuestDAO
@@ -12,11 +18,17 @@ from app.menus.menu_interface import MenuInterface
 class Admin(Player):
 
     def __init__(self, identifiant=None, handList=[]):
+        """ Initialisation d'un objet Admin qui reprend les fonctionalités 
+        des Players avec des autorisations supplémentaires
+        """
         super().__init__(identifiant, handList)
         self.userType = 'Admin'
         self.connecte = False
 
     def createAdminAccount(self, previous_menu):
+        """ Fonction permetant à l'administrateur de créer un nouveau compte administrateur
+            Reprend les mêmes methodes que celles des guests
+        """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
@@ -35,6 +47,9 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def deleteUserAccount(self, previous_menu):
+        """ Fonction permetant à l'administrateur de supprimer un compte utilisateur
+            à partir de son pseudo
+        """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
@@ -46,6 +61,9 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def seeUserData(self, previous_menu):
+        """ Fonction permetant à l'administrateur de visualiser l'ensemble des
+            comptes utilisateurs
+        """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
@@ -57,6 +75,9 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def seeGameData(self, previous_menu):
+        """ Fonction permetant à l'administrateur de visualiser l'ensemble des
+            parties de jeu, terminées ou non
+        """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
@@ -67,6 +88,9 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def resetDatabase(self, previous_menu):
+        """ Fonction permetant à l'administrateur de réinitialiser la base de données
+            en conservant uniquement les comptes utilisateurs
+        """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
@@ -76,6 +100,8 @@ class Admin(Player):
         return MenuInterface(previous_menu)
 
     def connexion(self):
+        """ Fonction de connexion propre à l'administrateur
+        """
         (username, motdepasse) = GuestView.displayConnexion()
 
         # code pour hasher le mdp
