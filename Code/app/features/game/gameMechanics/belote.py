@@ -158,7 +158,7 @@ class Belote(AbstractGame):
         scoreTeam1 = 0
         scoreTeam2 = 0
         BeloteView.displayNewGame(team1, team2)
-        while (scoreTeam1 < 80) or (scoreTeam2 < 80):
+        while (scoreTeam1 < 500) or (scoreTeam2 < 500):
             pick = False
             atout = None
             teamPrenant = None
@@ -230,7 +230,7 @@ class Belote(AbstractGame):
                 else:
                     scoreTeam2 += score
                 BeloteView.displayFinTour(maitre, plis.card_list)
-
+                
             maitre, plis = Belote.tourLoop(
                 Belote(), maitre, idGame, atout, team1, team2)
             score, gagnant = Belote.countPoint(plis, atout)
@@ -294,15 +294,17 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
+                  
                     else:
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
+                   
                 else:
 
                     plis.poser(card, ordre[i])
                     pointsplis += (self.point_noatout[str(card.valeur[0])])
-
+              
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
@@ -320,6 +322,7 @@ class Belote(AbstractGame):
                             card = BeloteView.displayPoser(ordre[i].handList)
 
                         plis.poser(card, ordre[i])
+                       
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         if coupe == 0 and (self.point_noatout[str(card.valeur[0])]) > cartemaitre:
@@ -332,11 +335,13 @@ class Belote(AbstractGame):
                         maitre = ordre[i]
                         plis.poser(card, ordre[i])
                         pointsplis += cartemaitre
+                   
 
                     else:  # N'a pas la couleur, peut pisser
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
+                        
 
                 else:  # Mon coéquipier n'est pas maître
                     # Doit jouer à la même couleur
@@ -347,6 +352,7 @@ class Belote(AbstractGame):
                         # Devient maitre
                         if (self.point_noatout[str(card.valeur[0])]) > cartemaitre and coupe == 0:
                             plis.poser(card, ordre[i])
+                            
                             cartemaitre = (
                                 self.point_noatout[str(card.valeur[0])])
                             maitre = ordre[i]
@@ -358,6 +364,7 @@ class Belote(AbstractGame):
                                 self.point_noatout[str(card.valeur[0])])
 
                             plis.poser(card, ordre[i])
+                            
                     # Doit couper
                     elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout and card.couleur[0] != couleurask:
                         if coupe == 0:
@@ -370,6 +377,7 @@ class Belote(AbstractGame):
                             cartemaitre = (
                                 self.point_atout[str(card.valeur[0])])
                             plis.poser(card, ordre[i])
+                            
 
                         elif coupe != 0:
                             while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
@@ -381,11 +389,14 @@ class Belote(AbstractGame):
                                     self.point_atout[str(card.valeur[0])])
 
                                 plis.poser(card, ordre[i])
+                                
 
                     else:  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
+                        Pile.savePile(idPile)
+        Pile.savePile(plis)                
         return maitre, plis
 
     def saveFinishedGame(self):
