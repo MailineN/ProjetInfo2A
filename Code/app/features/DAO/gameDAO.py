@@ -69,26 +69,6 @@ class GameDAO:
                 return(True, len(game[3].split()))
 
     @staticmethod
-    def newGame():
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.cursor()
-        try:
-            curseur.execute(
-                "INSERT INTO Games (idPiles, idHands, idPlayers, finished, debut, score)"
-                "VALUES(%s, %s, %s, %s, %s, %s, %s)"
-                "RETURNING idGame",
-                (None, None, None, None, False, False, None,)
-            )
-            idGame = curseur.fetchone()["idGame"]
-            connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
-        finally:
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
-
-    @staticmethod
     def addGame(nomJeu, listString):
         """ Ajoute une partie prête à commencer dans la base de données """
         connexion = DatabaseConnection.getConnexion()
@@ -105,4 +85,22 @@ class GameDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
+    @staticmethod
+    def saveGame(idGame): 
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute("SELECT * FROM piles WHERE idGame = %s RETURNING ipile",(idGame,))
+            piles = curseur.fetchall()
+            pilesStr = ' '.join(map(str, piles))
+            curseur.execute(
+                "UPDATE Games SET idPiles = %s, finished = True WHERE idGame = %s",
+                (pilesStr, idGame))  # pk un player alors que les guests aussi peuvent ??
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
 

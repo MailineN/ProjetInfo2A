@@ -22,7 +22,7 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
-    def CreateTeams(players):  
+    def CreateTeams(players):
         """ Crée aléatoirement les équipes
 
         Args:
@@ -77,7 +77,7 @@ class Belote(AbstractGame):
         count = sum(listPoint)
         return(count, gagnant)
 
-    def a_lacouleur(joueur, color): 
+    def a_lacouleur(joueur, color):
         """ Vérifie si le joueur possède la couleur demandée
 
         Args:
@@ -93,7 +93,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    def a_de_latout(joueur, atout): 
+    def a_de_latout(joueur, atout):
         """ Vérifie si le joueur possède de l'atout
 
         Args:
@@ -102,7 +102,7 @@ class Belote(AbstractGame):
 
         Returns:
             Bool
-        """ # fonction qui vérifie si on a de l'atout
+        """  # fonction qui vérifie si on a de l'atout
         for i in range(len(joueur.handList)):
             if joueur.handList[i].couleur[0] == atout:
                 return True
@@ -208,7 +208,8 @@ class Belote(AbstractGame):
             # initialise un premier joueur
             maitre = place_player[0]
             for i in range(7):
-                maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
+                maitre, plis = Belote.tourLoop(
+                    Belote(), maitre, idGame, atout, team1, team2)
                 score, gagnant = Belote.countPoint(Belote(), plis, atout)
                 if maitre in team1:
                     scoreTeam1 += score
@@ -216,7 +217,8 @@ class Belote(AbstractGame):
                     scoreTeam2 += score
                 BeloteView.displayFinTour(maitre, plis.card_list)
 
-            maitre, plis = Belote.tourLoop(Belote(),maitre, idGame, atout, team1, team2)
+            maitre, plis = Belote.tourLoop(
+                Belote(), maitre, idGame, atout, team1, team2)
             score, gagnant = Belote.countPoint(plis, atout)
 
             if maitre in team1:
@@ -228,6 +230,7 @@ class Belote(AbstractGame):
 
         # Fin de partie
         BeloteView.displayFinPartie([scoreTeam1, scoreTeam2])
+        Belote.saveFinishedGame()
         sauvegarde = BeloteView.displaySauvegarderJeu(self.players)
         for i in range(4):
             if sauvegarde[i]:
@@ -235,7 +238,7 @@ class Belote(AbstractGame):
                     score = scoreTeam1
                 else:
                     score = scoreTeam2
-                Belote.save(player, score)
+                Belote.saveScore(player, score)
         return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
@@ -255,7 +258,7 @@ class Belote(AbstractGame):
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
         cartejoue = BeloteView.displayPoser(ordre[0].handList)
-        plis.poser(cartejoue,maitre)
+        plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
         # On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
@@ -277,19 +280,20 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
-                    else :
+                    else:
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
                 else:
-                    
+
                     plis.poser(card, ordre[i])
                     pointsplis += (self.point_noatout[str(card.valeur[0])])
 
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
-            cartemaitre = (self.point_noatout[str(plis.card_list[0].valeur[0])])
+            cartemaitre = (
+                self.point_noatout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = BeloteView.displayPoser(ordre[i].handList)
@@ -370,8 +374,8 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
         return maitre, plis
 
-    def saveFinishedGame():
-        GameDAO.saveGame(game)
+    def saveFinishedGame(self):
+        GameDAO.saveGame(self.idGame)
 
     def saveScore(player, score):
         pass
