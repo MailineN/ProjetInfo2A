@@ -51,8 +51,10 @@ class Guest(Individu):
         """Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter"""
         if GuestView.displayChoixPartie():
             id_users = Guest.connexion()
-            if len(id_users) > 0:
+            if len(id_users) > 0 and id_users[0]['username'] not in listPlayers:
                 listPlayers.append(id_users[0]['username'])
+            if id_users[0]['username'] in listPlayers: 
+                input("Vous êtes déjà connecté au sein de la partie ")
         else:
             # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
             listPlayers.append('invité'+str(len(listPlayers)))

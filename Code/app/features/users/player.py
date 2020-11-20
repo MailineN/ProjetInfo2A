@@ -1,7 +1,9 @@
 
 from app.features.users.guest import Guest
+from app.security.id import verif_init_id
 from app.features.DAO.playerDAO import PlayerDAO
 from app.features.users.playerView import PlayerView
+from app.features.users.guestView import GuestView
 from app.features.DAO.gameDAO import GameDAO
 from app.features.game.gameMechanics.belote import Belote
 from app.menus.menu_interface import MenuInterface
@@ -33,6 +35,8 @@ class Player(Guest):
     def changeUsername(previous_menu):
         """ Permet de changer le mot de passe d'un utilisateur """
         (username, motdepasse, new_name) = PlayerView.displayChangeName()
+        while not verif_init_id(username):
+            username = GuestView.displayVerifId()
 
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
         user = PlayerDAO.updateName(username, hash_mdp, new_name)
