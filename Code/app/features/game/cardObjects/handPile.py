@@ -71,3 +71,7 @@ class Pile(PileCard):
 
         """
         return PileDAO.newPile(idGame)
+
+
+    def savePile(idPile):
+        PileDAO.savePileinDataBase(idPile)    
