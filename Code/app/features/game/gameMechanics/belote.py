@@ -183,6 +183,12 @@ class Belote(AbstractGame):
                             teamPrenant = "Team 2"
                         atout = carteAppel.couleur[0]
                         place_player[i].handList.append(carteAppel)
+                        preneur = place_player[i]
+                        for player in place_player:
+                            if player == preneur :
+                                player.handList += deck.drawDeck(2)
+                            else:
+                                player.handList += deck.drawDeck(3)
                         pick = True
                         break
                 if not pick:
@@ -196,8 +202,16 @@ class Belote(AbstractGame):
                                 teamPrenant = "Team 2"
                             atout = appel[1]
                             place_player[i].handList.append(carteAppel)
+                            preneur = place_player[i]
+                            for player in place_player:
+                                if player == preneur :
+                                    player.handList += deck.drawDeck(2)
+                                else:
+                                    player.handList += deck.drawDeck(3)
                             pick = True
                             break
+
+                
                 if not pick:
                     BeloteView.displayRedistrib
 
