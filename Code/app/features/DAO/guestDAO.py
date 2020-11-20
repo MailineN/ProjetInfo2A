@@ -42,16 +42,11 @@ class GuestDAO:
                 FROM users u
                 WHERE u.username = %s AND u.mdp = %s 
                 """, (username, str(mdpa)))
-            curseur.execute("""
-                    UPDATE users SET connecte = TRUE 
-                    WHERE u.username = %s AND u.mdp = %s 
-                """, (username, str(mdpa)))
             id_user = curseur.fetchall()
             connexion.commit()
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-            print(id_user)
         return id_user
 
 
