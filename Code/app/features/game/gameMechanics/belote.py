@@ -158,7 +158,7 @@ class Belote(AbstractGame):
         scoreTeam1 = 0
         scoreTeam2 = 0
         BeloteView.displayNewGame(team1, team2)
-        while (scoreTeam1 < 80) or (scoreTeam2 < 80):
+        while (scoreTeam1 < 500) or (scoreTeam2 < 500):
             pick = False
             atout = None
             teamPrenant = None
