@@ -148,7 +148,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self, idGame):
+    def gameLoop(self, idGame, maitre= None, atout= None, pointplis= None):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -156,52 +156,64 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        place_player = [self.team1[0], self.team2[0],
-                        self.team1[1], self.team2[1]]
-        BeloteView.displayNewGame(self.team1, self.team2)
         while (self.scoreTeam1 < 500) or (self.scoreTeam2 < 500):
-            pick = False
-            atout = None
-            teamPrenant = None
-            while not pick:
-                deck = PileCard.generateNewCustomDeck(self.listCards)
-                deck.shuffleDeck()
-                # Distribution de carte
-                for player in place_player:
-                    player.handList = deck.drawDeck(3)
-                for player in place_player:
-                    player.handList += deck.drawDeck(2)
-                # Tour d'appel
-                carteAppel = deck.drawDeck(1)[0]
-                appel = False
-                for i in range(len(place_player)):
-                    appel = BeloteView.displayTourAppel(
-                        place_player[i].handList, carteAppel)
-                    if appel:
-                        if i % 2 == 0:
-                            teamPrenant = "Team 1"
-                        else:
-                            teamPrenant = "Team 2"
-                        atout = carteAppel.couleur[0]
-                        place_player[i].handList.append(carteAppel)
-                        preneur = place_player[i]
-                        for player in place_player:
-                            if player == preneur:
-                                player.handList += deck.drawDeck(2)
-                            else:
-                                player.handList += deck.drawDeck(3)
-                        pick = True
-                        break
-                if not pick:
+            if maitre != None :
+
+                tour = len(maitre.handList)
+                for i in range(7- tour):
+                    maitre, plis = Belote.tourLoop(
+                        Belote(), maitre, idGame, atout, self.team1, self.team2)
+                    score, gagnant = Belote.countPoint(Belote(), plis, atout)
+                    if maitre in self.team1:
+                        self.scoreTeam1 += score
+                    else:
+                        self.scoreTeam2 += score
+
+                    save = BeloteView.displayFinTour(maitre, plis.card_list)
+                    if save == 'Oui':
+                        Belote.saveMiddleGame(
+                            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
+                        return None
+
+                maitre, plis = Belote.tourLoop(
+                    Belote(), maitre, idGame, atout, self.team1, self.team2)
+                score, gagnant = Belote.countPoint(plis, atout)
+
+                if maitre in self.team1:
+                    self.scoreTeam1 += score
+                    self.scoreTeam1 += 10
+                else:
+                    self.scoreTeam2 += score
+                    self.scoreTeam2 += 10
+
+            else:
+                place_player = [self.team1[0], self.team2[0],
+                                self.team1[1], self.team2[1]]
+                BeloteView.displayNewGame(self.team1, self.team2)
+                
+                pick = False
+                atout = None
+                teamPrenant = None
+                while not pick:
+                    deck = PileCard.generateNewCustomDeck(self.listCards)
+                    deck.shuffleDeck()
+                    # Distribution de carte
                     for player in place_player:
-                        appel = BeloteView.displayTourAppel2(
-                            place_player[i].handList)
-                        if appel[0]:
+                        player.handList = deck.drawDeck(3)
+                    for player in place_player:
+                        player.handList += deck.drawDeck(2)
+                    # Tour d'appel
+                    carteAppel = deck.drawDeck(1)[0]
+                    appel = False
+                    for i in range(len(place_player)):
+                        appel = BeloteView.displayTourAppel(
+                            place_player[i].handList, carteAppel)
+                        if appel:
                             if i % 2 == 0:
                                 teamPrenant = "Team 1"
                             else:
                                 teamPrenant = "Team 2"
-                            atout = appel[1]
+                            atout = carteAppel.couleur[0]
                             place_player[i].handList.append(carteAppel)
                             preneur = place_player[i]
                             for player in place_player:
@@ -211,41 +223,60 @@ class Belote(AbstractGame):
                                     player.handList += deck.drawDeck(3)
                             pick = True
                             break
+                    if not pick:
+                        for player in place_player:
+                            appel = BeloteView.displayTourAppel2(
+                                place_player[i].handList)
+                            if appel[0]:
+                                if i % 2 == 0:
+                                    teamPrenant = "Team 1"
+                                else:
+                                    teamPrenant = "Team 2"
+                                atout = appel[1]
+                                place_player[i].handList.append(carteAppel)
+                                preneur = place_player[i]
+                                for player in place_player:
+                                    if player == preneur:
+                                        player.handList += deck.drawDeck(2)
+                                    else:
+                                        player.handList += deck.drawDeck(3)
+                                pick = True
+                                break
 
-                if not pick:
-                    BeloteView.displayRedistrib
+                    if not pick:
+                        BeloteView.displayRedistrib
 
-            BeloteView.displayAtoutPris(teamPrenant, atout)
+                BeloteView.displayAtoutPris(teamPrenant, atout)
 
-            # Fin de la distribution
+                    # Fin de la distribution
 
-            # initialise un premier joueur
-            maitre = place_player[0]
-            for i in range(7):
+                    # initialise un premier joueur
+                maitre = place_player[0]
+                for i in range(7):
+                    maitre, plis = Belote.tourLoop(
+                        Belote(), maitre, idGame, atout, self.team1, self.team2)
+                    score, gagnant = Belote.countPoint(Belote(), plis, atout)
+                    if maitre in self.team1:
+                        self.scoreTeam1 += score
+                    else:
+                        self.scoreTeam2 += score
+
+                    save = BeloteView.displayFinTour(maitre, plis.card_list)
+                    if save == 'Oui':
+                        Belote.saveMiddleGame(
+                            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
+                        return None
+
                 maitre, plis = Belote.tourLoop(
                     Belote(), maitre, idGame, atout, self.team1, self.team2)
-                score, gagnant = Belote.countPoint(Belote(), plis, atout)
+                score, gagnant = Belote.countPoint(plis, atout)
+
                 if maitre in self.team1:
                     self.scoreTeam1 += score
+                    self.scoreTeam1 += 10
                 else:
                     self.scoreTeam2 += score
-
-                save = BeloteView.displayFinTour(maitre, plis.card_list)
-                if save == 'Oui':
-                    Belote.saveMiddleGame(
-                        self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
-                    return None
-
-            maitre, plis = Belote.tourLoop(
-                Belote(), maitre, idGame, atout, self.team1, self.team2)
-            score, gagnant = Belote.countPoint(plis, atout)
-
-            if maitre in self.team1:
-                self.scoreTeam1 += score
-                self.scoreTeam1 += 10
-            else:
-                self.scoreTeam2 += score
-                self.scoreTeam2 += 10
+                    self.scoreTeam2 += 10
 
         # Fin de partie
         BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
