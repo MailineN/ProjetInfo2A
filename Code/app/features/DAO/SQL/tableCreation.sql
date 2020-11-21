@@ -24,6 +24,23 @@ CREATE TABLE Piles
     card4 text
 );
 
+DROP TABLE IF EXISTS Hands CASCADE;
+DROP SEQUENCE IF EXISTS idHands_seq;
+CREATE SEQUENCE idHands_seq;
+CREATE TABLE Hands
+(
+    idHands integer NOT NULL DEFAULT nextval
+    ('idPile_seq'::regclass) PRIMARY KEY,
+    listCard text
+);
+ALTER TABLE Hands
+ADD COLUMN idGame integer,
+ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
+ALTER TABLE Hands
+ADD COLUMN idPlayers integer,
+ADD FOREIGN KEY (id_users) REFERENCES Users(id_users);
+
+
 DROP TABLE IF EXISTS Games;
 DROP SEQUENCE IF EXISTS idGame_seq;
 CREATE SEQUENCE idGame_seq;
