@@ -37,3 +37,11 @@ class AbstractGame(ABC):
     @abstractmethod
     def saveScore(self, players):
         pass
+
+    @abstractmethod
+    def saveMiddleGame(self):
+        pass
+
+    @abstractmethod
+    def getBackGame(self):
+        pass

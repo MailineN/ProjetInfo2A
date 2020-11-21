@@ -8,12 +8,15 @@ import random
 
 class Belote(AbstractGame):
 
-    def __init__(self, idGame=None, players=[], finished=False):
+    def __init__(self, idGame=None, players=[], finished=False, team1=[], team2=[], scoreTeam1=0, scoreTeam2=0):
         super().__init__(
             players=players,
             finished=finished,
             idGame=idGame
         )
+        if len(self.team1) == 0:
+            (self.team1, self.team2) = Belote.CreateTeams(players)
+
         self.listCards = "7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
 
@@ -153,12 +156,10 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        (team1, team2) = Belote.CreateTeams(players)
-        place_player = [team1[0], team2[0], team1[1], team2[1]]
-        scoreTeam1 = 0
-        scoreTeam2 = 0
-        BeloteView.displayNewGame(team1, team2)
-        while (scoreTeam1 < 500) or (scoreTeam2 < 500):
+        place_player = [self.team1[0], self.team2[0],
+                        self.team1[1], self.team2[1]]
+        BeloteView.displayNewGame(self.team1, self.team2)
+        while (self.scoreTeam1 < 500) or (self.scoreTeam2 < 500):
             pick = False
             atout = None
             teamPrenant = None
@@ -192,7 +193,7 @@ class Belote(AbstractGame):
                         pick = True
                         break
                 if not pick:
-                    for player in self.players:
+                    for player in place_player:
                         appel = BeloteView.displayTourAppel2(
                             place_player[i].handList)
                         if appel[0]:
@@ -222,35 +223,35 @@ class Belote(AbstractGame):
             maitre = place_player[0]
             for i in range(7):
                 maitre, plis = Belote.tourLoop(
-                    Belote(), maitre, idGame, atout, team1, team2)
+                    Belote(), maitre, idGame, atout, self.team1, self.team2)
                 score, gagnant = Belote.countPoint(Belote(), plis, atout)
-                if maitre in team1:
-                    scoreTeam1 += score
+                if maitre in self.team1:
+                    self.scoreTeam1 += score
                 else:
-                    scoreTeam2 += score
+                    self.scoreTeam2 += score
                 BeloteView.displayFinTour(maitre, plis.card_list)
 
             maitre, plis = Belote.tourLoop(
-                Belote(), maitre, idGame, atout, team1, team2)
+                Belote(), maitre, idGame, atout, self.team1, self.team2)
             score, gagnant = Belote.countPoint(plis, atout)
 
-            if maitre in team1:
-                scoreTeam1 += score
-                scoreTeam1 += 10
+            if maitre in self.team1:
+                self.scoreTeam1 += score
+                self.scoreTeam1 += 10
             else:
-                scoreTeam2 += score
-                scoreTeam2 += 10
+                self.scoreTeam2 += score
+                self.scoreTeam2 += 10
 
         # Fin de partie
-        BeloteView.displayFinPartie([scoreTeam1, scoreTeam2])
+        BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
         Belote.saveFinishedGame()
         sauvegarde = BeloteView.displaySauvegarderJeu(self.players)
         for i in range(4):
             if sauvegarde[i]:
-                if self.players[i] in team1:
-                    score = scoreTeam1
+                if self.players[i] in self.team1:
+                    score = self.scoreTeam1
                 else:
-                    score = scoreTeam2
+                    score = self.scoreTeam2
                 Belote.saveScore(player, score)
         return None
 
@@ -414,4 +415,27 @@ class Belote(AbstractGame):
 
         listPlayers = ' '.join(
             map(str, team1+team2))
-            
+
+        # TODO : Sauvegarder ici avec belote dao ?
+
+    def getBackGame(self, idGame):
+        data = BeloteDAO.getBackGame(idGame)
+        team1ID = data['players'].split()[0:1]
+        team2ID = data['players'].split()[2:3]
+        score1 = data['score1']
+        score2 = data['score2']
+        maitre = data['maitre']
+        atout = data['atout']
+        team1 = [Player(team1ID[0]), Player(team1ID[0])]
+        team2 = [Player(team2ID[0]), Player(team2ID[0])]
+
+        # TODO : Vérifier les imports et potentiellemnt deplacer ailleurs pour le players
+        for player in team1 + team2:
+            player.handList = Hand.getHand(idGame, player.identifiant)
+
+        # TODO : Finir l'import
+
+# TODO : Modifications dans gameLoop :
+# - Checker si les mains sont vide pour éviter la redistribution accidentelle
+# - Mettre l'option de quitter à la fin d'un tour
+# - Re inplenter les données récupérées
