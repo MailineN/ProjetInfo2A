@@ -2,6 +2,7 @@ from app.features.DAO.handDAO import HandDAO
 from app.features.DAO.pileDAO import PileDAO
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
+from psycopg2.extensions import AsIs
 
 
 class GameDAO:
@@ -21,9 +22,21 @@ class GameDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
         return(data)
-    
-    @staticmethod 
-    def saveMiddleGame()
+
+    @staticmethod
+    def saveMiddleGame(data, idGame, nomJeu):
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        columns = data.keys()
+        values = [data[column] for column in columns]
+        insert_statement = 'UPDATE %s SET %s = %s WHERE idGame = %s'
+        try:
+            curseur.execute(insert_statement, (nomJeu, AsIs(
+                ','.join(columns)), tuple(values), idGame))
+            connexion.commit()
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
 
     @staticmethod
     def addGame(nomJeu, listString):
