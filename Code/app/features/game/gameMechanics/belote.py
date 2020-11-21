@@ -252,31 +252,6 @@ class Belote(AbstractGame):
 
                     # initialise un premier joueur
                 maitre = place_player[0]
-                for i in range(7):
-                    maitre, plis = Belote.tourLoop(
-                        Belote(), maitre, idGame, atout, self.team1, self.team2)
-                    score, gagnant = Belote.countPoint(Belote(), plis, atout)
-                    if maitre in self.team1:
-                        self.scoreTeam1 += score
-                    else:
-                        self.scoreTeam2 += score
-
-                    save = BeloteView.displayFinTour(maitre, plis.card_list)
-                    if save == 'Oui':
-                        Belote.saveMiddleGame(
-                            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
-                        return None
-
-                maitre, plis = Belote.tourLoop(
-                    Belote(), maitre, idGame, atout, self.team1, self.team2)
-                score, gagnant = Belote.countPoint(plis, atout)
-
-                if maitre in self.team1:
-                    self.scoreTeam1 += score
-                    self.scoreTeam1 += 10
-                else:
-                    self.scoreTeam2 += score
-                    self.scoreTeam2 += 10
 
         # Fin de partie
         BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
