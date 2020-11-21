@@ -148,7 +148,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self, idGame, players):
+    def gameLoop(self, idGame):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -398,7 +398,7 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         Pile.savePile(idPile)
         Pile.savePile(plis)
-        return maitre, plis
+        return maitre, plis, pointsplis
 
     def saveFinishedGame(self):
         GameDAO.saveGame(self.idGame)
@@ -406,7 +406,7 @@ class Belote(AbstractGame):
     def saveScore(player, score):
         pass
 
-    def saveMiddleGame(self, team1, team2, scoreTeam1, scoreTeam2, atout, maitre):
+    def saveMiddleGame(self, team1, team2, scoreTeam1, scoreTeam2, atout, maitre, pointsplis):
         """ Creation des mains et sauvegarde """
         listHand = []
         for player in team1+team2:
@@ -424,7 +424,8 @@ class Belote(AbstractGame):
                 "scoreTeam1": scoreTeam1,
                 "scoreTeam2": scoreTeam2,
                 "atout": atout,
-                "maitre": maitre
+                "maitre": maitre,
+                "scorepliencours": pointsplis
                 }
         GameDAO.saveMiddleGame(data, self.idGame, 'Belote')
 
