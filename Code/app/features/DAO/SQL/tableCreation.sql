@@ -61,3 +61,21 @@ CREATE TABLE Games
 ALTER TABLE Piles
 ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
+
+DROP TABLE IF EXISTS Belote CASCADE;
+DROP SEQUENCE IF EXISTS idBelote_seq;
+CREATE SEQUENCE idBelote_seq;
+CREATE TABLE Belote
+(
+    idBelote integer NOT NULL DEFAULT nextval
+    ('idBelote_seq'::regclass) PRIMARY KEY,
+    players text,
+    handList text, 
+    score1 text,
+    score2 text,
+    atout text, 
+    maitre text,
+);
+ALTER TABLE Belote
+ADD COLUMN idGame integer,
+ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);

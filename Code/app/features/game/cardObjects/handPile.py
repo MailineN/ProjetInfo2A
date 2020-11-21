@@ -29,6 +29,7 @@ class Hand(PileCard):
         """
         return HandDAO.newHand(idGame)
 
+    @staticmethod
     def saveHand(hand):
         HandDAO.saveHandinDataBase(hand)
 

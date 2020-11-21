@@ -105,9 +105,16 @@ class BeloteView():
 
     @staticmethod
     def displayFinTour(joueurGagnant, cartesPlis):
-        print(joueurGagnant.identifiant + " remporte le pli\n")
-        print("Les cartes jouées sont : \n")
-        print(str(carte) for carte in cartesPlis)
+        question = [
+            {
+                'type': 'list',
+                'message': 'Voulez vous continuer ?',
+                'name': 'choix',
+                'choices': ['Oui', 'Non']
+            }
+        ]
+        rep = prompt(question, style=custom_style_2)
+        return(rep['choix'])
 
     @staticmethod
     def displayFinPartie(points):

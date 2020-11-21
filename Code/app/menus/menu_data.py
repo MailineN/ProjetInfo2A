@@ -135,7 +135,7 @@ menu = [
         "question": "Que voulez vous faire ? ",
         "options": [
             "Connexion",  # 0
-            "Jouer",  # 1
+            "Jouer/Reprendre une partie",  # 1
             "Créer un compte",  # 2
             "Voir ses statistiques",  # 3
             "Gérer la base de donnée",  # 4

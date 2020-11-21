@@ -1,7 +1,7 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
 from app.features.game.gameMechanics.beloteView import BeloteView
-from app.features.game.cardObjects.handPile import Pile
+from app.features.game.cardObjects.handPile import Hand, Pile
 from app.features.DAO.gameDAO import GameDAO
 import random
 
@@ -185,7 +185,7 @@ class Belote(AbstractGame):
                         place_player[i].handList.append(carteAppel)
                         preneur = place_player[i]
                         for player in place_player:
-                            if player == preneur :
+                            if player == preneur:
                                 player.handList += deck.drawDeck(2)
                             else:
                                 player.handList += deck.drawDeck(3)
@@ -204,14 +204,13 @@ class Belote(AbstractGame):
                             place_player[i].handList.append(carteAppel)
                             preneur = place_player[i]
                             for player in place_player:
-                                if player == preneur :
+                                if player == preneur:
                                     player.handList += deck.drawDeck(2)
                                 else:
                                     player.handList += deck.drawDeck(3)
                             pick = True
                             break
 
-                
                 if not pick:
                     BeloteView.displayRedistrib
 
@@ -230,7 +229,7 @@ class Belote(AbstractGame):
                 else:
                     scoreTeam2 += score
                 BeloteView.displayFinTour(maitre, plis.card_list)
-                
+
             maitre, plis = Belote.tourLoop(
                 Belote(), maitre, idGame, atout, team1, team2)
             score, gagnant = Belote.countPoint(plis, atout)
@@ -294,17 +293,17 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
-                  
+
                     else:
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_atout[str(card.valeur[0])])
-                   
+
                 else:
 
                     plis.poser(card, ordre[i])
                     pointsplis += (self.point_noatout[str(card.valeur[0])])
-              
+
         # JOUE A UNE AUTRE COULEUR
         else:
             coupe = 0
@@ -322,7 +321,7 @@ class Belote(AbstractGame):
                             card = BeloteView.displayPoser(ordre[i].handList)
 
                         plis.poser(card, ordre[i])
-                       
+
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         if coupe == 0 and (self.point_noatout[str(card.valeur[0])]) > cartemaitre:
@@ -335,13 +334,11 @@ class Belote(AbstractGame):
                         maitre = ordre[i]
                         plis.poser(card, ordre[i])
                         pointsplis += cartemaitre
-                   
 
                     else:  # N'a pas la couleur, peut pisser
                         plis.poser(card, ordre[i])
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
-                        
 
                 else:  # Mon coéquipier n'est pas maître
                     # Doit jouer à la même couleur
@@ -352,7 +349,7 @@ class Belote(AbstractGame):
                         # Devient maitre
                         if (self.point_noatout[str(card.valeur[0])]) > cartemaitre and coupe == 0:
                             plis.poser(card, ordre[i])
-                            
+
                             cartemaitre = (
                                 self.point_noatout[str(card.valeur[0])])
                             maitre = ordre[i]
@@ -364,7 +361,7 @@ class Belote(AbstractGame):
                                 self.point_noatout[str(card.valeur[0])])
 
                             plis.poser(card, ordre[i])
-                            
+
                     # Doit couper
                     elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout and card.couleur[0] != couleurask:
                         if coupe == 0:
@@ -377,7 +374,6 @@ class Belote(AbstractGame):
                             cartemaitre = (
                                 self.point_atout[str(card.valeur[0])])
                             plis.poser(card, ordre[i])
-                            
 
                         elif coupe != 0:
                             while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
@@ -389,14 +385,13 @@ class Belote(AbstractGame):
                                     self.point_atout[str(card.valeur[0])])
 
                                 plis.poser(card, ordre[i])
-                                
 
                     else:  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
                         Pile.savePile(idPile)
-        Pile.savePile(plis)                
+        Pile.savePile(plis)
         return maitre, plis
 
     def saveFinishedGame(self):
@@ -404,3 +399,19 @@ class Belote(AbstractGame):
 
     def saveScore(player, score):
         pass
+
+    def saveMiddleGame(self, team1, team2, scoreTeam1, scoreTeam2, atout, maitre):
+        """ Creation des mains et sauvegarde """
+        listHand = []
+        for player in team1+team2:
+            idHand = Hand.newHand(self.idGame)
+            hand = Hand(self.idGame, idHand, ' '.join(
+                map(str, player.handList)))
+            Hand.saveHand(hand)
+            listHand.append(idHand)
+
+        """ Sauvegarde des données jeu """
+
+        listPlayers = ' '.join(
+            map(str, team1+team2))
+            
