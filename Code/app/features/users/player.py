@@ -7,6 +7,7 @@ from app.features.users.guestView import GuestView
 from app.features.DAO.gameDAO import GameDAO
 from app.features.game.gameMechanics.belote import Belote
 from app.menus.menu_interface import MenuInterface
+from app.features.game.cardObjects.handPile import Hand, Pile
 
 import hashlib
 
@@ -61,7 +62,7 @@ class GameService:
         """ Lance une partie de jeu avec le groupe de joueur et l'identifiant du jeu """
         # TODO : Implémenter ici la reprise du jeu
         if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu, PlayerGroup))
+            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu))
 
     @staticmethod
     def initListPlayers(jeu):
@@ -85,3 +86,21 @@ class GameService:
             players.append(Player(i))
         GameService.startGame(nomJeu, id_Jeu, players)
         return MenuInterface(previous_menu)
+
+    def getBackGame(self, idGame, nomJeu):
+        data = GameDAO.getBackGame(idGame, nomJeu)
+        if nomJeu == 'Belote':
+            team1ID = data['players'].split()[0:1]
+            team2ID = data['players'].split()[2:3]
+            score1 = data['score1']
+            score2 = data['score2']
+            maitre = data['maitre']
+            atout = data['atout']
+            pointPlis = data['scorepliencours']
+            team1 = [Player(team1ID[0]), Player(team1ID[0])]
+            team2 = [Player(team2ID[0]), Player(team2ID[0])]
+
+            for player in team1 + team2:
+                player.handList = Hand.getHand(idGame, player.identifiant)
+
+            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2).gameLoop(idGame, maitre, atout,pointPlis))
