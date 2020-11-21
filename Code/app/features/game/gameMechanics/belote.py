@@ -419,7 +419,7 @@ class Belote(AbstractGame):
         # TODO : Sauvegarder ici avec belote dao ?
 
     def getBackGame(self, idGame):
-        data = BeloteDAO.getBackGame(idGame)
+        data = BeloteDAO.getBackGame(idGame,'Belote')
         team1ID = data['players'].split()[0:1]
         team2ID = data['players'].split()[2:3]
         score1 = data['score1']
