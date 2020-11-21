@@ -460,22 +460,6 @@ class Belote(AbstractGame):
                 }
         GameDAO.saveMiddleGame(data, self.idGame, 'Belote')
 
-    def getBackGame(self, idGame):
-        data = BeloteDAO.getBackGame(idGame)
-        team1ID = data['players'].split()[0:1]
-        team2ID = data['players'].split()[2:3]
-        score1 = data['score1']
-        score2 = data['score2']
-        maitre = data['maitre']
-        atout = data['atout']
-        team1 = [Player(team1ID[0]), Player(team1ID[0])]
-        team2 = [Player(team2ID[0]), Player(team2ID[0])]
-
-        # TODO : Vérifier les imports et potentiellemnt deplacer ailleurs pour le players
-        for player in team1 + team2:
-            player.handList = Hand.getHand(idGame, player.identifiant)
-
-        # TODO : Finir l'import
 
 # TODO : Modifications dans gameLoop :
 # - Checker si les mains sont vide pour éviter la redistribution accidentelle
