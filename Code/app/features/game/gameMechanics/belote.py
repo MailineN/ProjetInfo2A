@@ -229,7 +229,11 @@ class Belote(AbstractGame):
                     self.scoreTeam1 += score
                 else:
                     self.scoreTeam2 += score
-                BeloteView.displayFinTour(maitre, plis.card_list)
+                
+                save = BeloteView.displayFinTour(maitre, plis.card_list)
+                if save == 'Oui':
+                    Belote.saveMiddleGame(self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
+                    return None
 
             maitre, plis = Belote.tourLoop(
                 Belote(), maitre, idGame, atout, self.team1, self.team2)
@@ -410,16 +414,23 @@ class Belote(AbstractGame):
                 map(str, player.handList)))
             Hand.saveHand(hand)
             listHand.append(idHand)
+        
+    
 
         """ Sauvegarde des données jeu """
 
         listPlayers = ' '.join(
             map(str, team1+team2))
-
+        data = {"listplayers" : listPlayers, 
+                "scoreTeam1" : scoreTeam1, 
+                "scoreTeam2" : scoreTeam2, 
+                "atout" : atout,
+                "maitre" : maitre
+                }  
         # TODO : Sauvegarder ici avec belote dao ?
 
     def getBackGame(self, idGame):
-        data = BeloteDAO.getBackGame(idGame,'Belote')
+        data = BeloteDAO.getBackGame(idGame)
         team1ID = data['players'].split()[0:1]
         team2ID = data['players'].split()[2:3]
         score1 = data['score1']
