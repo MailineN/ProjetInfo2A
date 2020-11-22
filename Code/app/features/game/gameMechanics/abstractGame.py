@@ -35,6 +35,3 @@ class AbstractGame(ABC):
     def saveMiddleGame(self):
         pass
 
-    @abstractmethod
-    def getBackGame(self):
-        pass

@@ -73,7 +73,7 @@ def menuStatistiques(previous_menu):
                            "Retour au menu précédent",
                            "Quitter l'application"]
     menu_act["actions"] = [
-        # Statistiques belote,
+        (lambda previous_menu:previous_menu["individu"].seeScoresBelote(previous_menu)),
         (lambda previous_menu:MenuInterface(menu[0])),
         Individu().quitter]
     menu_act["path"] = []
@@ -150,7 +150,7 @@ menu = [
         "question": "Que voulez vous faire ? ",
         "options": [
             "Connexion",  # 0
-            "Jouer/Reprendre une partie",  # 1
+            "Jouer",  # 1
             "Créer un compte",  # 2
             "Voir ses statistiques",  # 3
             "Gérer la base de donnée",  # 4
