@@ -21,7 +21,7 @@ class Belote(AbstractGame):
         self.scoreTeam2 = scoreTeam2
 
         if len(self.team1) == 0:
-            (self.team1, self.team2) = Belote.CreateTeams(players)
+            (self.team1, self.team2) = Belote.CreateTeams(self.players)
 
         self.listCards = "7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
             0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
@@ -31,6 +31,7 @@ class Belote(AbstractGame):
         self.point_noatout = {"ACE": 11, "10": 10, "KING": 4,
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
+    @staticmethod
     def CreateTeams(players):
         """ Crée aléatoirement les équipes
 
