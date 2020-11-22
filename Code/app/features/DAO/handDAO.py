@@ -1,6 +1,7 @@
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
 
+
 class HandDAO:
 
     @staticmethod

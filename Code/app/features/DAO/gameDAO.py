@@ -1,5 +1,3 @@
-from app.features.DAO.handDAO import HandDAO
-from app.features.DAO.pileDAO import PileDAO
 import psycopg2
 from app.features.DAO.databaseConnection import DatabaseConnection
 from psycopg2.extensions import AsIs
@@ -45,8 +43,8 @@ class GameDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Games (jeu,idPlayers,finished,debut) VALUES (%s,%s, %s, %s) RETURNING idGame;",
-                (nomJeu, listString, False, True))
+                "INSERT INTO Games (jeu,idPlayers) VALUES (%s,%s) RETURNING idGame;",
+                (nomJeu, listString))
             idJeu = curseur.fetchall()  # pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
@@ -56,26 +54,6 @@ class GameDAO:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
         return idJeu
-
-    @staticmethod
-    def saveGame(idGame):
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.cursor()
-        try:
-            curseur.execute(
-                "SELECT * FROM piles WHERE idGame = %s RETURNING ipile", (idGame,))
-            piles = curseur.fetchall()
-            pilesStr = ' '.join(map(str, piles))
-            curseur.execute(
-                "UPDATE Games SET idPiles = %s, finished = True WHERE idGame = %s",
-                (pilesStr, idGame))  # pk un player alors que les guests aussi peuvent ??
-            connexion.commit()
-        except psycopg2.Error as error:
-            connexion.rollback()
-            raise error
-        finally:
-            curseur.close
-            DatabaseConnection.putBackConnexion(connexion)
 
     @staticmethod
     def getIDwithPlayers(idPlayers, nomJeu):

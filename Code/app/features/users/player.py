@@ -7,7 +7,8 @@ from app.features.users.guestView import GuestView
 from app.features.DAO.gameDAO import GameDAO
 from app.features.game.gameMechanics.belote import Belote
 from app.menus.menu_interface import MenuInterface
-from app.features.game.cardObjects.handPile import Hand, Pile
+from app.features.game.cardObjects.handPile import Hand
+from app.features.utils import rotate
 
 import hashlib
 
@@ -58,7 +59,7 @@ class GameService:
         pass
 
     @staticmethod
-    def startGame(nomJeu, idJeu, PlayerGroup):
+    def startGame(nomJeu, idJeu, PlayerGroup, saved):
         """ Lance une partie de jeu avec le groupe de joueur et l'identifiant du jeu """
         # TODO : Implémenter ici la reprise du jeu
         if nomJeu == 'Belote':
@@ -78,26 +79,35 @@ class GameService:
     def initEmptyGame(nomJeu, previous_menu):
         """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
         listPlayers = GameService.initListPlayers(nomJeu)
+        saved = True
+        for player in listPlayers:
+            if "invité" in player:
+                saved = False
+                break
         listString = ' '.join(map(str, listPlayers))
         # Convertit la liste de joueur [1,2,3] en string '1 2 3'
         id_Jeu = GameDAO.addGame(nomJeu, listString)
         players = []
         for i in listPlayers:
             players.append(Player(i))
-        GameService.startGame(nomJeu, id_Jeu, players)
+        GameService.startGame(nomJeu, id_Jeu, players, saved)
         return MenuInterface(previous_menu)
 
     @staticmethod
     def initPreviousGame(nomJeu, previous_menu):
         """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
         listPlayers = GameService.initListPlayers(nomJeu)
-        listString = ' '.join(map(str, listPlayers))
-        # Convertit la liste de joueur [1,2,3] en string '1 2 3'
-        id_Jeu = GameDAO.getIDwithPlayers(listString, nomJeu)
-        if id_Jeu is not None:
-            GameService.getBackGame(id_Jeu, nomJeu)
-        else:
-            input("Aucune partie n'a été trouvée ")
+        for i in range(len(listPlayers)):
+            listString = ' '.join(map(str, listPlayers))
+            listPlayers = rotate(listPlayers)
+            # Convertit la liste de joueur [1,2,3] en string '1 2 3'
+            id_Jeu = GameDAO.getIDwithPlayers(listString, nomJeu)
+            if id_Jeu is not None:
+                GameService.getBackGame(id_Jeu, nomJeu)
+                break
+            else:
+                input("Aucune partie n'a été trouvée, " +
+                      str(len(listPlayers)-i)+" tentatives restantes ")
         return MenuInterface(previous_menu)
 
     @staticmethod
@@ -110,11 +120,11 @@ class GameService:
             score2 = data[4]
             maitre = data[6]
             atout = data[5]
-            pointPlis = data['scorepliencours']
+            saved = data[7]
             team1 = [Player(team1ID[0]), Player(team1ID[0])]
             team2 = [Player(team2ID[0]), Player(team2ID[0])]
 
             for player in team1 + team2:
                 player.handList = Hand.getHand(idGame, player.identifiant)
 
-            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2).gameLoop(idGame, maitre, atout, pointPlis))
+            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2, saved).gameLoop(idGame, maitre, atout))

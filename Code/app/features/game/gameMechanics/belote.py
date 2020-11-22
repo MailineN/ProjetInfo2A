@@ -8,12 +8,14 @@ import random
 
 class Belote(AbstractGame):
 
-    def __init__(self, idGame=None, players=[], finished=False, team1=[], team2=[], scoreTeam1=0, scoreTeam2=0):
+    def __init__(self, idGame=None, players=[], finished=False, team1=[], team2=[], scoreTeam1=0, scoreTeam2=0, save=False):
         super().__init__(
             players=players,
             finished=finished,
-            idGame=idGame
+            idGame=idGame,
+            save=save
         )
+
         if len(self.team1) == 0:
             (self.team1, self.team2) = Belote.CreateTeams(players)
 
@@ -148,7 +150,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self, idGame, maitre=None, atout=None, pointplis=None):
+    def gameLoop(self, idGame, maitre=None, atout=None):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -157,7 +159,7 @@ class Belote(AbstractGame):
         Si aucune équipe appelle, le jeu est reinitialisé
         """
         while (self.scoreTeam1 < 500) or (self.scoreTeam2 < 500):
-            if maitre != None:
+            if maitre is not None:
 
                 tour = len(maitre.handList)
                 for i in range(7 - tour):
@@ -170,11 +172,12 @@ class Belote(AbstractGame):
                         self.scoreTeam2 += score
 
                     save = BeloteView.displayFinTour(maitre, plis.card_list)
-                    if save == 'Oui':
+                    if save == 'Oui' and self.save:
                         Belote.saveMiddleGame(
                             self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
                         return None
-
+                    if save == 'Oui' and not self.save:
+                        input("Vous ne pouvez pas sauvegarder une partie invitée ")
                 maitre, plis = Belote.tourLoop(
                     Belote(), maitre, idGame, atout, self.team1, self.team2)
                 score, gagnant = Belote.countPoint(plis, atout)
@@ -255,15 +258,9 @@ class Belote(AbstractGame):
 
         # Fin de partie
         BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
-        Belote.saveFinishedGame()
-        sauvegarde = BeloteView.displaySauvegarderJeu(self.players)
-        for i in range(4):
-            if sauvegarde[i]:
-                if self.players[i] in self.team1:
-                    score = self.scoreTeam1
-                else:
-                    score = self.scoreTeam2
-                Belote.saveScore(player, score)
+        self.finished = True
+        Belote.saveMiddleGame(
+            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, None, None)
         return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
@@ -412,7 +409,7 @@ class Belote(AbstractGame):
     def saveScore(player, score):
         pass
 
-    def saveMiddleGame(self, team1, team2, scoreTeam1, scoreTeam2, atout, maitre, pointsplis):
+    def saveMiddleGame(self, team1, team2, scoreTeam1, scoreTeam2, atout, maitre):
         """ Creation des mains et sauvegarde """
         listHand = []
         for player in team1+team2:
@@ -431,7 +428,8 @@ class Belote(AbstractGame):
                 "scoreTeam2": scoreTeam2,
                 "atout": atout,
                 "maitre": maitre,
-                "scorepliencours": pointsplis
+                "saved": self.save,
+                "finished": self.finished
                 }
         GameDAO.saveMiddleGame(data, self.idGame, 'Belote')
 

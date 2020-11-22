@@ -1,7 +1,7 @@
 """ Objet gérant les différents paquets de cartes du jeu
 """
 from app.features.game.cardObjects.cards import Card
-from app.features.game.apiInteractions.cardAPI import cardAPI
+from app.features.game.API.cardAPI import cardAPI
 
 
 class PileCard:

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class AbstractGame(ABC):
 
-    def __init__(self, idGame, players=[], listCards=None, finished=False):
+    def __init__(self, idGame, players=[], listCards=None, finished=False, save=False):
         """ Liste des attributs pour chaque instance fille d'Abstract Games
 
         Args:
@@ -15,6 +15,7 @@ class AbstractGame(ABC):
         self.players = list(players)
         self.finished = finished
         self.listCards = listCards
+        self.save = save
 
     @abstractmethod
     def checkPlayerNumber(self):
@@ -28,14 +29,6 @@ class AbstractGame(ABC):
     @abstractmethod
     def tourLoop(self):
         """ A implémenter en fonction du jeu demandé"""
-        pass
-
-    @abstractmethod
-    def saveFinishedGame(self, players):
-        pass
-
-    @abstractmethod
-    def saveScore(self, players):
         pass
 
     @abstractmethod

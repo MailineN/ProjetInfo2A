@@ -49,11 +49,7 @@ CREATE TABLE Games
     idGame integer NOT NULL DEFAULT nextval
     ('idGame_seq'::regclass) PRIMARY KEY, 
     jeu text,
-    idPiles text, 
-    idHands text,
     idPlayers text,
-    finished bool,
-    debut bool,
     score text
 );
 
@@ -75,7 +71,8 @@ CREATE TABLE Belote
     score2 text,
     atout text, 
     maitre text,
-    scorepliencours text
+    saved bool,
+    finished bool
 );
 ALTER TABLE Belote
 ADD COLUMN idGame integer,

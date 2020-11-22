@@ -7,6 +7,10 @@ def clear():
     return os.system('cls')
 
 
+def rotate(l, n):
+    return l[n:] + l[:n]
+
+
 def getKey(dico):
     l = []
     for key, value in dico.items():
