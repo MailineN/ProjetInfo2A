@@ -271,7 +271,6 @@ class Belote(AbstractGame):
         return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
-        print(idGame)
         idPile = Pile.newPile(int(idGame))
         plis = Pile(idGame, idPile, card_list=[])
         ordre = []
@@ -287,6 +286,7 @@ class Belote(AbstractGame):
         elif maitre == place_player[3]:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
+        print("C'est au tour du maitre : "+ maitre.identifiant + " de poser \n")
         cartejoue = BeloteView.displayPoser(ordre[0].handList, plis.card_list)
         plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
@@ -296,7 +296,9 @@ class Belote(AbstractGame):
             cartemaitre = (self.point_atout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                card = BeloteView.displayPoser(ordre[i].handList)
+                print("C'est à " + ordre[i].identifiant + " de jouer \n")
+                card = BeloteView.displayPoser(
+                    ordre[i].handList, plis.card_list)
                 if Belote.a_de_latout(ordre[i], atout):
                     while card.couleur[0] != atout:
                         print("Vous devez jouer à l'atout")
@@ -414,7 +416,7 @@ class Belote(AbstractGame):
                         plis.poser(card, ordre[i])
                         Pile.savePile(idPile)
         Pile.savePile(plis)
-        return maitre, plis, pointsplis
+        return maitre, plis
 
     def saveFinishedGame(self):
         GameDAO.saveGame(self.idGame)
