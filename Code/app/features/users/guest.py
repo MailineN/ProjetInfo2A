@@ -49,7 +49,7 @@ class Guest(Individu):
     @staticmethod
     def connexionJeu(listPlayers):
         """Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter"""
-        saved = True
+        
         if GuestView.displayChoixPartie():
             id_users = Guest.connexion()
             if len(id_users) > 0 and id_users[0]['username'] not in listPlayers:
@@ -57,10 +57,10 @@ class Guest(Individu):
             if id_users[0]['username'] in listPlayers:
                 input("Vous êtes déjà connecté au sein de la partie ")
         else:
-            saved = False
+            
             # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
             listPlayers.append('invité'+str(len(listPlayers)))
-        return(listPlayers, saved)
+        return(listPlayers)
 
     # Les fonctions d'initialisation de jeu ont étés ajoutés à GameService :)
     # T'inquiete pas pour les menus c'est prévu
