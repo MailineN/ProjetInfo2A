@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-22T11:52:54.261Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="t0xUtbBxcZnotO-Qazip" version="13.10.0" type="gitlab" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-11-22T12:01:29.928Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="TwlPNvq1i4FLB35tHwFh" version="13.10.0" type="gitlab" pages="2">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1166" dy="2328" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -721,7 +721,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="CVNWAhuQUj8Cmg_3jNyO" name="Page-2">
-    <mxGraphModel dx="1159" dy="2274" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1352" dy="2387" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-0" />
         <mxCell id="99kcwyzhhyW_6NzoXqdd-1" parent="99kcwyzhhyW_6NzoXqdd-0" />
@@ -1175,7 +1175,7 @@
         <mxCell id="99kcwyzhhyW_6NzoXqdd-97" value="+list_cards : str" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
           <mxGeometry y="44" width="161" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="99kcwyzhhyW_6NzoXqdd-98" value="+ players :&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
+        <mxCell id="99kcwyzhhyW_6NzoXqdd-98" value="+ players : list" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
           <mxGeometry y="64" width="161" height="18" as="geometry" />
         </mxCell>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-100" value="+finished : bool" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
@@ -1631,6 +1631,33 @@
               <mxPoint x="1594" y="-517" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-64" value="CustomThread" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-1">
+          <mxGeometry x="1830" y="-343" width="168" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-65" value="+ intervals :&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="26" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-66" value="+ function :&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="44" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-69" value="+ args :&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="62" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-70" value="+ kwargs :&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="80" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-67" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="98" width="168" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-68" value="+ do_execute()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="112" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-73" value="+ results()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="130" width="168" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-74" value="+ drawDeck()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="MyVIllVCdqV-ruAm9ZR9-64">
+          <mxGeometry y="148" width="168" height="18" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
