@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-22T11:31:13.063Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="50CM8Cz4f2dkwFeDVp8X" version="13.10.0" type="gitlab" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-11-22T11:32:32.207Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="hHz7Lks3XJGRplmaG2FU" version="13.10.0" type="gitlab" pages="2">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1166" dy="2328" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" background="#ffffff" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -1163,7 +1163,7 @@
           <mxGeometry y="80" width="160" height="20" as="geometry" />
         </mxCell>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-95" value="AbstractGame" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-1">
-          <mxGeometry x="501" y="-489" width="161" height="228" as="geometry" />
+          <mxGeometry x="501" y="-489" width="161" height="256" as="geometry" />
         </mxCell>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-96" value="+numberPlayer : num" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
           <mxGeometry y="26" width="161" height="20" as="geometry" />
@@ -1186,14 +1186,17 @@
         <mxCell id="99kcwyzhhyW_6NzoXqdd-102" value="+ CheckPlayerNumber()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
           <mxGeometry y="138" width="161" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="99kcwyzhhyW_6NzoXqdd-103" value="+ CheckPlayedCard()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
+        <mxCell id="99kcwyzhhyW_6NzoXqdd-104" value="+ GameLoop()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
           <mxGeometry y="158" width="161" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="99kcwyzhhyW_6NzoXqdd-104" value="+ GameLoop()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
-          <mxGeometry y="178" width="161" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-105" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: left ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;+ TourLoop()&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
-          <mxGeometry y="198" width="161" height="30" as="geometry" />
+          <mxGeometry y="178" width="161" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MyVIllVCdqV-ruAm9ZR9-45" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: left ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;+ SaveScore()&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
+          <mxGeometry y="208" width="161" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="99kcwyzhhyW_6NzoXqdd-103" value="+ SaveFinishedGame()" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-95">
+          <mxGeometry y="238" width="161" height="18" as="geometry" />
         </mxCell>
         <mxCell id="99kcwyzhhyW_6NzoXqdd-106" value="GameDAO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontColor=none;" vertex="1" parent="99kcwyzhhyW_6NzoXqdd-1">
           <mxGeometry x="821" y="-440" width="180" height="138" as="geometry" />
