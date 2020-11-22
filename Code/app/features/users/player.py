@@ -48,11 +48,15 @@ class Player(Guest):
     @staticmethod
     def seeScoresBelote(previous_menu):
         """Affiche les scores en appellant la fonction correspondante dans la DAO"""
-        id_users = Guest.connexionJeu()
+        id_users = Guest.connexion()
         scores = PlayerDAO.getAccountDataBelote(id_users)
-        print("Vos précédentes parties sont : ")
-        for score in scores:
-            print(score)
+        if len(scores) == 0:
+            input("Aucune partie trouvée ")
+        else:
+            print("Vos précédentes parties sont : ")
+            for score in scores:
+                print(score)
+        input("Affichage terminé ")
         return MenuInterface(previous_menu)
 
 
@@ -120,8 +124,8 @@ class GameService:
     def getBackGame(idGame, nomJeu):
         data = GameDAO.getBackGame(idGame, nomJeu)
         if nomJeu == 'Belote':
-            team1ID = data[1].split()[0:1]
-            team2ID = data[1].split()[2:3]
+            team1ID = data[1].split()[0:2]
+            team2ID = data[1].split()[2:4]
             score1 = data[3]
             score2 = data[4]
             maitre = data[6]

@@ -36,12 +36,12 @@ class PlayerDAO(GuestDAO):
     def getAccountDataBelote(id_users):
         """ Renvoie les scores """
         connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
+        curseur = connexion.cursor()
         try:
             curseur.execute(
                 """SELECT * 
                 FROM games g INNER JOIN belote b ON (g.idGame = b.idGame) 
-                WHERE strpos(b.players, %s) >0 """ , (id_users,))
+                WHERE position(b.players, %s) >0 """ , (id_users[0][1],))
             ans = curseur.fetchall()
             connexion.commit()
         finally:

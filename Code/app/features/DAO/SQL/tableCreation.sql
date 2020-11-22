@@ -1,18 +1,37 @@
+DROP TABLE IF EXISTS Hands CASCADE;
+DROP TABLE IF EXISTS Piles CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
-DROP SEQUENCE IF EXISTS id_users_seq;
-CREATE SEQUENCE id_users_seq;
+DROP TABLE IF EXISTS Games CASCADE;
+DROP TABLE IF EXISTS Belote CASCADE;
+DROP SEQUENCE IF EXISTS idHands_seq;
+DROP SEQUENCE IF EXISTS idPile_seq;
+DROP SEQUENCE IF EXISTS idUsers_seq;
+DROP SEQUENCE IF EXISTS idGame_seq;
+DROP SEQUENCE IF EXISTS idBelote_seq;
+
+
+
+CREATE SEQUENCE idHands_seq;
+CREATE TABLE Hands
+(
+    idHands integer NOT NULL DEFAULT nextval
+    ('idHands_seq'::regclass) PRIMARY KEY,
+    listCard text
+);
+
+
+CREATE SEQUENCE idUsers_seq;
 CREATE TABLE users
 (
-    id_users integer NOT NULL DEFAULT nextval
-	('id_users_seq'::regclass) PRIMARY KEY,
+    idUsers integer NOT NULL DEFAULT nextval
+	('idUsers_seq'::regclass) PRIMARY KEY,
 	username text,
     mdp text,
     admini boolean,
     connected boolean,
-    score integer);
+    score integer
+);
 
-DROP TABLE IF EXISTS Piles CASCADE;
-DROP SEQUENCE IF EXISTS idPile_seq;
 CREATE SEQUENCE idPile_seq;
 CREATE TABLE Piles
 (
@@ -24,25 +43,7 @@ CREATE TABLE Piles
     card4 text
 );
 
-DROP TABLE IF EXISTS Hands CASCADE;
-DROP SEQUENCE IF EXISTS idHands_seq;
-CREATE SEQUENCE idHands_seq;
-CREATE TABLE Hands
-(
-    idHands integer NOT NULL DEFAULT nextval
-    ('idPile_seq'::regclass) PRIMARY KEY,
-    listCard text
-);
-ALTER TABLE Hands
-ADD COLUMN idGame integer,
-ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
-ALTER TABLE Hands
-ADD COLUMN idPlayers integer,
-ADD FOREIGN KEY (id_users) REFERENCES Users(id_users);
 
-
-DROP TABLE IF EXISTS Games;
-DROP SEQUENCE IF EXISTS idGame_seq;
 CREATE SEQUENCE idGame_seq;
 CREATE TABLE Games
 (
@@ -54,12 +55,6 @@ CREATE TABLE Games
 );
 
 
-ALTER TABLE Piles
-ADD COLUMN idGame integer,
-ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
-
-DROP TABLE IF EXISTS Belote CASCADE;
-DROP SEQUENCE IF EXISTS idBelote_seq;
 CREATE SEQUENCE idBelote_seq;
 CREATE TABLE Belote
 (
@@ -75,5 +70,17 @@ CREATE TABLE Belote
     finished bool
 );
 ALTER TABLE Belote
+ADD COLUMN idGame integer,
+ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
+
+ALTER TABLE Hands
+ADD COLUMN idGame integer,
+ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
+
+ALTER TABLE Hands
+ADD COLUMN idUsers integer,
+ADD FOREIGN KEY (idUsers) REFERENCES Users(idUsers);
+
+ALTER TABLE Piles
 ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);

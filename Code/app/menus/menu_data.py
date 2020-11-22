@@ -164,8 +164,7 @@ menu = [
             menuChoixJeu,
             (lambda previous_menu:previous_menu["individu"].createAccount(
                 previous_menu)),
-            (lambda previous_menu:previous_menu["individu"].voirStat(
-                previous_menu)),
+            menuStatistiques,
             menuBase,
             menuAjoutJeu,
             (lambda previous_menu:MenuInterface(menu[0])),
