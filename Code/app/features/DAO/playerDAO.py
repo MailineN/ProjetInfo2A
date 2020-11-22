@@ -32,40 +32,22 @@ class PlayerDAO(GuestDAO):
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
 
-    def getAccountData(playerID):
+    @staticmethod
+    def getAccountDataBelote(id_users):
         """ Renvoie les scores """
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.curseur()
         try:
             curseur.execute(
-                "SELECT scores from users WHERE id_users = %s", (playerID))
-            ans = curseur.fetchone[0]
-            return(ans)
+                """SELECT * 
+                FROM games g INNER JOIN belote b ON (g.idGame = b.idGame) 
+                WHERE strpos(b.players, %s) >0 """ , (id_users,))
+            ans = curseur.fetchall()
+            connexion.commit()
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-
-    def fetchGame(self, idGame):
-        """ Recherche un jeu stocké dans une partie """
-        connexion = DatabaseConnection.getConnexion()
-        curseur = connexion.curseur()
-        try:
-            curseur.execute("Select * from Games WHERE idGame= %s", (idGame))
-            ans = curseur.fetchone()[0]
-            if ans is None:
-                print("Vous n'avez pas de partie en cours")
-            else:
-                curseur.execute(
-                    "SELECT card1 card2 card3 card4 from Hand WHERE idGame= %s", (idGame))
-                main = curseur.fetchone[0]
-                curseur.execute(
-                    "SELECT card1 card2 card3 card4 from Pile WHERE idGame=%s", (idGame))
-                pile = curseur.fetchone
-                return(main, pile)
-                # ET LANCE LA PARTIE AUSSI => A FAIRE.
-        finally:
-            curseur.close()
-            DatabaseConnection.putBackConnexion(connexion)
+        return(ans)
 
     @staticmethod
     def updatePassword(username, hashmdp, newmdp):

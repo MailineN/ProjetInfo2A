@@ -15,6 +15,10 @@ class Belote(AbstractGame):
             idGame=idGame,
             save=save
         )
+        self.team1 = team1
+        self.team2 = team2
+        self.scoreTeam1 = scoreTeam1
+        self.scoreTeam2 = scoreTeam2
 
         if len(self.team1) == 0:
             (self.team1, self.team2) = Belote.CreateTeams(players)

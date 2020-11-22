@@ -45,9 +45,15 @@ class Player(Guest):
         input("Le pseudo de " + str(user) + " a été modifié ")
         return MenuInterface(previous_menu)
 
-    def seeScores():
+    @staticmethod
+    def seeScoresBelote(previous_menu):
         """Affiche les scores en appellant la fonction correspondante dans la DAO"""
-        return(PlayerDAO.getAccountData())
+        id_users = Guest.connexionJeu()
+        scores = PlayerDAO.getAccountDataBelote(id_users)
+        print("Vos précédentes parties sont : ")
+        for score in scores:
+            print(score)
+        return MenuInterface(previous_menu)
 
 
 class GameService:
@@ -73,6 +79,7 @@ class GameService:
         if jeu == 'Belote':
             while not Belote.checkPlayerNumber(listPlayers):
                 listPlayers = Guest.connexionJeu(listPlayers)
+                print(listPlayers)
         return(listPlayers)
 
     @staticmethod
