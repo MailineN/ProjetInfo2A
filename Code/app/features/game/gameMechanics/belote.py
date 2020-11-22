@@ -162,7 +162,7 @@ class Belote(AbstractGame):
             if maitre is not None:
 
                 tour = len(maitre.handList)
-                for i in range(7 - tour):
+                for i in range(tour-1):
                     maitre, plis = Belote.tourLoop(
                         Belote(), maitre, idGame, atout, self.team1, self.team2)
                     score, gagnant = Belote.countPoint(Belote(), plis, atout)
