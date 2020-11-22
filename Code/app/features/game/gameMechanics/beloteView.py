@@ -158,7 +158,7 @@ class BeloteView():
         return(answers)
 
     @staticmethod
-    def displayPoser(hand):
+    def displayPoser(hand, plis):
 
         question = [
             {
@@ -170,8 +170,13 @@ class BeloteView():
         ]
         print("Vous avez ces cartes : \n")
         for card in hand:
-            print("• "+str(card)+"\n")
-
+            print("• "+str(card))
+        print("Les cartes du plis sont : ")
+        if len(plis) == 0:
+            print("Vous êtes maitre, posez ce que vous voulez")
+        else:
+            for card in plis:
+                print("• "+str(card))
         rep = prompt(question, style=custom_style_2)
         index = int(rep['pose'][0])
         print(index)

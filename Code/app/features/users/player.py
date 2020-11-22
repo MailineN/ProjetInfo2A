@@ -79,7 +79,6 @@ class GameService:
         if jeu == 'Belote':
             while not Belote.checkPlayerNumber(listPlayers):
                 listPlayers = Guest.connexionJeu(listPlayers)
-                print(listPlayers)
         return(listPlayers)
 
     @staticmethod
@@ -97,7 +96,7 @@ class GameService:
         players = []
         for i in listPlayers:
             players.append(Player(i))
-        GameService.startGame(nomJeu, id_Jeu, players, saved)
+        GameService.startGame(nomJeu, id_Jeu[0][0], players, saved)
         return MenuInterface(previous_menu)
 
     @staticmethod
