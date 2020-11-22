@@ -87,6 +87,7 @@ class Belote(AbstractGame):
         count = sum(listPoint)
         return(count, gagnant)
 
+    @staticmethod
     def a_lacouleur(joueur, color):
         """ Vérifie si le joueur possède la couleur demandée
 
@@ -103,6 +104,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
+    @staticmethod
     def a_de_latout(joueur, atout):
         """ Vérifie si le joueur possède de l'atout
 
@@ -135,7 +137,7 @@ class Belote(AbstractGame):
                 return True
         return False
 
-    # vérifie si deux joueurs sont dans la même équipe
+    @staticmethod
     def monpote(joueur, master, equipe1, equipe2):
         """ Vérifie que le maitre du plis appartient à 
         la même équipe que le joueur s'apprétant a poser
