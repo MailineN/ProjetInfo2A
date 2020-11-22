@@ -45,8 +45,9 @@ class GameDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Games (jeu,idPlayers,finished,debut) VALUES (%s,%s, %s, %s) ;",
-                (nomJeu, listString, False, True))  # pk un player alors que les guests aussi peuvent ??
+                "INSERT INTO Games (jeu,idPlayers,finished,debut) VALUES (%s,%s, %s, %s) RETURNING idGame;",
+                (nomJeu, listString, False, True))
+            idJeu = curseur.fetchall()  # pk un player alors que les guests aussi peuvent ??
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
@@ -54,6 +55,7 @@ class GameDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+        return idJeu
 
     @staticmethod
     def saveGame(idGame):
@@ -74,3 +76,21 @@ class GameDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
+
+    @staticmethod
+    def getIDwithPlayers(idPlayers, nomJeu):
+        connexion = DatabaseConnection.getConnexion()
+        curseur = connexion.cursor()
+        try:
+            curseur.execute(
+                "SELECT * FROM %s WHERE players = %s RETURNING idGame",
+                (nomJeu, idPlayers))
+            idJeu = curseur.fetchone()
+            connexion.commit()
+        except psycopg2.Error as error:
+            connexion.rollback()
+            raise error
+        finally:
+            curseur.close
+            DatabaseConnection.putBackConnexion(connexion)
+        return idJeu

@@ -75,6 +75,7 @@ CREATE TABLE Belote
     score2 text,
     atout text, 
     maitre text,
+    scorepliencours text
 );
 ALTER TABLE Belote
 ADD COLUMN idGame integer,

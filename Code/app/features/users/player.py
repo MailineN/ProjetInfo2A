@@ -87,15 +87,29 @@ class GameService:
         GameService.startGame(nomJeu, id_Jeu, players)
         return MenuInterface(previous_menu)
 
-    def getBackGame(self, idGame, nomJeu):
+    @staticmethod
+    def initPreviousGame(nomJeu, previous_menu):
+        """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
+        listPlayers = GameService.initListPlayers(nomJeu)
+        listString = ' '.join(map(str, listPlayers))
+        # Convertit la liste de joueur [1,2,3] en string '1 2 3'
+        id_Jeu = GameDAO.getIDwithPlayers(listString, nomJeu)
+        if id_Jeu is not None:
+            GameService.getBackGame(id_Jeu, nomJeu)
+        else:
+            input("Aucune partie n'a été trouvée ")
+        return MenuInterface(previous_menu)
+
+    @staticmethod
+    def getBackGame(idGame, nomJeu):
         data = GameDAO.getBackGame(idGame, nomJeu)
         if nomJeu == 'Belote':
-            team1ID = data['players'].split()[0:1]
-            team2ID = data['players'].split()[2:3]
-            score1 = data['score1']
-            score2 = data['score2']
-            maitre = data['maitre']
-            atout = data['atout']
+            team1ID = data[1].split()[0:1]
+            team2ID = data[1].split()[2:3]
+            score1 = data[3]
+            score2 = data[4]
+            maitre = data[6]
+            atout = data[5]
             pointPlis = data['scorepliencours']
             team1 = [Player(team1ID[0]), Player(team1ID[0])]
             team2 = [Player(team2ID[0]), Player(team2ID[0])]
@@ -103,4 +117,4 @@ class GameService:
             for player in team1 + team2:
                 player.handList = Hand.getHand(idGame, player.identifiant)
 
-            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2).gameLoop(idGame, maitre, atout,pointPlis))
+            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2).gameLoop(idGame, maitre, atout, pointPlis))

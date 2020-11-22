@@ -148,7 +148,7 @@ class Belote(AbstractGame):
         else:
             return False
 
-    def gameLoop(self, idGame, maitre= None, atout= None, pointplis= None):
+    def gameLoop(self, idGame, maitre=None, atout=None, pointplis=None):
         """
         Déroulement d'une partie de belote 
         Condition de victoire : Avoir plus de 80 points avec son équipe 
@@ -157,10 +157,10 @@ class Belote(AbstractGame):
         Si aucune équipe appelle, le jeu est reinitialisé
         """
         while (self.scoreTeam1 < 500) or (self.scoreTeam2 < 500):
-            if maitre != None :
+            if maitre != None:
 
                 tour = len(maitre.handList)
-                for i in range(7- tour):
+                for i in range(7 - tour):
                     maitre, plis = Belote.tourLoop(
                         Belote(), maitre, idGame, atout, self.team1, self.team2)
                     score, gagnant = Belote.countPoint(Belote(), plis, atout)
@@ -190,7 +190,7 @@ class Belote(AbstractGame):
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
                 BeloteView.displayNewGame(self.team1, self.team2)
-                
+
                 pick = False
                 atout = None
                 teamPrenant = None
@@ -248,9 +248,9 @@ class Belote(AbstractGame):
 
                 BeloteView.displayAtoutPris(teamPrenant, atout)
 
-                    # Fin de la distribution
+                # Fin de la distribution
 
-                    # initialise un premier joueur
+                # initialise un premier joueur
                 maitre = place_player[0]
                 for i in range(7):
                     maitre, plis = Belote.tourLoop(

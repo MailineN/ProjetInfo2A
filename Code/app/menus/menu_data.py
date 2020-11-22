@@ -50,6 +50,21 @@ def menuChoixJeu(previous_menu):
     return(MenuInterface(menu_act))
 
 
+def menuChoixJeuReprise(previous_menu):
+    menu_act = {}
+    menu_act["individu"] = previous_menu["individu"]
+    menu_act["question"] = "A quel jeu voulez vous jouer ? "
+    menu_act["options"] = ["Belote",
+                           "Retour au menu principal",
+                           "Quitter l'application"]
+    menu_act["actions"] = [
+        (lambda previous_menu:GameService.initPreviousGame('Belote', previous_menu)),
+        (lambda previous_menu:MenuInterface(menu[0])),
+        Individu().quitter]
+    menu_act["path"] = []
+    return(MenuInterface(menu_act))
+
+
 def menuStatistiques(previous_menu):
     menu_act = {}
     menu_act["individu"] = previous_menu["individu"]
@@ -94,7 +109,7 @@ def menuBase(previous_menu):
     menu_act["question"] = "Que voulez vous consulter ? "
     menu_act["options"] = ["Utilisateurs",  # 2
                            "Précédentes parties ",
-                           "Ajouter un administrateur", 
+                           "Ajouter un administrateur",
                            "Supprimer un utilisateur",
                            "Effacer la base de données",
                            "Retour au menu précédent",
@@ -123,7 +138,7 @@ menu = [
         "actions": [
             (lambda previous_menu:indices_actions(
                 Player(), [1, 2, 3, 8, 6, 7])),
-            (lambda previous_menu:indices_actions(Guest(), [1, 6, 7])),
+            (lambda previous_menu:indices_actions(Guest(), [1, 9, 6, 7])),
             (lambda previous_menu:indices_actions(
                 Admin(), [0, 1, 2, 3, 8, 4, 6, 7])),
             Individu().quitter],
@@ -142,7 +157,8 @@ menu = [
             "Ajouter un jeu",  # 5
             "Revenir au menu précédent",  # 6
             "Quitter l'application",  # 7
-            "Modifier ses informations "],  # 8
+            "Modifier ses informations ",  # 8
+            "Reprendre une partie"],  # 9
         "actions": [
             connexion,
             menuChoixJeu,
@@ -154,7 +170,8 @@ menu = [
             menuAjoutJeu,
             (lambda previous_menu:MenuInterface(menu[0])),
             Individu().quitter,
-            menuModif],
+            menuModif,
+            menuChoixJeuReprise],
         "individu": Individu(),
         "path": []
     }]
