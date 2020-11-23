@@ -196,7 +196,18 @@ class Belote(AbstractGame):
                     self.scoreTeam2 += score
                     self.scoreTeam2 += 10
                     maitre = None  
-            
+                if teamPrenant == 'Team 1':
+                    if self.scoreTeam1 >= 82 :
+                        print("Les preneurs gagnent les points")
+                    else :
+                        self.scoreTeam2 += self.scoreTeam1
+                        self.scoreTeam1 -= self.scoreTeam1
+                elif teamPrenant == 'Team 2':
+                    if self.scoreTeam1 >= 82 :
+                        print("Les preneurs gagnent les points")
+                    else :
+                        self.scoreTeam1 += self.scoreTeam2
+                        self.scoreTeam2 -= self.scoreTeam2
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
