@@ -140,7 +140,7 @@ menu = [
                 Player(), [1, 2, 3, 8, 6, 7])),
             (lambda previous_menu:indices_actions(Guest(), [1, 9, 6, 7])),
             (lambda previous_menu:indices_actions(
-                Admin(), [0, 1, 2, 3, 8, 4, 6, 7])),
+                Admin(), [0, 2, 8, 4, 6, 7])),
             Individu().quitter],
 
         "individu": Individu(),

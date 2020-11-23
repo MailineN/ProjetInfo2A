@@ -82,7 +82,7 @@ class Admin(Player):
             input("Vous n'êtes pas connecté ")
         else:
             games = AdminDAO.getAllGameData()
-            for game in games: 
+            for game in games:
                 print("• Nom du Jeu : "+game[1]+", Joueurs : " +
                       str(game[2]) + ", Scores : " + str(game[3]) + "\n")
 
@@ -96,12 +96,16 @@ class Admin(Player):
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
-            AdminDAO.initDatabase()
-            users = AdminDAO.getAllUserData()
-            for user in users:
-                print("• Nom : "+user[1]+", Administrateur : " +
-                      str(user[3]) + ", Scores : " + str(user[5]) + "\n")
-            input(" \n Affichage terminé ")
+            confirm = AdminView.displayResetDataBase()
+            if confirm == 'SUPPRIMER':
+                AdminDAO.initDatabase()
+                users = AdminDAO.getAllUserData()
+                for user in users:
+                    print("• Nom : "+user[1]+", Administrateur : " +
+                          str(user[3]) + ", Scores : " + str(user[5]) + "\n")
+                input(" \n Suppression terminée ")
+            else:
+                input("La suppression n'a pas abouti ")
         return MenuInterface(previous_menu)
 
     def connexion(self):
