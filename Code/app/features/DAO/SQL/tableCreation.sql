@@ -77,8 +77,8 @@ ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
 
 ALTER TABLE Hands
-ADD COLUMN idUsers integer,
-ADD FOREIGN KEY (idUsers) REFERENCES Users(idUsers);
+ADD COLUMN idUsers text,
+ADD FOREIGN KEY (idUsers) REFERENCES Users(username);
 
 ALTER TABLE Piles
 ADD COLUMN idGame integer,
