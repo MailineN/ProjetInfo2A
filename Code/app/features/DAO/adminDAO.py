@@ -11,12 +11,12 @@ class AdminDAO:
         try:
             users = AdminDAO.backupAccount()
             curseur.execute(
-                open("app/features/DAO/SQL/tableCreation.sql", "r").read())
+                open("Code/app/features/DAO/SQL/tableCreation.sql", "r").read())
             for user in users:
                 curseur.execute(
                     """ INSERT INTO users (username,mdp,admini,connected)
                     VALUES (%s,%s, %s,%s)
-                    """, (user['username'], user['mdp'], True, False)
+                    """, (user[1], user[2], True, False)
                 )
             connexion.commit()
         except psycopg2.Error as error:
@@ -93,7 +93,6 @@ class AdminDAO:
         finally:
             curseur.close
             DatabaseConnection.putBackConnexion(connexion)
-            print(id_user)
         return id_user
 
     @ staticmethod

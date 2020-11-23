@@ -15,7 +15,7 @@ CREATE SEQUENCE idHands_seq;
 CREATE TABLE Hands
 (
     idHands integer NOT NULL DEFAULT nextval
-    ('idHands_seq'::regclass) PRIMARY KEY,
+    ('idHands_seq'::regclass) PRIMARY KEY UNIQUE,
     listCard text
 );
 
@@ -24,8 +24,8 @@ CREATE SEQUENCE idUsers_seq;
 CREATE TABLE users
 (
     idUsers integer NOT NULL DEFAULT nextval
-	('idUsers_seq'::regclass) PRIMARY KEY,
-	username text,
+	('idUsers_seq'::regclass) PRIMARY KEY UNIQUE,
+	username text UNIQUE,
     mdp text,
     admini boolean,
     connected boolean,
@@ -36,7 +36,7 @@ CREATE SEQUENCE idPile_seq;
 CREATE TABLE Piles
 (
     idPile integer NOT NULL DEFAULT nextval
-    ('idPile_seq'::regclass) PRIMARY KEY,
+    ('idPile_seq'::regclass) PRIMARY KEY UNIQUE,
     card1 text,
     card2 text,
     card3 text,
@@ -48,7 +48,7 @@ CREATE SEQUENCE idGame_seq;
 CREATE TABLE Games
 (
     idGame integer NOT NULL DEFAULT nextval
-    ('idGame_seq'::regclass) PRIMARY KEY, 
+    ('idGame_seq'::regclass) PRIMARY KEY UNIQUE, 
     jeu text,
     idPlayers text,
     score text
@@ -59,7 +59,7 @@ CREATE SEQUENCE idBelote_seq;
 CREATE TABLE Belote
 (
     idBelote integer NOT NULL DEFAULT nextval
-    ('idBelote_seq'::regclass) PRIMARY KEY,
+    ('idBelote_seq'::regclass) PRIMARY KEY UNIQUE,
     players text,
     handList text, 
     score1 text,

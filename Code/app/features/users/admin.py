@@ -82,7 +82,9 @@ class Admin(Player):
             input("Vous n'êtes pas connecté ")
         else:
             games = AdminDAO.getAllGameData()
-            print(games)
+            for game in games: 
+                print("• Nom du Jeu : "+game[1]+", Joueurs : " +
+                      str(game[2]) + ", Scores : " + str(game[3]) + "\n")
 
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
@@ -94,8 +96,11 @@ class Admin(Player):
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
-            games = AdminDAO.getAllGameData()
-            print(games)
+            AdminDAO.initDatabase()
+            users = AdminDAO.getAllUserData()
+            for user in users:
+                print("• Nom : "+user[1]+", Administrateur : " +
+                      str(user[3]) + ", Scores : " + str(user[5]) + "\n")
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 

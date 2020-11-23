@@ -30,7 +30,11 @@ class Player(Guest):
         newhash_mdp = hashlib.sha256(new_mdp.encode()).hexdigest()
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
         user = PlayerDAO.updatePassword(username, hash_mdp, newhash_mdp)
-        input("Le mot de passe de " + str(user) + " a été modifié ")
+        if user is not None:
+            input("Le mot de passe de " + str(user[0]) + " a été modifié ")
+        else:
+            input(
+                "Echec de la modification, verifiez votre pseudo et votre mot de passe ")
         return MenuInterface(previous_menu)
 
     @staticmethod
@@ -42,7 +46,11 @@ class Player(Guest):
 
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
         user = PlayerDAO.updateName(username, hash_mdp, new_name)
-        input("Le pseudo de " + str(user) + " a été modifié ")
+        if user is not None:
+            input("Le pseudo de " + str(user[0]) + " a été modifié ")
+        else:
+            input(
+                "Echec de la modification, verifiez votre pseudo et votre mot de passe ")
         return MenuInterface(previous_menu)
 
     @staticmethod
@@ -69,7 +77,7 @@ class GameService:
         pass
 
     @staticmethod
-    def startGame(nomJeu, idJeu, PlayerGroup, saved, maitre = None):
+    def startGame(nomJeu, idJeu, PlayerGroup, saved, maitre=None):
         """ Lance une partie de jeu avec le groupe de joueur et l'identifiant du jeu """
         # TODO : Implémenter ici la reprise du jeu
         if nomJeu == 'Belote':
