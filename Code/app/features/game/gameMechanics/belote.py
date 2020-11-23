@@ -427,7 +427,7 @@ class Belote(AbstractGame):
         """ Creation des mains et sauvegarde """
         listHand = []
         for player in team1+team2:
-            idHand = Hand.newHand(self.idGame)
+            idHand = Hand.newHand(self.idGame, player.identifiant)
             hand = Hand(self.idGame, idHand, ' '.join(
                 map(str, player.handList)))
             Hand.saveHand(hand)

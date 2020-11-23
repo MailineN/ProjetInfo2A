@@ -20,14 +20,14 @@ class Hand(PileCard):
             liste += str(card) + ", "
         return(rep+liste)
 
-    def newHand(idGame):
+    def newHand(idGame, idUsers):
         """ Initialise une pile vide
 
         Args:
             idGame (str): Identifiant du jeu pour laquelle la pile est crée
 
         """
-        return HandDAO.newHand(idGame)
+        return HandDAO.newHand(idGame, idUsers)
 
     @staticmethod
     def saveHand(hand):

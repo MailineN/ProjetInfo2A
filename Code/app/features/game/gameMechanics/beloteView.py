@@ -179,5 +179,4 @@ class BeloteView():
                 print("• "+str(card))
         rep = prompt(question, style=custom_style_2)
         index = int(rep['pose'][0])
-        print(index)
         return(player.handList[index])

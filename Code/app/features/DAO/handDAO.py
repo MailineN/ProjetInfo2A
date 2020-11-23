@@ -5,14 +5,14 @@ from app.features.DAO.databaseConnection import DatabaseConnection
 class HandDAO:
 
     @staticmethod
-    def newHand(idjeu):
+    def newHand(idjeu, idUsers):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO Hands (idGame)"
-                "VALUES (%s) RETURNING hands.idhands ",
-                (idjeu,)
+                """INSERT INTO Hands (idGame,idUsers)
+                VALUES (%s,%s) RETURNING hands.idhands """,
+                (int(idjeu), idUsers)
                 # On récupère l'id de la hand
             )
             idHand = curseur.fetchone()[0]
@@ -32,12 +32,11 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO hands (idhands, idGame, listCard)"
-                "VALUES (%s, %s, %s) RETURNING idhand ",
-                (hand.idHand, hand.idGame, hand.card_list)
+                """UPDATE hands 
+                SET (idGame = %s, listCard = %s)
+                WHERE idhands = %s""",
+                (hand.idGame, hand.card_list, hand.idHand)
             )
-
-            hand.id = curseur.fetchone()[0]
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()
