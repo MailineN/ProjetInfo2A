@@ -25,7 +25,7 @@ class PlayerView():
 
             }
         ]
-        print("Votre mot de passe a été modifié : \n")
+        print("Changement de mot de passe : \n")
         res = prompt(questions, style=custom_style_2)
         return(res['username'], res['former_mdp'], res['new_mdp'])
 
