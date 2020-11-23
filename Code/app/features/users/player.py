@@ -69,11 +69,11 @@ class GameService:
         pass
 
     @staticmethod
-    def startGame(nomJeu, idJeu, PlayerGroup, saved):
+    def startGame(nomJeu, idJeu, PlayerGroup, saved, maitre = None):
         """ Lance une partie de jeu avec le groupe de joueur et l'identifiant du jeu """
         # TODO : Implémenter ici la reprise du jeu
         if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False, save=saved).gameLoop(idJeu))
+            return(Belote(idJeu, PlayerGroup, False, save=saved).gameLoop(idJeu, maitre))
 
     @staticmethod
     def initListPlayers(jeu):
