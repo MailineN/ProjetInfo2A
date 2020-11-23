@@ -41,7 +41,7 @@ class PlayerDAO(GuestDAO):
             curseur.execute(
                 """SELECT * 
                 FROM games g INNER JOIN belote b ON (g.idGame = b.idGame) 
-                WHERE position(b.players, %s) >0 """ , (id_users[0][1],))
+                WHERE position(b.players in %s) >0 """ , (id_users[0][1],))
             ans = curseur.fetchall()
             connexion.commit()
         finally:

@@ -286,6 +286,7 @@ class Belote(AbstractGame):
         else:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
+        input(str(ordre) + " ")
         cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list)
         plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
@@ -414,7 +415,7 @@ class Belote(AbstractGame):
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
         Pile.savePile(plis)
-        input(maitre + " remporte le pli !")
+        input(maitre.identifiant + " remporte le pli !")
         return maitre, plis
 
     def saveFinishedGame(self):
