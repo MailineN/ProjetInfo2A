@@ -298,7 +298,7 @@ class Belote(AbstractGame):
                     while card.couleur[0] != atout:
                         print("\nVous devez jouer à l'atout\n")
                         card = BeloteView.displayPoser(
-                            ordre[i], plis.card_list)
+                            ordre[i], plis.card_list, atout)
                     while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
                         print("\nVous devez monter\n")
                         card = BeloteView.displayPoser(
