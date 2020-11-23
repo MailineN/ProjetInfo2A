@@ -7,12 +7,14 @@ def verif_init_id(username):
     connexion = DatabaseConnection.getConnexion()
     curseur = connexion.cursor()
     try:
-        answer = curseur.execute(
+        curseur.execute(
             "SELECT * from users WHERE username = %s ; ", ((username),))
-        if answer is None:
-            return True
-        else:
-            return False
+        answer = curseur.fetchone()
+        connexion.commit()
     finally:
         curseur.close
         DatabaseConnection.putBackConnexion(connexion)
+    if answer is None:
+        return True
+    else:
+        return False
