@@ -194,7 +194,7 @@ class Belote(AbstractGame):
                 else:
                     self.scoreTeam2 += score
                     self.scoreTeam2 += 10
-
+                maitre = None    
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
@@ -300,7 +300,7 @@ class Belote(AbstractGame):
                     while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
                         print("\nVous devez monter\n")
                         card = BeloteView.displayPoser(
-                            ordre[i], plis.card_list)
+                            ordre[i], plis.card_list, atout)
                     if (self.point_atout[str(card.valeur[0])]) > cartemaitre:
                         cartemaitre = (self.point_atout[str(card.valeur[0])])
                         maitre = ordre[i]
