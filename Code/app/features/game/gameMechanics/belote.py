@@ -191,10 +191,12 @@ class Belote(AbstractGame):
                 if maitre in self.team1:
                     self.scoreTeam1 += score
                     self.scoreTeam1 += 10
+                    maitre = None  
                 else:
                     self.scoreTeam2 += score
                     self.scoreTeam2 += 10
-                maitre = None    
+                    maitre = None  
+            
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
