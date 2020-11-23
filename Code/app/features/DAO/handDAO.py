@@ -11,7 +11,7 @@ class HandDAO:
         try:
             curseur.execute(
                 "INSERT INTO Hands (idGame)"
-                "VALUES (%s) RETURNING idHand ",
+                "VALUES (%s) RETURNING hands.idhands ",
                 (idjeu,)
                 # On récupère l'id de la hand
             )
@@ -27,14 +27,14 @@ class HandDAO:
         return idHand
 
     @staticmethod
-    def savehandinDataBase(hand, listCard):
+    def savehandinDataBase(hand):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "INSERT INTO hands (idhand, idGame, listCard)"
+                "INSERT INTO hands (idhands, idGame, listCard)"
                 "VALUES (%s, %s, %s) RETURNING idhand ",
-                (hand.idhand, hand.idGame, listCard)
+                (hand.idHand, hand.idGame, hand.card_list)
             )
 
             hand.id = curseur.fetchone()[0]
@@ -69,7 +69,7 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "DELETE FROM hands WHERE idHand=%s", (idHand,)
+                "DELETE FROM hands WHERE idHands=%s", (idHand,)
             )
 
             if curseur.rowcount > 0:

@@ -73,7 +73,7 @@ class GameService:
         """ Lance une partie de jeu avec le groupe de joueur et l'identifiant du jeu """
         # TODO : Implémenter ici la reprise du jeu
         if nomJeu == 'Belote':
-            return(Belote(idJeu, PlayerGroup, False).gameLoop(idJeu))
+            return(Belote(idJeu, PlayerGroup, False, save=saved).gameLoop(idJeu))
 
     @staticmethod
     def initListPlayers(jeu):
@@ -130,11 +130,10 @@ class GameService:
             score2 = data[4]
             maitre = data[6]
             atout = data[5]
-            saved = data[7]
             team1 = [Player(team1ID[0]), Player(team1ID[0])]
             team2 = [Player(team2ID[0]), Player(team2ID[0])]
 
             for player in team1 + team2:
                 player.handList = Hand.getHand(idGame, player.identifiant)
 
-            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2, saved).gameLoop(idGame, maitre, atout))
+            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2, True).gameLoop(idGame, maitre, atout))

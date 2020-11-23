@@ -6,9 +6,9 @@ from app.features.DAO.handDAO import HandDAO
 
 class Hand(PileCard):
 
-    def __init__(self, idGame, idHand, card_list=[]):
+    def __init__(self, idGame, idHand, card_list):
         self.idGame = idGame
-        self.idPile = idHand
+        self.idHand = idHand
         self.card_list = card_list
 
     def __str__(self):
@@ -31,7 +31,7 @@ class Hand(PileCard):
 
     @staticmethod
     def saveHand(hand):
-        HandDAO.saveHandinDataBase(hand)
+        HandDAO.savehandinDataBase(hand)
 
     @staticmethod
     def getHand(idGame, idPlayer):

@@ -180,7 +180,7 @@ class Belote(AbstractGame):
 
                     save = BeloteView.displayFinTour(maitre, plis.card_list)
                     if save == 'Non' and self.save:
-                        Belote.saveMiddleGame(
+                        self.saveMiddleGame(
                             self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
                         return None
                     if save == 'Non' and not self.save:
@@ -286,7 +286,6 @@ class Belote(AbstractGame):
         else:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
-        input(str(ordre) + " ")
         cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list)
         plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
