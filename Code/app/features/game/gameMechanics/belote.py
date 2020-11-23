@@ -23,8 +23,7 @@ class Belote(AbstractGame):
         if len(self.team1) == 0:
             (self.team1, self.team2) = Belote.CreateTeams(self.players)
 
-        self.listCards = "7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,\
-            0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
+        self.listCards = "7S,7D,7C,7H,8S,8D,8C,8H,9S,9D,9C,9H,0S,0D,0C,0H,JS,JD,JC,JH,QS,QD,QC,QH,KS,KD,KC,KH,AS,AD,AC,AH"
 
         self.point_atout = {"JACK": 20, "9": 14, "ACE": 11,
                             "10": 10, "KING": 4, "QUEEN": 3, "8": 0, "7": 0}
@@ -225,12 +224,7 @@ class Belote(AbstractGame):
                                 teamPrenant = "Team 2"
                             atout = carteAppel.couleur[0]
                             place_player[i].handList.append(carteAppel)
-                            preneur = place_player[i]
-                            for player in place_player:
-                                if player == preneur:
-                                    player.handList += deck.drawDeck(2)
-                                else:
-                                    player.handList += deck.drawDeck(3)
+                            preneur = i
                             pick = True
                             break
                     if not pick:
@@ -244,18 +238,18 @@ class Belote(AbstractGame):
                                     teamPrenant = "Team 2"
                                 atout = appel[1]
                                 place_player[i].handList.append(carteAppel)
-                                preneur = place_player[i]
-                                for player in place_player:
-                                    if player == preneur:
-                                        player.handList += deck.drawDeck(2)
-                                    else:
-                                        player.handList += deck.drawDeck(3)
+                                preneur = i
                                 pick = True
                                 break
 
                     if not pick:
                         BeloteView.displayRedistrib
 
+                for i in range(len(place_player)):
+                    if i == preneur:
+                        place_player[i].handList += deck.drawDeck(2)
+                    else:
+                        place_player[i].handList += deck.drawDeck(3)
                 BeloteView.displayAtoutPris(teamPrenant, atout)
 
                 # Fin de la distribution
