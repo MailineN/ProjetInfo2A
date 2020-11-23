@@ -8,6 +8,7 @@ from app.features.game.cardObjects.handPile import Pile
 class BeloteTests(unittest.TestCase):
 
     def test_PointsAtout(self):
+        players=['a','b','a','b']
         atout = "DIAMONDS"
         plis = Pile(None, None, card_list=[
             Card(valeur="ACE", couleur="DIAMONDS"),
@@ -15,9 +16,10 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="KING", couleur="DIAMONDS"),
             Card(valeur="7", couleur="DIAMONDS")
         ])
-        self.assertEqual((29, 1), Belote.countPoint(Belote(), plis, atout))
+        self.assertEqual((29, 1), Belote.countPoint(Belote(players= players), plis, atout))
 
     def test_PointsNonAtout(self):
+        players=['a','b','a','b']
         atout = "CLUBS"
         plis = Pile(None, None, card_list=[
             Card(valeur="ACE", couleur="DIAMONDS"),
@@ -26,9 +28,10 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="7", couleur="DIAMONDS")
         ])
 
-        self.assertEqual((15, 0), Belote.countPoint(Belote(), plis, atout))
+        self.assertEqual((15, 0), Belote.countPoint(Belote(players= players), plis, atout))
 
     def test_PointsCoupe(self):
+        players=['a','b','a','b']
         atout = "HEARTS"
         plis = Pile(None, None, card_list=[
             Card(valeur="ACE", couleur="DIAMONDS"),
@@ -36,7 +39,7 @@ class BeloteTests(unittest.TestCase):
             Card(valeur="8", couleur="DIAMONDS"),
             Card(valeur="7", couleur="HEARTS")
         ])
-        self.assertEqual((15, 3), Belote.countPoint(Belote(), plis, atout))
+        self.assertEqual((15, 3), Belote.countPoint(Belote(players= players), plis, atout))
 
     def test_monpote(self):
         team1 = ["player1", "player2"]
@@ -67,6 +70,7 @@ class BeloteTests(unittest.TestCase):
         self.assertTrue(Belote.a_lacouleur(testplayer, couleur))
 
     def test_monteratout(self):
+        players=['a','b','a','b']
         vcarte = 11
         atout = "HEARTS"
         testplayer = Guest(handList=[
@@ -77,7 +81,7 @@ class BeloteTests(unittest.TestCase):
         ])
 
         self.assertFalse(Belote.monteratout(
-            Belote(), testplayer, vcarte, atout))
+            Belote(players= players), testplayer, vcarte, atout))
 
     def test_checkPlayerNumber(self):
         testplayers = [1, 2, 3, 4]
