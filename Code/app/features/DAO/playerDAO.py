@@ -75,8 +75,7 @@ class PlayerDAO(GuestDAO):
         try:
             curseur.execute(
                 "UPDATE users SET username = %s WHERE mdp = %s and username = %s RETURNING username", (nusername, hashmdp, username))
-            if curseur.fetchone() is not None:
-                rep = curseur.fetchone()
+            rep = curseur.fetchone()
             connexion.commit()
 
         except psycopg2.Error as error:
