@@ -12,11 +12,11 @@ from app.features.game.cardObjects.cards import Card
 class BeloteView():
 
     @staticmethod
-    def displayTourAppel(hand, carteAppel):
+    def displayTourAppel(player, carteAppel):
         question1 = [
             {
                 'type': 'list',
-                'message': 'Voulez vous prendre ?',
+                'message': str(player.identifiant) + ': Voulez vous prendre ?',
                 'name': 'pose',
                 'choices':  [
                         'Oui',
@@ -27,7 +27,7 @@ class BeloteView():
         print("Carte d'appel : ")
         print(str(carteAppel))
         print("Vous avez ces cartes: \n")
-        for card in hand:
+        for card in player.handList:
             print("• "+str(card)+"\n")
 
         rep = prompt(question1, style=custom_style_2)
@@ -37,12 +37,12 @@ class BeloteView():
             return False
 
     @staticmethod
-    def displayTourAppel2(hand):
+    def displayTourAppel2(player):
         rep = ""
         question1 = [
             {
                 'type': 'list',
-                'message': 'Voulez vous appeler ?',
+                'message': str(player.identifiant) + ': Voulez vous prendre ?',
                 'name': 'pose',
                 'choices':  [
                     'Oui',
@@ -64,7 +64,7 @@ class BeloteView():
             },
         ]
         print("Vous avez ces cartes : \n")
-        for card in hand:
+        for card in player.handList:
             print("• "+str(card)+"\n")
         rep = prompt(question1, style=custom_style_2)
         if (rep['pose'] == 'Oui'):
@@ -158,26 +158,26 @@ class BeloteView():
         return(answers)
 
     @staticmethod
-    def displayPoser(hand, plis):
+    def displayPoser(player, plis):
 
         question = [
             {
                 'type': 'list',
-                'message': 'Quelle carte voulez vous poser ?',
+                'message': str(player.identifiant) + ': Quelle carte voulez vous poser ?',
                 'name': 'pose',
-                'choices': [str(i)+". "+str(hand[i])for i in range(len(hand))]
+                'choices': [str(i)+". "+str(player.handList[i])for i in range(len(player.handList))]
             }
         ]
         print("Vous avez ces cartes : \n")
-        for card in hand:
+        for card in player.handList:
             print("• "+str(card))
         print("Les cartes du plis sont : ")
         if len(plis) == 0:
-            print("Vous êtes maitre, posez ce que vous voulez")
+            print("Vous êtes maitre, posez ce que vous voulez \n")
         else:
             for card in plis:
                 print("• "+str(card))
         rep = prompt(question, style=custom_style_2)
         index = int(rep['pose'][0])
         print(index)
-        return(hand[index])
+        return(player.handList[index])

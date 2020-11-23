@@ -165,7 +165,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        while (self.scoreTeam1 < 500) or (self.scoreTeam2 < 500):
+        while (self.scoreTeam1 < 160) or (self.scoreTeam2 < 160):
             if maitre is not None:
 
                 tour = len(maitre.handList)
@@ -179,11 +179,11 @@ class Belote(AbstractGame):
                         self.scoreTeam2 += score
 
                     save = BeloteView.displayFinTour(maitre, plis.card_list)
-                    if save == 'Oui' and self.save:
+                    if save == 'Non' and self.save:
                         Belote.saveMiddleGame(
                             self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
                         return None
-                    if save == 'Oui' and not self.save:
+                    if save == 'Non' and not self.save:
                         input("Vous ne pouvez pas sauvegarder une partie invitée ")
                 maitre, plis = self.tourLoop(
                     maitre, idGame, atout, self.team1, self.team2)
@@ -217,7 +217,7 @@ class Belote(AbstractGame):
                     appel = False
                     for i in range(len(place_player)):
                         appel = BeloteView.displayTourAppel(
-                            place_player[i].handList, carteAppel)
+                            place_player[i], carteAppel)
                         if appel:
                             if i % 2 == 0:
                                 teamPrenant = "Team 1"
@@ -236,7 +236,7 @@ class Belote(AbstractGame):
                     if not pick:
                         for player in place_player:
                             appel = BeloteView.displayTourAppel2(
-                                place_player[i].handList)
+                                place_player[i])
                             if appel[0]:
                                 if i % 2 == 0:
                                     teamPrenant = "Team 1"
@@ -283,11 +283,10 @@ class Belote(AbstractGame):
         elif maitre == place_player[2]:
             ordre = [place_player[2], place_player[3],
                      place_player[0], place_player[1]]
-        elif maitre == place_player[3]:
+        else:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
-        print("C'est au tour du maitre : "+ maitre.identifiant + " de poser \n")
-        cartejoue = BeloteView.displayPoser(ordre[0].handList, plis.card_list)
+        cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list)
         plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
         # On retire la carte jouée de la main du joueur
@@ -296,18 +295,18 @@ class Belote(AbstractGame):
             cartemaitre = (self.point_atout[str(plis.card_list[0].valeur[0])])
             pointsplis = cartemaitre
             for i in range(1, 4):
-                print("C'est à " + ordre[i].identifiant + " de jouer \n")
+                print("\n C'est à " + ordre[i].identifiant + " de jouer \n")
                 card = BeloteView.displayPoser(
-                    ordre[i].handList, plis.card_list)
+                    ordre[i], plis.card_list)
                 if Belote.a_de_latout(ordre[i], atout):
                     while card.couleur[0] != atout:
-                        print("Vous devez jouer à l'atout")
+                        print("\nVous devez jouer à l'atout\n")
                         card = BeloteView.displayPoser(
-                            ordre[i].handList, plis.card_list)
+                            ordre[i], plis.card_list)
                     while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
-                        print("Vous devez monter")
+                        print("\nVous devez monter\n")
                         card = BeloteView.displayPoser(
-                            ordre[i].handList, plis.card_list)
+                            ordre[i], plis.card_list)
                     if (self.point_atout[str(card.valeur[0])]) > cartemaitre:
                         cartemaitre = (self.point_atout[str(card.valeur[0])])
                         maitre = ordre[i]
@@ -333,15 +332,15 @@ class Belote(AbstractGame):
             pointsplis = cartemaitre
             for i in range(1, 4):
                 card = BeloteView.displayPoser(
-                    ordre[i].handList, plis.card_list)
+                    ordre[i], plis.card_list)
                 # Mon coéquipier est maître
                 if Belote.monpote(ordre[i], maitre, team1, team2):
                     # Peut jouer à la couleur
                     if Belote.a_lacouleur(ordre[i], couleurask):
                         while card.couleur[0] != couleurask:
-                            print("Il faut jouer à la couleur demandée")
+                            print("\n Il faut jouer à la couleur demandée \n ")
                             card = BeloteView.displayPoser(
-                                ordre[i].handList, plis.card_list)
+                                ordre[i], plis.card_list)
 
                         plis.poser(card, ordre[i])
 
@@ -367,9 +366,9 @@ class Belote(AbstractGame):
                     # Doit jouer à la même couleur
                     if Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] != couleurask:
                         while card.couleur[0] != couleurask:
-                            print("Il faut jouer à la couleur demandée")
+                            print("\n Il faut jouer à la couleur demandée \n ")
                             card = BeloteView.displayPoser(
-                                ordre[i].handList, plis.card_list)
+                                ordre[i], plis.card_list)
                         # Devient maitre
                         if (self.point_noatout[str(card.valeur[0])]) > cartemaitre and coupe == 0:
                             plis.poser(card, ordre[i])
@@ -390,9 +389,9 @@ class Belote(AbstractGame):
                     elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout and card.couleur[0] != couleurask:
                         if coupe == 0:
                             while card.couleur[0] != atout:
-                                print("Il faut couper")
+                                print("\n Il faut couper\n ")
                                 card = BeloteView.displayPoser(
-                                    ordre[i].handList, plis.card_list)
+                                    ordre[i], plis.card_list)
                             coupe += 1
                             maitre = ordre[i]
                             cartemaitre = (
@@ -401,9 +400,9 @@ class Belote(AbstractGame):
 
                         elif coupe != 0:
                             while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atout[str(card.valeur[0])]) < cartemaitre:
-                                print("Il faut surcouper")
+                                print("\n Il faut surcouper\n ")
                                 card = BeloteView.displayPoser(
-                                    ordre[i].handList, plis.card_list)
+                                    ordre[i], plis.card_list)
                             if (self.point_atout[str(card.valeur[0])]) > cartemaitre:
                                 cartemaitre = (
                                     self.point_atout[str(card.valeur[0])])
@@ -414,8 +413,8 @@ class Belote(AbstractGame):
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
-                        Pile.savePile(idPile)
         Pile.savePile(plis)
+        input(maitre + " remporte le pli !")
         return maitre, plis
 
     def saveFinishedGame(self):
