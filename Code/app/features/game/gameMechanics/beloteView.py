@@ -158,12 +158,12 @@ class BeloteView():
         return(answers)
 
     @staticmethod
-    def displayPoser(player, plis):
+    def displayPoser(player, plis, atout):
 
         question = [
             {
                 'type': 'list',
-                'message': str(player.identifiant) + ': Quelle carte voulez vous poser ?',
+                'message': str(player.identifiant) + ': Quelle carte voulez vous poser ? Rappel : L\'atout est : ' + atout,
                 'name': 'pose',
                 'choices': [str(i)+". "+str(player.handList[i])for i in range(len(player.handList))]
             }

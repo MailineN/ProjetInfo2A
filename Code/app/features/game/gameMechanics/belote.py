@@ -186,7 +186,7 @@ class Belote(AbstractGame):
                         input("Vous ne pouvez pas sauvegarder une partie invitée ")
                 maitre, plis = self.tourLoop(
                     maitre, idGame, atout, self.team1, self.team2)
-                score, gagnant = Belote.countPoint(plis, atout)
+                score, gagnant = self.countPoint(plis, atout)
 
                 if maitre in self.team1:
                     self.scoreTeam1 += score
@@ -280,7 +280,7 @@ class Belote(AbstractGame):
         else:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
-        cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list)
+        cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list, atout)
         plis.poser(cartejoue, maitre)
         couleurask = plis.card_list[0].couleur[0]
         # On retire la carte jouée de la main du joueur
