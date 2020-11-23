@@ -41,7 +41,7 @@ class PlayerDAO(GuestDAO):
             curseur.execute(
                 """SELECT * 
                 FROM games g INNER JOIN belote b ON (g.idGame = b.idGame) 
-                WHERE position(b.players in %s) >0 """ , (id_users[0][1],))
+                WHERE position(b.players in %s) >0 """, (id_users[0][1],))
             ans = curseur.fetchall()
             connexion.commit()
         finally:
@@ -58,7 +58,7 @@ class PlayerDAO(GuestDAO):
             curseur.execute(
                 "UPDATE users SET mdp = %s WHERE mdp = %s and username = %s RETURNING username", (newmdp, hashmdp, username))
             connexion.commit()
-            rep = curseur.fetchone()[0]
+            rep = curseur.fetchone()
         except psycopg2.Error as error:
             connexion.rollback()
             raise error
@@ -75,8 +75,10 @@ class PlayerDAO(GuestDAO):
         try:
             curseur.execute(
                 "UPDATE users SET username = %s WHERE mdp = %s and username = %s RETURNING username", (nusername, hashmdp, username))
+            if curseur.fetchone() is not None:
+                rep = curseur.fetchone()
             connexion.commit()
-            rep = curseur.fetchone()[0]
+
         except psycopg2.Error as error:
             connexion.rollback()
             raise error

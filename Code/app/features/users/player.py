@@ -37,8 +37,8 @@ class Player(Guest):
     def changeUsername(previous_menu):
         """ Permet de changer le mot de passe d'un utilisateur """
         (username, motdepasse, new_name) = PlayerView.displayChangeName()
-        while not verif_init_id(username):
-            username = GuestView.displayVerifId()
+        while not verif_init_id(new_name):
+            new_name = GuestView.displayVerifId()
 
         hash_mdp = hashlib.sha256(motdepasse.encode()).hexdigest()
         user = PlayerDAO.updateName(username, hash_mdp, new_name)
