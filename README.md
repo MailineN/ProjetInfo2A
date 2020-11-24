@@ -1,3 +1,8 @@
+<br />
+<p align="center">
+  <a href="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/1280px-Logo_ENSAI_2014.svg.png">
+    <img src="1280px-Logo_ENSAI_2014.svg.png " alt="Logo" height="80">
+  </a>
 <p align="center">
   <img width="600" height="200" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/1280px-Logo_ENSAI_2014.svg.png">
 </p>
