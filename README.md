@@ -12,11 +12,12 @@ L'objectif futur est d'ajouter des jeux supplémentaires tel que le Poker ou le 
 L'objectif premier de l'application est de pouvoir jouer à un jeu de carte. Les joueurs ont également la possibilité de se créer un compte afin de sauvegarder leurs parties et leurs scores dans une base de données. Dans une version future, il sera possible d'accéder à un classement des joueurs et a des statistiques avancées. 
 
 ### Jeu de cartes
-`Inserer Screens`  
+ > Inserer Screens
 
 ### Fonctionnalités utilisateurs 
-`Inserer screens`  
+ > Inserer screens 
 
+---
 ## Installation 
 Pour installer l'application, il faut excécuter la commande suivante dans un terminal:   
 ``` $ git clone "https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A.git" ```
