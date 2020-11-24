@@ -184,7 +184,7 @@ class Belote(AbstractGame):
                     save = BeloteView.displayFinTour(maitre, plis.card_list)
                     if save == 'Non' and self.save:
                         self.saveMiddleGame(
-                            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre)
+                            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, atout, maitre, self.teamPrenant)
                         return None
                     if save == 'Non' and not self.save:
                         input("Vous ne pouvez pas sauvegarder une partie invitée ")
@@ -200,13 +200,13 @@ class Belote(AbstractGame):
                     self.scoreTeam2 += score
                     self.scoreTeam2 += 10
                     maitre = None  
-                if teamPrenant == 'Team 1':
+                if self.teamPrenant == 'Team 1':
                     if self.scoreTeam1 >= 82 :
                         print("Les preneurs gagnent les points")
                     else :
                         self.scoreTeam2 += self.scoreTeam1
                         self.scoreTeam1 -= self.scoreTeam1
-                elif teamPrenant == 'Team 2':
+                elif self.teamPrenant == 'Team 2':
                     if self.scoreTeam1 >= 82 :
                         print("Les preneurs gagnent les points")
                     else :
@@ -278,7 +278,7 @@ class Belote(AbstractGame):
         BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
         self.finished = True
         Belote.saveMiddleGame(
-            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, None, None)
+            self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, None, None, self.teamPrenant)
         return None
 
     def tourLoop(self, maitre, idGame, atout, team1, team2):
