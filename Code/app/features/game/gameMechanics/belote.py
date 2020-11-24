@@ -180,7 +180,6 @@ class Belote(AbstractGame):
                         self.scoreTeam1 += score
                     else:
                         self.scoreTeam2 += score
-
                     save = BeloteView.displayFinTour(maitre, plis.card_list)
                     if save == 'Non' and self.save:
                         self.saveMiddleGame(
@@ -212,6 +211,7 @@ class Belote(AbstractGame):
                     else :
                         self.scoreTeam1 += self.scoreTeam2
                         self.scoreTeam2 -= self.scoreTeam2
+                input("L'équipe 1 à pour score" + self.scoreTeam1 + "L'équipe 2 à pour score" + self.scoreTeam2)
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
@@ -400,7 +400,7 @@ class Belote(AbstractGame):
                             print("\n Il faut jouer à la couleur demandée \n ")
                             card = BeloteView.displayPoser(
                                 ordre[i], plis.card_list, atout)
-                    elif Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] == couleurask:
+                    if Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] == couleurask:
                     # Devient maitre
                         if coupe == 0 and self.point_noatoutbob[str(card.valeur[0])] > cartemaitre:
                             cartemaitre = (
@@ -441,7 +441,7 @@ class Belote(AbstractGame):
                             else:
                                 pointsplis += (self.point_atout[str(card.valeur[0])])
                                 plis.poser(card, ordre[i])  
-                    if not Belote.a_de_latout(ordre[i], atout) and not Belote.a_lacouleur(ordre[i], couleurask):  # n'a pas la couleur ni de l'atout
+                    else:  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
