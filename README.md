@@ -46,7 +46,7 @@ Le fichier *main.py* permettant de lancer l'application se trouve dans le dossie
 # ☕ Note finale ☕
 <br />
 <p align="center">
-  <img width="200" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/coffee.gif">
+  <img width="300" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/coffee.gif">
 </p>
 
 
