@@ -295,8 +295,7 @@ class Belote(AbstractGame):
             ordre = [place_player[2], place_player[3],
                      place_player[0], place_player[1]]
         elif maitre == team2[1]:
-            print('caca')
-            ordre == [team2[1], team1[0], team2[0], team1[1]]
+            ordre = [team2[1], team1[0], team2[0], team1[1]]
         print(ordre)
         cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list, atout)
         plis.poser(cartejoue, maitre)
@@ -393,14 +392,16 @@ class Belote(AbstractGame):
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
 
-                if not Belote.monpote(ordre[i], maitre, team1, team2):  # Mon coéquipier n'est pas maître
+                if not Belote.monpote(ordre[i], maitre, team1, team2):
+                    # Mon coéquipier n'est pas maître
                     # Doit jouer à la même couleur
                     if Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] != couleurask:
                         while card.couleur[0] != couleurask:
                             print("\n Il faut jouer à la couleur demandée \n ")
                             card = BeloteView.displayPoser(
                                 ordre[i], plis.card_list, atout)
-                        # Devient maitre
+                    elif Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] == couleurask:
+                    # Devient maitre
                         if coupe == 0 and self.point_noatoutbob[str(card.valeur[0])] > cartemaitre:
                             cartemaitre = (
                                 self.point_noatoutbob[str(card.valeur[0])])
@@ -440,7 +441,7 @@ class Belote(AbstractGame):
                             else:
                                 pointsplis += (self.point_atout[str(card.valeur[0])])
                                 plis.poser(card, ordre[i])  
-                    else:  # n'a pas la couleur ni de l'atout
+                    if not Belote.a_de_latout(ordre[i], atout) and not Belote.a_lacouleur(ordre[i], couleurask):  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
                         plis.poser(card, ordre[i])
