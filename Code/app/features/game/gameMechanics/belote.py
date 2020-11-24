@@ -8,7 +8,7 @@ import random
 
 class Belote(AbstractGame):
 
-    def __init__(self, idGame=None, players=[], finished=False, team1=[], team2=[], scoreTeam1=0, scoreTeam2=0, save=False):
+    def __init__(self, idGame=None, players=[], finished=False, team1=[], team2=[], scoreTeam1=0, scoreTeam2=0, save=False, teamPrenant=None):
         super().__init__(
             players=players,
             finished=finished,
@@ -19,7 +19,7 @@ class Belote(AbstractGame):
         self.team2 = team2
         self.scoreTeam1 = scoreTeam1
         self.scoreTeam2 = scoreTeam2
-
+        self.teamPrenant = teamPrenant
         if len(self.team1) == 0:
             (self.team1, self.team2) = Belote.CreateTeams(self.players)
 
