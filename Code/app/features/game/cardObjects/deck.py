@@ -25,6 +25,8 @@ class PileCard:
     def generateNewCustomDeck(listofcard):
         """ Création d'un nouveau deck grace à l'API
             Ici avec les cartes adaptées selon le jeu
+        Args : 
+            listofcard (str) : Liste de cartes à générer sous forme de str
         """
         return PileCard(cards=[], idend=cardAPI.newCustomDeck(listofcard))
 
@@ -43,6 +45,9 @@ class PileCard:
     
     def drawDeck(self, count=1):
         """ Prend le nombre spécifié de cartes du paquet, les retire et les renvoient
+        
+        Args : 
+            count (int) : Nombre de cartes à tirer, 1 par défaut
         """
         (cards, iden) = cardAPI.drawDeck(self.idend, count)
         listCard = []

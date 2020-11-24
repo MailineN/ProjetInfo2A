@@ -26,6 +26,17 @@ class Card:
         raise TypeError("La comparaison n'est possible qu'entre deux cartes")
 
     def compareColor(self, autrecarte) -> bool:
+        """ Fonction de comparaison de couleur de cartes
+
+        Args:
+            autrecarte (Card): Carte à comparer
+
+        Raises:
+            TypeError: Si l'utilisateur tente de comparer plusieurs objets non cartes
+
+        Returns:
+            bool
+        """
         if isinstance(autrecarte, Card):
             return(self.couleur == autrecarte.couleur)
         raise TypeError("La comparaison n'est possible qu'entre deux cartes")
@@ -36,6 +47,9 @@ class Card:
 
         Args:
             text (str): Sous format Valeur de Couleur
+        
+        Returns: 
+            Objet Card 
         """
 
         mots = text.split()
