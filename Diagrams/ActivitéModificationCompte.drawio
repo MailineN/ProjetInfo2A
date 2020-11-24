@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" modified="2020-11-24T19:17:28.843Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="B4JPJ1s-8p-GXZd64XM1" version="13.10.2" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-11-24T20:37:07.412Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="slnlw81--JaVWjvf9uaO" version="13.10.2" type="gitlab">
   <diagram id="Sll5dSHrsV0MRFPY7NqF" name="Page-1">
     <mxGraphModel dx="1567" dy="858" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="KS88PvmG6vzp9nZw0xuQ-55" value="Base de donnée" style="shape=folder;align=center;verticalAlign=middle;fontStyle=0;tabWidth=135;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;rounded=1;absoluteArcSize=1;arcSize=10;" vertex="1" parent="1">
+        <mxCell id="KS88PvmG6vzp9nZw0xuQ-55" value="Base de données" style="shape=folder;align=center;verticalAlign=middle;fontStyle=0;tabWidth=135;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;rounded=1;absoluteArcSize=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="775" y="30" width="361" height="772" as="geometry" />
         </mxCell>
         <mxCell id="KS88PvmG6vzp9nZw0xuQ-54" value="Système" style="shape=folder;align=center;verticalAlign=middle;fontStyle=0;tabWidth=100;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;rounded=1;absoluteArcSize=1;arcSize=10;" vertex="1" parent="1">
