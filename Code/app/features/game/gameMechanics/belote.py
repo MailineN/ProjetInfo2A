@@ -374,7 +374,7 @@ class Belote(AbstractGame):
                             plis.poser(card, ordre[i])
                             pointsplis += (self.point_atout[str(card.valeur[0])])
                         elif coupe != 0:
-                            while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
+                            while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
                                 print("\n Il faut surcouper\n ")
                                 card = BeloteView.displayPoser(
                                     ordre[i], plis.card_list, atout)
@@ -428,7 +428,7 @@ class Belote(AbstractGame):
                             plis.poser(card, ordre[i])
                             pointsplis += (self.point_atout[str(card.valeur[0])])
                         elif coupe != 0:
-                            while Belote.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
+                            while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
                                 print("\n Il faut surcouper\n ")
                                 card = BeloteView.displayPoser(
                                     ordre[i], plis.card_list, atout)
