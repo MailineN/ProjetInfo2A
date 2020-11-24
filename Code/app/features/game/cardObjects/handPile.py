@@ -20,22 +20,33 @@ class Hand(PileCard):
             liste += str(card) + ", "
         return(rep+liste)
 
+    @staticmethod
     def newHand(idGame, idUsers):
         """ Initialise une pile vide
 
         Args:
-            idGame (str): Identifiant du jeu pour laquelle la pile est crée
+            idGame (int): Identifiant du jeu pour laquelle la main est crée
+            idUsers (str): Username du joueur possédant la main
 
         """
         return HandDAO.newHand(idGame, idUsers)
 
-    @staticmethod
-    def saveHand(hand):
-        HandDAO.savehandinDataBase(hand)
+    def saveHand(self):
+        """ Sauvegarde de la main dans la base de donnée
+        """
+        HandDAO.savehandinDataBase(self)
 
     @staticmethod
-    def getHand(idGame, idPlayer):
-        resultats = HandDAO.getHand(idPlayer, idGame)
+    def getHand(idHand):
+        """ Récupération de la main du joueur
+
+        Args:
+            idHand (int): identifiant de la main du joueur
+
+        Returns:
+            list_card: Liste des cartes de la main du joueur
+        """
+        resultats = HandDAO.getHand(idHand)
         list_card = []
         for card in resultats.split():
             list_card.append(Card.toCards(card))

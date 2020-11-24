@@ -17,8 +17,14 @@ class Player(Guest):
     """ Classe Player qui regroupe les fonctionalités propres aux 
         utilisateurs possédant un compte
     """
-
     def __init__(self, identifiant=None, handList=[]):
+        """
+
+        Args : 
+            identifiant : str : Pseudo du Joueur ou statut d'invité
+            handList : list : Main du joueur
+            userType : str : statut du joueur 
+        """
         super().__init__(identifiant, handList)
         self.userType = 'Player'
 
@@ -86,6 +92,8 @@ class GameService:
     @staticmethod
     def initListPlayers(jeu):
         """ Initialise la liste des joueurs participant aux jeu
+        Args : 
+            jeu : str : Nom du jeu à lancer
         """
         listPlayers = []
         if jeu == 'Belote':
@@ -95,7 +103,10 @@ class GameService:
 
     @staticmethod
     def initEmptyGame(nomJeu, previous_menu):
-        """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
+        """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete 
+        Args : 
+            nomJeu : str : Nom du jeu à lancer
+        """
         listPlayers = GameService.initListPlayers(nomJeu)
         saved = True
         for player in listPlayers:
@@ -113,7 +124,10 @@ class GameService:
 
     @staticmethod
     def initPreviousGame(nomJeu, previous_menu):
-        """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete """
+        """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete 
+        Args : 
+            nomJeu : str : Nom du jeu à lancer
+        """
         listPlayers = GameService.initListPlayers(nomJeu)
         for i in range(len(listPlayers)):
             listString = ' '.join(map(str, listPlayers))
@@ -130,6 +144,13 @@ class GameService:
 
     @staticmethod
     def getBackGame(idGame, nomJeu):
+        """ Fonction permettant de recharger une partie de jeu mise en pause
+
+        Args:
+            idGame (int): identifiant du jeu à reprendre
+            nomJeu (str) : Nom du jeu à lancer
+        """
+
         data = GameDAO.getBackGame(idGame, nomJeu)
         if nomJeu == 'Belote':
             team1ID = data[1].split()[0:2]

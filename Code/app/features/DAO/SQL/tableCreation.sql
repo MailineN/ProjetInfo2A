@@ -66,6 +66,7 @@ CREATE TABLE Belote
     score2 text,
     atout text, 
     maitre text,
+    teamPrenant text,
     finished bool
 );
 ALTER TABLE Belote

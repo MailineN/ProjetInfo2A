@@ -19,7 +19,16 @@ class Admin(Player):
 
     def __init__(self, identifiant=None, handList=[]):
         """ Initialisation d'un objet Admin qui reprend les fonctionalités 
-        des Players avec des autorisations supplémentaires
+        des Players avec des autorisations supplémentaires en pratique, un administrateur ne sera 
+        jamais instancié au cours d'une partie
+
+        Args : 
+            identifiant : str : Pseudo de l'administrateur
+            handList : list : Main de l'administrateur, vide en pratique
+            userType : str : Permet de vérifier le statut de l'administrateur lors 
+                lancement de fonctionalités propres
+            connecte : bool : Vérifie si l'administrateur est connecté lors du lancement des
+                fonctions propres
         """
         super().__init__(identifiant, handList)
         self.userType = 'Admin'

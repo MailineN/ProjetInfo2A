@@ -48,7 +48,14 @@ class Guest(Individu):
 
     @staticmethod
     def connexionJeu(listPlayers):
-        """Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter"""
+        """ Permet à un utilisateur de se connecter ou de rejoindre un jeu sans se connecter
+
+        Args:
+            listPlayers (list str): Liste des joueurs déjà présents dans la partie
+        
+        Returns : 
+            listPlayers (list str): Liste des joueurs mise à jour
+        """
         
         if GuestView.displayChoixPartie():
             id_users = Guest.connexion()
