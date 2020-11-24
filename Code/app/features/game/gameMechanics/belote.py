@@ -282,15 +282,15 @@ class Belote(AbstractGame):
         plis = Pile(idGame, idPile, card_list=[])
         ordre = []
         place_player = [team1[0], team2[0], team1[1], team2[1]]
-        if maitre == place_player[0]:
+        if maitre == team1[0]:
             ordre = place_player
-        elif maitre == place_player[1]:
+        elif maitre == team2[0]:
             ordre = [place_player[1], place_player[2],
                      place_player[3], place_player[0]]
-        elif maitre == place_player[2]:
+        elif maitre == team1[1]:
             ordre = [place_player[2], place_player[3],
                      place_player[0], place_player[1]]
-        else:
+        elif maitre == team2[1]:
             ordre == [place_player[3], place_player[0],
                       place_player[1], place_player[2]]
         cartejoue = BeloteView.displayPoser(ordre[0], plis.card_list, atout)
