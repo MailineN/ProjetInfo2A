@@ -170,7 +170,6 @@ class Belote(AbstractGame):
         """
         while (self.scoreTeam1 < 160) or (self.scoreTeam2 < 160):
             if maitre is not None:
-
                 tour = len(maitre.handList)
                 for i in range(tour-1):
                     maitre, plis = self.tourLoop(
