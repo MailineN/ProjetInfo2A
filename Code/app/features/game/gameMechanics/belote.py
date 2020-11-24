@@ -210,7 +210,7 @@ class Belote(AbstractGame):
                     else :
                         self.scoreTeam1 += self.scoreTeam2
                         self.scoreTeam2 -= self.scoreTeam2
-                input("L'équipe 1 à pour score" + self.scoreTeam1 + "L'équipe 2 à pour score" + self.scoreTeam2)
+                input("L'équipe 1 à pour score" + str(self.scoreTeam1) + "L'équipe 2 à pour score" + str(self.scoreTeam2))
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
