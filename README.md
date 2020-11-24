@@ -1,5 +1,8 @@
-# Projet Info 2A
-Projet Informatique de 2e année: Création d'un jeu de carte
+<p align="center">
+  <img width="600" height="200" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/1280px-Logo_ENSAI_2014.svg.png">
+</p>
+<h3 align="center">Projet Informatique de 2e année: Création d'un jeu de carte</h3>
+
 
 ## Introduction 
 L'objectif de ce projet était de développer une application de jeux de cartes flexible. 
