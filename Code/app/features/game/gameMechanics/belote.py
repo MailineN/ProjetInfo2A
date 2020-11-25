@@ -278,7 +278,7 @@ class Belote(AbstractGame):
         # Fin de partie
         BeloteView.displayFinPartie([self.scoreTeam1, self.scoreTeam2])
         self.finished = True
-        Belote.saveMiddleGame(
+        self.saveMiddleGame(
             self.team1, self.team2, self.scoreTeam1, self.scoreTeam2, None, None, self.teamPrenant)
         return None
 

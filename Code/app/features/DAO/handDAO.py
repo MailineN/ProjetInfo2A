@@ -10,7 +10,7 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                """INSERT INTO Hands (idGame,idUsers)
+                """INSERT INTO hands (idgame,idusers)
                 VALUES (%s,%s) RETURNING hands.idhands """,
                 (int(idjeu), idUsers)
                 # On récupère l'id de la hand
@@ -33,7 +33,7 @@ class HandDAO:
         try:
             curseur.execute(
                 """UPDATE hands 
-                SET (idGame = %s, listCard = %s)
+                SET (idgame = %s, listcard = %s)
                 WHERE idhands = %s""",
                 (hand.idGame, hand.card_list, hand.idHand)
             )
@@ -51,7 +51,7 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "SELECT * FROM hands WHERE idPlayer=%s AND idGame = %s RETURNING listCard", (
+                "SELECT * FROM hands WHERE idusers=%s AND idgame = %s RETURNING listcard", (
                     idPlayer, idGame)
             )
 
@@ -68,7 +68,7 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                "DELETE FROM hands WHERE idHands=%s", (idHand,)
+                "DELETE FROM hands WHERE idhands=%s", (idHand,)
             )
 
             if curseur.rowcount > 0:
