@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" modified="2020-11-25T08:07:24.237Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="GMma2I63Bw9-jCI5AnCo" version="13.10.1" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2020-11-25T08:08:38.593Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="zuGiqKhaJF_Yh6JMXwhf" version="13.10.1" type="gitlab">
   <diagram id="u2k9YgKXEppA67yH9Mc5" name="Page-1">
-    <mxGraphModel dx="1240" dy="689" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1021" dy="567" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="-arFP9ezlj2UpWzrarVk-1" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+        <mxCell id="-arFP9ezlj2UpWzrarVk-1" value="Utilisateur" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="574" y="424.5" width="160" height="190" as="geometry" />
         </mxCell>
         <mxCell id="-arFP9ezlj2UpWzrarVk-2" value="Identifiant de l&#39;utilisateur" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="-arFP9ezlj2UpWzrarVk-1" vertex="1">
@@ -33,10 +33,10 @@
             <mxPoint x="600" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="-arFP9ezlj2UpWzrarVk-10" value="Pile" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+        <mxCell id="-arFP9ezlj2UpWzrarVk-10" value="Pli" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="342" y="763" width="160" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="-arFP9ezlj2UpWzrarVk-11" value="Identifiant de la pile" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="-arFP9ezlj2UpWzrarVk-10" vertex="1">
+        <mxCell id="-arFP9ezlj2UpWzrarVk-11" value="Identifiant du pli" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="-arFP9ezlj2UpWzrarVk-10" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="-arFP9ezlj2UpWzrarVk-12" value="Carte 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="-arFP9ezlj2UpWzrarVk-10" vertex="1">
@@ -60,7 +60,7 @@
         <mxCell id="E3T8dcTo_AGosjMK_uAr-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="-arFP9ezlj2UpWzrarVk-18" target="E3T8dcTo_AGosjMK_uAr-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="-arFP9ezlj2UpWzrarVk-18" value="Game" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+        <mxCell id="-arFP9ezlj2UpWzrarVk-18" value="Partie" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="342" y="435" width="160" height="138" as="geometry" />
         </mxCell>
         <mxCell id="-arFP9ezlj2UpWzrarVk-19" value="Identifiant de la partie" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="-arFP9ezlj2UpWzrarVk-18" vertex="1">
@@ -132,7 +132,7 @@
         <mxCell id="E3T8dcTo_AGosjMK_uAr-19" value="1,1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="156" y="530" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="E3T8dcTo_AGosjMK_uAr-22" value="Hands " style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+        <mxCell id="E3T8dcTo_AGosjMK_uAr-22" value="Mains" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
           <mxGeometry x="342" y="226" width="160" height="112" as="geometry" />
         </mxCell>
         <mxCell id="E3T8dcTo_AGosjMK_uAr-23" value="Identifiant de la main" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="E3T8dcTo_AGosjMK_uAr-22">
