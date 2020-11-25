@@ -168,7 +168,7 @@ class Belote(AbstractGame):
         une couleur, d'abord celle de la carte retournée puis celle de leur choix 
         Si aucune équipe appelle, le jeu est reinitialisé
         """
-        while (self.scoreTeam1 < 160) or (self.scoreTeam2 < 160):
+        while (self.scoreTeam1 < 160) and (self.scoreTeam2 < 160):
             if maitre is not None:
                 tour = len(maitre.handList)
                 for i in range(tour-1):
