@@ -200,17 +200,19 @@ class Belote(AbstractGame):
                     maitre = None  
                 if self.teamPrenant == 'Team 1':
                     if self.scoreTeam1 >= 82 :
-                        print("Les preneurs gagnent les points")
+                        input("Les preneurs gagnent les points")
                     else :
                         self.scoreTeam2 += self.scoreTeam1
                         self.scoreTeam1 -= self.scoreTeam1
+                        input("perdu")
                 elif self.teamPrenant == 'Team 2':
-                    if self.scoreTeam1 >= 82 :
-                        print("Les preneurs gagnent les points")
+                    if self.scoreTeam2 >= 82 :
+                        input("Les preneurs gagnent les points")
                     else :
                         self.scoreTeam1 += self.scoreTeam2
                         self.scoreTeam2 -= self.scoreTeam2
-                input("L'équipe 1 à pour score " + str(self.scoreTeam1) + "L'équipe 2 à pour score " + str(self.scoreTeam2))
+                        input("perdu")
+                input("L'équipe 1 à pour score " + str(self.scoreTeam1) + " " + "L'équipe 2 à pour score " + str(self.scoreTeam2))
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
@@ -218,7 +220,7 @@ class Belote(AbstractGame):
 
                 pick = False
                 atout = None
-                teamPrenant = None
+                self.teamPrenant = None
                 while not pick:
                     deck = PileCard.generateNewCustomDeck(self.listCards)
                     deck.shuffleDeck()
@@ -235,9 +237,9 @@ class Belote(AbstractGame):
                             place_player[i], carteAppel)
                         if appel:
                             if i % 2 == 0:
-                                teamPrenant = "Team 1"
+                                self.teamPrenant = "Team 1"
                             else:
-                                teamPrenant = "Team 2"
+                                self.teamPrenant = "Team 2"
                             atout = carteAppel.couleur[0]
                             place_player[i].handList.append(carteAppel)
                             preneur = i
@@ -266,7 +268,7 @@ class Belote(AbstractGame):
                         place_player[i].handList += deck.drawDeck(2)
                     else:
                         place_player[i].handList += deck.drawDeck(3)
-                BeloteView.displayAtoutPris(teamPrenant, atout)
+                BeloteView.displayAtoutPris(self.teamPrenant, atout)
 
                 # Fin de la distribution
 
