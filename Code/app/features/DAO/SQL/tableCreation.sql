@@ -86,4 +86,4 @@ ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
 
 INSERT INTO users (username)
-VALUES ('invité1'), ('invité2'),('invité3'),('invité4');
+VALUES ('invité0'), ('invité1'),('invité2'),('invité3');
