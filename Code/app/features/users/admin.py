@@ -84,8 +84,8 @@ class Admin(Player):
         else:
             users = AdminDAO.getAllUserData()
             for user in users:
-                print("• Nom : "+user[1]+", Administrateur : " +
-                      str(user[3]) + ", Scores : " + str(user[5]) + "\n")
+                print("• Nom : "+user[1]+" || Administrateur : " +
+                      str(user[3]) + " || Scores : " + str(user[5]) + "\n")
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 
@@ -100,8 +100,8 @@ class Admin(Player):
         else:
             games = AdminDAO.getAllGameData()
             for game in games:
-                print("• Nom du Jeu : "+game[1]+", Joueurs : " +
-                      str(game[2]) + ", Scores : " + str(game[3]) + "\n")
+                print("• Nom du Jeu : "+game[1]+"|| Joueurs : " +
+                      str(game[2]) + "|| Scores : " + str(game[3]) + "\n")
 
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
