@@ -463,7 +463,7 @@ class Belote(AbstractGame):
             idHand = Hand.newHand(self.idGame, player.identifiant)
             hand = Hand(self.idGame, idHand, ' '.join(
                 map(str, player.handList)))
-            Hand.saveHand(hand)
+            hand.saveHand()
             listHand.append(idHand)
 
         """ Sauvegarde des données jeu """
