@@ -30,7 +30,10 @@ class Player(Guest):
 
     @staticmethod
     def changePassword(previous_menu):
-        """ Permet de changer le mot de passe d'un utilisateur """
+        """ Permet de changer le mot de passe d'un utilisateur 
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
+        """
         (username, motdepasse, new_mdp) = PlayerView.displayChangePassword()
 
         newhash_mdp = hashlib.sha256(new_mdp.encode()).hexdigest()
@@ -45,7 +48,10 @@ class Player(Guest):
 
     @staticmethod
     def changeUsername(previous_menu):
-        """ Permet de changer le mot de passe d'un utilisateur """
+        """ Permet de changer le mot de passe d'un utilisateur 
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
+        """
         (username, motdepasse, new_name) = PlayerView.displayChangeName()
         while not verif_init_id(new_name):
             new_name = GuestView.displayVerifId()
@@ -61,7 +67,10 @@ class Player(Guest):
 
     @staticmethod
     def seeScoresBelote(previous_menu):
-        """Affiche les scores en appellant la fonction correspondante dans la DAO"""
+        """Affiche les scores en appellant la fonction correspondante dans la DAO
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
+        """
         id_users = Guest.connexion()
         scores = PlayerDAO.getAccountDataBelote(id_users)
         if len(scores) == 0:
@@ -106,6 +115,7 @@ class GameService:
         """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete 
         Args : 
             nomJeu : str : Nom du jeu à lancer
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         listPlayers = GameService.initListPlayers(nomJeu)
         saved = True
@@ -127,6 +137,7 @@ class GameService:
         """ Initialise un jeu vide du jeu sélectionné avec une liste de joueur complete 
         Args : 
             nomJeu : str : Nom du jeu à lancer
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         listPlayers = GameService.initListPlayers(nomJeu)
         for i in range(len(listPlayers)):

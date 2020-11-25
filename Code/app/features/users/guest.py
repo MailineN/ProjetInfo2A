@@ -30,6 +30,8 @@ class Guest(Individu):
     def createAccount(previous_menu):
         """ Fonction permettant à l'invité de se créer un compte
             et de l'enregistrer dans la base des données
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
         (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()

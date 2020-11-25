@@ -37,6 +37,8 @@ class Admin(Player):
     def createAdminAccount(self, previous_menu):
         """ Fonction permetant à l'administrateur de créer un nouveau compte administrateur
             Reprend les mêmes methodes que celles des guests
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
@@ -58,6 +60,8 @@ class Admin(Player):
     def deleteUserAccount(self, previous_menu):
         """ Fonction permetant à l'administrateur de supprimer un compte utilisateur
             à partir de son pseudo
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
@@ -72,28 +76,32 @@ class Admin(Player):
     def seeUserData(self, previous_menu):
         """ Fonction permetant à l'administrateur de visualiser l'ensemble des
             comptes utilisateurs
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
             users = AdminDAO.getAllUserData()
             for user in users:
-                print("• Nom : "+user[1]+", Administrateur : " +
-                      str(user[3]) + ", Scores : " + str(user[5]) + "\n")
+                print("• Nom : "+user[1]+" || Administrateur : " +
+                      str(user[3]) + " || Scores : " + str(user[5]) + "\n")
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 
     def seeGameData(self, previous_menu):
         """ Fonction permetant à l'administrateur de visualiser l'ensemble des
             parties de jeu, terminées ou non
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")
         else:
             games = AdminDAO.getAllGameData()
             for game in games:
-                print("• Nom du Jeu : "+game[1]+", Joueurs : " +
-                      str(game[2]) + ", Scores : " + str(game[3]) + "\n")
+                print("• Nom du Jeu : "+game[1]+"|| Joueurs : " +
+                      str(game[2]) + "|| Scores : " + str(game[3]) + "\n")
 
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
@@ -101,6 +109,8 @@ class Admin(Player):
     def resetDatabase(self, previous_menu):
         """ Fonction permetant à l'administrateur de réinitialiser la base de données
             en conservant uniquement les comptes utilisateurs
+        Args : 
+            previous_menu : Menu précédent dans lequel l'utilisateur est renvoyé à la fin de la fonction
         """
         if not self.connecte:
             input("Vous n'êtes pas connecté ")

@@ -55,13 +55,15 @@ class Hand(PileCard):
 
 
 class Pile(PileCard):
-    """ Pile de cartes utilisées lors des parties de cartes
-
-    Args:
-        PileCard (PileCard): Classe mère possédant les actions principales sur le deck
-    """
 
     def __init__(self, idGame, idPile, card_list=[]):
+        """ Pile de cartes utilisées lors des parties de cartes
+
+        Args:
+            idGame (int): Identifiant de la partie relié à la pile
+            idPile (int): Identifiant de la pile
+            card_list (list, optional): Liste des cartes du plis. Defaults to [].
+        """
         self.idGame = idGame
         self.idPile = idPile
         self.card_list = card_list
@@ -86,6 +88,7 @@ class Pile(PileCard):
         joueur.handList.remove(card)
         self.card_list.append(card)
 
+    @staticmethod
     def newPile(idGame):
         """ Initialise une pile vide
 
@@ -95,5 +98,7 @@ class Pile(PileCard):
         """
         return PileDAO.newPile(idGame)
 
-    def savePile(pile):
-        PileDAO.savePileinDataBase(pile)
+    def savePile(self):
+        """ Permet de sauvegarder la pile dans la base de données
+        """
+        PileDAO.savePileinDataBase(self)
