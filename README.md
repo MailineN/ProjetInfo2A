@@ -1,25 +1,55 @@
-# Projet Info 2A
-Projet Informatique de 2e année: Création d'un jeu de carte
+<br />
+<p align="center">
+  <img width="200" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/1280px-Logo_ENSAI_2014.svg.png">
+</p>
+<br />
 
-## Introduction 
-Le travail demandé consiste à construire une application permettant de répondre à la
-problématique du sujet proposé. Ce travail se décompose en 3 grandes phases :
+# 🃏 Projet Informatique de 2e année: Création d'un jeu de carte 🃏 
 
-1. Une phase d’étude préalable pour décrire la solution envisagée et planifier les grandes
-phases de la réalisation (diagramme de cas d’utilisation et diagramme de Gantt);
 
-2. Une phase de conception générale de l’application pour décrire les exigences fonctionnelles générales par la modélisation (diagramme d’activité ou d’états, diagramme de
-classes, modèle de données ...) et planifier la mise en place des fonctionnalités (dépendances, priorités, ...);\
+## 👾 Introduction 👾
+L'objectif de ce projet était de développer une application de jeux de cartes flexible. 
 
-3. Une phase de réalisation :
-— Mise en place de la base de données;
-— Développement continu du système en python3 accompagné d’une description graphique du ou des modèles choisis (le modèle d’implémentation);
+Au sein de cette application, nous avons fait le choix de développer le jeu de la Belote. 
 
-## Note préalable 
-Un café Souli ?
+L'objectif futur est d'ajouter des jeux supplémentaires tel que le Poker ou le Président par exemple
 
-![](graphics/coffee.gif)
+## 👾 Fonctionnalités de l'application 👾
+L'objectif premier de l'application est de pouvoir jouer à un jeu de carte. Les joueurs ont également la possibilité de se créer un compte afin de sauvegarder leurs parties et leurs scores dans une base de données. Dans une version future, il sera possible d'accéder à un classement des joueurs et a des statistiques avancées. 
 
-Update : Aidez nous
+## ♠️ Jeu de cartes ♠️
+ > Inserer Screens
 
-![](graphics/cat.gif)
+## ♠️ Fonctionnalités utilisateurs ♠️
+ > Inserer screens 
+
+
+# 💿 Installation 💿
+Pour installer l'application, il faut excécuter la commande suivante dans un terminal:   
+``` $ git clone "https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A.git" ```
+
+## 💿 Installation des dependances 💿
+Les différents modules utilisés par l'application sont contenus dans le fichier *requirements.txt*  
+Pour installer l'ensemble des modules, il faut excécuter la commande suivante :   
+``` $ pip install -r requirements.txt ```
+## 💿 Lancement de l'application 💿
+Le fichier *main.py* permettant de lancer l'application se trouve dans le dossier Code. Il est conseillé de lancer l'application directement depuis la racine du projet avec la commande :   
+``` $ python Code/main.py ```
+
+# 📓 Documentation des classes métiers 📓
+À l'exception des classes DAO, views et tests, l'ensemble du code a été documenté. Il est possible de consulter des exemples de classes documentées en suivant les chemins suivants :   
+> ProjetInfo2A / Code /app / features / game / cardObjects / handPile.py
+
+> ProjetInfo2A / Code /app / features / users / admin.py
+
+# Remerciments 
+> A completer
+
+# ☕ Note finale ☕
+<br />
+<p align="center">
+  <img width="300" src="https://gitlab.com/projet-info-ensai-2020-equipe-20/ProjetInfo2A/-/raw/master/graphics/coffee.gif">
+</p>
+
+
+

@@ -119,8 +119,8 @@ class BeloteView():
     @staticmethod
     def displayFinPartie(points):
         print("Le décompte des points est le suivant : \n")
-        print("• "+"Team 1 :" + points[0] + "\n")
-        print("• "+"Team 2 :" + points[1] + "\n")
+        print("• "+"Team 1 :" + str(points[0]) + "\n")
+        print("• "+"Team 2 :" + str(points[1]) + "\n")
         if points[0] > points[1]:
             print("Team 1 remporte donc la partie ! \n")
         else:
