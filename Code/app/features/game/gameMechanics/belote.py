@@ -416,12 +416,12 @@ class Belote(AbstractGame):
                             plis.poser(card, ordre[i])
 
                     # Doit couper
-                    elif Belote.a_de_latout(ordre[i], atout) and card.couleur[0] != atout and not Belote.a_lacouleur(ordre[i], couleurask):
+                    elif Belote.a_de_latout(ordre[i], atout) and not Belote.a_lacouleur(ordre[i], couleurask):         
+                        while card.couleur[0] != atout:
+                            print("\n Il faut couper\n ")
+                            card = BeloteView.displayPoser(
+                                ordre[i], plis.card_list, atout)
                         if coupe == 0:
-                            while card.couleur[0] != atout:
-                                print("\n Il faut couper\n ")
-                                card = BeloteView.displayPoser(
-                                    ordre[i], plis.card_list, atout)
                             coupe += 1
                             maitre = ordre[i]
                             cartemaitre = (
