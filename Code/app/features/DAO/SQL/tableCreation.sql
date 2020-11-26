@@ -28,8 +28,7 @@ CREATE TABLE users
 	username text UNIQUE,
     mdp text,
     admini boolean,
-    connected boolean,
-    score integer
+    connected boolean
 );
 
 CREATE SEQUENCE idPile_seq;

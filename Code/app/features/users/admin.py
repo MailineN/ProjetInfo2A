@@ -86,7 +86,7 @@ class Admin(Player):
             users = AdminDAO.getAllUserData()
             for user in users:
                 print("• Nom : "+user[1]+" || Administrateur : " +
-                      str(user[3]) + " || Scores : " + str(user[5]) + "\n")
+                      str(user[3]) + "\n")
             input(" \n Affichage terminé ")
         return MenuInterface(previous_menu)
 

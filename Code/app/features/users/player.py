@@ -17,6 +17,7 @@ class Player(Guest):
     """ Classe Player qui regroupe les fonctionalités propres aux 
         utilisateurs possédant un compte
     """
+
     def __init__(self, identifiant=None, handList=[]):
         """
 
@@ -176,5 +177,7 @@ class GameService:
 
             for player in team1 + team2:
                 player.handList = Hand.getHand(idGame, player.identifiant)
+            maitre = Player(maitre)
+            maitre.handList = Hand.getHand(idGame, maitre.identifiant)
 
-            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2, True,teamprenant).gameLoop(idGame, maitre, atout))
+            return(Belote(idGame, team1+team2, False, team1, team2, score1, score2, True, teamprenant).gameLoop(idGame, maitre, atout))
