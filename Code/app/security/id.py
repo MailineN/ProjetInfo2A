@@ -1,4 +1,3 @@
-from app.features.users.guestView import GuestView
 from app.features.DAO.databaseConnection import DatabaseConnection
 
 

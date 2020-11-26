@@ -8,8 +8,8 @@ from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
 from app.features.DAO.guestDAO import GuestDAO
 from app.features.DAO.adminDAO import AdminDAO
-from app.features.users.adminView import AdminView
-from app.features.users.guestView import GuestView
+from app.views.adminView import AdminView
+from app.views.guestView import GuestView
 import hashlib
 from app.features.users.player import Player
 from app.menus.menu_interface import MenuInterface

@@ -26,11 +26,12 @@ class GameDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         columns = data.keys()
-        values = [data[column] for column in columns]
-        insert_statement = 'UPDATE %s SET %s = %s WHERE idGame = %s'
+        if nomJeu == 'Belote':
+            insert_statement = """INSERT INTO Belote (players,handlist,score1,score2,atout,maitre,finished,idgame) 
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
         try:
-            curseur.execute(insert_statement, (nomJeu, AsIs(
-                ','.join(columns)), tuple(values), idGame))
+            curseur.execute(insert_statement, (data['listplayers'], data['handlist'], data['scoreTeam1'],
+                                               data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], True))
             connexion.commit()
         finally:
             curseur.close

@@ -1,6 +1,6 @@
 from app.features.game.gameMechanics.abstractGame import AbstractGame
 from app.features.game.cardObjects.deck import PileCard
-from app.features.game.gameMechanics.beloteView import BeloteView
+from app.views.beloteView import BeloteView
 from app.features.game.cardObjects.handPile import Hand, Pile
 from app.features.DAO.gameDAO import GameDAO
 import random
@@ -31,9 +31,10 @@ class Belote(AbstractGame):
                               "QUEEN": 3, "JACK": 2, "9": 0, "8": 0, "7": 0}
 
         self.point_atoutbob = {"JACK": 20, "9": 14, "ACE": 11,
-                            "10": 10, "KING": 4, "QUEEN": 3, "8": 2, "7": 1}
+                               "10": 10, "KING": 4, "QUEEN": 3, "8": 2, "7": 1}
         self.point_noatoutbob = {"ACE": 11, "10": 10, "KING": 5,
-                              "QUEEN": 4, "JACK": 3, "9": 2, "8": 1, "7": 0}
+                                 "QUEEN": 4, "JACK": 3, "9": 2, "8": 1, "7": 0}
+
     @staticmethod
     def CreateTeams(players):
         """ Crée aléatoirement les équipes
@@ -193,26 +194,27 @@ class Belote(AbstractGame):
                 if maitre in self.team1:
                     self.scoreTeam1 += score
                     self.scoreTeam1 += 10
-                    maitre = None  
+                    maitre = None
                 else:
                     self.scoreTeam2 += score
                     self.scoreTeam2 += 10
-                    maitre = None  
+                    maitre = None
                 if self.teamPrenant == 'Team 1':
-                    if self.scoreTeam1 >= 82 :
+                    if self.scoreTeam1 >= 82:
                         input("Les preneurs gagnent les points")
-                    else :
+                    else:
                         self.scoreTeam2 += self.scoreTeam1
                         self.scoreTeam1 -= self.scoreTeam1
-                        input("perdu")
+                        input("La team prenante a perdu le tour")
                 elif self.teamPrenant == 'Team 2':
-                    if self.scoreTeam2 >= 82 :
+                    if self.scoreTeam2 >= 82:
                         input("Les preneurs gagnent les points")
-                    else :
+                    else:
                         self.scoreTeam1 += self.scoreTeam2
                         self.scoreTeam2 -= self.scoreTeam2
                         input("perdu")
-                input("L'équipe 1 à pour score " + str(self.scoreTeam1) + " " + "L'équipe 2 à pour score " + str(self.scoreTeam2))
+                input("L'équipe 1 à pour score " + str(self.scoreTeam1) +
+                      " " + "L'équipe 2 à pour score " + str(self.scoreTeam2))
             else:
                 place_player = [self.team1[0], self.team2[0],
                                 self.team1[1], self.team2[1]]
@@ -304,7 +306,8 @@ class Belote(AbstractGame):
         # On retire la carte jouée de la main du joueur
         # JOUE A L'ATOUT
         if couleurask == atout:
-            cartemaitre = (self.point_atoutbob[str(plis.card_list[0].valeur[0])])
+            cartemaitre = (
+                self.point_atoutbob[str(plis.card_list[0].valeur[0])])
             pointsplis = (self.point_atout[str(plis.card_list[0].valeur[0])])
             for i in range(1, 4):
                 print(maitre.identifiant)
@@ -321,7 +324,8 @@ class Belote(AbstractGame):
                         card = BeloteView.displayPoser(
                             ordre[i], plis.card_list, atout)
                     if (self.point_atoutbob[str(card.valeur[0])]) > cartemaitre:
-                        cartemaitre = (self.point_atoutbob[str(card.valeur[0])])
+                        cartemaitre = (
+                            self.point_atoutbob[str(card.valeur[0])])
                         maitre = ordre[i]
                         plis.poser(card, ordre[i])
                         pointsplis += (
@@ -362,18 +366,22 @@ class Belote(AbstractGame):
                                 self.point_noatoutbob[str(card.valeur[0])])
                             maitre = ordre[i]
                             plis.poser(card, ordre[i])
-                            pointsplis += (self.point_noatout[str(card.valeur[0])])
+                            pointsplis += (
+                                self.point_noatout[str(card.valeur[0])])
                         else:
                             plis.poser(card, ordre[i])
-                            pointsplis += (self.point_noatout[str(card.valeur[0])]) 
-                                   
+                            pointsplis += (
+                                self.point_noatout[str(card.valeur[0])])
+
                     elif card.couleur[0] == atout:  # Il coupe
                         if coupe == 0:
                             coupe += 1
-                            cartemaitre = (self.point_atoutbob[str(card.valeur[0])])
+                            cartemaitre = (
+                                self.point_atoutbob[str(card.valeur[0])])
                             maitre = ordre[i]
                             plis.poser(card, ordre[i])
-                            pointsplis += (self.point_atout[str(card.valeur[0])])
+                            pointsplis += (
+                                self.point_atout[str(card.valeur[0])])
                         elif coupe != 0:
                             while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
                                 print("\n Il faut surcouper\n ")
@@ -382,12 +390,14 @@ class Belote(AbstractGame):
                             if (self.point_atoutbob[str(card.valeur[0])]) > cartemaitre:
                                 cartemaitre = (
                                     self.point_atoutbob[str(card.valeur[0])])
-                                pointsplis += (self.point_atout[str(card.valeur[0])])
+                                pointsplis += (
+                                    self.point_atout[str(card.valeur[0])])
                                 plis.poser(card, ordre[i])
                                 maitre = ordre[i]
                             else:
-                                pointsplis += (self.point_atout[str(card.valeur[0])])
-                                plis.poser(card, ordre[i])    
+                                pointsplis += (
+                                    self.point_atout[str(card.valeur[0])])
+                                plis.poser(card, ordre[i])
                     else:  # N'a pas la couleur, peut pisser
                         plis.poser(card, ordre[i])
                         pointsplis += (
@@ -402,7 +412,7 @@ class Belote(AbstractGame):
                             card = BeloteView.displayPoser(
                                 ordre[i], plis.card_list, atout)
                     if Belote.a_lacouleur(ordre[i], couleurask) and card.couleur[0] == couleurask:
-                    # Devient maitre
+                        # Devient maitre
                         if coupe == 0 and self.point_noatoutbob[str(card.valeur[0])] > cartemaitre:
                             cartemaitre = (
                                 self.point_noatoutbob[str(card.valeur[0])])
@@ -416,7 +426,7 @@ class Belote(AbstractGame):
                             plis.poser(card, ordre[i])
 
                     # Doit couper
-                    elif Belote.a_de_latout(ordre[i], atout) and not Belote.a_lacouleur(ordre[i], couleurask):         
+                    elif Belote.a_de_latout(ordre[i], atout) and not Belote.a_lacouleur(ordre[i], couleurask):
                         while card.couleur[0] != atout:
                             print("\n Il faut couper\n ")
                             card = BeloteView.displayPoser(
@@ -427,7 +437,8 @@ class Belote(AbstractGame):
                             cartemaitre = (
                                 self.point_atoutbob[str(card.valeur[0])])
                             plis.poser(card, ordre[i])
-                            pointsplis += (self.point_atout[str(card.valeur[0])])
+                            pointsplis += (
+                                self.point_atout[str(card.valeur[0])])
                         elif coupe != 0:
                             while self.monteratout(ordre[i], cartemaitre, atout) and (self.point_atoutbob[str(card.valeur[0])]) < cartemaitre:
                                 print("\n Il faut surcouper\n ")
@@ -438,10 +449,12 @@ class Belote(AbstractGame):
                                     self.point_atoutbob[str(card.valeur[0])])
                                 maitre = ordre[i]
                                 plis.poser(card, ordre[i])
-                                pointsplis += (self.point_atout[str(card.valeur[0])])
+                                pointsplis += (
+                                    self.point_atout[str(card.valeur[0])])
                             else:
-                                pointsplis += (self.point_atout[str(card.valeur[0])])
-                                plis.poser(card, ordre[i])  
+                                pointsplis += (
+                                    self.point_atout[str(card.valeur[0])])
+                                plis.poser(card, ordre[i])
                     else:  # n'a pas la couleur ni de l'atout
                         pointsplis += (
                             self.point_noatout[str(card.valeur[0])])
@@ -461,8 +474,12 @@ class Belote(AbstractGame):
         listHand = []
         for player in team1+team2:
             idHand = Hand.newHand(self.idGame, player.identifiant)
-            hand = Hand(self.idGame, idHand, ' '.join(
-                map(str, player.handList)))
+            card_list = ''
+            if len(player.handList) > 0:
+                card_list = ' '.join(
+                    map(str, player.handList))
+            hand = Hand(self.idGame, idHand, card_list)
+            print("La main est : " + hand.card_list)
             hand.saveHand()
             listHand.append(idHand)
 
@@ -472,7 +489,7 @@ class Belote(AbstractGame):
         listPlayers = ' '.join(
             map(str, team1+team2))
         data = {"listplayers": listPlayers,
-                "listedesmains": listHandsaved,
+                "handlist": listHandsaved,
                 "scoreTeam1": scoreTeam1,
                 "scoreTeam2": scoreTeam2,
                 "atout": atout,

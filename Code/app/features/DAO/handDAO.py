@@ -32,10 +32,8 @@ class HandDAO:
         curseur = connexion.cursor()
         try:
             curseur.execute(
-                """UPDATE hands 
-                SET (idgame = %s, listcard = %s)
-                WHERE idhands = %s""",
-                (hand.idGame, hand.card_list, hand.idHand)
+                "UPDATE hands SET listcard = %s WHERE idhands = %s",
+                (hand.card_list, hand.idHand)
             )
             connexion.commit()
         except psycopg2.Error as error:
