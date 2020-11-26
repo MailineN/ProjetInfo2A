@@ -7,7 +7,7 @@ def clear():
     return os.system('cls')
 
 
-def rotate(l, n):
+def rotate(l, n = 1):
     return l[n:] + l[:n]
 
 

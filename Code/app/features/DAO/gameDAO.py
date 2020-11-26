@@ -65,9 +65,10 @@ class GameDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            curseur.execute(
-                "SELECT * FROM %s WHERE players = %s RETURNING idGame",
-                (nomJeu, idPlayers))
+            if nomJeu == 'Belote' : 
+                curseur.execute(
+                    "SELECT * FROM Belote WHERE players = %s RETURNING idGame",
+                    (idPlayers,))
             idJeu = curseur.fetchone()
             connexion.commit()
         except psycopg2.Error as error:
