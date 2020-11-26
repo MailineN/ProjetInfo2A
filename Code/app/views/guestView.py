@@ -45,6 +45,7 @@ class GuestView():
             }
         ]
         print("Création de compte : \n")
+        print("Votre username doit être constitué uniquement de lettres et de chiffres \n")
         res = prompt(questions, style=custom_style_2)
         return(res['Pseudo'], res['Mdp'], res['VerifMdp'])
 
@@ -55,6 +56,7 @@ class GuestView():
                 'name': 'Pseudo',
                 'message': 'Votre identifiant existe déjà, veuillez en choisir un nouveau : ',
             }]
+        print("Votre username doit être constitué uniquement de lettres et de chiffres \n")
         res = prompt(questions, style=custom_style_2)
         return(res['Pseudo'])
 

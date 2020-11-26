@@ -4,6 +4,7 @@
 from app.features.users.individu import Individu
 from app.security.id import verif_init_id
 from app.security.mdp import verif_init_mdp
+from app.security.specialCaracter import is_allowed
 from app.features.DAO.guestDAO import GuestDAO
 from app.views.guestView import GuestView
 import hashlib
@@ -35,7 +36,7 @@ class Guest(Individu):
         """
         # entrer le nom d'utilisateur + vérifier qu'il n'existe pas déjà
         (username, motdepasse, verifMotdepasse) = GuestView.displayCreateAccount()
-        while not verif_init_id(username):
+        while not verif_init_id(username) and is_allowed(username):
             username = GuestView.displayVerifId()
         # vérifie que les deux mdp sont les mêmes et renvoie le mdp
         while not verif_init_mdp(motdepasse, verifMotdepasse):
