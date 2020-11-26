@@ -62,8 +62,8 @@ CREATE TABLE Belote
     ('idBelote_seq'::regclass) PRIMARY KEY UNIQUE,
     players text,
     handList text, 
-    score1 text,
-    score2 text,
+    score1 integer,
+    score2 integer,
     atout text, 
     maitre text,
     teamPrenant text,
@@ -86,4 +86,4 @@ ADD COLUMN idGame integer,
 ADD FOREIGN KEY (idGame) REFERENCES Games(idGame);
 
 INSERT INTO users (username)
-VALUES ('invité0'), ('invité1'),('invité2'),('invité3');
+VALUES ('invite0'), ('invite1'),('invite2'),('invite3');

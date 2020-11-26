@@ -88,7 +88,9 @@ class AdminDAO:
                 FROM users u
                 WHERE u.username = %s AND u.mdp = %s
                 """, (username, str(mdpa)))
-            id_user = curseur.fetchone()[3]
+            id_user = curseur.fetchone()
+            if id_user is not None:
+                id_user = id_user[3]
             connexion.commit()
         finally:
             curseur.close

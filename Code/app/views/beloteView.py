@@ -168,10 +168,7 @@ class BeloteView():
                 'choices': [str(i)+". "+str(player.handList[i])for i in range(len(player.handList))]
             }
         ]
-        print("Vous avez ces cartes : \n")
-        for card in player.handList:
-            print("• "+str(card))
-        print("Les cartes du plis sont : ")
+        print("\n Les cartes du plis sont : ")
         if len(plis) == 0:
             print("Vous êtes maitre, posez ce que vous voulez \n")
         else:

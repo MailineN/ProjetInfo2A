@@ -11,10 +11,13 @@ class GameDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         try:
-            curseur.execute(
-                "SELECT * FROM %s WHERE idGame = %s", (nomJeu, idGame)
-            )
-            data = curseur.fetchall()[0]
+            if nomJeu == 'Belote':
+                curseur.execute(
+                    "SELECT * FROM Belote WHERE idGame = %s", (nomJeu, idGame)
+                )
+            data = curseur.fetchall()
+            if data is not None:
+                data = data[0]
             connexion.commit()
         finally:
             curseur.close
@@ -25,13 +28,12 @@ class GameDAO:
     def saveMiddleGame(data, idGame, nomJeu):
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
-        columns = data.keys()
         if nomJeu == 'Belote':
-            insert_statement = """INSERT INTO Belote (players,handlist,score1,score2,atout,maitre,finished,idgame) 
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
+            insert_statement = """INSERT INTO Belote (players,handlist,score1,score2,atout,maitre,teamprenant,finished,idgame) 
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
         try:
             curseur.execute(insert_statement, (data['listplayers'], data['handlist'], data['scoreTeam1'],
-                                               data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], True))
+                                               data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], True, idGame))
             connexion.commit()
         finally:
             curseur.close

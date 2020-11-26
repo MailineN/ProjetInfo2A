@@ -70,7 +70,7 @@ class Guest(Individu):
         else:
             
             # Si le joueur ne souhaite pas se connecter, on lui assigne un identifiant temporaire
-            listPlayers.append('invité'+str(len(listPlayers)))
+            listPlayers.append('invite'+str(len(listPlayers)))
         return(listPlayers)
 
     # Les fonctions d'initialisation de jeu ont étés ajoutés à GameService :)

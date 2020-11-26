@@ -479,7 +479,6 @@ class Belote(AbstractGame):
                 card_list = ' '.join(
                     map(str, player.handList))
             hand = Hand(self.idGame, idHand, card_list)
-            print("La main est : " + hand.card_list)
             hand.saveHand()
             listHand.append(idHand)
 
