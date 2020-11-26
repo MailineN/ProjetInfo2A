@@ -29,10 +29,9 @@ class GameDAO:
         connexion = DatabaseConnection.getConnexion()
         curseur = connexion.cursor()
         if nomJeu == 'Belote':
-            insert_statement = """INSERT INTO Belote (players,handlist,score1,score2,atout,maitre,teamprenant,finished,idgame) 
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+            insert_statement = """UPDATE Belote SET handlist = %s,score1 = %s,score2 = %s,atout= %s,maitre= %s,teamprenant= %s,finished= %s WHERE idGame = %s"""
         try:
-            curseur.execute(insert_statement, (data['listplayers'], data['handlist'], data['scoreTeam1'],
+            curseur.execute(insert_statement, (data['handlist'], data['scoreTeam1'],
                                                data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], True, idGame))
             connexion.commit()
         finally:
@@ -48,7 +47,10 @@ class GameDAO:
             curseur.execute(
                 "INSERT INTO Games (jeu,idPlayers) VALUES (%s,%s) RETURNING idGame;",
                 (nomJeu, listString))
-            idJeu = curseur.fetchall()  # pk un player alors que les guests aussi peuvent ??
+            idJeu = curseur.fetchall()
+            if nomJeu == 'Belote':
+                curseur.execute(
+                    "INSERT INTO Belote (players,finished,idgame) VALUES (%s,%s,%s)", (listString, False, idJeu[0]))
             connexion.commit()
         except psycopg2.Error as error:
             connexion.rollback()

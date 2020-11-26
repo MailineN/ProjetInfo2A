@@ -486,7 +486,7 @@ class Belote(AbstractGame):
         listHandsaved = ' '.join(
             map(str, listHand))
         listPlayers = ' '.join(
-            map(str, team1+team2))
+            map(str, [p.identifiant for p in team1+team2]))
         data = {"listplayers": listPlayers,
                 "handlist": listHandsaved,
                 "scoreTeam1": scoreTeam1,
