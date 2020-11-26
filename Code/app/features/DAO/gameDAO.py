@@ -32,7 +32,7 @@ class GameDAO:
             insert_statement = """UPDATE Belote SET handlist = %s,score1 = %s,score2 = %s,atout= %s,maitre= %s,teamprenant= %s,finished= %s WHERE idGame = %s"""
         try:
             curseur.execute(insert_statement, (data['handlist'], data['scoreTeam1'],
-                                               data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], True, idGame))
+                                               data['scoreTeam2'], data['atout'], data['maitre'], data['teamPrenant'], data['finished'], idGame))
             connexion.commit()
         finally:
             curseur.close
